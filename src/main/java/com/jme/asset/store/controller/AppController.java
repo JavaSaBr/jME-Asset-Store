@@ -1,15 +1,14 @@
 package com.jme.asset.store.controller;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -88,6 +87,13 @@ public class AppController {
     private ResponseEntity<String> handleMissingParams(NullPointerException ex) {
         return new ResponseEntity<String>("Parameter is missing!!!", HttpStatus.CONFLICT);
     }
+
+
+    @ExceptionHandler(MissingServletRequestPartException.class)
+    private ResponseEntity<String> handleMissingParams(MissingServletRequestPartException ex) {
+        return new ResponseEntity<String>("File is not selected!!!", HttpStatus.CONFLICT);
+    }
+
 
 
 }
