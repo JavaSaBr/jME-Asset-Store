@@ -111,6 +111,8 @@ public class AppController {
                 .body(resource);
     }
 
+    //Перегруженный метод для обработки разных исключительных ситуаций в ендпоинтах
+
     @ExceptionHandler(MissingServletRequestParameterException.class)
     private ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
         String name = ex.getParameterName();
