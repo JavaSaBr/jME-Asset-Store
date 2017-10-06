@@ -1,5 +1,8 @@
 package com.jme.asset.store.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,8 @@ import java.io.FileOutputStream;
 @Controller
 @Validated
 public class AppController {
+
+    private static Logger logger = LoggerFactory.getLogger(AppController.class);
 
     @RequestMapping("/")
     @ResponseBody
@@ -69,7 +74,12 @@ public class AppController {
         } catch (Exception e) {
             e.getMessage();
         }
-        return new ResponseEntity<String>("File added! ",HttpStatus.CREATED);
+        return new ResponseEntity<String>("File is added! ",HttpStatus.CREATED);
+    }
+    @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
+    public ResponseEntity<?> sendText(@RequestParam("text") String text){
+        logger.info(text);
+        return new ResponseEntity<Object>("Text is sended",HttpStatus.OK);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
