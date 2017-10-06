@@ -1,0 +1,10 @@
+repositories {
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+}
+
+dependencies {
+    apply plugin: 'java'
+    compile("org.springframework.boot:spring-boot-starter-web:2.0.0.M4")
+}
