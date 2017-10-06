@@ -20,26 +20,51 @@ public class AppController {
     String home() {
         return "Hello World!";
     }
-
+    //  math/add - слаживает 2 числа
     @RequestMapping(value = "math/add", method = RequestMethod.GET )
-    public ResponseEntity<?>   add(@RequestParam("first") Integer first, @RequestParam("second") Integer second){
+    public ResponseEntity<?>   add(@RequestParam("first") Double first, @RequestParam("second") Double second){
 
         return new ResponseEntity<Object>(first + second, HttpStatus.OK);
     }
 
+    //  math/sub - отнимает второе от первого
+    @RequestMapping(value = "math/sub", method = RequestMethod.GET )
+    public ResponseEntity<?>   sub(@RequestParam("first") Double first, @RequestParam("second") Double second){
+        return new ResponseEntity<Object>(first - second, HttpStatus.OK);
+    }
+
+    //  math/mult - перемножает
+    @RequestMapping(value = "math/mult", method = RequestMethod.GET )
+    public ResponseEntity<?>   mult(@RequestParam("first") Double first, @RequestParam("second") Double second) {
+        return new ResponseEntity<Object>(first * second, HttpStatus.OK);
+    }
+
+    //  /pow - возводит первое число в степень второго числа
+    @RequestMapping(value = "math/pow", method = RequestMethod.GET )
+    public ResponseEntity<?>   pov(@RequestParam("first") Double first, @RequestParam("second") Double second) {
+        return new ResponseEntity<Object>(Math.pow(first, second), HttpStatus.OK);
+    }
+
+    //  /devide - делит первое на второе
+    @RequestMapping(value = "math/devide", method = RequestMethod.GET )
+    public ResponseEntity<?>   devide(@RequestParam("first") Integer first, @RequestParam("second") Integer second) {
+        return new ResponseEntity<Object>((double)first / (double)second, HttpStatus.OK);
+    }
+
+
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
+    private ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
         String name = ex.getParameterName();
         return new ResponseEntity<String>("Parameter is missing: " + name, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(NumberFormatException.class)
-    public ResponseEntity<String> handleMissingParams(NumberFormatException ex) {
-        return new ResponseEntity<String>("Encorrect parameter format. ", HttpStatus.CONFLICT);
+    private ResponseEntity<String> handleMissingParams(NumberFormatException ex) {
+        return new ResponseEntity<String>("Incorrect parameter format. ", HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<String> handleMissingParams(NullPointerException ex) {
+    private ResponseEntity<String> handleMissingParams(NullPointerException ex) {
         return new ResponseEntity<String>("Parameter is missing!!!", HttpStatus.CONFLICT);
     }
 
