@@ -1,8 +1,10 @@
 package com.jme.asset.store.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.jme.asset.store.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -26,6 +28,8 @@ import java.util.Random;
 public class AppController {
 
     private static Logger logger = LoggerFactory.getLogger(AppController.class);
+    @Autowired
+    private FileService fileService;
 
     @RequestMapping("/")
     @ResponseBody
@@ -66,18 +70,7 @@ public class AppController {
     //  test_post/uplaod_file - загрузка файла на диск сервера
     @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
     public ResponseEntity<?> handleFileUpload(@RequestParam("file")MultipartFile file){
-        File upfile = new File("src/main/resources/public/" + file.getOriginalFilename());
-        if(file.isEmpty()){
-            return new ResponseEntity("File is empty", HttpStatus.CONFLICT);
-        }
-        try (BufferedOutputStream stream =
-                     new BufferedOutputStream(new FileOutputStream(upfile))){
-            byte[] bytes = file.getBytes();
-            stream.write(bytes);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return new ResponseEntity<String>("File is added! ",HttpStatus.CREATED);
+        return fileService.fileUpload(file);
     }
 
     //      test_post/send_text - принятие большого теста и вывода его в консоль
