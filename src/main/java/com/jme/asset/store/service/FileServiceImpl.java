@@ -1,13 +1,15 @@
 package com.jme.asset.store.service;
 
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
+import java.util.Random;
 
 @Service("fileService")
 public class FileServiceImpl implements FileService {
@@ -30,8 +32,28 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public ResponseEntity<?> randomFileGeneration() {
+        InputStreamResource resource = null;
+        File file = new File("file");
 
+        Random random = new Random(System.currentTimeMillis());
+        try(FileWriter writer = new FileWriter(file)) {
+            for (int i = 0; i <= random.nextInt(10000); i++) {
+                writer.append((char)random.nextInt());
+            }
+            resource = new InputStreamResource(new FileInputStream(file));
+        }catch (IOException exc){
+            exc.printStackTrace();
+        }
 
-        return null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
     }
 }
