@@ -1,5 +1,6 @@
 package com.jme.asset.store.configuration;
 
+import com.jme.asset.store.service.FileService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 
 import javax.servlet.MultipartConfigElement;
+
+/**
+ *
+ * Конфигурация для MultipartFile
+ *
+ *@author Denis Lesheniuk
+ *@version 1.0
+ * **/
 
 @Configuration
 @ComponentScan

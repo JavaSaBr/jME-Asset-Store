@@ -22,24 +22,31 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import java.io.*;
 import java.util.Random;
 
-
+/**
+ * Контролер предостовляющий набор методов для
+ * обработки запросов.
+ *
+ * @author Denis Lesheniuk
+ * @version 1.0
+ * **/
 @Controller
 @Validated
 public class AppController {
 
-    private static Logger logger = LoggerFactory.getLogger(AppController.class);
+    private static Logger logger = LoggerFactory.getLogger(AppController.class);  // логирование
+
     @Autowired
-    private FileService fileService;
+    private FileService fileService; // сервис для манипуляций с файлом
 
     @RequestMapping("/")
     @ResponseBody
     String home() {
         return "Hello World!";
     }
+
     //  math/add - слаживает 2 числа
     @RequestMapping(value = "math/add", method = RequestMethod.GET )
     public ResponseEntity<?>   add(@RequestParam("first") Double first, @RequestParam("second") Double second){
-
         return new ResponseEntity<Object>(first + second, HttpStatus.OK);
     }
 
@@ -74,37 +81,41 @@ public class AppController {
         return fileService.fileUpload(file);
     }
 
-    //      test_post/send_text - принятие большого теста и вывода его в консоль
+    //  test_post/send_text - принятие большого теста и вывода его в консоль
     @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
     public ResponseEntity<?> sendText(@RequestParam("text") String text){
         logger.info(text);
         return new ResponseEntity<Object>("The text is sended",HttpStatus.OK);
     }
 
-    //      download/random - при вызове метода, генерирует файл с небольшим случайным содержанием и отправляет вызывающей программе.
+    //  download/random - при вызове метода, генерирует файл с небольшим случайным содержанием и отправляет вызывающей программе.
     @RequestMapping(path = "/download/random", method = RequestMethod.GET)
     public ResponseEntity<?> downloadRandom() throws IOException {
        return fileService.randomFileGeneration();
     }
 
-    //Перегруженный метод для обработки разных исключительных ситуаций в ендпоинтах
+    //Перегруженный метод для обработки разных исключений в ендпоинтах
 
+    //Обработка недостоющего параметра
     @ExceptionHandler(MissingServletRequestParameterException.class)
     private ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
         String name = ex.getParameterName();
         return new ResponseEntity<String>("The parameter is missing: " + name, HttpStatus.CONFLICT);
     }
 
+    //Обработка неверного формата параметра
     @ExceptionHandler(NumberFormatException.class)
     private ResponseEntity<String> handleMissingParams(NumberFormatException ex) {
         return new ResponseEntity<String>("Incorrect parameter format. ", HttpStatus.CONFLICT);
     }
 
+    //Обработка пустого параметра
     @ExceptionHandler(NullPointerException.class)
     private ResponseEntity<String> handleMissingParams(NullPointerException ex) {
         return new ResponseEntity<String>("The parameter is missing!!!", HttpStatus.CONFLICT);
     }
 
+    //Обработка неуказанного файла
     @ExceptionHandler(MissingServletRequestPartException.class)
     private ResponseEntity<String> handleMissingParams(MissingServletRequestPartException ex) {
         return new ResponseEntity<String>("File is not selected!!!", HttpStatus.CONFLICT);

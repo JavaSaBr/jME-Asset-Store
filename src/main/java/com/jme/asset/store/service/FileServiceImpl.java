@@ -11,8 +11,24 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.util.Random;
 
+/**
+ * Сервис предостовляющий набор методов для манипуляций с текстом.
+ * Реализация интерфейса {@link FileService}
+ *
+ *@author Denis Lesheniuk
+ *@version 1.0
+ * **/
+
 @Service("fileService")
 public class FileServiceImpl implements FileService {
+
+    /**
+     *Реализация метода позволяющая сохранять входящий фай на сервере.
+     *
+     * @param file файл из тела запроса
+     * @return responseEntity с заполненными Body и HttpStatus
+     *
+     * */
     @Override
     public ResponseEntity<?> fileUpload(MultipartFile file) {
         File upfile = new File("src/main/resources/public/" + file.getOriginalFilename());
@@ -29,7 +45,12 @@ public class FileServiceImpl implements FileService {
             return new ResponseEntity<String>("The file is added. ", HttpStatus.CREATED);
     }
 
-
+    /**
+     *Реализация метода позволяющая генерировать фаайл с рандомным содержанием.
+     *
+     * @return responseEntity с заполненными Body, HttpStatus, Headers, ContentLength, ContentType.
+     *
+     * */
     @Override
     public ResponseEntity<?> randomFileGeneration() {
         InputStreamResource resource = null;
