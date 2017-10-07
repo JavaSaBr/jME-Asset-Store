@@ -63,7 +63,8 @@ public class AppController {
 
     //  math/devide - делит первое на второе
     @RequestMapping(value = "math/devide", method = RequestMethod.GET )
-    public ResponseEntity<?>   devide(@RequestParam("first") Integer first, @RequestParam("second") Integer second) {
+    public ResponseEntity<?>   devide(@RequestParam("first") Double first, @RequestParam("second") Double second) {
+        if(second == 0)return new ResponseEntity<Object>("Divide by zero is forbidden.", HttpStatus.CONFLICT);
         return new ResponseEntity<Object>((double)first / (double)second, HttpStatus.OK);
     }
 
