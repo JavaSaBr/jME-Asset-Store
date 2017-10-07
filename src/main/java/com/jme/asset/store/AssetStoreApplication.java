@@ -36,6 +36,7 @@ public class AssetStoreApplication {
     @RequestMapping(value = "/math/division", method = RequestMethod.GET )
     @ResponseBody
     String division(@RequestParam("first") Integer first, @RequestParam("second") Integer second){
+        if(second==0) return "Division by zero is impossible!!!";
         return first +  " / " + second + " = "  + ((double)first / (double)second);
     }
 
