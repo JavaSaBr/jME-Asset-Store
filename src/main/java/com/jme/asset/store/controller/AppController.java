@@ -77,31 +77,13 @@ public class AppController {
     @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
     public ResponseEntity<?> sendText(@RequestParam("text") String text){
         logger.info(text);
-        return new ResponseEntity<Object>("Text is sended",HttpStatus.OK);
+        return new ResponseEntity<Object>("The text is sended",HttpStatus.OK);
     }
 
-    //      download/random - при вызове метода, генерирует файл с небольшим случайным содержанием и отправлен вызывающей программе.
+    //      download/random - при вызове метода, генерирует файл с небольшим случайным содержанием и отправляет вызывающей программе.
     @RequestMapping(path = "/download/random", method = RequestMethod.GET)
-    public ResponseEntity<Resource> downloadRandom() throws IOException {
-        File file = new File("file.txt");
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        headers.add("Pragma", "no-cache");
-        headers.add("Expires", "0");
-        Random random = new Random(System.currentTimeMillis());
-        try(FileWriter writer = new FileWriter(file)) {
-            for (int i = 0; i <= random.nextInt(10000); i++) {
-            writer.append((char)random.nextInt());
-            }
-        }catch (IOException exc){
-            exc.printStackTrace();
-        }
-        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentLength(file.length())
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .body(resource);
+    public ResponseEntity<?> downloadRandom() throws IOException {
+       return fileService.randomFileGeneration();
     }
 
     //Перегруженный метод для обработки разных исключительных ситуаций в ендпоинтах
@@ -109,7 +91,7 @@ public class AppController {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     private ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
         String name = ex.getParameterName();
-        return new ResponseEntity<String>("Parameter is missing: " + name, HttpStatus.CONFLICT);
+        return new ResponseEntity<String>("The parameter is missing: " + name, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(NumberFormatException.class)
@@ -119,7 +101,7 @@ public class AppController {
 
     @ExceptionHandler(NullPointerException.class)
     private ResponseEntity<String> handleMissingParams(NullPointerException ex) {
-        return new ResponseEntity<String>("Parameter is missing!!!", HttpStatus.CONFLICT);
+        return new ResponseEntity<String>("The parameter is missing!!!", HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(MissingServletRequestPartException.class)
