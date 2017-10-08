@@ -7,11 +7,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 
 @Controller
@@ -65,14 +69,14 @@ public class controller {
             }
             inputStreamResource = new InputStreamResource(new FileInputStream(rundomDataFile));
         } catch (IOException exp) {
-       exp.printStackTrace();
+            exp.printStackTrace();
         }
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Cashe-Control", "no-cashe, no-store, must revalidate");
         httpHeaders.add("Pragma", "no-cashe");
         httpHeaders.add("Expires", "0");
 
-        return  ResponseEntity.ok()
+        return ResponseEntity.ok()
                 .headers(httpHeaders)
                 .contentLength(rundomDataFile.length())
                 .contentType(MediaType.parseMediaType("application/ocet-stream"))
@@ -80,47 +84,37 @@ public class controller {
 
     }
 
-    @PostMapping("test_post/upload_file")
-    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
-        File upFile = new File("src/main/resources/public/" + file.getOriginalFilename());
-        if (file.isEmpty())
-            return new ResponseEntity<Object>("File is empty", HttpStatus.CONFLICT);
-        try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upFile))) {
+    private static String UploadFolder = "src/main/resources/public/";
+    @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
+    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes)  {
+  // File upFile = new File("src/main/resources/public/" + file.getOriginalFilename());
+        if (file.isEmpty()) {
+     //redirectAttributes.addFlashAttribute("message", "Selected file is empty! Please, select a file to upload");
+            return new ResponseEntity<Object> ("File is empty", HttpStatus.CONFLICT);
+        }
+        try {
+ //(BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upFile))) {
             byte[] bytes = file.getBytes();
-            stream.write(bytes);
+            Path path = Paths.get(UploadFolder + file.getOriginalFilename());
+            Files.write(path, bytes);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return new ResponseEntity<Object>("File is upload", HttpStatus.OK);
+        return new ResponseEntity<Object> ("File is upload", HttpStatus.OK);
     }
 
-    @PostMapping("test_post/send_text")
+    /*@RequestMapping(value = "/uploadStatus", method = RequestMethod.GET)
+    public String uploadStatus() {
+        return "uploadstatus";
+    }*/
+
+    @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
     public ResponseEntity<String> handleFileSendText(@RequestParam("text") String text) {
+        if (text.isEmpty()){
+            return new ResponseEntity<String>("Please, enter text!", HttpStatus.CONFLICT);
+        }
         System.out.println(text);
         return new ResponseEntity<String>("Text is gettig", HttpStatus.OK);
-    }
-
-
-    @ExceptionHandler(FileNotFoundException.class)
-    public ResponseEntity<?> handleStorageFileNotFound(FileNotFoundException ex) {
-        return ResponseEntity.notFound().build();
-    }
-
-
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    private ResponseEntity<?> handleMissingParams(MissingServletRequestParameterException ex) {
-        String name = ex.getParameterName();
-        return new ResponseEntity<Object>("Result is failed: " + name + " required parameter is missed", HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(NullPointerException.class)
-    private ResponseEntity<?> handleMissingParams(NullPointerException ex) {
-        return new ResponseEntity<Object>("Result is failed", HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(NumberFormatException.class)
-    private ResponseEntity<?> handleMissingParams(NumberFormatException ex) {
-        return new ResponseEntity<Object>("Result is failed: incorrect type", HttpStatus.CONFLICT);
     }
 
 

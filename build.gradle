@@ -1,12 +1,29 @@
-apply plugin: 'java'
-repositories {
-    maven {
-        url 'https://repo.spring.io/libs-milestone'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
     }
 }
 
-dependencies {
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
 
-    compile("org.springframework.boot:spring-boot-starter-web:2.0.0.M4")
+jar {
+    baseName = 'gs-uploading-files'
+    version =  '0.1.0'
 }
 
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
