@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.annotation.MultipartConfig;
+
 
 @Configuration
 @ComponentScan

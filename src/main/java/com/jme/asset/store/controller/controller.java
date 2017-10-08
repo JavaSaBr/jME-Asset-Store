@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.*;
 import java.io.IOException;
@@ -17,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
+
 
 @Controller
 @Validated
@@ -58,14 +58,44 @@ public class controller {
 
     }
 
+    private static String UploadFolder = "src/main/resources/public/";
+
+    @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
+    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
+
+        if (file.isEmpty()) {
+            return new ResponseEntity<Object>("File is empty", HttpStatus.CONFLICT);
+        }
+        try {
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UploadFolder + file.getOriginalFilename());
+            Files.write(path, bytes);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return new ResponseEntity<Object>("File is upload", HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
+    public ResponseEntity<String> handleFileSendText(@RequestParam("text") String text) {
+        if (text.isEmpty()) {
+            return new ResponseEntity<String>("Please, enter text!", HttpStatus.CONFLICT);
+        }
+        System.out.println(text);
+        return new ResponseEntity<String>("Text is gettig", HttpStatus.OK);
+    }
+
+
     @RequestMapping(value = "download/random", method = RequestMethod.GET)
-    ResponseEntity<?> generateRundomDataFile() {
+    ResponseEntity<?> generateRundomDataFile() throws IOException {
         File rundomDataFile = new File("rundomDataFile");
         InputStreamResource inputStreamResource = null;
         Random random = new Random(System.currentTimeMillis());
         try (FileWriter fileWriter = new FileWriter(rundomDataFile)) {
             for (int i = 0; i <= random.nextInt(10000); i++) {
-                fileWriter.append((char) random.nextInt());
+                String line = String.format("%s %s %s %n", random.nextInt(), random.nextInt(), random.nextInt());
+                fileWriter.write(line);
             }
             inputStreamResource = new InputStreamResource(new FileInputStream(rundomDataFile));
         } catch (IOException exp) {
@@ -75,6 +105,7 @@ public class controller {
         httpHeaders.add("Cashe-Control", "no-cashe, no-store, must revalidate");
         httpHeaders.add("Pragma", "no-cashe");
         httpHeaders.add("Expires", "0");
+        httpHeaders.add("content-disposition", "inline; filename=\"" + rundomDataFile.getName() + "\"");
 
         return ResponseEntity.ok()
                 .headers(httpHeaders)
@@ -83,39 +114,5 @@ public class controller {
                 .body(inputStreamResource);
 
     }
-
-    private static String UploadFolder = "src/main/resources/public/";
-    @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
-    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes)  {
-  // File upFile = new File("src/main/resources/public/" + file.getOriginalFilename());
-        if (file.isEmpty()) {
-     //redirectAttributes.addFlashAttribute("message", "Selected file is empty! Please, select a file to upload");
-            return new ResponseEntity<Object> ("File is empty", HttpStatus.CONFLICT);
-        }
-        try {
- //(BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(upFile))) {
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UploadFolder + file.getOriginalFilename());
-            Files.write(path, bytes);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return new ResponseEntity<Object> ("File is upload", HttpStatus.OK);
-    }
-
-    /*@RequestMapping(value = "/uploadStatus", method = RequestMethod.GET)
-    public String uploadStatus() {
-        return "uploadstatus";
-    }*/
-
-    @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
-    public ResponseEntity<String> handleFileSendText(@RequestParam("text") String text) {
-        if (text.isEmpty()){
-            return new ResponseEntity<String>("Please, enter text!", HttpStatus.CONFLICT);
-        }
-        System.out.println(text);
-        return new ResponseEntity<String>("Text is gettig", HttpStatus.OK);
-    }
-
-
 }
+
