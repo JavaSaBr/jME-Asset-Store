@@ -1,0 +1,262 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include<algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <queue>
+
+using namespace std;
+
+vector<bool> used_br;
+vector < vector<int> > g_br;
+int timer_br;
+vector<int> tin_br, fup_br;
+
+vector<bool> used_ts;
+vector<vector<int> > g_ts;
+int timer_ts;
+vector<int> tin_ts, fup_ts;
+
+map<pair<int, int>, int> mp;
+vector<int> mosty;
+
+void is_bridge(int v, int to)
+{
+	mosty.push_back(mp[make_pair(v, to)]);
+}
+
+void dfs_for_bridge(int v, int p = -1)
+{
+	used_br[v] = true;
+	tin_br[v] = fup_br[v] = timer_br++;
+	for (int i = 0; i < g_br[v].size(); i++)
+	{
+		int to = g_br[v][i];
+		if (to == p) continue;
+		if (used_br[to])
+		{
+			fup_br[v] = min(fup_br[v], tin_br[to]);
+		}
+		else
+		{
+			dfs_for_bridge(to, v);
+			fup_br[v] = min(fup_br[v], fup_br[to]);
+			if (fup_br[to] > tin_br[v])
+			{
+				is_bridge(v, to);
+			}
+		}
+	}
+}
+
+
+
+void find_bridges(int n)
+{
+	timer_br = 0;
+	tin_br = fup_br = vector<int>(n + 1);
+	used_br = vector<bool>(n + 1);
+	for (int i = 1; i <= n; i++)
+	{
+		used_br[i] = false;
+	}
+
+	for (int i = 1; i <= n; i++)
+	{
+		if (!used_br[i]) dfs_for_bridge(i);
+	}
+
+}
+void is_ts(int v)
+{
+	mosty.push_back(v);
+}
+
+void dfs_ts(int v, int p = -1)
+{
+	used_ts[v] = true;
+	fup_ts[v] = tin_ts[v] = timer_ts++;
+	int children = 0;
+	for (int i = 0; i < g_ts[v].size(); i++)
+	{
+		int to = g_ts[v][i];
+		if (to == p) continue;
+		if (used_ts[to])
+		{
+			fup_ts[v] = min(fup_ts[v], tin_ts[to]);
+		}
+		else
+		{
+			dfs_ts(to, v);
+			fup_ts[v] = min(fup_ts[v], fup_ts[to]);
+			if (fup_ts[to] >= tin_ts[v] && p != -1)
+			{
+				is_ts(v);
+			}
+			children++;
+		}
+	}
+	if (children > 1 && p == -1)
+	{
+		is_ts(v);
+	}
+}
+
+
+
+bool used_ss[2050];
+vector<int>  g_ss[2050], gr_ss[2050];
+int timer_ss;
+vector<int> order, component;
+
+void dfs1(int v)
+{
+	used_ss[v] = true;
+	for (int i = 0; i < g_ss[v].size(); i++)
+	{
+		if (!used_ss[g_ss[v][i]]) dfs1(g_ss[v][i]);
+	}
+	order.push_back(v);
+}
+
+void dfs2(int v)
+{
+	used_ss[v] = true;
+	component.push_back(v);
+	for (int i = 0; i < gr_ss[v].size(); i++)
+	{
+		if (!used_ss[gr_ss[v][i]]) dfs2(gr_ss[v][i]);
+	}
+}
+
+int components[2050];
+
+vector<vector<int> > components1;
+
+void myf()
+{
+	components1.push_back(component);
+	set<int> s;
+	for (int i = 0; i < component.size(); i++)
+	{
+		components[component[i]] = components1.size() - 1;
+		//if (s.find(component[i]) != s.end())  s.erase(s.find(component[i]));
+	}
+	
+}
+
+vector<vector<int> > kond;
+
+//bool matrix[2050][2050];
+
+/*void searc_r()
+{
+	kond = vector<vector<int> >(components1.size());
+	for (int i = 0; i < components1.size(); i++)
+	{
+		for (int j = 0; j < components1.size(); j++)
+		{
+			if (i == j || matrix[i][j] || matrix[j][i]) continue;
+			for (vector<int>::iterator it = components1[j].begin(); it != components1[j].end(); it++)
+			{
+				if (components[i].find((*it)) != components[i].end())
+				{
+					kond[i].push_back(j);
+					matrix[i][j] = true;
+					break;
+				}
+			}
+		}
+	}
+}*/
+
+void search_r1()
+{
+	kond = vector<vector<int> >(components1.size());
+	for (int i = 0; i < 2001; i++)
+	{
+		for (int j = 0; j < g_ss[i].size(); j++)
+		{
+			if (components[g_ss[i][j]] != components[i])
+			{
+				kond[components[i]].push_back(components[g_ss[i][j]]);
+		    }
+		}
+	}
+}
+
+int countik;
+bool final_used[2050];
+
+void mydfs(int v)
+{
+	final_used[v] = true;
+	for (int i = 0; i < kond[v].size(); i++)
+	{
+		if (!final_used[kond[v][i]])
+		{
+			countik++;
+			mydfs(kond[v][i]);
+		}
+	}
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	//freopen("points.in", "r", stdin);
+	//freopen("points.out", "w", stdout);
+	int n;  scanf("%d",&n);
+	memset(g_ss, false, n + 1);
+	memset(gr_ss, false, n + 1);
+	memset(used_ss, false, n + 1);
+	for (int i = 0; i < n; i++)
+	{
+		while (true) {
+			int a; scanf("%d",&a);
+			if (a == 0) break;
+			g_ss[i + 1].push_back(a);
+			gr_ss[a].push_back(i + 1);
+		}
+	}
+	for (int i = 1; i < n + 1; i++) {
+		if (!used_ss[i])
+			dfs1(i);
+	}
+	memset(used_ss, false, n + 1);
+	for (int i = 0; i < n; i++) {
+		int v = order[n - 1 - i];
+		if (!used_ss[v])
+			dfs2(v);
+		if (component.size() != 0) myf();
+		component.clear();
+	}
+	search_r1();
+	for (int i = 0; i < kond.size(); i++)
+	{
+		countik = 0;
+		memset(final_used, false, components1.size());
+		mydfs(i);
+		if (countik == kond.size() - 1)
+		{
+			sort(components1[i].begin(), components1[i].end());
+			for (int j = 0; j < components1[i].size(); j++)
+			{
+				cout << components1[i][j] << " ";
+			}
+			break;
+		}
+	}
+
+	cout << "0";
+	return 0;
+}
+
+
+/* Tue Aug 01 2017 11:53:37 GMT+0300 (MSK) */
+
+/* Tue Aug 01 2017 11:55:12 GMT+0300 (MSK) */
+
+/* Tue Aug 01 2017 11:56:27 GMT+0300 (MSK) */
