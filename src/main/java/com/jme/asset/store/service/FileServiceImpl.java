@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * The implementation {@link FileService}.
  *
- *@author Denis Lesheniuk
+ * @author Denis Lesheniuk
  */
 
 @Service("fileService")
@@ -33,7 +33,7 @@ public class FileServiceImpl implements FileService {
         } catch (Exception e) {
             e.getMessage();
         }
-            return new ResponseEntity<String>("The file is added. ", HttpStatus.CREATED);
+        return new ResponseEntity<String>("The file is added. ", HttpStatus.CREATED);
     }
 
 
@@ -43,12 +43,12 @@ public class FileServiceImpl implements FileService {
         File file = new File("file");
 
         Random random = new Random(System.currentTimeMillis());
-        try(FileWriter writer = new FileWriter(file)) {
+        try (FileWriter writer = new FileWriter(file)) {
             for (int i = 0; i <= random.nextInt(10000); i++) {
-                writer.append((char)random.nextInt());
+                writer.append((char) random.nextInt());
             }
             resource = new InputStreamResource(new FileInputStream(file));
-        }catch (IOException exc){
+        } catch (IOException exc) {
             exc.printStackTrace();
         }
 

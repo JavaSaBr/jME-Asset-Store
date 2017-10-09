@@ -7,10 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import javax.servlet.MultipartConfigElement;
 
 /**
- *
  * Registration of MultipartConfigElement.
  *
- *@author Denis Lesheniuk
+ * @author Denis Lesheniuk
  */
 @Configuration
 public class MultipartConfig {
@@ -22,7 +21,7 @@ public class MultipartConfig {
      * @return the multipartConfigElement.
      */
     @Bean
-    MultipartConfigElement multipartConfigElement(){
+    MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
         factory.setMaxFileSize("3000KB");
         factory.setMaxRequestSize("3000KB");
