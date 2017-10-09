@@ -26,11 +26,6 @@ public class ApplicationController {
     }
 
 
-
-
-
-
-
     @ExceptionHandler(MissingServletRequestParameterException.class)
     ResponseEntity<?> missingParams(MissingServletRequestParameterException ex){
         return new ResponseEntity<Object>("Missing param: " + ex.getParameterName(),HttpStatus.BAD_REQUEST);

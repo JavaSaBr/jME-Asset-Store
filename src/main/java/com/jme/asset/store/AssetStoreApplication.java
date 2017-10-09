@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 @EnableAutoConfiguration
 public class AssetStoreApplication {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         SpringApplication.run(AssetStoreApplication.class, args);
     }
 
