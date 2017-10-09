@@ -18,7 +18,6 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
  * @author Denis Lesheniuk
  */
 @Controller
-@Validated
 @RequestMapping("/math")
 public class MathController {
     private static Logger logger = LoggerFactory.getLogger(MathController.class);  // The logging.
@@ -33,7 +32,7 @@ public class MathController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ResponseEntity<?> add(@RequestParam("first") Double first, @RequestParam("second") Double second) {
-        return new ResponseEntity<Object>(first + second, HttpStatus.OK);
+        return ResponseEntity.ok(first + second);
     }
 
     /**
@@ -46,7 +45,7 @@ public class MathController {
      */
     @RequestMapping(value = "/sub", method = RequestMethod.GET)
     public ResponseEntity<?> sub(@RequestParam("first") Double first, @RequestParam("second") Double second) {
-        return new ResponseEntity<Object>(first - second, HttpStatus.OK);
+        return ResponseEntity.ok(first - second);
     }
 
     /**
@@ -59,11 +58,11 @@ public class MathController {
      */
     @RequestMapping(value = "/mult", method = RequestMethod.GET)
     public ResponseEntity<?> mult(@RequestParam("first") Double first, @RequestParam("second") Double second) {
-        return new ResponseEntity<Object>(first * second, HttpStatus.OK);
+        return ResponseEntity.ok(first * second);
     }
 
     /**
-     * The method raises the first number to the power o the second.
+     * The method raises the first number to the power of the second.
      * The method is mapped with a math/pow request.
      *
      * @param first  the first request param.
@@ -72,7 +71,7 @@ public class MathController {
      */
     @RequestMapping(value = "/pow", method = RequestMethod.GET)
     public ResponseEntity<?> pov(@RequestParam("first") Double first, @RequestParam("second") Double second) {
-        return new ResponseEntity<Object>(Math.pow(first, second), HttpStatus.OK);
+        return ResponseEntity.ok(Math.pow(first, second));
     }
 
     /**
@@ -86,53 +85,9 @@ public class MathController {
     @RequestMapping(value = "/devide", method = RequestMethod.GET)
     public ResponseEntity<?> devide(@RequestParam("first") Double first, @RequestParam("second") Double second) {
         if (second == 0) return new ResponseEntity<Object>("Divide by zero is forbidden.", HttpStatus.CONFLICT);
-        return new ResponseEntity<Object>((double) first / (double) second, HttpStatus.OK);
+        return ResponseEntity.ok((double) first / (double) second);
     }
 
-    /**
-     * The method handling MissingServletRequestParameterException.
-     *
-     * @param ex the missingServletRequestParameterException.
-     * @return the msg in the response body and the HttpStatus.
-     */
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    private ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
-        String name = ex.getParameterName();
-        return new ResponseEntity<String>("The parameter is missing: " + name, HttpStatus.CONFLICT);
-    }
-
-    /**
-     * The method handling NumberFormatException.
-     *
-     * @param ex the numberFormatException.
-     * @return the msg in the response body and the HttpStatus.
-     */
-    @ExceptionHandler(NumberFormatException.class)
-    private ResponseEntity<String> handleMissingParams(NumberFormatException ex) {
-        return new ResponseEntity<String>("Incorrect parameter format. ", HttpStatus.CONFLICT);
-    }
-
-    /**
-     * The method handling NullPointerException.
-     *
-     * @param ex the nullPointerException.
-     * @return the msg in the response body and the HttpStatus.
-     */
-    @ExceptionHandler(NullPointerException.class)
-    private ResponseEntity<String> handleMissingParams(NullPointerException ex) {
-        return new ResponseEntity<String>("The parameter is missing!!!", HttpStatus.CONFLICT);
-    }
-
-    /**
-     * The method handling MissingServletRequestPartException.
-     *
-     * @param ex missingServletRequestPartException.
-     * @return the msg in the response body and the HttpStatus.
-     */
-    @ExceptionHandler(MissingServletRequestPartException.class)
-    private ResponseEntity<String> handleMissingParams(MissingServletRequestPartException ex) {
-        return new ResponseEntity<String>("File is not selected!!!", HttpStatus.CONFLICT);
-    }
 
 
 }

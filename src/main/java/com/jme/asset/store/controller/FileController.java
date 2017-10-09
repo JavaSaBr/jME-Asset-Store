@@ -22,13 +22,16 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
  * @author Denis Lesheniuk
  */
 @Controller
-@Validated
 @RequestMapping("/file")
 public class FileController {
     private static Logger logger = LoggerFactory.getLogger(FileController.class);  // The logging.
 
-    @Autowired
+   /* @Autowired()
     private FileService fileService; // The service provides the set of methods to work with files.
+   */
+
+    @Autowired()
+    private FileService fileServiceNIO; // The file service based on the NIO library.
 
     /**
      * The method uses the fileService to uploads the file to the server.
@@ -39,7 +42,7 @@ public class FileController {
      */
     @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
     public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
-        return fileService.fileUpload(file);
+        return fileServiceNIO.fileUpload(file);
     }
 
     /**
@@ -64,42 +67,9 @@ public class FileController {
      */
     @RequestMapping(path = "download/random", method = RequestMethod.GET)
     public ResponseEntity<?> downloadRandom() {
-        return fileService.randomFileGeneration();
+        return fileServiceNIO.randomFileGeneration();
     }
 
-    /**
-     * The method handling MissingServletRequestParameterException.
-     *
-     * @param ex the missingServletRequestParameterException.
-     * @return the msg in the response body and the HttpStatus.
-     */
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    private ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
-        String name = ex.getParameterName();
-        return new ResponseEntity<String>("The parameter is missing: " + name, HttpStatus.CONFLICT);
-    }
-
-    /**
-     * The method handling NullPointerException.
-     *
-     * @param ex the nullPointerException.
-     * @return the msg in the response body and the HttpStatus.
-     */
-    @ExceptionHandler(NullPointerException.class)
-    private ResponseEntity<String> handleMissingParams(NullPointerException ex) {
-        return new ResponseEntity<String>("The parameter is missing!!!", HttpStatus.CONFLICT);
-    }
-
-    /**
-     * The method handling MissingServletRequestPartException.
-     *
-     * @param ex missingServletRequestPartException.
-     * @return the msg in the response body and the HttpStatus.
-     */
-    @ExceptionHandler(MissingServletRequestPartException.class)
-    private ResponseEntity<String> handleMissingParams(MissingServletRequestPartException ex) {
-        return new ResponseEntity<String>("File is not selected!!!", HttpStatus.CONFLICT);
-    }
 
 
 }
