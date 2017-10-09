@@ -12,6 +12,7 @@ public class AssetStoreApplication {
 
 
 
+
     public static void main(String[] args) throws Exception {
         SpringApplication.run(AssetStoreApplication.class, args);
     }
