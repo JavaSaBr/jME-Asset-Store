@@ -13,14 +13,14 @@ public interface FileService {
      * The method uploads the file to the server.
      *
      * @param file the multipartFile.
-     * @retrn the result of the uploading with the Http status.
+     * @return the result of the uploading with the Http status.
      */
     public ResponseEntity <?> fileUpload(MultipartFile file);
     /**
      * The method generates a file with
      * random content and.
      *
-     * @retrn the generated file with Http status.
+     * @return the generated file with Http status.
      */
     public ResponseEntity <?> randomFileGeneration();
 }

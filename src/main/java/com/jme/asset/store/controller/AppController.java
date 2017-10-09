@@ -39,7 +39,7 @@ public class AppController {
      *
      * @param first the first request param.
      * @param second the second request param.
-     * @retrn the sum of two numbers with the Http status.
+     * @return the sum of two numbers with the Http status.
      */
     @RequestMapping(value = "math/add", method = RequestMethod.GET )
     public ResponseEntity<?>   add(@RequestParam("first") Double first, @RequestParam("second") Double second){
@@ -52,7 +52,7 @@ public class AppController {
      *
      * @param first the first request param.
      * @param second the second request param.
-     * @retrn the difference of two numbers with the Http status.
+     * @return the difference of two numbers with the Http status.
      */
     @RequestMapping(value = "math/sub", method = RequestMethod.GET )
     public ResponseEntity<?>   sub(@RequestParam("first") Double first, @RequestParam("second") Double second){
@@ -65,7 +65,7 @@ public class AppController {
      *
      * @param first the first request param.
      * @param second the second request param.
-     * @retrn the product of two numbers with the Http status.
+     * @return the product of two numbers with the Http status.
      */
     @RequestMapping(value = "math/mult", method = RequestMethod.GET )
     public ResponseEntity<?>   mult(@RequestParam("first") Double first, @RequestParam("second") Double second) {
@@ -78,7 +78,7 @@ public class AppController {
      *
      * @param first the first request param.
      * @param second the second request param.
-     * @retrn the first number raised to the power of the second with the Http status.
+     * @return the first number raised to the power of the second with the Http status.
      */
     @RequestMapping(value = "math/pow", method = RequestMethod.GET )
     public ResponseEntity<?>   pov(@RequestParam("first") Double first, @RequestParam("second") Double second) {
@@ -91,7 +91,7 @@ public class AppController {
      *
      * @param first the first request param.
      * @param second the second request param.
-     * @retrn the dividing result with the Http status.
+     * @return the dividing result with the Http status.
      */
     @RequestMapping(value = "math/devide", method = RequestMethod.GET )
     public ResponseEntity<?>   devide(@RequestParam("first") Double first, @RequestParam("second") Double second) {
@@ -104,7 +104,7 @@ public class AppController {
      * The method is mapped with a test_post/upload request.
      *
      * @param file the multipartFile.
-     * @retrn the result of the uploading with the Http status.
+     * @return the result of the uploading with the Http status.
      */
     @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
     public ResponseEntity<?> handleFileUpload(@RequestParam("file")MultipartFile file){
@@ -116,7 +116,7 @@ public class AppController {
      * The method is mapped with a test_post/send_text request.
      *
      * @param text the text.
-     * @retrn the Http status.
+     * @return the Http status.
      */
     @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
     public ResponseEntity<?> sendText(@RequestParam("text") String text){
@@ -129,7 +129,7 @@ public class AppController {
      * random content and returns it to the calling program.
      * The method is mapped with a download/random request.
      *
-     * @retrn the generated file with Http status.
+     * @return the generated file with Http status.
      */
     @RequestMapping(path = "/download/random", method = RequestMethod.GET)
     public ResponseEntity<?> downloadRandom(){
