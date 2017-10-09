@@ -1,28 +1,26 @@
 package com.jme.asset.store.configuration;
 
-import com.jme.asset.store.service.FileService;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
 
 import javax.servlet.MultipartConfigElement;
 
 /**
  *
- * Конфигурация для MultipartFile
+ * Registration of MultipartConfigElement.
  *
  *@author Denis Lesheniuk
- *@version 1.0
- * **/
-
+ */
 @Configuration
-@ComponentScan
-@EnableAutoConfiguration
 public class MultipartConfig {
 
+    /**
+     * The method provides opportunity to set specific properties
+     * like maximum file size and request size.
+     *
+     * @return the multipartConfigElement.
+     */
     @Bean
     MultipartConfigElement multipartConfigElement(){
         MultipartConfigFactory factory = new MultipartConfigFactory();

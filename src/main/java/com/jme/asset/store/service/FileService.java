@@ -4,12 +4,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- *Интерфуйс предостовляющий набор методов для манипуляций с текстом
+ *  The service to work with file.
  *
  * @author Denis Lesheniuk
- * @version 1.0
- *  **/
+ */
 public interface FileService {
+    /**
+     * The method uploads the file to the server.
+     *
+     * @param file the multipartFile.
+     * @retrn the result of the uploading with the Http status.
+     */
     public ResponseEntity <?> fileUpload(MultipartFile file);
+    /**
+     * The method generates a file with
+     * random content and.
+     *
+     * @retrn the generated file with Http status.
+     */
     public ResponseEntity <?> randomFileGeneration();
 }
