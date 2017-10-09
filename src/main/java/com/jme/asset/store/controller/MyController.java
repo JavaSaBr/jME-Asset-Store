@@ -20,7 +20,7 @@ import java.util.Random;
 
 @Controller
 @Validated
-public class controller {
+public class MyController {
 
     @RequestMapping("/")
     @ResponseBody
@@ -45,33 +45,34 @@ public class controller {
 
     @RequestMapping(value = "/math/div", method = RequestMethod.GET)
     ResponseEntity<?> div(@RequestParam("first") Integer first, @RequestParam("second") Integer second) {
-        if (!(second == 0))
-            return new ResponseEntity<String>("The division result is = " + ((double) first / second), HttpStatus.OK);
-        return new ResponseEntity<String>("The division by zero is not allowed!", HttpStatus.BAD_REQUEST);
 
+        if (!(second == 0)) {
+            return new ResponseEntity<>("The division result is = " + ((double) first / second), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("The division by zero is not allowed!", HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping(value = "/math/pow", method = RequestMethod.GET)
     ResponseEntity<?> pow(@RequestParam("first") Integer first, @RequestParam("second") Integer second) {
-
-        return new ResponseEntity<String>(("The division result is = " + Math.pow(first, second)), HttpStatus.OK);
+        return ResponseEntity.ok("The division result is = " + Math.pow(first, second));
 
     }
 
     private static String UploadFolder = "src/main/resources/public/";
 
     @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
-    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile multipartFile) {
 
-        if (file.isEmpty()) {
+        if (multipartFile.isEmpty()) {
             return new ResponseEntity<Object>("File is empty", HttpStatus.CONFLICT);
         }
         try {
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UploadFolder + file.getOriginalFilename());
-            Files.write(path, bytes);
+            Path path = Paths.get(UploadFolder + multipartFile.getOriginalFilename());
+            Files.copy(multipartFile.getInputStream(), path);
         } catch (IOException ex) {
             ex.printStackTrace();
+            return new ResponseEntity<Object>("File is not upload", HttpStatus.CONFLICT);
         }
         return new ResponseEntity<Object>("File is upload", HttpStatus.OK);
     }
