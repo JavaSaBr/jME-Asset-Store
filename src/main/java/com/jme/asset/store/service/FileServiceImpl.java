@@ -50,6 +50,8 @@ public class FileServiceImpl implements FileService {
             resource = new InputStreamResource(new FileInputStream(file));
         } catch (IOException exc) {
             exc.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("IOException");
         }
 
         HttpHeaders headers = new HttpHeaders();

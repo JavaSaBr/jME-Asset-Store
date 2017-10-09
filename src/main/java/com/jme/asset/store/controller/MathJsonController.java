@@ -5,7 +5,6 @@ import com.jme.asset.store.model.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -72,7 +71,10 @@ public class MathJsonController {
      */
     @PostMapping(value = "/devide")
     public ResponseEntity<?> devide(@RequestBody MathParams mathParams) {
-        if (mathParams.getSecond() == 0) return ResponseEntity.status(HttpStatus.CONFLICT).body("Divide by zero is forbidden.");
+        if (mathParams.getSecond() == 0 && mathParams.getFirst() == 0)
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Parameters not found.");
+        if (mathParams.getSecond() == 0)
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Divide by zero is forbidden.");
         return ResponseEntity.ok(mathParams.getFirst() / mathParams.getSecond());
     }
 

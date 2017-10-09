@@ -1,8 +1,8 @@
 package com.jme.asset.store.controller;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -57,7 +57,12 @@ public class ExceptionHandlerController {
      * @return the msg in the response body and the HttpStatus.
      */
     @ExceptionHandler(NumberFormatException.class)
-    private ResponseEntity<String> handleMissingParams(NumberFormatException ex) {
+    public ResponseEntity<String> handleMissingParams(NumberFormatException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Incorrect parameter format. ");
+    }
+
+    @ExceptionHandler(JsonParseException.class)
+    public ResponseEntity<String> handleMissingParams(JsonParseException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Incorrect parameter format. ");
     }
 }

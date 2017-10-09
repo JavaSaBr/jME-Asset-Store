@@ -1,5 +1,10 @@
 package com.jme.asset.store.model;
 
+/**
+ * The model of Result
+ *
+ * @author Denis Lesheniuk
+ */
 public class Result {
     private double result;
 

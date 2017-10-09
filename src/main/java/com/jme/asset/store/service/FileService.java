@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * The service to work with file.
+ * The service to working with file.
  *
  * @author Denis Lesheniuk
  */

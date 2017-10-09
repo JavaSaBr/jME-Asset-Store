@@ -1,5 +1,10 @@
 package com.jme.asset.store.model;
 
+/**
+ * The model of MathParam
+ *
+ * @author Denis Lesheniuk
+ */
 public class MathParams {
     private double first;
     private double second;
