@@ -61,6 +61,12 @@ public class ExceptionHandlerController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Incorrect parameter format. ");
     }
 
+    /**
+     * The method handling JsonParseException.
+     *
+     * @param ex the numberFormatException.
+     * @return the msg in the response body and the HttpStatus.
+     */
     @ExceptionHandler(JsonParseException.class)
     public ResponseEntity<String> handleMissingParams(JsonParseException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Incorrect parameter format. ");
