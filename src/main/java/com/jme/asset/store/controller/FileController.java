@@ -13,14 +13,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Random;
 
 @Controller
 public class FileController {
+
+    public ResponseEntity<?> fileUpload(MultipartFile file) {
+        File upfile = new File("src/main/resources/public/" + file.getOriginalFilename());
+        if (file.isEmpty()) {
+            return new ResponseEntity("The file is empty", HttpStatus.CONFLICT);
+        }
+        try (BufferedOutputStream stream =
+                     new BufferedOutputStream(new FileOutputStream(upfile))) {
+            byte[] bytes = file.getBytes();
+            stream.write(bytes);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return new ResponseEntity<String>("The file is added. ", HttpStatus.CREATED);
+    }
+
     @RequestMapping(value="test_post/upload_file", method= RequestMethod.POST)
     public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
         return fileUpload(file);
