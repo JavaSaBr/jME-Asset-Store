@@ -9,6 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The controller provides multiple of endpoints for work with math.
+ *
+ * @author Denis Lesheniuk
+ */
 @Controller
 @RequestMapping("/math2")
 public class MathJsonController {
@@ -16,7 +21,7 @@ public class MathJsonController {
 
     /**
      * The method adds two numbers.
-     * The method is mapped with a math/add request.
+     * The method is mapped with a math2/add request.
      *
      * @param mathParams is the MathParams object.
      * @return the sum of two numbers in the JSON format with the Http status.
@@ -28,7 +33,7 @@ public class MathJsonController {
 
     /**
      * The method takes the second number from the first.
-     * The method is mapped with a math/sub request.
+     * The method is mapped with a math2/sub request.
      *
      * @param mathParams is the MathParams object.
      * @return the difference of two numbers in the JSON format with the Http status.
@@ -40,7 +45,7 @@ public class MathJsonController {
 
     /**
      * The method multiplies two numbers.
-     * The method is mapped with a math/mult request.
+     * The method is mapped with a math2/mult request.
      *
      * @param mathParams is the MathParams object.
      * @return the product of two numbers in the JSON format with the Http status.
@@ -52,19 +57,19 @@ public class MathJsonController {
 
     /**
      * The method raises the first number to the power o the second.
-     * The method is mapped with a math/pow request.
+     * The method is mapped with a math2/pow request.
      *
      * @param mathParams is the MathParams object.
      * @return the first number raised to the power of the second in the JSON format with the Http status.
      */
     @PostMapping(value = "/pow")
     public ResponseEntity<?> pov(@RequestBody MathParams mathParams) {
-        return ResponseEntity.ok(Math.pow(mathParams.getFirst(), mathParams.getSecond()));
+        return ResponseEntity.ok(new Result(Math.pow(mathParams.getFirst(), mathParams.getSecond())));
     }
 
     /**
      * The method divides the first number by the second.
-     * The method is mapped with a math/devide request.
+     * The method is mapped with a math2/devide request.
      *
      * @param mathParams is the MathParams object.
      * @return the dividing result in the JSON format with the Http status.
@@ -75,7 +80,7 @@ public class MathJsonController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Parameters not found.");
         if (mathParams.getSecond() == 0)
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Divide by zero is forbidden.");
-        return ResponseEntity.ok(mathParams.getFirst() / mathParams.getSecond());
+        return ResponseEntity.ok(new Result(mathParams.getFirst() / mathParams.getSecond()));
     }
 
 }
