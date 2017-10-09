@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 public class AssetStoreApplication {
 
 
-
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(AssetStoreApplication.class, args);
     }

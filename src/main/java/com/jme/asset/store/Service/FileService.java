@@ -1,38 +1,35 @@
-package com.jme.asset.store.Server;
+package com.jme.asset.store.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.apache.tomcat.jni.File;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 //import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.*;
 
 @Service
-public class FileServer implements IFileServer {
+public class FileService implements IFileService {
 
-    static String pathToFile = "src/main/resourse/public/";
-
-
+    static String pathToFile = "src/main/resources/public/";
 
     public  ResponseEntity<?> fileUpload(MultipartFile file) {
+        //return ResponseEntity.ok().body("ergerger");
 
         if (file.isEmpty()) {
             return new ResponseEntity("The file is empty", HttpStatus.CONFLICT);
         }
         try {
             Path path = Paths.get(pathToFile + file.getOriginalFilename());
-            Files.copy(file.getInputStream(), path);
+            //Files.write(path,file.getBytes());
+            Files.copy(file.getInputStream(),path,StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
+            return ResponseEntity.ok().body("exception");
         }
 
-        return new ResponseEntity<>("File upload. ", HttpStatus.OK);
+        return ResponseEntity.ok().body("file upload");
     }
 
 }
