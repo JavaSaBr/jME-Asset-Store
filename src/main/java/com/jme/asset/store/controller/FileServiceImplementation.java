@@ -1,20 +1,19 @@
 package com.jme.asset.store.controller;
 
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Random;
 
 @Service
@@ -30,7 +29,8 @@ public class FileServiceImplementation implements FileService {
         }
         try {
             Path path = Paths.get(UploadFolder + multipartFile.getOriginalFilename());
-            Files.copy(multipartFile.getInputStream(), path);
+            Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            Files.write(path, multipartFile.getBytes());
         } catch (IOException ex) {
             ex.printStackTrace();
             return new ResponseEntity<Object>("File is not upload", HttpStatus.CONFLICT);
@@ -39,30 +39,24 @@ public class FileServiceImplementation implements FileService {
     }
 
     public ResponseEntity<?> generateRandomDataFile() {
-        File randomDataFile = new File("rundomDataFile");
-        InputStreamResource inputStreamResource = null;
+        // File randomDataFile = new File("randomDataFile");
+        // InputStreamResource inputStreamResource = null;
         Random random = new Random(System.currentTimeMillis());
-        try (FileWriter randomstream = new FileWriter(randomDataFile)) {
-            for (int i = 0; i <= random.nextInt(10000); i++) {
-              String line = String.format("%s %s %s %n", random.nextInt(), random.nextInt(), random.nextInt());
-             // byte [] bytes = line.getBytes();
-                randomstream.write(line);
-            }
-            InputStreamResource  resource = new InputStreamResource(new FileInputStream(randomDataFile));
-        } catch (IOException exp) {
-            exp.printStackTrace();
+        String content = "";
+
+        for (int i = 0; i < 100; i++) {
+            content += random.nextInt() + ",";
         }
+
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Cashe-Control", "no-cashe, no-store, must revalidate");
         httpHeaders.add("Pragma", "no-cashe");
         httpHeaders.add("Expires", "0");
-        httpHeaders.add("content-disposition", "inline; filename=\"" + randomDataFile.getName() + "\"");
-
+        httpHeaders.add("content-disposition", "inline; filename=\"" + "randomDataFile.txt" + "\"");
         return ResponseEntity.ok()
                 .headers(httpHeaders)
-                .contentLength( randomDataFile.length())
+                .contentLength(content.length() * 2)
                 .contentType(MediaType.parseMediaType("application/ocet-stream"))
-                .body(inputStreamResource);
-
+                .body(content);
     }
 }

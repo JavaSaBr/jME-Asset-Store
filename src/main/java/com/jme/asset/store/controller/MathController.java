@@ -45,7 +45,7 @@ public class MathController {
 
     @RequestMapping(value = "/math/pow", method = RequestMethod.GET)
     ResponseEntity<?> pow(@RequestParam("first") Integer first, @RequestParam("second") Integer second) {
-        return ResponseEntity.ok("The division result is = " + Math.pow(first, second));
+        return ResponseEntity.ok("The pow result is = " + Math.pow(first, second));
 
     }
 }

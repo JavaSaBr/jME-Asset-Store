@@ -35,8 +35,9 @@ public class ExceptionHandlingController {
     private ResponseEntity<?> handleMissingParams(NumberFormatException ex) {
         return new ResponseEntity<Object>("Result is failed: incorrect type", HttpStatus.CONFLICT);
     }
-    @ExceptionHandler (MultipartException.class)
-    private ResponseEntity<?> handleError1 (MultipartException e){
-    return new ResponseEntity<Object>("Result is failed: incorrect type", HttpStatus.CONFLICT);
+
+    @ExceptionHandler(MultipartException.class)
+    private ResponseEntity<?> handleError1(MultipartException e) {
+        return new ResponseEntity<Object>("Result is failed: incorrect type", HttpStatus.CONFLICT);
+    }
 }
-        }
