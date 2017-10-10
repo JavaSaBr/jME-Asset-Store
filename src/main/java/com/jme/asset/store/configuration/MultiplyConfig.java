@@ -1,5 +1,6 @@
 package com.jme.asset.store.configuration;
 
+import com.jme.asset.store.service.UserRepository;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
