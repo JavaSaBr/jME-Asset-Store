@@ -2,6 +2,7 @@ package com.jme.asset.store.data.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.Table;
 
 /**
@@ -16,6 +17,8 @@ public class RoleEntity extends BaseEntity {
     @Column(name="name")
     private String name;
 
+    public RoleEntity() {
+    }
 
     public RoleEntity(String name) {
         this.name = name;

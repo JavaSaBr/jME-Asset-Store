@@ -9,4 +9,12 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author Denis Lesheniuk
  */
 public interface RoleRepository extends PagingAndSortingRepository<RoleEntity, Long> {
+
+    /**
+     * Find a role by a name.
+     *
+     * @param name the role name.
+     * @return the role entity or null.
+     */
+    RoleEntity findByName(String name);
 }

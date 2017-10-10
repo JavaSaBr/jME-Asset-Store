@@ -1,6 +1,9 @@
 package com.jme.asset.store.controller;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.jme.asset.store.utils.exceptions.RoleAlreadyExistException;
+import com.jme.asset.store.utils.exceptions.RoleNotFoundException;
+import com.jme.asset.store.utils.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -70,5 +73,20 @@ public class ExceptionHandlerController {
     @ExceptionHandler(JsonParseException.class)
     public ResponseEntity<String> handleMissingParams(JsonParseException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Incorrect parameter format. ");
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleMissingParams(UserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+    }
+
+    @ExceptionHandler(RoleNotFoundException.class)
+    public ResponseEntity<String> handleMissingParams(RoleNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found");
+    }
+
+    @ExceptionHandler(RoleAlreadyExistException.class)
+    public ResponseEntity<String> handleMissingParams(RoleAlreadyExistException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Role is already exist");
     }
 }

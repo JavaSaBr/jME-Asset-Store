@@ -2,9 +2,8 @@ package com.jme.asset.store.data.entity;
 
 import org.springframework.context.annotation.Bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * The User entity.
@@ -18,8 +17,15 @@ public class UserEntity extends BaseEntity {
     private String name;
 
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<RoleEntity> roles;
+
+
     @Column(name = "password")
     private String password;
+
+    public UserEntity() {
+    }
 
     public UserEntity(String name, String password) {
         this.name = name;
@@ -30,6 +36,14 @@ public class UserEntity extends BaseEntity {
         super(id);
         this.name = name;
         this.password = password;
+    }
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
     }
 
     public String getName() {
@@ -52,6 +66,8 @@ public class UserEntity extends BaseEntity {
     public String toString() {
         return "UserEntity{" +
                 "name='" + name + '\'' +
+                ", roles=" + roles +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
