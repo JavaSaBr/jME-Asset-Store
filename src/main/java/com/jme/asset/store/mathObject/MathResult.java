@@ -1,4 +1,4 @@
-package com.jme.asset.store.MathObject;
+package com.jme.asset.store.mathObject;
 
 public class MathResult {
     private double result;

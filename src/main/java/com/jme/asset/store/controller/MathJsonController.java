@@ -1,8 +1,8 @@
 package com.jme.asset.store.controller;
 
-import com.jme.asset.store.MathObject.Math;
-import com.jme.asset.store.MathObject.MathEror;
-import com.jme.asset.store.MathObject.MathResult;
+import com.jme.asset.store.mathObject.Math;
+import com.jme.asset.store.mathObject.MathEror;
+import com.jme.asset.store.mathObject.MathResult;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

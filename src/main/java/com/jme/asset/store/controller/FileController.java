@@ -1,10 +1,9 @@
 package com.jme.asset.store.controller;
 
-import com.jme.asset.store.Service.FileService;
-import com.jme.asset.store.Service.IFileService;
+import com.jme.asset.store.service.FileService;
+import com.jme.asset.store.service.FileServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,15 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.util.Random;
 
 @Controller
 public class FileController {
 
-    IFileService service = new FileService();
+    FileServiceImpl service = new FileService();
 
     @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
     public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {

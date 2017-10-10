@@ -1,4 +1,4 @@
-package com.jme.asset.store.Service;
+package com.jme.asset.store.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.nio.file.*;
 
 @Service
-public class FileService implements IFileService {
+public class FileService implements FileServiceImpl {
 
     static String pathToFile = "src/main/resources/public/";
 
