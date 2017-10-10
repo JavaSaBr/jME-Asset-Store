@@ -10,6 +10,11 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.Random;
 
+/**
+ * The implementation {@link FileService}.
+ *
+ * @author Denis Lesheniuk
+ */
 @Service("fileServiceNIO")
 public class FileServiceNIOImpl implements FileService {
 

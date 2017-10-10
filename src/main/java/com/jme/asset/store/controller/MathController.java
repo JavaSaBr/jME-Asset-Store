@@ -25,7 +25,7 @@ public class MathController {
      * @param second the second request param.
      * @return the sum of two numbers with the Http status.
      */
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @GetMapping(value = "/add")
     public ResponseEntity<?> add(@RequestParam("first") Double first, @RequestParam("second") Double second) {
         return ResponseEntity.ok(first + second);
     }
@@ -38,7 +38,7 @@ public class MathController {
      * @param second the second request param.
      * @return the difference of two numbers with the Http status.
      */
-    @RequestMapping(value = "/sub", method = RequestMethod.GET)
+    @GetMapping(value = "/sub")
     public ResponseEntity<?> sub(@RequestParam("first") Double first, @RequestParam("second") Double second) {
         return ResponseEntity.ok(first - second);
     }
@@ -51,7 +51,7 @@ public class MathController {
      * @param second the second request param.
      * @return the product of two numbers with the Http status.
      */
-    @RequestMapping(value = "/mult", method = RequestMethod.GET)
+    @GetMapping(value = "/mult")
     public ResponseEntity<?> mult(@RequestParam("first") Double first, @RequestParam("second") Double second) {
         return ResponseEntity.ok(first * second);
     }
@@ -64,7 +64,7 @@ public class MathController {
      * @param second the second request param.
      * @return the first number raised to the power of the second with the Http status.
      */
-    @RequestMapping(value = "/pow", method = RequestMethod.GET)
+    @GetMapping(value = "/pow")
     public ResponseEntity<?> pov(@RequestParam("first") Double first, @RequestParam("second") Double second) {
         return ResponseEntity.ok(Math.pow(first, second));
     }
@@ -77,7 +77,7 @@ public class MathController {
      * @param second the second request param.
      * @return the dividing result with the Http status.
      */
-    @RequestMapping(value = "/devide", method = RequestMethod.GET)
+    @GetMapping(value = "/devide")
     public ResponseEntity<?> devide(@RequestParam("first") Double first, @RequestParam("second") Double second) {
         if (second == 0) return new ResponseEntity<Object>("Divide by zero is forbidden.", HttpStatus.CONFLICT);
         return ResponseEntity.ok((double) first / (double) second);

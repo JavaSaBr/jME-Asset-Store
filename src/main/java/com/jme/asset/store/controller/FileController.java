@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -36,7 +34,7 @@ public class FileController {
      * @param file the multipartFile.
      * @return the result of the uploading with the Http status.
      */
-    @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
+    @PostMapping(value = "test_post/upload_file")
     public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
         return fileServiceNIO.fileUpload(file);
     }
@@ -48,7 +46,7 @@ public class FileController {
      * @param text the text.
      * @return the Http status.
      */
-    @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
+    @PostMapping(value = "test_post/send_text")
     public ResponseEntity<?> sendText(@RequestParam("text") String text) {
         logger.info(text);
         return new ResponseEntity<Object>(HttpStatus.OK);
@@ -61,7 +59,7 @@ public class FileController {
      *
      * @return the generated file with Http status.
      */
-    @RequestMapping(path = "download/random", method = RequestMethod.GET)
+    @GetMapping(path = "download/random")
     public ResponseEntity<?> downloadRandom() {
         return fileServiceNIO.randomFileGeneration();
     }
