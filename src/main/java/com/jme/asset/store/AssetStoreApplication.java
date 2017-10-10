@@ -19,8 +19,6 @@ public class AssetStoreApplication {
     @RequestMapping("/")
     @ResponseBody
     String home() {
-        userService.addUser(new UserEntity("Denis", "1234"));
-
         return "Hello World!";
     }
 

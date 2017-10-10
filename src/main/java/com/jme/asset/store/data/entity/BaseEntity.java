@@ -5,6 +5,11 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.Null;
 
+/**
+ * The base implementation of a db entity.
+ *
+ * @author Denis Lesheniuk
+ */
 @MappedSuperclass
 public abstract class BaseEntity {
 

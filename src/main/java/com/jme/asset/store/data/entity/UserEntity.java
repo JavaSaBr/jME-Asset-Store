@@ -6,12 +6,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-
+/**
+ * The User entity.
+ *
+ * @author Denis Lesheniuk
+ */
 @Entity
 @Table(name = "user")
 public class UserEntity extends BaseEntity {
     @Column(name = "name")
     private String name;
+
 
     @Column(name = "password")
     private String password;
