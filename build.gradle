@@ -12,6 +12,14 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:2.0.0.M4")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:2.0.0.M4")
+
+    runtime('mysql:mysql-connector-java:8.0.8-dmr')
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.2'
 }
 
 task wrapper(type: Wrapper) {
