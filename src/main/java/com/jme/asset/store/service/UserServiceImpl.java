@@ -70,5 +70,20 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteByName(name);
     }
 
+    @Override
+    @Transactional
+    public void deleteUserRole(String name, String role) throws  RoleNotFoundException, UserNotFoundException {
+        RoleEntity roleEntity = roleRepository.findByName(role);
+        if (roleEntity == null)
+            throw new RoleNotFoundException(role);
+        UserEntity userEntity = userRepository.findByName(name);
+        if (userEntity == null)
+            throw new UserNotFoundException(name);
+        if (userEntity.getRoles().contains(roleEntity))
+
+        userEntity.getRoles().remove(roleEntity);
+        userRepository.save(userEntity);
+    }
+
 
 }

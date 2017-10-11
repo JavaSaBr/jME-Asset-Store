@@ -89,7 +89,7 @@ public class UserController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role is already exist");
         }
-        return ResponseEntity.ok("New users role is added");
+        return ResponseEntity.ok("Role " + role + " is added for " + name + " user.");
     }
 
     @PostMapping("role/add/{role}")
@@ -113,4 +113,19 @@ public class UserController {
          }
          return ResponseEntity.ok().body("Role " + role + " is delted");
      }
+
+    @PostMapping("name/{name}/role/delete/{role}")
+    public ResponseEntity<String> deleteUserRole(@PathVariable("name") String name, @PathVariable("role") String role) {
+        try {
+            userService.deleteUserRole(name, role);
+        } catch (RoleNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found");
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        return ResponseEntity.ok("Role " + role + " is deleted from " + name + " user.");
+    }
+
 }

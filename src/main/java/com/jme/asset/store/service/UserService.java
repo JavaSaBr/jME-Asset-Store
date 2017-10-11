@@ -22,4 +22,8 @@ public interface UserService {
     public UserEntity findUserByUserName(String name);
 
     public void deleteUserByUserName(String name);
+
+    public void deleteUserRole(String name, String role)throws
+            RoleNotFoundException, UserNotFoundException;
+
 }
