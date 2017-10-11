@@ -27,15 +27,17 @@ public class UserEntity extends BaseEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String name, String password) {
+    public UserEntity(String name, String password, List<RoleEntity> role) {
         this.name = name;
         this.password = password;
+        this.roles = role;;
     }
 
-    public UserEntity(Long id, String name, String password) {
+    public UserEntity(Long id, String name, String password, List<RoleEntity> role) {
         super(id);
         this.name = name;
         this.password = password;
+        this.roles = role;
     }
 
     public List<RoleEntity> getRoles() {

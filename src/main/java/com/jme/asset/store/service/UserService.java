@@ -12,10 +12,14 @@ import java.util.List;
 
 @Service
 public interface UserService {
-    public void addUser(UserEntity userEntity);
+    public void addUser( String name , String password, List <String> role);
 
     public void addUserRole(String name, String role) throws RoleAlreadyExistException,
             RoleNotFoundException, UserNotFoundException;
 
     public List<UserEntity> getAllUsers();
+
+    public UserEntity findUserByUserName(String name);
+
+    public void deleteUserByUserName(String name);
 }

@@ -18,4 +18,12 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, L
      * @return the role entity or null.
      */
     UserEntity findByName(String name);
+
+    /**
+     * Find a user by a name.
+     *
+     * @param name the role name.
+     * @return the role entity or null.
+     */
+    void deleteByName(String name);
 }

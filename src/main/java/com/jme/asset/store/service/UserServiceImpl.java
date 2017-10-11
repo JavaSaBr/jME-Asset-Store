@@ -1,5 +1,6 @@
 package com.jme.asset.store.service;
 
+import com.fasterxml.jackson.databind.util.ClassUtil;
 import com.jme.asset.store.data.entity.RoleEntity;
 import com.jme.asset.store.data.entity.UserEntity;
 import com.jme.asset.store.data.repository.RoleRepository;
@@ -9,9 +10,11 @@ import com.jme.asset.store.utils.exceptions.RoleNotFoundException;
 import com.jme.asset.store.utils.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,10 +23,16 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private RoleService roleService;
 
     @Override
-    public void addUser(UserEntity userEntity) {
-        userRepository.save(userEntity);
+    public void addUser(String name ,String password, List<String> roles) {
+
+        List <RoleEntity> role = roles.stream().map(roleService::getRole).collect(Collectors.toList());
+        UserEntity user = new UserEntity(name, password, role);
+
+       userRepository.save(user);
 
     }
 
@@ -49,5 +58,17 @@ public class UserServiceImpl implements UserService {
             users.add(user);
         return users;
     }
+
+    @Override
+    public UserEntity findUserByUserName(String name) {
+        return userRepository.findByName(name);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserByUserName(String name) {
+        userRepository.deleteByName(name);
+    }
+
 
 }
