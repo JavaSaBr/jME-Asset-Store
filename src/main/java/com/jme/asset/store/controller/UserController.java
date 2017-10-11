@@ -45,11 +45,22 @@ public class UserController {
     public ResponseEntity<?> getUserByName(@PathVariable("name")String name){
         return ResponseEntity.ok().body(userService.findUserByUserName(name));
     }
+    @GetMapping("/id/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable("id") Long id){
 
-    @PostMapping("name/delete/{name}")
+        return ResponseEntity.ok(userService.findUserById(id));
+    }
+
+    @PostMapping("name/{name}/delete")
     public ResponseEntity<?> deleteUserByUserName(@PathVariable("name") String name){
         userService.deleteUserByUserName(name);
         return ResponseEntity.ok().body("User " + name + " is deleted");
+    }
+
+    @PostMapping("id/{id}/delete")
+    public ResponseEntity<?> delteUserByUserId(@PathVariable("id") Long id){
+        userService.deleteUserByUserId(id);
+        return ResponseEntity.ok().body("User with id " + id + " is deleted");
     }
 
     /**
@@ -80,13 +91,10 @@ public class UserController {
         try {
             userService.addUserRole(name, role);
         } catch (RoleNotFoundException e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found");
         } catch (UserNotFoundException e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         } catch (RoleAlreadyExistException e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role is already exist");
         }
         return ResponseEntity.ok("Role " + role + " is added for " + name + " user.");
@@ -97,18 +105,21 @@ public class UserController {
         try {
             roleService.addRole(role);
         } catch (RoleAlreadyExistException e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Role " + role + " is allready exsist");
         }
         return ResponseEntity.ok().body("Role " + role + " is added");
         }
 
-     @PostMapping("role/delete/{role}")
+        @GetMapping("role/")
+        public ResponseEntity<Iterable<RoleEntity>> getAllRoles(){
+            return ResponseEntity.ok().body(roleService.getAllRoles());
+        }
+
+        @PostMapping("role/delete/{role}")
         public ResponseEntity<?> deleteRole(@PathVariable("role") String role){
          try {
              roleService.deleteRole(role);
          } catch (RoleNotFoundException e) {
-             e.printStackTrace();
              return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role " + role + " is not found");
          }
          return ResponseEntity.ok().body("Role " + role + " is delted");
@@ -119,10 +130,8 @@ public class UserController {
         try {
             userService.deleteUserRole(name, role);
         } catch (RoleNotFoundException e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found");
         } catch (UserNotFoundException e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
         return ResponseEntity.ok("Role " + role + " is deleted from " + name + " user.");

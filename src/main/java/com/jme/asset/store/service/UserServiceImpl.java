@@ -1,6 +1,5 @@
 package com.jme.asset.store.service;
 
-import com.fasterxml.jackson.databind.util.ClassUtil;
 import com.jme.asset.store.data.entity.RoleEntity;
 import com.jme.asset.store.data.entity.UserEntity;
 import com.jme.asset.store.data.repository.RoleRepository;
@@ -14,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +29,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUser(String name ,String password, List<String> roles) {
 
-        List <RoleEntity> role = roles.stream().map(roleService::getRole).collect(Collectors.toList());
+        List<RoleEntity> role = new ArrayList<>();
+        for (String s : roles) {
+            RoleEntity roleServiceRole = roleService.getRole(s);
+            role.add(roleServiceRole);
+        }
+
         UserEntity user = new UserEntity(name, password, role);
 
        userRepository.save(user);
@@ -65,9 +70,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<UserEntity> findUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
     @Transactional
     public void deleteUserByUserName(String name) {
         userRepository.deleteByName(name);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserByUserId(Long id) {
+      userRepository.deleteById(id);
     }
 
     @Override

@@ -17,4 +17,13 @@ public interface RoleRepository extends PagingAndSortingRepository<RoleEntity, L
      * @return the role entity or null.
      */
     RoleEntity findByName(String name);
+
+    /**
+     * Find a role by a name.
+     *
+     * @param name the role name.
+     * @return the role entity or null.
+     */
+    void deleteByName(String name);
+
 }

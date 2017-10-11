@@ -4,12 +4,15 @@ import com.jme.asset.store.data.entity.RoleEntity;
 import com.jme.asset.store.utils.exceptions.RoleAlreadyExistException;
 import com.jme.asset.store.utils.exceptions.RoleNotFoundException;
 
+import java.util.List;
+
 public interface RoleService {
-    String USER_ROLE = "USER";
 
     public void addRole(String name) throws RoleAlreadyExistException;
 
     public RoleEntity getRole(String name);
 
     public void deleteRole(String name) throws RoleNotFoundException;
+
+    public Iterable <RoleEntity> getAllRoles();
 }

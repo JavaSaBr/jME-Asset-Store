@@ -1,14 +1,13 @@
 package com.jme.asset.store.service;
 
-import com.jme.asset.store.data.entity.RoleEntity;
 import com.jme.asset.store.data.entity.UserEntity;
 import com.jme.asset.store.utils.exceptions.RoleAlreadyExistException;
 import com.jme.asset.store.utils.exceptions.RoleNotFoundException;
 import com.jme.asset.store.utils.exceptions.UserNotFoundException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UserService {
@@ -21,7 +20,11 @@ public interface UserService {
 
     public UserEntity findUserByUserName(String name);
 
+    public Optional<UserEntity> findUserById(Long id);
+
     public void deleteUserByUserName(String name);
+
+    public void deleteUserByUserId(Long id);
 
     public void deleteUserRole(String name, String role)throws
             RoleNotFoundException, UserNotFoundException;
