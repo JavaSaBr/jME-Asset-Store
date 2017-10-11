@@ -27,7 +27,7 @@ public class RoleServiceImpl implements RoleService{
     public ResponseEntity<?> removeRole(String name) {
         RoleEntity roleEntity = roleRepository.findByName(name);
         if(roleEntity == null)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role " + name + " is not exist" );
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role " + name + " is not exist");
 
         roleRepository.delete(roleEntity);
         return ResponseEntity.status(HttpStatus.OK).body("Role " + name + " is removed");

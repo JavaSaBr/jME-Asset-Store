@@ -75,16 +75,34 @@ public class ExceptionHandlerController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Incorrect parameter format. ");
     }
 
+    /**
+     * The method handling UserNotFoundException.
+     *
+     * @param ex the numberFormatException.
+     * @return the msg in the response body and the HttpStatus.
+     */
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleMissingParams(UserNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
     }
 
+    /**
+     * The method handling RoleNotFoundException.
+     *
+     * @param ex the numberFormatException.
+     * @return the msg in the response body and the HttpStatus.
+     */
     @ExceptionHandler(RoleNotFoundException.class)
     public ResponseEntity<String> handleMissingParams(RoleNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found");
     }
 
+    /**
+     * The method handling RoleAlreadyExistException.
+     *
+     * @param ex the numberFormatException.
+     * @return the msg in the response body and the HttpStatus.
+     */
     @ExceptionHandler(RoleAlreadyExistException.class)
     public ResponseEntity<String> handleMissingParams(RoleAlreadyExistException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Role is already exist");

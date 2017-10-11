@@ -8,9 +8,14 @@ import com.jme.asset.store.utils.exceptions.UserNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface UserService {
     public void addUser(UserEntity userEntity);
+
     public void addUserRole(String name, String role) throws RoleAlreadyExistException,
             RoleNotFoundException, UserNotFoundException;
+
+    public List<UserEntity> getAllUsers();
 }

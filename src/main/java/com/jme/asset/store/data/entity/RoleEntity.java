@@ -11,10 +11,10 @@ import javax.persistence.Table;
  * @author Denis Lesheniuk
  */
 @Entity
-@Table(name="role")
+@Table(name = "role")
 public class RoleEntity extends BaseEntity {
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     public RoleEntity() {

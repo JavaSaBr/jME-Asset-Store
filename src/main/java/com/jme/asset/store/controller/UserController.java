@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * The controller provides multiple of endpoints for work with User.
  *
@@ -24,26 +26,30 @@ public class UserController {
 
     @Autowired
     UserService userService;
-    @Autowired
-    RoleRepository roleRepository;
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAllUsers(){
+        List <UserEntity> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
 
     @GetMapping("/add")
-        public ResponseEntity <String> addUser(@RequestParam("name") String name, @RequestParam("pass") String pass){
-            userService.addUser(new UserEntity(name, pass));
-            return ResponseEntity.ok("New user is added");
-        }
+    public ResponseEntity<String> addUser(@RequestParam("name") String name, @RequestParam("pass") String pass) {
+        userService.addUser(new UserEntity(name, pass));
+        return ResponseEntity.ok("New user is added");
+    }
 
     @PostMapping("name/{name}/role/add/{role}")
-    public ResponseEntity <String> addUserRole(@PathVariable("name") String name, @PathVariable("role") String role){
+    public ResponseEntity<String> addUserRole(@PathVariable("name") String name, @PathVariable("role") String role) {
         try {
             userService.addUserRole(name, role);
         } catch (RoleNotFoundException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found");
-        }catch (UserNotFoundException e) {
+        } catch (UserNotFoundException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-        }catch (RoleAlreadyExistException e) {
+        } catch (RoleAlreadyExistException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role is already exist");
         }

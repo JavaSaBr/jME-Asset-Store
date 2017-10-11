@@ -10,6 +10,8 @@ import com.jme.asset.store.utils.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,20 +24,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUser(UserEntity userEntity) {
         userRepository.save(userEntity);
+
     }
 
     @Override
     public void addUserRole(String name, String role) throws RoleAlreadyExistException,
-    RoleNotFoundException, UserNotFoundException{
+            RoleNotFoundException, UserNotFoundException {
         RoleEntity roleEntity = roleRepository.findByName(role);
-        if(roleEntity == null)
-          throw new RoleNotFoundException(role);
+        if (roleEntity == null)
+            throw new RoleNotFoundException(role);
         UserEntity userEntity = userRepository.findByName(name);
-        if(userEntity == null)
+        if (userEntity == null)
             throw new UserNotFoundException(name);
-        if(userEntity.getRoles().contains(roleEntity))
+        if (userEntity.getRoles().contains(roleEntity))
             throw new RoleAlreadyExistException(role);
         userEntity.getRoles().add(roleEntity);
         userRepository.save(userEntity);
     }
+
+    @Override
+    public List<UserEntity> getAllUsers() {
+        List<UserEntity> users = new ArrayList<>();
+        for(UserEntity user: userRepository.findAll())
+            users.add(user);
+        return users;
+    }
+
 }
