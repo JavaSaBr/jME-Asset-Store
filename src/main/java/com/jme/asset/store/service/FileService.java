@@ -14,7 +14,7 @@ public class FileService implements FileServiceImpl {
 
     static String pathToFile = "src/main/resources/public/";
 
-    public  ResponseEntity<?> fileUpload(MultipartFile file) {
+    public ResponseEntity<?> fileUpload(MultipartFile file) {
         //return ResponseEntity.ok().body("ergerger");
 
         if (file.isEmpty()) {
@@ -23,7 +23,7 @@ public class FileService implements FileServiceImpl {
         try {
             Path path = Paths.get(pathToFile + file.getOriginalFilename());
             //Files.write(path,file.getBytes());
-            Files.copy(file.getInputStream(),path,StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.ok().body("exception");

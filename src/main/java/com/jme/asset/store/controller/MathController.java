@@ -1,10 +1,9 @@
 package com.jme.asset.store.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MathController {
@@ -41,4 +40,5 @@ public class MathController {
     String pow(@RequestParam("first") Integer first, @RequestParam("second") Integer second) {
         return "The pow first of second is = " + (Math.pow(first, second));
     }
+
 }
