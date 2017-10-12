@@ -1,20 +1,21 @@
 package com.jme.asset.store.entity;
 
-import org.springframework.stereotype.Service;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
 @Table(name = "user")
 public class UserEntity extends BaseEntity {
+
     @Column(name = "user_name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "user_password", nullable = false)
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<RolesEntity> roles;
 
     public UserEntity(){
 
@@ -28,6 +29,26 @@ public class UserEntity extends BaseEntity {
         super(id);
         this.name = name;
         this.password = password;
+    }
+
+    public List<RolesEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RolesEntity> roles) {
+        this.roles = roles;
+    }
+
+    public boolean addRole(RolesEntity rolesEntity){
+        if(!roles.contains(rolesEntity)) {
+            roles.add(rolesEntity);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean delRole(RolesEntity rolesEntity){
+        return roles.remove(rolesEntity);
     }
 
     public String getName() {
@@ -50,7 +71,7 @@ public class UserEntity extends BaseEntity {
     public String toString() {
         return "{\n" +
                 "id = '" + getId() + '\'' + "\n" +
-                "name = " + getId() + "\n" +
+                "name = " + getName() + "\n" +
                 '}';
     }
 }

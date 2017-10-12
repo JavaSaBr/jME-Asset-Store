@@ -1,6 +1,9 @@
 package com.jme.asset.store;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,10 +17,10 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
-@Controller
-@Validated
+@ControllerAdvice
 public class ApplicationController {
     @RequestMapping("/")
     @ResponseBody
@@ -44,5 +47,15 @@ public class ApplicationController {
     @ExceptionHandler(MissingServletRequestPartException.class)
     private ResponseEntity<String> missingFile(MissingServletRequestPartException ex) {
         return new ResponseEntity<String>("File is not selected", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> userExist(DataIntegrityViolationException ex) {
+        return new ResponseEntity<String>("Such user exists", HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    private ResponseEntity<String> noElement(NoSuchElementException e){
+        return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

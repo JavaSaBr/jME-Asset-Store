@@ -1,8 +1,11 @@
 package com.jme.asset.store.service;
 
 import com.jme.asset.store.entity.UserEntity;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +22,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public void addUser(UserEntity userEntity) {
+    public void addUser(UserEntity userEntity) /*throws ConstraintViolationException,MySQLIntegrityConstraintViolationException,DataIntegrityViolationException*/ {
         userRepository.save(userEntity);
     }
 
@@ -27,6 +30,13 @@ public class UserServiceImpl implements UserService {
     public UserEntity getUserByName(String name) {
         Optional<UserEntity> op = userRepository.findByName(name);
         if (op.isPresent()) return op.get();
+        return null;
+    }
+
+    @Override
+    public UserEntity getUserById(Long id) {
+        Optional<UserEntity> op = userRepository.findById(id);
+        if(op.isPresent()) return op.get();
         return null;
     }
 
