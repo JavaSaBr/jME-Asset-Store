@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -99,6 +98,12 @@ public class UserServiceImpl implements UserService {
 
         userEntity.getRoles().remove(roleEntity);
         userRepository.save(userEntity);
+    }
+
+    @Override
+    public List<UserEntity> findAllUsersByRole(String roleEntity) {
+        RoleEntity role = roleRepository.findByName(roleEntity);
+        return userRepository.findAllByRoles(role);
     }
 
 

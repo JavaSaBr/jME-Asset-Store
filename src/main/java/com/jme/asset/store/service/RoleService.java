@@ -4,8 +4,6 @@ import com.jme.asset.store.data.entity.RoleEntity;
 import com.jme.asset.store.utils.exceptions.RoleAlreadyExistException;
 import com.jme.asset.store.utils.exceptions.RoleNotFoundException;
 
-import java.util.List;
-
 public interface RoleService {
 
     public void addRole(String name) throws RoleAlreadyExistException;

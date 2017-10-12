@@ -4,6 +4,8 @@ import com.jme.asset.store.data.entity.RoleEntity;
 import com.jme.asset.store.data.entity.UserEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.List;
+
 /**
  * The User repository
  *
@@ -26,4 +28,7 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, L
      * @return the role entity or null.
      */
     void deleteByName(String name);
+
+    List<UserEntity> findAllByRoles(RoleEntity roleEntity);
+
 }

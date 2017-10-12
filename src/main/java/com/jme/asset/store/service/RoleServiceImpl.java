@@ -1,6 +1,7 @@
 package com.jme.asset.store.service;
 
 import com.jme.asset.store.data.entity.RoleEntity;
+import com.jme.asset.store.data.entity.UserEntity;
 import com.jme.asset.store.data.repository.RoleRepository;
 import com.jme.asset.store.utils.exceptions.RoleAlreadyExistException;
 import com.jme.asset.store.utils.exceptions.RoleNotFoundException;
@@ -13,6 +14,9 @@ public class RoleServiceImpl implements RoleService{
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public void addRole(String name)throws RoleAlreadyExistException {
@@ -32,7 +36,11 @@ public class RoleServiceImpl implements RoleService{
     @Override
     @Transactional
     public void deleteRole(String name)throws RoleNotFoundException {
-        roleRepository.deleteByName(name);
+        RoleEntity role = roleRepository.findByName(name);
+        for(UserEntity user: userService.findAllUsersByRole(name)){
+            user.getRoles().remove(role);
+        }
+        roleRepository.delete(role);
     }
 
     @Override

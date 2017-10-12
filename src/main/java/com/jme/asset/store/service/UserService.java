@@ -29,4 +29,6 @@ public interface UserService {
     public void deleteUserRole(String name, String role)throws
             RoleNotFoundException, UserNotFoundException;
 
+    public List<UserEntity> findAllUsersByRole(String roleEntity);
+
 }

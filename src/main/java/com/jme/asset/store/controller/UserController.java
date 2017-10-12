@@ -1,8 +1,6 @@
 package com.jme.asset.store.controller;
 
 import com.jme.asset.store.data.entity.RoleEntity;
-import com.jme.asset.store.data.entity.UserEntity;
-import com.jme.asset.store.data.repository.RoleRepository;
 import com.jme.asset.store.service.RoleService;
 import com.jme.asset.store.service.UserService;
 import com.jme.asset.store.utils.exceptions.RoleAlreadyExistException;
@@ -14,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.NamingEnumeration;
 import java.util.List;
 
 /**
@@ -117,6 +114,7 @@ public class UserController {
 
         @PostMapping("role/delete/{role}")
         public ResponseEntity<?> deleteRole(@PathVariable("role") String role){
+
          try {
              roleService.deleteRole(role);
          } catch (RoleNotFoundException e) {
@@ -135,6 +133,11 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
         return ResponseEntity.ok("Role " + role + " is deleted from " + name + " user.");
+    }
+
+    @RequestMapping("/us")
+    public ResponseEntity<?> findByRoles(@RequestParam("role") String role){
+            return ResponseEntity.ok(userService.findAllUsersByRole(role));
     }
 
 }
