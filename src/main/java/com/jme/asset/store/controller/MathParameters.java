@@ -1,14 +1,14 @@
 package com.jme.asset.store.controller;
 
-public class MathParametrs {
+public class MathParameters {
 
     private double firstParam;
     private double secondParam;
 
-    public MathParametrs() {
+    public MathParameters() {
     }
 
-    MathParametrs(double firstParam, double secondParam) {
+    MathParameters(double firstParam, double secondParam) {
         this.firstParam = firstParam;
         this.secondParam = secondParam;
     }

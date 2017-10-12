@@ -1,5 +1,7 @@
-package com.jme.asset.store.controller;
+package com.jme.asset.store.controller.Exception;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.FileNotFoundException;
 
 @ControllerAdvice
-@Validated
 public class ExceptionHandlingController {
     @ExceptionHandler(FileNotFoundException.class)
     public ResponseEntity<?> handleStorageFileNotFound(FileNotFoundException ex) {
@@ -40,4 +41,9 @@ public class ExceptionHandlingController {
     private ResponseEntity<?> handleError1(MultipartException e) {
         return new ResponseEntity<Object>("Result is failed: incorrect type", HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    private ResponseEntity<?> handleMySQLExc(ConstraintViolationException e){
+        return new ResponseEntity<Object>("Result is failed", HttpStatus.CONFLICT);
+}
 }

@@ -1,4 +1,4 @@
-package com.jme.asset.store.controller;
+package com.jme.asset.store.controller.parameters;
 
 public class MathError {
 
