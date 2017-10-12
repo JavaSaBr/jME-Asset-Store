@@ -1,7 +1,7 @@
 package com.jme.asset.store.controller;
 
 import com.jme.asset.store.mathObject.Math;
-import com.jme.asset.store.mathObject.MathEror;
+import com.jme.asset.store.mathObject.MathError;
 import com.jme.asset.store.mathObject.MathResult;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class MathJsonController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> divide(@RequestBody Math params) {
         if (params.getSecond() == 0)
-            return ResponseEntity.ok(new MathEror("divide 0"));
+            return ResponseEntity.ok(new MathError("divide 0"));
         double first = params.getFirst();
         double second = params.getSecond();
         return ResponseEntity.ok(new MathResult(first / second));

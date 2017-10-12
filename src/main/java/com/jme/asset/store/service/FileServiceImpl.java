@@ -5,5 +5,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 public interface FileServiceImpl {
-    public ResponseEntity<?> fileUpload(MultipartFile file);
+    ResponseEntity<?> fileUpload(MultipartFile file);
 }

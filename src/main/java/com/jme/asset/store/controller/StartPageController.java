@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class StartPageConroller {
+public class StartPageController {
     @RequestMapping("/")
     @ResponseBody
     String home() {

@@ -1,7 +1,6 @@
 package com.jme.asset.store.controller;
 
 import com.jme.asset.store.db.entity.RoleEntity;
-import com.jme.asset.store.db.entity.UserEntity;
 import com.jme.asset.store.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class RoleConroller {
+public class RoleController {
     final
     RoleService roleService;
 
     @Autowired
-    public RoleConroller(RoleService roleService) {
+    public RoleController(RoleService roleService) {
         this.roleService = roleService;
     }
 

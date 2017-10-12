@@ -15,8 +15,6 @@ public class FileService implements FileServiceImpl {
     static String pathToFile = "src/main/resources/public/";
 
     public ResponseEntity<?> fileUpload(MultipartFile file) {
-        //return ResponseEntity.ok().body("ergerger");
-
         if (file.isEmpty()) {
             return new ResponseEntity("The file is empty", HttpStatus.CONFLICT);
         }

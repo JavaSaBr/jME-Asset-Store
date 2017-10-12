@@ -20,7 +20,7 @@ import java.util.Random;
 @Controller
 public class FileController {
 
-    FileServiceImpl service = new FileService();
+    private FileServiceImpl service = new FileService();
 
     @RequestMapping(value = "test_post/upload_file", method = RequestMethod.POST)
     public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
@@ -29,9 +29,9 @@ public class FileController {
 
     @RequestMapping(value = "test_post/send_text", method = RequestMethod.POST)
     public ResponseEntity<?> sendText(@RequestParam("text") String text) {
-        Logger logger = LoggerFactory.getLogger(ExceptionConroller.class);
+        Logger logger = LoggerFactory.getLogger(ExceptionController.class);
         logger.info(text);
-        return new ResponseEntity<Object>("The text is sended", HttpStatus.OK);
+        return new ResponseEntity<Object>("The text is send", HttpStatus.OK);
     }
 
     @RequestMapping(value = "download/random", method = RequestMethod.GET)

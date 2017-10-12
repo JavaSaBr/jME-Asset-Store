@@ -1,10 +1,7 @@
 package com.jme.asset.store.service;
 
-import com.jme.asset.store.db.entity.RoleEntity;
 import com.jme.asset.store.db.entity.UserEntity;
-import com.jme.asset.store.db.repository.RoleRepository;
 import com.jme.asset.store.db.repository.UserRepository;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +13,13 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
+    private final UserRepository userRepository;
+
+
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void addUser(UserEntity userEntity) {
@@ -34,9 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity findByName(String name) {
         Optional<UserEntity> optional = Optional.ofNullable(userRepository.findByName(name));
-        if (optional.isPresent())
-            return optional.get();
-        return null;
+        return optional.orElse(null);
     }
 
     @Override

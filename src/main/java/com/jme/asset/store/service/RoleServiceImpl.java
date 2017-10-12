@@ -8,17 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.naming.Name;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service("roleService")
 @Transactional
 public class RoleServiceImpl implements RoleService {
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+
     @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private UserRepository userRepository;
+    public RoleServiceImpl(RoleRepository roleRepository, UserRepository userRepository) {
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void addRole(RoleEntity roleEntity) {
