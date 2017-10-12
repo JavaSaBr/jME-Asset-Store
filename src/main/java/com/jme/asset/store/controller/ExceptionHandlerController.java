@@ -19,6 +19,7 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
  **/
 @ControllerAdvice
 public class ExceptionHandlerController {
+
     /**
      * The method handling MissingServletRequestParameterException.
      *
