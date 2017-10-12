@@ -1,9 +1,6 @@
 package com.jme.asset.store.entity;
 
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 
 @MappedSuperclass
 public abstract class BaseEntity {

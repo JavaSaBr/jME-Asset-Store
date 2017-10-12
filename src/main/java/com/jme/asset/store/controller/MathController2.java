@@ -3,7 +3,6 @@ package com.jme.asset.store.controller;
 import com.jme.asset.store.configuration.MathError;
 import com.jme.asset.store.configuration.MathResult;
 import com.jme.asset.store.configuration.MyMath;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

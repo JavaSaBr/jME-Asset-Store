@@ -1,7 +1,7 @@
 package com.jme.asset.store.configuration;
 
 public class MathError {
-    private String error;
+    private final String error;
 
     public MathError(String e) {
         error = e;

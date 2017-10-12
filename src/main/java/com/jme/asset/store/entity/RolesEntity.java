@@ -1,7 +1,5 @@
 package com.jme.asset.store.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;

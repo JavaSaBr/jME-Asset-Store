@@ -3,8 +3,6 @@ package com.jme.asset.store.service;
 import com.jme.asset.store.entity.RolesEntity;
 import com.jme.asset.store.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,25 +14,27 @@ import java.util.Optional;
 @Transactional
 public class RolesServiceImpl implements RolesService {
 
-    @Autowired
+    final
     RolesRepository rolesRepository;
 
-    @Autowired
+    final
     UserRepository userRepository;
 
+    @Autowired
+    public RolesServiceImpl(RolesRepository rolesRepository, UserRepository userRepository) {
+        this.rolesRepository = rolesRepository;
+        this.userRepository = userRepository;
+    }
+
     @Override
-    public boolean addRole(RolesEntity rolesEntity) {
+    public void addRole(RolesEntity rolesEntity) {
         rolesRepository.save(rolesEntity);
-        if(rolesRepository.findByName(rolesEntity.getName()).isPresent())
-            return false;
-        return true;
     }
 
     @Override
     public RolesEntity roleByName(String name) {
         Optional<RolesEntity> op = rolesRepository.findByName(name);
-        if(op.isPresent()) return op.get();
-        return null;
+        return op.orElse(null);
     }
 
     @Override

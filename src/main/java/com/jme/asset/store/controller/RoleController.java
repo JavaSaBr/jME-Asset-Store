@@ -1,9 +1,7 @@
 package com.jme.asset.store.controller;
 
 import com.jme.asset.store.entity.RolesEntity;
-import com.jme.asset.store.entity.UserEntity;
 import com.jme.asset.store.service.RolesService;
-import com.jme.asset.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class RoleController {
 
-    @Autowired
+    final
     RolesService rolesService;
+
+    @Autowired
+    public RoleController(RolesService rolesService) {
+        this.rolesService = rolesService;
+    }
 
     @PostMapping(value = "/addRole")
     public ResponseEntity<?> addRole(@RequestParam("name") String name){

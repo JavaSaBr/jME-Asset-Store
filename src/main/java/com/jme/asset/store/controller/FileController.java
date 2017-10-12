@@ -1,8 +1,5 @@
 package com.jme.asset.store.controller;
 
-import org.omg.CORBA.portable.InputStream;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,23 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-import java.nio.channels.Channel;
 import java.nio.file.*;
 import java.util.Random;
 
 @Controller
 public class FileController {
-    private static String PATH = "src/main/resources/public/";
 
     @PostMapping("/test_post/upload_file")
     ResponseEntity<?> fileUpload(@RequestParam("file") MultipartFile file){
         if(file.isEmpty()) return new ResponseEntity<>("File is empty!!!", HttpStatus.BAD_REQUEST);
         try {
+            String PATH = "src/main/resources/public/";
             Files.write(Paths.get(PATH + file.getOriginalFilename()), file.getBytes());
             return new ResponseEntity<>("Success", HttpStatus.OK);
         }

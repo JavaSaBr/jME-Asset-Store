@@ -1,16 +1,10 @@
 package com.jme.asset.store.service;
 
 import com.jme.asset.store.entity.UserEntity;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,37 +12,47 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
-    public void addUser(UserEntity userEntity) /*throws ConstraintViolationException,MySQLIntegrityConstraintViolationException,DataIntegrityViolationException*/ {
+    public void addUser(UserEntity userEntity) {
         userRepository.save(userEntity);
     }
 
     @Override
     public UserEntity getUserByName(String name) {
         Optional<UserEntity> op = userRepository.findByName(name);
-        if (op.isPresent()) return op.get();
-        return null;
+        return op.orElse(null);
     }
 
     @Override
     public UserEntity getUserById(Long id) {
         Optional<UserEntity> op = userRepository.findById(id);
-        if(op.isPresent()) return op.get();
-        return null;
+        return op.orElse(null);
     }
 
 
     @Override
-    public void deleteByID(long id) {
-        userRepository.deleteById(id);
+    public boolean deleteByID(long id) {
+        if(userRepository.findById(id).isPresent()) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void deleteByName(String name) {
-        userRepository.deleteByName(name);
+    public boolean deleteByName(String name) {
+        if(userRepository.findByName(name).isPresent()) {
+            userRepository.deleteByName(name);
+            return true;
+        }
+        return false;
     }
 
     @Override

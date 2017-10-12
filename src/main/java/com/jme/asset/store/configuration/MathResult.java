@@ -2,7 +2,7 @@ package com.jme.asset.store.configuration;
 
 public class MathResult {
 
-    private double result;
+    private final double result;
 
     public double getResult() {
         return result;
