@@ -21,7 +21,7 @@ public abstract class BaseEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -36,9 +36,7 @@ public abstract class BaseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         BaseEntity that = (BaseEntity) o;
-
         return id != null ? id.equals(that.id) : that.id == null;
     }
 

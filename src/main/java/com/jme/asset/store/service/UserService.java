@@ -6,11 +6,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface UserService{
-    void addUser(UserEntity userEntity) /*throws ConstraintViolationException, MySQLIntegrityConstraintViolationException, DataIntegrityViolationException*/;
-    UserEntity getUserByName(String name);
-    UserEntity getUserById(Long id);
-    boolean deleteByID(long id);
-    boolean deleteByName(String name);
+public interface UserService {
+    void addUser(final String name, final String password);
+
+    UserEntity getUser(final String name);
+
+    UserEntity getUser(final long id);
+
+    boolean delete(final long id);
+
+    boolean delete(final String name);
+
     List<UserEntity> allUsers();
 }

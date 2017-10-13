@@ -8,11 +8,11 @@ public class MathResult {
         return result;
     }
 
-    public MathResult(double res) {
+    public MathResult(final double res) {
         result = res;
     }
 
-    public MathResult(String error) {
+    public MathResult(final String error) {
         result = 0;
     }
 }

@@ -18,30 +18,29 @@ import java.util.Random;
 public class FileController {
 
     @PostMapping("/test_post/upload_file")
-    ResponseEntity<?> fileUpload(@RequestParam("file") MultipartFile file){
-        if(file.isEmpty()) return new ResponseEntity<>("File is empty!!!", HttpStatus.BAD_REQUEST);
+    ResponseEntity<?> fileUpload(@RequestParam("file") final MultipartFile file) {
+        if (file.isEmpty()) return new ResponseEntity<>("File is empty!!!", HttpStatus.BAD_REQUEST);
         try {
-            String PATH = "src/main/resources/public/";
+            final String PATH = "src/main/resources/public/";
             Files.write(Paths.get(PATH + file.getOriginalFilename()), file.getBytes());
             return new ResponseEntity<>("Success", HttpStatus.OK);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return new ResponseEntity<>("Bad file", HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/test_post/send_text")
-    ResponseEntity<?> sendText(@RequestParam("text") String text){
+    ResponseEntity<?> sendText(@RequestParam("text") final String text) {
         System.out.println(text);
-        return new ResponseEntity<>("Success send",HttpStatus.OK);
+        return new ResponseEntity<>("Success send", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/download/random", method = RequestMethod.GET)
-    ResponseEntity<?> random(){
-        Random rand = new Random();
+    ResponseEntity<?> random() {
+        final Random rand = new Random();
         StringBuilder sb = new StringBuilder();
         int len = rand.nextInt(1000);
-        for(int i=0;i<len;i++){
+        for (int i = 0; i < len; i++) {
             sb.append(rand.nextInt(1000));
             sb.append(", ");
         }
@@ -52,7 +51,7 @@ public class FileController {
         headers.add("Expires", "0");
         return ResponseEntity.ok()
                 .headers(headers)
-                .contentLength(len*2)
+                .contentLength(len * 2)
                 .contentType(MediaType.parseMediaType("application/text"))
                 .body(sb.toString());
     }

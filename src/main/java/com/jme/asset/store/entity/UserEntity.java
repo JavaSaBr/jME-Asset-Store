@@ -17,15 +17,15 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RolesEntity> roles;
 
-    public UserEntity(){
-
+    public UserEntity() {
     }
-    public UserEntity(String name, String password) {
+
+    public UserEntity(final String name, final String password) {
         this.name = name;
         this.password = password;
     }
 
-    public UserEntity(Long id, String name, String password) {
+    public UserEntity(final Long id, final String name, final String password) {
         super(id);
         this.name = name;
         this.password = password;
@@ -35,19 +35,17 @@ public class UserEntity extends BaseEntity {
         return roles;
     }
 
-    public void setRoles(List<RolesEntity> roles) {
+    public void setRoles(final List<RolesEntity> roles) {
         this.roles = roles;
     }
 
-    public boolean addRole(RolesEntity rolesEntity){
-        if(!roles.contains(rolesEntity)) {
-            roles.add(rolesEntity);
-            return true;
-        }
-        return false;
+    public boolean addRole(final RolesEntity rolesEntity) {
+        if (roles.contains(rolesEntity)) return false;
+        roles.add(rolesEntity);
+        return true;
     }
 
-    public boolean delRole(RolesEntity rolesEntity){
+    public boolean delete(final RolesEntity rolesEntity) {
         return roles.remove(rolesEntity);
     }
 
@@ -55,7 +53,7 @@ public class UserEntity extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 

@@ -13,7 +13,7 @@ import javax.servlet.MultipartConfigElement;
 @EnableAutoConfiguration
 public class MultiplyConfig {
     @Bean
-    MultipartConfigElement multipartConfigElement(){
+    MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
         factory.setMaxFileSize("300000KB");
         factory.setMaxRequestSize("300000KB");

@@ -1,3 +1,7 @@
 /.gradle/
 /.idea/
 /out/
+/front-end
+front-end/
+node_modules/
+

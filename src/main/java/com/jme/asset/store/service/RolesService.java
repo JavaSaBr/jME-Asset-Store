@@ -7,10 +7,16 @@ import java.util.List;
 
 @Service
 public interface RolesService {
-    void addRole(RolesEntity rolesEntity);
-    RolesEntity roleByName(String name);
-    boolean addRoleToUser(String user_name, String role_name);
+
+    void addRole(final String name);
+
+    RolesEntity roleByName(final String name);
+
+    boolean addRoleToUser(final String userName, final String roleName);
+
     List<RolesEntity> allRoles();
-    boolean deleteRoleFromUser(String user_name, String role_name);
-    boolean deleteRoleByName(String role_name);
+
+    boolean deleteRoleFromUser(final String userName, final String roleName);
+
+    boolean deleteRoleByName(final String roleName);
 }

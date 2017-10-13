@@ -14,42 +14,42 @@ import java.util.Optional;
 @Transactional
 public class RolesServiceImpl implements RolesService {
 
-    final
-    RolesRepository rolesRepository;
+    /**
+     * The repository of roles.
+     */
+    private final RolesRepository rolesRepository;
 
-    final
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public RolesServiceImpl(RolesRepository rolesRepository, UserRepository userRepository) {
+    public RolesServiceImpl(final RolesRepository rolesRepository, final UserRepository userRepository) {
         this.rolesRepository = rolesRepository;
         this.userRepository = userRepository;
     }
 
     @Override
-    public void addRole(RolesEntity rolesEntity) {
-        rolesRepository.save(rolesEntity);
+    public void addRole(final String name) {
+        rolesRepository.save(new RolesEntity(name));
     }
 
     @Override
-    public RolesEntity roleByName(String name) {
-        Optional<RolesEntity> op = rolesRepository.findByName(name);
+    public RolesEntity roleByName(final String name) {
+        final Optional<RolesEntity> op = rolesRepository.findByName(name);
         return op.orElse(null);
     }
 
     @Override
-    public boolean addRoleToUser(String user_name, String role_name) throws NoSuchElementException {
-        Optional<UserEntity> op_user = userRepository.findByName(user_name);
-        Optional<RolesEntity> op_role = rolesRepository.findByName(role_name);
-        if(!op_role.isPresent() || !op_user.isPresent()) throw  new NoSuchElementException("No such role or user");
-        UserEntity user = op_user.get();
-        RolesEntity role = op_role.get();
-        if(user.addRole(role)){
-            userRepository.save(user);
-            return true;
-
+    public boolean addRoleToUser(final String userName, final String roleName) throws NoSuchElementException {
+        final Optional<UserEntity> op_user = userRepository.findByName(userName);
+        final Optional<RolesEntity> op_role = rolesRepository.findByName(roleName);
+        if (!op_role.isPresent() || !op_user.isPresent()) {
+            throw new NoSuchElementException("No such role or user");
         }
-        return false;
+        final UserEntity user = op_user.get();
+        final RolesEntity role = op_role.get();
+        if (!user.addRole(role)) return false;
+        userRepository.save(user);
+        return true;
     }
 
     @Override
@@ -58,29 +58,27 @@ public class RolesServiceImpl implements RolesService {
     }
 
     @Override
-    public boolean deleteRoleFromUser(String user_name, String role_name) {
-        Optional<UserEntity> op_user = userRepository.findByName(user_name);
-        Optional<RolesEntity> op_role = rolesRepository.findByName(role_name);
-        if(!op_role.isPresent() || !op_user.isPresent()) throw  new NoSuchElementException("No such role or user");
-        UserEntity user = op_user.get();
-        RolesEntity role = op_role.get();
-        if(user.delRole(role)){
-            userRepository.save(user);
-            return true;
+    public boolean deleteRoleFromUser(final String userName, final String roleName) {
+        final Optional<UserEntity> op_user = userRepository.findByName(userName);
+        final Optional<RolesEntity> op_role = rolesRepository.findByName(roleName);
+        if (!op_role.isPresent() || !op_user.isPresent()) {
+            throw new NoSuchElementException("No such role or user");
         }
-        return false;
+        final UserEntity user = op_user.get();
+        final RolesEntity role = op_role.get();
+        if (!user.delete(role)) {
+            return false;
+        }
+        userRepository.save(user);
+        return true;
     }
 
     @Override
-    public boolean deleteRoleByName(String role_name) {
-        Optional<RolesEntity> op_role = rolesRepository.findByName(role_name);
-        if(op_role.isPresent()){
-            RolesEntity role = op_role.get();
-            rolesRepository.delete(role);
-            return true;
-        }
-        return false;
+    public boolean deleteRoleByName(final String roleName) {
+        final Optional<RolesEntity> op_role = rolesRepository.findByName(roleName);
+        if (!op_role.isPresent()) return false;
+        final RolesEntity role = op_role.get();
+        rolesRepository.delete(role);
+        return true;
     }
-
-
 }

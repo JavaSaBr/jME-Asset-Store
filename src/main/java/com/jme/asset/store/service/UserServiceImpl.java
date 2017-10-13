@@ -20,35 +20,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(UserEntity userEntity) {
-        userRepository.save(userEntity);
+    public void addUser(final String name, final String password) {
+        userRepository.save(new UserEntity(name, password));
     }
 
     @Override
-    public UserEntity getUserByName(String name) {
-        Optional<UserEntity> op = userRepository.findByName(name);
+    public UserEntity getUser(final String name) {
+        final Optional<UserEntity> op = userRepository.findByName(name);
         return op.orElse(null);
     }
 
     @Override
-    public UserEntity getUserById(Long id) {
-        Optional<UserEntity> op = userRepository.findById(id);
+    public UserEntity getUser(final long id) {
+        final Optional<UserEntity> op = userRepository.findById(id);
         return op.orElse(null);
     }
 
 
     @Override
-    public boolean deleteByID(long id) {
-        if(userRepository.findById(id).isPresent()) {
-            userRepository.deleteById(id);
-            return true;
-        }
-        return false;
+    public boolean delete(final long id) {
+        if (!userRepository.findById(id).isPresent()) return false;
+        userRepository.deleteById(id);
+        return true;
     }
 
     @Override
-    public boolean deleteByName(String name) {
-        if(userRepository.findByName(name).isPresent()) {
+    public boolean delete(final String name) {
+        if (userRepository.findByName(name).isPresent()) {
             userRepository.deleteByName(name);
             return true;
         }

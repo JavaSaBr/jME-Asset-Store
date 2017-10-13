@@ -16,7 +16,7 @@ public class MathController2 {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    ResponseEntity<?> add(@RequestBody MyMath math) {
+    ResponseEntity<?> add(@RequestBody final MyMath math) {
         return new ResponseEntity<>(new MathResult(math.getFirst() + math.getSecond()), HttpStatus.OK);
     }
 
@@ -24,7 +24,7 @@ public class MathController2 {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    ResponseEntity<?> sub(@RequestBody MyMath math) {
+    ResponseEntity<?> sub(@RequestBody final MyMath math) {
         return new ResponseEntity<>(new MathResult(math.getFirst() - math.getSecond()), HttpStatus.OK);
     }
 
@@ -32,7 +32,7 @@ public class MathController2 {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    ResponseEntity<?> mult(@RequestBody MyMath math) {
+    ResponseEntity<?> mult(@RequestBody final MyMath math) {
         return new ResponseEntity<>(new MathResult(math.getFirst() * math.getSecond()), HttpStatus.OK);
     }
 
@@ -40,7 +40,7 @@ public class MathController2 {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    ResponseEntity<?> div(@RequestBody MyMath math) {
+    ResponseEntity<?> div(@RequestBody final MyMath math) {
         if (math.getSecond() == 0)
             return new ResponseEntity<>(new MathError("Division by zero"), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(new MathResult((double) math.getFirst() / (double) math.getSecond()), HttpStatus.OK);
@@ -50,7 +50,7 @@ public class MathController2 {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    ResponseEntity<?> pow(@RequestBody MyMath math) {
+    ResponseEntity<?> pow(@RequestBody final MyMath math) {
         return new ResponseEntity<>(new MathResult(Math.pow((double) math.getFirst(), (double) math.getSecond())), HttpStatus.OK);
     }
 }
