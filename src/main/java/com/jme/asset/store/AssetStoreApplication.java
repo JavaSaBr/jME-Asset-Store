@@ -11,23 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @SpringBootApplication
-@Controller
+
 public class AssetStoreApplication {
 
     @Autowired
     UserService userService;
 
-    @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Hello World!";
-    }
-
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(AssetStoreApplication.class, args);
-
-
     }
 
     @RequestMapping(value = "/home")
