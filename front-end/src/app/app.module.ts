@@ -5,7 +5,11 @@ import {
   MatButtonModule,
   MatCheckboxModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatMenuModule,
+  MatFormFieldModule,
+  MatCardModule,
+  MatGridListModule
 } from '@angular/material';
 
 
@@ -27,7 +31,11 @@ import {FileComponent} from "./components/file/file.component";
     MatCheckboxModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatGridListModule
   ],
   exports: [
     MatButtonModule,

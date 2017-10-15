@@ -116,14 +116,18 @@ AppModule = __decorate([
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["a" /* MatButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["b" /* MatCheckboxModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["c" /* MatCheckboxModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["d" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["c" /* MatTabsModule */]
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["h" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["g" /* MatTabsModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["f" /* MatMenuModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["d" /* MatFormFieldModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["b" /* MatCardModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["e" /* MatGridListModule */]
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["a" /* MatButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["b" /* MatCheckboxModule */]
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["c" /* MatCheckboxModule */]
         ],
         providers: [],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
@@ -171,10 +175,28 @@ FileComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/math/math.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".example-form {\r\n  min-width: 150px;\r\n  max-width: 500px;\r\n  width: 100%;\r\n}\r\n\r\n.example-full-width {\r\n  width: 100%;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/math/math.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Math Components</h1>\r\n"
+module.exports = "<h1>Math Components</h1>\r\n\r\n<form class=\"example-form\">\r\n  <mat-card>\r\n\r\n    <mat-grid-list cols=\"2\" rowHeight=\"100px\">\r\n      <mat-grid-tile [style.background]=\"lightblue\">\r\n        <label>First Number</label>\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        input type=\"text\" [value]=\"firstNumber\" >\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        <label>Second Number</label>\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        <input type=\"text\" [value]=\"secondNumber\" >\r\n      </mat-grid-tile>\r\n    </mat-grid-list>\r\n\r\n  </mat-card>\r\n\r\n\r\n    <button mat-icon-button>Ok</button>\r\n</form>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -193,14 +215,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var MathComponent = (function () {
     function MathComponent() {
-        this.title = 'app';
     }
     return MathComponent;
 }());
 MathComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-math',
-        template: __webpack_require__("../../../../../src/app/components/math/math.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/math/math.component.css")],
+        template: __webpack_require__("../../../../../src/app/components/math/math.component.html")
     })
 ], MathComponent);
 
