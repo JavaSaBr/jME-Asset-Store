@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
 @SpringBootApplication
 public class AssetStoreApplication {
 
@@ -13,8 +12,4 @@ public class AssetStoreApplication {
         SpringApplication.run(AssetStoreApplication.class, args);
     }
 
-    @RequestMapping(value = "/home")
-    public String root() {
-        return "index";
-    }
 }
