@@ -8,5 +8,8 @@ import {RequestOptions} from "@angular/http";
 
 })
 export class FileComponent {
-
+  condition: boolean = false;
+  toggle(){
+    this.condition = !this.condition;
+  }
 }

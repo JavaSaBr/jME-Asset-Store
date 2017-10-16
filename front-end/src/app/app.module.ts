@@ -9,21 +9,25 @@ import {
   MatMenuModule,
   MatFormFieldModule,
   MatCardModule,
-  MatGridListModule
+  MatGridListModule,
+  MatTableModule
 } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
 import {MathComponent} from "./components/math/math.component";
-import {UserComponent} from "./components/user/user.component";
+
 import {FileComponent} from "./components/file/file.component";
+import {UserComponent} from "./components/user/user.component";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MathComponent,
-    UserComponent,
-    FileComponent
+    FileComponent,
+    UserComponent
+
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,8 @@ import {FileComponent} from "./components/file/file.component";
     MatMenuModule,
     MatFormFieldModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,

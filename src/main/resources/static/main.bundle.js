@@ -83,8 +83,8 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_math_math_component__ = __webpack_require__("../../../../../src/app/components/math/math.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_user_user_component__ = __webpack_require__("../../../../../src/app/components/user/user.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_file_file_component__ = __webpack_require__("../../../../../src/app/components/file/file.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_file_file_component__ = __webpack_require__("../../../../../src/app/components/file/file.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_user_user_component__ = __webpack_require__("../../../../../src/app/components/user/user.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -109,20 +109,21 @@ AppModule = __decorate([
         declarations: [
             __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_5__components_math_math_component__["a" /* MathComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__components_user_user_component__["a" /* UserComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__components_file_file_component__["a" /* FileComponent */]
+            __WEBPACK_IMPORTED_MODULE_6__components_file_file_component__["a" /* FileComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__components_user_user_component__["a" /* UserComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["a" /* MatButtonModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["c" /* MatCheckboxModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["h" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["g" /* MatTabsModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["i" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["h" /* MatTabsModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["f" /* MatMenuModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["d" /* MatFormFieldModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["b" /* MatCardModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_material__["e" /* MatGridListModule */]
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["e" /* MatGridListModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_material__["g" /* MatTableModule */]
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_3__angular_material__["a" /* MatButtonModule */],
@@ -140,7 +141,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/components/file/file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>File Components</h1>\r\n<button mat-button [matMenuTriggerFor]=\"menu\">Select an operation</button>\r\n\r\n<mat-menu #menu=\"matMenu\">\r\n  <button mat-menu-item>Upload File</button>\r\n  <button mat-menu-item>Download Random</button>\r\n</mat-menu>\r\n<mat-card>\r\n  <input type=\"file\" placeholder=\"Upload file\" accept=\".pdf,.doc,.docx\">\r\n</mat-card>\r\n"
+module.exports = "<h1>File Components</h1>\r\n<button mat-button [matMenuTriggerFor]=\"menu\">Select an operation</button>\r\n\r\n<mat-menu #menu=\"matMenu\">\r\n  <button mat-menu-item (click)=\"toggle()\">Upload File</button>\r\n  <button mat-menu-item>Download Random</button>\r\n</mat-menu>\r\n<mat-card *ngIf=\"condition\">\r\n  <input type=\"file\" placeholder=\"Upload file\" accept=\".pdf,.doc,.docx\">\r\n</mat-card>\r\n"
 
 /***/ }),
 
@@ -159,7 +160,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var FileComponent = (function () {
     function FileComponent() {
+        this.condition = false;
     }
+    FileComponent.prototype.toggle = function () {
+        this.condition = !this.condition;
+    };
     return FileComponent;
 }());
 FileComponent = __decorate([
@@ -232,10 +237,28 @@ MathComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/user/user.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".example-container {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n  max-height: 500px;\r\n  min-width: 300px;\r\n}\r\n\r\n.mat-table {\r\n  overflow: auto;\r\n  max-height: 500px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/user/user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>User Components</h1>\r\n"
+module.exports = "<h1>User Components</h1>\r\n\r\n<div class=\"example-container mat-elevation-z8\">\r\n  <mat-table #table [dataSource]=\"dataSource\">\r\n\r\n    <!--- Note that these columns can be defined in any order.\r\n          The actual rendered columns are set as a property on the row definition\" -->\r\n\r\n    <!-- Position Column -->\r\n    <ng-container matColumnDef=\"position\">\r\n      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let element\"> {{element.position}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- Name Column -->\r\n    <ng-container matColumnDef=\"name\">\r\n      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let element\"> {{element.name}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- Weight Column -->\r\n    <ng-container matColumnDef=\"weight\">\r\n      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let element\"> {{element.weight}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- Color Column -->\r\n    <ng-container matColumnDef=\"symbol\">\r\n      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let element\"> {{element.symbol}} </mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n  </mat-table>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -243,8 +266,24 @@ module.exports = "<h1>User Components</h1>\r\n"
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export ExampleDataSource */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__ = __webpack_require__("../../../cdk/esm5/collections.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/add/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_of__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -252,16 +291,66 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+
+
+
+var data = [
+    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+    { position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na' },
+    { position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg' },
+    { position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al' },
+    { position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si' },
+    { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P' },
+    { position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S' },
+    { position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl' },
+    { position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar' },
+    { position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K' },
+    { position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
+];
+/**
+ * Data source to provide what data should be rendered in the table. The observable provided
+ * in connect should emit exactly the data that should be rendered by the table. If the data is
+ * altered, the observable should emit that new set of data on the stream. In our case here,
+ * we return a stream that contains only one set of data that doesn't change.
+ */
+var ExampleDataSource = (function (_super) {
+    __extends(ExampleDataSource, _super);
+    function ExampleDataSource() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+    ExampleDataSource.prototype.connect = function () {
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(data);
+    };
+    ExampleDataSource.prototype.disconnect = function () { };
+    return ExampleDataSource;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__["a" /* DataSource */]));
+
+/**
+ * @title Basic table
+ */
 var UserComponent = (function () {
     function UserComponent() {
-        this.title = 'app';
+        this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+        this.dataSource = new ExampleDataSource();
     }
     return UserComponent;
 }());
 UserComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-user',
+        styles: [__webpack_require__("../../../../../src/app/components/user/user.component.css")],
         template: __webpack_require__("../../../../../src/app/components/user/user.component.html"),
+        providers: [ExampleDataSource]
     })
 ], UserComponent);
 

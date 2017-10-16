@@ -2,9 +2,9 @@
 <button mat-button [matMenuTriggerFor]="menu">Select an operation</button>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Upload File</button>
+  <button mat-menu-item (click)="toggle()">Upload File</button>
   <button mat-menu-item>Download Random</button>
 </mat-menu>
-<mat-card>
+<mat-card *ngIf="condition">
   <input type="file" placeholder="Upload file" accept=".pdf,.doc,.docx">
 </mat-card>
