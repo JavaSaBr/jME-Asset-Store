@@ -1,6 +1,5 @@
 package com.jme.asset.store.database.entity.user;
 
-
 import com.jme.asset.store.database.entity.BaseEntity;
 import com.jme.asset.store.database.entity.role.RoleEntity;
 
@@ -9,9 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
+
 public class UserEntity extends BaseEntity {
 
-    @ManyToMany(fetch = FetchType.EAGER) //cascade = CascadeType.ALL
+    @ManyToMany(fetch = FetchType.EAGER)
+
     private List<RoleEntity> roles;
 
     @Column(name = "name", unique = true, nullable = true)
@@ -20,19 +21,21 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", nullable = true)
     private String password;
 
-    public UserEntity(String name, String password) {
+    public UserEntity(final String name, final String password) {
         this.name = name;
         this.password = password;
     }
-    public UserEntity(String name, String password, List<RoleEntity> roles) {
+
+    public UserEntity(final String name, final String password, final List<RoleEntity> roles) {
         this.name = name;
         this.password = password;
         this.roles = roles;
     }
+
     public UserEntity() {
     }
 
-    public UserEntity(Long id, String name, String password) {
+    public UserEntity(final Long id, final String name, final String password) {
         super(id);
         this.name = name;
         this.password = password;
@@ -42,7 +45,7 @@ public class UserEntity extends BaseEntity {
         return name;
     }
 
-    public void setUser_name(String name) {
+    public void setUser_name(final String name) {
         this.name = name;
     }
 
@@ -50,7 +53,7 @@ public class UserEntity extends BaseEntity {
         return password;
     }
 
-    public void setUser_password(String password) {
+    public void setUser_password(final String password) {
         this.password = password;
     }
 
@@ -58,7 +61,7 @@ public class UserEntity extends BaseEntity {
         return roles;
     }
 
-    public void setRoles(List<RoleEntity> roles) {
+    public void setRoles(final List<RoleEntity> roles) {
         this.roles = roles;
     }
 }

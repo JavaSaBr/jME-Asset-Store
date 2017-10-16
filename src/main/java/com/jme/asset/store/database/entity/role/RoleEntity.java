@@ -9,20 +9,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name ="role")
+@Table(name = "role")
 public class RoleEntity extends BaseEntity {
 
-    @Column (name ="name", unique = true, nullable = true)
-   private String name;
+    @Column(name = "name", unique = true, nullable = true)
+    private String name;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-
         RoleEntity that = (RoleEntity) o;
-
         return name != null ? name.equals(that.name) : that.name == null;
     }
 
@@ -33,7 +31,7 @@ public class RoleEntity extends BaseEntity {
         return result;
     }
 
-    public RoleEntity (String name){
+    public RoleEntity(final String name) {
         this.name = name;
 
     }
@@ -41,7 +39,7 @@ public class RoleEntity extends BaseEntity {
     public RoleEntity() {
     }
 
-    public RoleEntity(Long id, String name) {
+    public RoleEntity(final Long id, final String name) {
         super(id);
         this.name = name;
     }
@@ -50,13 +48,9 @@ public class RoleEntity extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
-
-
-
-
 
 
 }

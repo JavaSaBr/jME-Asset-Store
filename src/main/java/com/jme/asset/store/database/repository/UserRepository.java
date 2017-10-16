@@ -11,7 +11,8 @@ import java.util.Optional;
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByName(String name);
-    void deleteByName (String name);
-    List<UserEntity> findAllByRoles (RoleEntity roleEntity);
-  //  Object save (UserEntity userEntity);
+
+    void deleteByName(String name);
+
+    List<UserEntity> findAllByRoles(RoleEntity roleEntity);
 }

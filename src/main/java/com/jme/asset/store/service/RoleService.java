@@ -9,15 +9,11 @@ public interface RoleService {
 
     RoleEntity addRole(String name) ;
 
-    List allRoles();
+    List<RoleEntity> allRoles();
 
-    RoleEntity findRole(String name) ;
+    RoleEntity find(String name) ;
 
-    RoleEntity findRole(Long id);
-
-    void deleteRole(String name);
-
-    void deleteRole(Long id);
+    void delete(String name);
 
 
 }
