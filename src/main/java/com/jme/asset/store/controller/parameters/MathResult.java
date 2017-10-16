@@ -1,14 +1,14 @@
 package com.jme.asset.store.controller.parameters;
 
 public class MathResult {
-    private double MathResult;
 
+    private double mathResult;
 
-    public MathResult(double mathResult) {
-        MathResult = mathResult;
+    public MathResult(final double mathResult) {
+        this.mathResult = mathResult;
     }
 
-    public double getMathDivResult() {
-        return MathResult;
+    public double getMathResult() {
+        return mathResult;
     }
 }

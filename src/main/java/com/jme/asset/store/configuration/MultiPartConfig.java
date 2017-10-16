@@ -8,17 +8,16 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.MultipartConfigElement;
 
-
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
 
 public class MultiPartConfig {
-   @Bean
-    MultipartConfigElement multipartConfigElement(){
-       MultipartConfigFactory factory = new MultipartConfigFactory();
-       factory.setMaxFileSize("3000000KB");
-       factory.setMaxRequestSize("3000000KB");
-       return factory.createMultipartConfig();
-   }
+    @Bean
+    MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("3000000KB");
+        factory.setMaxRequestSize("3000000KB");
+        return factory.createMultipartConfig();
+    }
 }

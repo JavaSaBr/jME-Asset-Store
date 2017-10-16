@@ -17,8 +17,9 @@ public class MathJsonController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    ResponseEntity<?> add(@RequestBody MathParameters mathParameters) {
-        return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() + mathParameters.getSecondParam()));
+    public ResponseEntity<?> add(@RequestBody final MathParameters mathParameters) {
+        return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() +
+                mathParameters.getSecondParam()));
     }
 
     @PostMapping(
@@ -26,8 +27,9 @@ public class MathJsonController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    ResponseEntity<?> sub(@RequestBody MathParameters mathParameters) {
-        return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() - mathParameters.getSecondParam()));
+    public ResponseEntity<?> sub(@RequestBody final MathParameters mathParameters) {
+        return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() -
+                mathParameters.getSecondParam()));
     }
 
     @PostMapping(
@@ -35,8 +37,9 @@ public class MathJsonController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    ResponseEntity<?> mult(@RequestBody MathParameters mathParameters) {
-        return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() * mathParameters.getSecondParam()));
+    public ResponseEntity<?> mult(@RequestBody final MathParameters mathParameters) {
+        return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() *
+                mathParameters.getSecondParam()));
     }
 
     @PostMapping(
@@ -44,13 +47,12 @@ public class MathJsonController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    ResponseEntity<?> div(@RequestBody MathParameters mathParameters) throws IOException {
-
+    public ResponseEntity<?> div(@RequestBody final MathParameters mathParameters) throws IOException {
         if (!(mathParameters.getSecondParam() == 0)) {
-            return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() / mathParameters.getSecondParam()));
+            return ResponseEntity.ok(new MathResult(mathParameters.getFirstParam() /
+                    mathParameters.getSecondParam()));
         }
-
-        return new ResponseEntity<MathError>(new MathError("Division by zero not allawed!"), HttpStatus.CONFLICT);
+        return new ResponseEntity<>(new MathError("Division by zero not allowed!"), HttpStatus.CONFLICT);
     }
 
     @PostMapping(
@@ -58,8 +60,9 @@ public class MathJsonController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    ResponseEntity<?> pow(@RequestBody MathParameters mathParameters) {
-        return ResponseEntity.ok(new MathResult(Math.pow(mathParameters.getFirstParam(), mathParameters.getSecondParam())));
+    public ResponseEntity<?> pow(@RequestBody final MathParameters mathParameters) {
+        return ResponseEntity.ok(new MathResult(Math.pow(mathParameters.getFirstParam(),
+                mathParameters.getSecondParam())));
 
     }
 }

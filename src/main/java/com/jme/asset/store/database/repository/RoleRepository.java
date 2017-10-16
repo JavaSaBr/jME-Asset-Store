@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface RoleRepository extends PagingAndSortingRepository<RoleEntity, Long> {
 
-    Optional <RoleEntity> findByName(String name);
-    void deleteByName (String name);
+    Optional<RoleEntity> findByName(String name);
 }

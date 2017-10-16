@@ -3,12 +3,13 @@ package com.jme.asset.store.controller;
 public class MathParameters {
 
     private double firstParam;
+
     private double secondParam;
 
     public MathParameters() {
     }
 
-    MathParameters(double firstParam, double secondParam) {
+    MathParameters(final double firstParam, final double secondParam) {
         this.firstParam = firstParam;
         this.secondParam = secondParam;
     }

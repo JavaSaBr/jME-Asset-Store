@@ -4,10 +4,8 @@ import com.jme.asset.store.controller.Exception.RoleAlreadyExistException;
 import com.jme.asset.store.controller.Exception.RoleNotFoundException;
 import com.jme.asset.store.controller.Exception.UserAlreadyExistException;
 import com.jme.asset.store.controller.Exception.UserNotFoundException;
-import com.jme.asset.store.database.entity.user.UserEntity;
 import com.jme.asset.store.service.RoleService;
 import com.jme.asset.store.service.UserService;
-import org.hibernate.loader.plan.spi.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +18,21 @@ import java.util.List;
 
 public class DataController {
 
+    private final RoleService roleService;
+
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public DataController(final UserService userService, final RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
+    }
 
     @PostMapping(value = "/addUser")
     public ResponseEntity<?> addUser(
-            @RequestParam("name") String name,
-            @RequestParam("password") String password,
-            @RequestParam("role") String role) {
+            @RequestParam("name") final String name,
+            @RequestParam("password") final String password,
+            @RequestParam("role") final String role) {
         try {
             userService.addUser(name, password, role);
         } catch (UserAlreadyExistException e) {
@@ -37,13 +42,12 @@ public class DataController {
     }
 
     @GetMapping(value = "/allUsers")
-    public List allUsers() {
-        return userService.allUsers();
+    public ResponseEntity<?> allUsers() {
+        return ResponseEntity.ok(userService.allUsers());
     }
 
     @GetMapping(value = "/findUserByID")
-    public ResponseEntity<?> find(@RequestParam("id") Long id) {
-
+    public ResponseEntity<?> find(@RequestParam("id") final Long id) {
         try {
             userService.find(id);
         } catch (UserNotFoundException e) {
@@ -53,7 +57,7 @@ public class DataController {
     }
 
     @GetMapping(value = "/findUserByName")
-    public ResponseEntity<?> find(@RequestParam("name") String name) {
+    public ResponseEntity<?> find(@RequestParam("name") final String name) {
         try {
             userService.find(name);
         } catch (UserNotFoundException e) {
@@ -63,8 +67,7 @@ public class DataController {
     }
 
     @PostMapping(value = "/deleteUserByID")
-    public ResponseEntity<?> delete(@RequestParam("id") Long id) {
-
+    public ResponseEntity<?> delete(@RequestParam("id") final Long id) {
         try {
             userService.delete(id);
         } catch (UserNotFoundException e) {
@@ -74,55 +77,42 @@ public class DataController {
     }
 
     @PostMapping(value = "/deleteUserByName")
-    public ResponseEntity<?> delete(@RequestParam("name") String name) {
+    public ResponseEntity<?> delete(@RequestParam("name") final String name) {
         try {
             userService.delete(name);
         } catch (UserNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("user is not found!");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User is not found!");
         }
         return ResponseEntity.ok("User is deleted!");
     }
 
-    @Autowired
-    RoleService roleService;
-
     @GetMapping(value = "/allRoles")
     public ResponseEntity<?> allRoles() {
-        return ResponseEntity.ok((List) roleService.allRoles());
+        return ResponseEntity.ok(roleService.allRoles());
     }
 
-    @PostMapping(value = "/deleteRoleByName")
-    public ResponseEntity<?> deleteRole(@RequestParam("name") String name) {
+    @PostMapping(value = "/deleteRole")
+    public ResponseEntity<?> deleteRole(@RequestParam("name") final String name) {
         try {
-            roleService.deleteRole(name);
+            roleService.delete(name);
         } catch (RoleNotFoundException exp) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Role is not found!");
         }
         return ResponseEntity.ok("Role is deleted!");
     }
 
-  /*  @PostMapping(value = "deleteRoleByID")
-    public ResponseEntity<?> deleteRole(@RequestParam("id") Long id) {
+    @GetMapping(value = "findRole")
+    public ResponseEntity<?> findRole(@RequestParam("name") final String name) {
         try {
-            roleService.deleteRole(id);
+            roleService.find(name);
         } catch (RoleNotFoundException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Role is not found!");
         }
-        return ResponseEntity.ok("Role is deleted!");
-    }*/
-
-    @GetMapping(value = "findRoleByName")
-    public ResponseEntity<?> findRole(@RequestParam("name") String name) {
-        try {
-            roleService.findRole(name);
-        } catch (RoleNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Role is not found!");
-        }
-        return ResponseEntity.ok(roleService.findRole(name));
+        return ResponseEntity.ok(roleService.find(name));
     }
 
     @PostMapping(value = "addRole")
-    public ResponseEntity<?> addRole(@RequestParam("name") String name) {
+    public ResponseEntity<?> addRole(@RequestParam("name") final String name) {
         try {
             roleService.addRole(name);
         } catch (RoleAlreadyExistException e) {
@@ -132,9 +122,10 @@ public class DataController {
     }
 
     @PostMapping(value = "addUserRole")
-    public ResponseEntity<?> addUserRole(@RequestParam("name") String name, @RequestParam("role") String role) {
+    public ResponseEntity<?> addUserRole(@RequestParam("name") final String userName,
+                                         @RequestParam("role") final String roleName) {
         try {
-            userService.addUserRole(name, role);
+            userService.addUserRole(userName, roleName);
         } catch (RoleAlreadyExistException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("The user has already this role!");
         }
@@ -142,15 +133,16 @@ public class DataController {
     }
 
     @PostMapping(value = "deleteUserRole")
-    public ResponseEntity<?> delUserRole (@RequestParam ("name") String name, @RequestParam ("role") String role) {
+    public ResponseEntity<?> delUserRole(@RequestParam("name") final String userName,
+                                         @RequestParam("role") final String roleName) {
         try {
-            userService.delUserRole(name,role);
-        }catch (RoleNotFoundException e){
-            return  ResponseEntity.status(HttpStatus.CONFLICT).body("The user has no same role!");
+            userService.delete(userName, roleName);
+        } catch (RoleNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("The user has no same role!");
         }
-            return ResponseEntity.ok("Role is deleted from the user!");
-        }
+        return ResponseEntity.ok("Role is deleted from the user!");
     }
+}
 
 
 

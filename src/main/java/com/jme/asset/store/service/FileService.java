@@ -1,11 +1,12 @@
 package com.jme.asset.store.service;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
+        import org.springframework.web.multipart.MultipartFile;
+
+        import java.io.IOException;
 
 public interface FileService {
 
-    public ResponseEntity<?> generateRandomDataFile();
+    String generateRandomDataFile();
 
-    public ResponseEntity<?> handleFileUpload(MultipartFile multipartFile);
+    void handleFileUpload(MultipartFile multipartFile) throws IOException;
 }
