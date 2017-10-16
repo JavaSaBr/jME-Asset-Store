@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Observable} from "rxjs/Observable";
+import {RequestOptions} from "@angular/http";
 
 @Component({
   selector: 'app-file',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
 
 })
 export class FileComponent {
-  title = 'app';
+
 }

@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<mat-sidenav-container>\r\n  <div class=\"tool-bar\">\r\n    <mat-tab-group>\r\n      <mat-tab label=\"Mathematical Operations\"><app-math></app-math></mat-tab>\r\n      <mat-tab label=\"File Operations\"><app-user></app-user></mat-tab>\r\n      <mat-tab label=\"User Operations\"><app-file></app-file></mat-tab>\r\n    </mat-tab-group>\r\n  </div>\r\n</mat-sidenav-container>\r\n\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<mat-sidenav-container>\r\n  <div class=\"tool-bar\">\r\n    <mat-tab-group>\r\n      <mat-tab label=\"Mathematical Operations\"><app-math></app-math></mat-tab>\r\n      <mat-tab label=\"User Operations\"><app-user></app-user></mat-tab>\r\n      <mat-tab label=\"File Operations\"><app-file></app-file></mat-tab>\r\n    </mat-tab-group>\r\n  </div>\r\n</mat-sidenav-container>\r\n\r\n"
 
 /***/ }),
 
@@ -140,7 +140,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/components/file/file.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>File Components</h1>\r\n"
+module.exports = "<h1>File Components</h1>\r\n<button mat-button [matMenuTriggerFor]=\"menu\">Select an operation</button>\r\n\r\n<mat-menu #menu=\"matMenu\">\r\n  <button mat-menu-item>Upload File</button>\r\n  <button mat-menu-item>Download Random</button>\r\n</mat-menu>\r\n<mat-card>\r\n  <input type=\"file\" placeholder=\"Upload file\" accept=\".pdf,.doc,.docx\">\r\n</mat-card>\r\n"
 
 /***/ }),
 
@@ -159,7 +159,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var FileComponent = (function () {
     function FileComponent() {
-        this.title = 'app';
     }
     return FileComponent;
 }());
