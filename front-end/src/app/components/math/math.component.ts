@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './math.component.html'
 })
 export class MathComponent {
+  condition: boolean=false;
   firstNumber: number;
   secondNumber: number;
+
+  toggle(){
+    this.condition = !this.condition;
+  }
+
 }

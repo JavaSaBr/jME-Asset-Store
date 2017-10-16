@@ -1,14 +1,22 @@
 <h1>Math Components</h1>
 
-<form class="example-form">
-  <mat-card>
+<button mat-button [matMenuTriggerFor]="menu">Select an operation</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="toggle()">+</button>
+  <button mat-menu-item (click)="toggle()">-</button>
+  <button mat-menu-item (click)="toggle()">*</button>
+  <button mat-menu-item (click)="toggle()">/</button>
+  <button mat-menu-item (click)="toggle()">pow</button>
+</mat-menu>
 
-    <mat-grid-list cols="2" rowHeight="100px">
+<form class="math-form" *ngIf="condition">
+  <mat-card>
+    <mat-grid-list cols="4" rowHeight="100px">
       <mat-grid-tile>
         <label>First Number</label>
       </mat-grid-tile>
       <mat-grid-tile>
-        input type="text" [value]="firstNumber" >
+        <input type="text" [value]="firstNumber">
       </mat-grid-tile>
       <mat-grid-tile>
         <label>Second Number</label>
@@ -17,7 +25,6 @@
         <input type="text" [value]="secondNumber" >
       </mat-grid-tile>
     </mat-grid-list>
-
   </mat-card>
 
 

@@ -57,7 +57,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'app';
     }
     return AppComponent;
 }());
@@ -183,7 +182,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".example-form {\r\n  min-width: 150px;\r\n  max-width: 500px;\r\n  width: 100%;\r\n}\r\n\r\n.example-full-width {\r\n  width: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -196,7 +195,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/math/math.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Math Components</h1>\r\n\r\n<form class=\"example-form\">\r\n  <mat-card>\r\n\r\n    <mat-grid-list cols=\"2\" rowHeight=\"100px\">\r\n      <mat-grid-tile [style.background]=\"lightblue\">\r\n        <label>First Number</label>\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        input type=\"text\" [value]=\"firstNumber\" >\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        <label>Second Number</label>\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        <input type=\"text\" [value]=\"secondNumber\" >\r\n      </mat-grid-tile>\r\n    </mat-grid-list>\r\n\r\n  </mat-card>\r\n\r\n\r\n    <button mat-icon-button>Ok</button>\r\n</form>\r\n\r\n\r\n"
+module.exports = "<h1>Math Components</h1>\r\n\r\n<button mat-button [matMenuTriggerFor]=\"menu\">Select an operation</button>\r\n<mat-menu #menu=\"matMenu\">\r\n  <button mat-menu-item (click)=\"toggle()\">+</button>\r\n  <button mat-menu-item (click)=\"toggle()\">-</button>\r\n  <button mat-menu-item (click)=\"toggle()\">*</button>\r\n  <button mat-menu-item (click)=\"toggle()\">/</button>\r\n  <button mat-menu-item (click)=\"toggle()\">pow</button>\r\n</mat-menu>\r\n\r\n<form class=\"math-form\" *ngIf=\"condition\">\r\n  <mat-card>\r\n    <mat-grid-list cols=\"4\" rowHeight=\"100px\">\r\n      <mat-grid-tile>\r\n        <label>First Number</label>\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        <input type=\"text\" [value]=\"firstNumber\">\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        <label>Second Number</label>\r\n      </mat-grid-tile>\r\n      <mat-grid-tile>\r\n        <input type=\"text\" [value]=\"secondNumber\" >\r\n      </mat-grid-tile>\r\n    </mat-grid-list>\r\n  </mat-card>\r\n\r\n\r\n    <button mat-icon-button>Ok</button>\r\n</form>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -215,7 +214,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var MathComponent = (function () {
     function MathComponent() {
+        this.condition = false;
     }
+    MathComponent.prototype.toggle = function () {
+        this.condition = !this.condition;
+    };
     return MathComponent;
 }());
 MathComponent = __decorate([
