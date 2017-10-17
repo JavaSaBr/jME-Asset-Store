@@ -1,0 +1,31 @@
+<h1>Math Components</h1>
+
+<button mat-button [matMenuTriggerFor]="menu">Select an operation</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="toggle()">Addition</button>
+  <button mat-menu-item (click)="toggle()">Subtraction</button>
+  <button mat-menu-item (click)="toggle()">Multiplication</button>
+  <button mat-menu-item (click)="toggle()">Division</button>
+  <button mat-menu-item (click)="toggle()">Pow</button>
+</mat-menu>
+
+<form class="math-form" *ngIf="condition">
+  <mat-card>
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile>
+        <label>First Number</label>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <input type="text" [value]="firstNumber">
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <label>Second Number</label>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <input type="text" [value]="secondNumber" >
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+
+  <button mat-icon-button>Result</button>
+</form>

@@ -1,0 +1,48 @@
+<h1>Example Components</h1>
+
+
+  <mat-form-field floatPlaceholder="auto">
+  <mat-select placeholder="Math operations" [formControl]="mathOperations" multiple>
+    <mat-select-trigger>
+      {{mathOperations.value ? mathOperations.value[0] : ''}}
+      <span *ngIf="mathOperations.value?.length > 1" class="example-additional-selection">
+        (+{{mathOperations.value.length - 1}} others)
+      </span>
+    </mat-select-trigger>
+      <mat-option>None</mat-option>
+    <mat-option *ngFor="let mathoperation of mathOperationsList" [value]="mathoperation">{{mathoperation}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<form class="example-form" *ngIf="condition">
+  <mat-card>
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile>
+        <label>First Variable</label>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <input type="text" [value]="firstVariable">
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <label>Second Variable</label>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <input type="text" [value]="secondVariable" >
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <button mat-icon-button>Get result!</button>
+
+
+
+<mat-form-field>
+  <mat-select placeholder="Math operations" [(ngModel)]="selectedValue" name="mathoperation1">
+        <mat-option>None</mat-option>
+    <mat-option *ngFor="let mathoperation1 of mathoperationss" [value]="mathoperation1.value">
+      {{mathoperation1.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <p> Selected value: {{selectedValue}} </p>
+</form>

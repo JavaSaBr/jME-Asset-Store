@@ -1,0 +1,11 @@
+.example-container {
+  display: block;
+  flex-direction: column-reverse;
+  max-height: 600px;
+  min-width: 600px;
+}
+
+.mat-table {
+  overflow: inherit;
+  max-height: 500px;
+}
