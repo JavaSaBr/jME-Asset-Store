@@ -8,13 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class MathController {
 
-
-    @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Hello World!";
-    }
-
     @GetMapping(value = "/math/add")
     public ResponseEntity<?> add(@RequestParam("first") final Integer first,
                                  @RequestParam("second") final Integer second) {
