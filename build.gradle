@@ -12,6 +12,25 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:2.0.0.M4")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa:2.0.0.M4')
+    compile('org.springframework.boot:spring-boot-starter-security:2.0.0.M4')
+    compile('org.springframework.boot:spring-boot-starter-web:2.0.0.M4')
+
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    compile group: 'org.jetbrains', name: 'annotations', version: '15.0'
+
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+    compile group: 'org.apache.commons', name: 'commons-text', version: '1.1'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-rng-core
+    compile group: 'org.apache.commons', name: 'commons-rng-core', version: '1.0'
+
+    runtime('mysql:mysql-connector-java:5.1.6')
+    runtime('org.postgresql:postgresql:9.4.1212')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test:2.0.0.M4')
 }
 
 task wrapper(type: Wrapper) {
