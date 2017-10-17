@@ -2,7 +2,7 @@
 .login-form-container {
   width: 400px;
   margin: 0 auto;
-  margin-top: -64px;
+  margin-top: 64px;
 }
 
 .login-form {
@@ -17,6 +17,7 @@
 }
 
 .login-data-row {
+  width: 100%;
   display: block;
   margin-top: 40px;
   margin-bottom: 20px;
