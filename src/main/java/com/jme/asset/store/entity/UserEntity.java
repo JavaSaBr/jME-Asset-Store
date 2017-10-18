@@ -60,6 +60,9 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
 
+    public UserEntity(){
+    }
+
     /**
      * @return the User login.
      */

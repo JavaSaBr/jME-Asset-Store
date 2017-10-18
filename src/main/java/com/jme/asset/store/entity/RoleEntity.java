@@ -30,6 +30,8 @@ public class RoleEntity extends BaseEntity implements GrantedAuthority {
         return name;
     }
 
+    public RoleEntity(){}
+
     /**
      * @return the Role name.
      */
