@@ -8,5 +8,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * @author Denis Lesheniuk.
  */
-public interface RoleRepository extends PagingAndSortingRepository<RoleEntity, Integer> {
+public interface RoleRepository extends PagingAndSortingRepository<RoleEntity, Long> {
 }
