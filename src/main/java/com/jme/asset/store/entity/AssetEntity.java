@@ -15,13 +15,13 @@ public class AssetEntity extends BaseEntity {
     /**
      * The name of asset
      */
-    @Column(name = "asset_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     /**
      * The description of asset
      */
-    @Column(name = "asset_description", nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
     /**

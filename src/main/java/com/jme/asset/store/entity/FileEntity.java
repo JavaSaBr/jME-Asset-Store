@@ -15,13 +15,13 @@ public class FileEntity extends BaseEntity {
     /**
      * The file name
      */
-    @Column(name = "file_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     /**
      * The file content
      */
-    @Column(name = "file_content", nullable = false)
+    @Column(name = "content", nullable = false)
     private Blob content;
 
     /**
