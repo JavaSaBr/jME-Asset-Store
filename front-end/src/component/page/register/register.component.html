@@ -1,0 +1,17 @@
+<div class="register-form-container">
+  <div class="register-form">
+
+    <div class="register-text-container">
+      <h2 class="register-page-title">Register a new user</h2>
+      <h3 class="register-page-error" [hidden]="error.length == 0">
+        {{error}}
+      </h3>
+    </div>
+
+    <form class="register-data-form mat-elevation-z2" (ngSubmit)="tryRegister()" #registerForm="ngForm">
+      <button class="register-data-row register-button" type="submit" mat-raised-button color="primary"
+              [disabled]="!registerForm.form.valid">Register
+      </button>
+    </form>
+  </div>
+</div>
