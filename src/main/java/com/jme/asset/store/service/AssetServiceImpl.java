@@ -25,11 +25,6 @@ import java.util.NoSuchElementException;
 
 import static org.hibernate.Hibernate.getLobCreator;
 
-/**
- * The Asset service
- *
- * @author Yunkevich Andrei
- */
 @Service
 @Transactional
 public class AssetServiceImpl implements AssetService {
@@ -96,7 +91,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createAssetEntity(@NotNull final String nameAsset, String description,@NotNull final UserEntity userEntity) {
+    public void createAssetEntity(@NotNull final String nameAsset, String description, @NotNull final UserEntity userEntity) {
         AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);
         assetEntity.setDescription(description);

@@ -10,5 +10,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {
     UserEntity findByLogin(String login);
+
     void removeByLogin(String login);
 }

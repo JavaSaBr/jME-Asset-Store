@@ -13,11 +13,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-/**
- * The User service
- *
- * @author Yunkevich Andrei
- */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -73,7 +68,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addRoleToUser(String login, String role) {
+    public boolean isAddRoleToUser(String login, String role) {
         UserEntity userEntity = userRepository.findByLogin(login);
         RoleEntity roleEntity = roleRepository.findByName(role);
         if (userEntity == null || roleEntity == null) {
@@ -87,7 +82,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean removeRoleFromUser(String login, String role) {
+    public boolean isRemoveRoleFromUser(String login, String role) {
         UserEntity userEntity = userRepository.findByLogin(login);
         RoleEntity rolesEntity = roleRepository.findByName(role);
         if (userEntity == null || rolesEntity == null) throw new NoSuchElementException("No such role or user");
