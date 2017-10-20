@@ -13,7 +13,7 @@ public class AssetStoreApplication {
         SpringApplication.run(AssetStoreApplication.class, args);
     }
 
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/root")
     public String root() {
         return "index";
     }
