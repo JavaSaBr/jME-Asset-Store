@@ -173,4 +173,15 @@ public class UserEntity extends BaseEntity {
                 ", roles=" + roles +
                 '}';
     }
+    public boolean addRole(RoleEntity roleEntity) {
+        if (!roles.contains(roleEntity)) {
+            roles.add(roleEntity);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeRole(RoleEntity roleEntity) {
+        return roles.remove(roleEntity);
+    }
 }

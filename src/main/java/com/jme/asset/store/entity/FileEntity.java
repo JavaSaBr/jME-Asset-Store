@@ -22,6 +22,7 @@ public class FileEntity extends BaseEntity {
      * The file content.
      */
     @Column(name="file_content", nullable = false)
+    @Lob
     private Blob fileContent;
 
     /**
@@ -32,6 +33,12 @@ public class FileEntity extends BaseEntity {
     private UserEntity owner;
 
     public FileEntity(){
+    }
+
+    public FileEntity(String name, Blob fileContent, UserEntity owner) {
+        this.name = name;
+        this.fileContent = fileContent;
+        this.owner = owner;
     }
 
     /**
