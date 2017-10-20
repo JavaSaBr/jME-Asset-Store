@@ -1,0 +1,28 @@
+package com.jme.asset.store.service;
+
+import com.jme.asset.store.entity.RoleEntity;
+import com.jme.asset.store.entity.UserEntity;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface UserService {
+
+    Optional<UserEntity> findById(Long id);
+
+    void addUser(String login, String password, String mail,
+                 String firstName, String lastName, String middleName, List<RoleEntity> roleEntities);
+
+    UserEntity findByLogin(String login);
+
+    List<UserEntity> getAllUser();
+
+    void removeById(Long id);
+
+    void removeByLogin(String login);
+
+    boolean addRoleToUser(String login, String role);
+
+    boolean removeRoleFromUser(String login, String role);
+
+}

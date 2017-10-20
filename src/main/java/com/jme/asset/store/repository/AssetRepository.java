@@ -9,4 +9,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author Gomanchuk Mikhail
  */
 public interface AssetRepository extends PagingAndSortingRepository<AssetEntity, Long> {
+    AssetEntity findByName(String assetName);
 }
