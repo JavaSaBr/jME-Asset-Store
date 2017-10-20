@@ -33,7 +33,7 @@ public interface UserService {
      * @param roleEntities The user roles
      */
     void addUser(String login, String password, String mail,
-                 String firstName, String lastName, String middleName, List<RoleEntity> roleEntities);
+                 String firstName, String lastName, String middleName, List<String> roleEntities);
 
     /**
      * Find user by login

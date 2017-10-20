@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -33,7 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(String login, String password, String mail, String firstName, String lastName, String middleName, List<RoleEntity> roleEntities) {
+    public void addUser(String login, String password, String mail, String firstName,
+                        String lastName, String middleName, List<String> roleEntities) {
+        List<RoleEntity> roles = new ArrayList<>();
+        for(String s:roleEntities){
+            roles.add(roleRepository.findByName(s));
+        }
         UserEntity userEntity = new UserEntity();
         userEntity.setLogin(login);
         userEntity.setPassword(DigestUtils.md2Hex(password));
@@ -41,7 +47,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setLastName(lastName);
         userEntity.setMail(mail);
         userEntity.setMiddleName(middleName);
-        userEntity.setRoles(roleEntities);
+        userEntity.setRoles(roles);
         userRepository.save(userEntity);
     }
 
@@ -69,14 +75,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isAddRoleToUser(String login, String role) {
+        List<RoleEntity> list = null;
         UserEntity userEntity = userRepository.findByLogin(login);
         RoleEntity roleEntity = roleRepository.findByName(role);
         if (userEntity == null || roleEntity == null) {
             throw new NoSuchElementException("no such role to user");
         }
-        if (!userEntity.addRole(roleEntity)) {
+        if (userEntity.getRoles().contains(roleEntity)) {
             return false;
         }
+        list.add(roleEntity);
+        userEntity.setRoles(list);
         userRepository.save(userEntity);
         return true;
     }
@@ -86,9 +95,12 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userRepository.findByLogin(login);
         RoleEntity rolesEntity = roleRepository.findByName(role);
         if (userEntity == null || rolesEntity == null) throw new NoSuchElementException("No such role or user");
-        if (!userEntity.removeRole(rolesEntity)) {
+        if (userEntity.getRoles().contains(rolesEntity)) {
             return false;
         }
+        List<RoleEntity> list = userEntity.getRoles();
+        list.remove(rolesEntity);
+        userEntity.setRoles(list);
         userRepository.save(userEntity);
         return true;
     }
