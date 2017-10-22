@@ -1,6 +1,5 @@
 package com.jme.asset.store.service;
 
-import com.jme.asset.store.entity.RoleEntity;
 import com.jme.asset.store.entity.UserEntity;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface UserService {
     /**
      * Find user by id
      *
-     * @param id User id
+     * @param id The user id
      * @return The created User
      */
     Optional<UserEntity> findById(Long id);
@@ -53,32 +52,32 @@ public interface UserService {
     /**
      * Remove user by id
      *
-     * @param id user id
+     * @param id The user id
      */
     void removeById(Long id);
 
     /**
      * Remove user by login
      *
-     * @param login user login
+     * @param login The user login
      */
     void removeByLogin(String login);
 
     /**
      * Add role to the user
      *
-     * @param login user login
-     * @param role  user role
-     * @return the result of adding
+     * @param login The user login
+     * @param role  The user role
+     * @return The result of adding
      */
     boolean isAddRoleToUser(String login, String role);
 
     /**
      * Remove role to the user
      *
-     * @param login user login
-     * @param role  user role
-     * @return the result of removing
+     * @param login The user login
+     * @param role  The user role
+     * @return The result of removing
      */
     boolean isRemoveRoleFromUser(String login, String role);
 

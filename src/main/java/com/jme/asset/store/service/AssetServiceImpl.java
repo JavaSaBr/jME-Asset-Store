@@ -111,7 +111,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public boolean removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public boolean isRemoveFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
         if (file == null || asset == null) {
             throw new NoSuchElementException("No such file or asset");
         }

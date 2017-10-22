@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     public void addUser(String login, String password, String mail, String firstName,
                         String lastName, String middleName, List<String> roleEntities) {
         List<RoleEntity> roles = new ArrayList<>();
-        for(String s:roleEntities){
+        for (String s : roleEntities) {
             roles.add(roleRepository.findByName(s));
         }
         UserEntity userEntity = new UserEntity();
@@ -75,9 +75,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isAddRoleToUser(String login, String role) {
-        List<RoleEntity> list = null;
         UserEntity userEntity = userRepository.findByLogin(login);
         RoleEntity roleEntity = roleRepository.findByName(role);
+        List<RoleEntity> list = userEntity.getRoles();
         if (userEntity == null || roleEntity == null) {
             throw new NoSuchElementException("no such role to user");
         }
@@ -94,7 +94,9 @@ public class UserServiceImpl implements UserService {
     public boolean isRemoveRoleFromUser(String login, String role) {
         UserEntity userEntity = userRepository.findByLogin(login);
         RoleEntity rolesEntity = roleRepository.findByName(role);
-        if (userEntity == null || rolesEntity == null) throw new NoSuchElementException("No such role or user");
+        if (userEntity == null || rolesEntity == null) {
+            throw new NoSuchElementException("No such role or user");
+        }
         if (userEntity.getRoles().contains(rolesEntity)) {
             return false;
         }
