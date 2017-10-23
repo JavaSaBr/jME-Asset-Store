@@ -13,15 +13,15 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, L
     /**
      * Find user by login
      *
-     * @param login The user login
-     * @return The user
+     * @param login the user login
+     * @return the user
      */
     UserEntity findByLogin(String login);
 
     /**
      * Remove user by user login
      *
-     * @param login The user login
+     * @param login the user login
      */
     void removeByLogin(String login);
 }

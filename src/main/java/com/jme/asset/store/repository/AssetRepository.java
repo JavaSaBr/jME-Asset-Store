@@ -13,8 +13,8 @@ public interface AssetRepository extends PagingAndSortingRepository<AssetEntity,
     /**
      * Find asset by name
      *
-     * @param assetName The asset name
-     * @return The asset
+     * @param assetName the asset name
+     * @return the asset
      */
     AssetEntity findByName(String assetName);
 }

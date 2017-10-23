@@ -13,8 +13,8 @@ public interface RoleRepository extends PagingAndSortingRepository<RoleEntity, L
     /**
      * Find role by name
      *
-     * @param name The role name
-     * @return The role entity
+     * @param name the role name
+     * @return the role entity
      */
     RoleEntity findByName(String name);
 }

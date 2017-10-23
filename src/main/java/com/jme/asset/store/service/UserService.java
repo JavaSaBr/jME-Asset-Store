@@ -12,13 +12,13 @@ public interface UserService {
     /**
      * Add user
      *
-     * @param login      The user login
-     * @param password   The user password
-     * @param mail       The User mail
-     * @param firstName  The user first name
-     * @param lastName   The user last name
-     * @param middleName The user middle name
-     * @param roles      The user roles
+     * @param login      the user login
+     * @param password   the user password
+     * @param mail       the User mail
+     * @param firstName  the user first name
+     * @param lastName   the user last name
+     * @param middleName the user middle name
+     * @param roles      the user roles
      */
     void addUser(String login, String password, String mail,
                  String firstName, String lastName, String middleName, List<String> roles);
@@ -26,18 +26,18 @@ public interface UserService {
     /**
      * Add role to the user
      *
-     * @param login The user login
-     * @param role  The user role
-     * @return The result of adding
+     * @param login the user login
+     * @param role  the user role
+     * @return the result of adding
      */
     boolean addRoleToUser(String login, String role);
 
     /**
      * Remove role to the user
      *
-     * @param login The user login
-     * @param role  The user role
-     * @return The result of removing
+     * @param login the user login
+     * @param role  the user role
+     * @return the result of removing
      */
     boolean removeRoleFromUser(String login, String role);
 
