@@ -94,7 +94,7 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
-     * Add file to asset
+     * Add file to the asset
      *
      * @param file the file
      */
@@ -106,7 +106,7 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
-     * Remove file from asset
+     * Remove file from the asset
      *
      * @param file the file
      */
