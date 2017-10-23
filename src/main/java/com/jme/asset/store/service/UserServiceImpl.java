@@ -5,6 +5,7 @@ import com.jme.asset.store.entity.UserEntity;
 import com.jme.asset.store.repository.RoleRepository;
 import com.jme.asset.store.repository.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,19 +22,19 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(final UserRepository userRepository, final RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
 
     @Override
-    public void addUser(String login, String password, String mail, String firstName,
-                        String lastName, String middleName, List<String> roles) {
-        List<RoleEntity> roleEntities = new ArrayList<>();
-        for (String s : roles) {
-            roleEntities.add(roleRepository.findByName(s));
+    public void addUser(@NotNull final String login,@NotNull final String password, final String mail, final String firstName,
+                        final String lastName, final String middleName, final List<String> roles) {
+        final List<RoleEntity> roleEntities = new ArrayList<>();
+        for (String role : roles) {
+            roleEntities.add(roleRepository.findByName(role));
         }
-        UserEntity userEntity = new UserEntity();
+        final UserEntity userEntity = new UserEntity();
         userEntity.setLogin(login);
         userEntity.setPassword(DigestUtils.md2Hex(password));
         userEntity.setFirstName(firstName);
@@ -45,36 +46,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addRoleToUser(String userName, String roleName) {
-        UserEntity user = userRepository.findByLogin(userName);
-        RoleEntity role = roleRepository.findByName(roleName);
-        List<RoleEntity> roles = user.getRoles();
+    public void addRoleToUser(final String userName, final String roleName) {
+        final UserEntity user = userRepository.findByLogin(userName);
+        final RoleEntity role = roleRepository.findByName(roleName);
         if (user == null || role == null) {
             throw new NoSuchElementException("no such role to user");
         }
-        if (user.getRoles().contains(role)) {
-            return false;
-        }
-        roles.add(role);
-        user.setRoles(roles);
+        user.addRole(role);
         userRepository.save(user);
-        return true;
     }
 
     @Override
-    public boolean removeRoleFromUser(String userName, String roleName) {
-        UserEntity user = userRepository.findByLogin(userName);
-        RoleEntity role = roleRepository.findByName(roleName);
+    public void removeRoleFromUser(final String userName,final String roleName) {
+        final UserEntity user = userRepository.findByLogin(userName);
+        final RoleEntity role = roleRepository.findByName(roleName);
         if (user == null || role == null) {
             throw new NoSuchElementException("No such role or user");
         }
-        if (user.getRoles().contains(role)) {
-            return false;
-        }
-        List<RoleEntity> roles = user.getRoles();
-        roles.remove(role);
-        user.setRoles(roles);
+        user.removeRole(role);
         userRepository.save(user);
-        return true;
     }
 }

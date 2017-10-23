@@ -170,4 +170,28 @@ public class UserEntity extends BaseEntity {
                 ", roles=" + roles +
                 '}';
     }
+
+    /**
+     * Add role to roles
+     *
+     * @param role the role name
+     */
+    public void addRole(RoleEntity role){
+        if(roles.contains(role)){
+            throw new RuntimeException("role is already exist");
+        }
+        roles.add(role);
+    }
+
+    /**
+     * Remove role from roles
+     *
+     * @param role the role name
+     */
+    public void removeRole(RoleEntity role){
+        if(roles.contains(role)){
+            throw new RuntimeException("role is already exist");
+        }
+        roles.remove(role);
+    }
 }

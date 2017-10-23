@@ -92,4 +92,24 @@ public class AssetEntity extends BaseEntity {
     public void setCreator(UserEntity creator) {
         this.creator = creator;
     }
+
+    /**
+     * Add file to files
+     * @param file the file
+     */
+    public void addFile(FileEntity file){
+        files.add(file);
+    }
+
+    /**
+     * Remove file from files
+     *
+     * @param file the file
+     */
+    public void removeFile(FileEntity file){
+        if(files.contains(file)){
+            throw new RuntimeException("file don't exist");
+        }
+        files.remove(file);
+    }
 }

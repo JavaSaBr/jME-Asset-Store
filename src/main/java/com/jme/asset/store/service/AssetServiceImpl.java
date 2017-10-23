@@ -33,8 +33,8 @@ public class AssetServiceImpl implements AssetService {
     private final FileRepository fileRepository;
 
     @Autowired
-    public AssetServiceImpl(EntityManagerFactory entityManagerFactory, AssetRepository assetRepository,
-                            FileRepository fileRepository) {
+    public AssetServiceImpl(final EntityManagerFactory entityManagerFactory,final AssetRepository assetRepository,
+                            final FileRepository fileRepository) {
         this.entityManagerFactory = entityManagerFactory;
         this.assetRepository = assetRepository;
         this.fileRepository = fileRepository;
@@ -102,24 +102,17 @@ public class AssetServiceImpl implements AssetService {
         if (file == null || asset == null) {
             throw new NoSuchElementException("No such file or asset");
         }
-        List<FileEntity> files = asset.getFiles();
-        files.add(file);
-        asset.setFiles(files);
+        asset.addFile(file);
         assetRepository.save(asset);
     }
 
     @Override
-    public boolean removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public void removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
         if (file == null || asset == null) {
             throw new NoSuchElementException("No such file or asset");
         }
-        List<FileEntity> files = asset.getFiles();
-        if (!files.contains(file)) {
-            return false;
-        }
-        files.remove(file);
-        asset.setFiles(files);
+
+        asset.removeFile(file);
         assetRepository.save(asset);
-        return true;
     }
 }

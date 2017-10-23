@@ -12,6 +12,7 @@ import java.io.InputStream;
  * @author Yunkevich Andrei
  */
 public interface AssetService {
+
     /**
      * Create File
      *
@@ -45,5 +46,5 @@ public interface AssetService {
      * @param asset the asset entity asset
      * @return the result of removing file from asset
      */
-    boolean removeFileFromAsset(FileEntity file, AssetEntity asset);
+    void removeFileFromAsset(FileEntity file, AssetEntity asset);
 }

@@ -30,7 +30,7 @@ public interface UserService {
      * @param role  the user role
      * @return the result of adding
      */
-    boolean addRoleToUser(String login, String role);
+    void addRoleToUser(String login, String role);
 
     /**
      * Remove role to the user
@@ -39,6 +39,6 @@ public interface UserService {
      * @param role  the user role
      * @return the result of removing
      */
-    boolean removeRoleFromUser(String login, String role);
+    void removeRoleFromUser(String login, String role);
 
 }
