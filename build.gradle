@@ -15,6 +15,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa:2.0.0.M4')
     compile('org.springframework.boot:spring-boot-starter-security:2.0.0.M4')
     compile('org.springframework.boot:spring-boot-starter-web:2.0.0.M4')
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.9'
 
     // https://mvnrepository.com/artifact/org.jetbrains/annotations
     compile group: 'org.jetbrains', name: 'annotations', version: '15.0'
