@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "USER_ENTITY",
         indexes = {
-        @Index(columnList = "login", name = "user_login_index")
+                @Index(columnList = "login", name = "user_login_index")
         })
 public class UserEntity extends BaseEntity {
 
@@ -172,24 +172,24 @@ public class UserEntity extends BaseEntity {
     }
 
     /**
-     * Add role to roles
+     * Add role to the user
      *
      * @param role the role name
      */
-    public void addRole(RoleEntity role){
-        if(roles.contains(role)){
+    public void addRole(final RoleEntity role) {
+        if (roles.contains(role)) {
             throw new RuntimeException("role is already exist");
         }
         roles.add(role);
     }
 
     /**
-     * Remove role from roles
+     * Remove role from the user
      *
      * @param role the role name
      */
-    public void removeRole(RoleEntity role){
-        if(roles.contains(role)){
+    public void removeRole(final RoleEntity role) {
+        if (roles.contains(role)) {
             throw new RuntimeException("role is already exist");
         }
         roles.remove(role);

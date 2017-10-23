@@ -94,20 +94,24 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
-     * Add file to files
+     * Add file to asset
+     *
      * @param file the file
      */
-    public void addFile(FileEntity file){
+    public void addFile(final FileEntity file) {
+        if (files.contains(file)) {
+            throw new RuntimeException("file is already exist");
+        }
         files.add(file);
     }
 
     /**
-     * Remove file from files
+     * Remove file from asset
      *
      * @param file the file
      */
-    public void removeFile(FileEntity file){
-        if(files.contains(file)){
+    public void removeFile(final FileEntity file) {
+        if (files.contains(file)) {
             throw new RuntimeException("file don't exist");
         }
         files.remove(file);
