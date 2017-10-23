@@ -26,13 +26,11 @@ import java.util.NoSuchElementException;
 import static org.hibernate.Hibernate.getLobCreator;
 
 @Service
-@Transactional
 public class AssetServiceImpl implements AssetService {
 
     private final EntityManagerFactory entityManagerFactory;
     private final AssetRepository assetRepository;
     private final FileRepository fileRepository;
-
 
     @Autowired
     public AssetServiceImpl(EntityManagerFactory entityManagerFactory, AssetRepository assetRepository,
@@ -91,11 +89,11 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createAssetEntity(@NotNull final String nameAsset, String description, @NotNull final UserEntity userEntity) {
+    public void createAsset(@NotNull final String nameAsset, String description, @NotNull final UserEntity user) {
         AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);
         assetEntity.setDescription(description);
-        assetEntity.setCreator(userEntity);
+        assetEntity.setCreator(user);
         assetRepository.save(assetEntity);
     }
 
@@ -104,25 +102,24 @@ public class AssetServiceImpl implements AssetService {
         if (file == null || asset == null) {
             throw new NoSuchElementException("No such file or asset");
         }
-        List<FileEntity> fileEntities = asset.getFiles();
-        fileEntities.add(file);
-        asset.setFiles(fileEntities);
+        List<FileEntity> files = asset.getFiles();
+        files.add(file);
+        asset.setFiles(files);
         assetRepository.save(asset);
     }
 
     @Override
-    public boolean isRemoveFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public boolean removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
         if (file == null || asset == null) {
             throw new NoSuchElementException("No such file or asset");
         }
-        List<FileEntity> fileEntities = asset.getFiles();
-        if (!fileEntities.contains(file)) {
+        List<FileEntity> files = asset.getFiles();
+        if (!files.contains(file)) {
             return false;
         }
-        fileEntities.remove(file);
-        asset.setFiles(fileEntities);
+        files.remove(file);
+        asset.setFiles(files);
         assetRepository.save(asset);
         return true;
     }
-
 }

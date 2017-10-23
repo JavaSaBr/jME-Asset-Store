@@ -16,19 +16,19 @@ public interface AssetService {
      * Create File
      *
      * @param fileName    The file name
-     * @param userEntity  The user
+     * @param user        The user
      * @param inputStream The input stream
      */
-    void createFile(String fileName, UserEntity userEntity, InputStream inputStream);
+    void createFile(String fileName, UserEntity user, InputStream inputStream);
 
     /**
      * Create Asset
      *
      * @param assetName   The asset name
      * @param description The description asset
-     * @param userEntity  The user
+     * @param user        The user
      */
-    void createAssetEntity(String assetName, String description, UserEntity userEntity);
+    void createAsset(String assetName, String description, UserEntity user);
 
     /**
      * Add file to asset
@@ -45,5 +45,5 @@ public interface AssetService {
      * @param asset The asset entity asset
      * @return The result of removing file from asset
      */
-    boolean isRemoveFileFromAsset(FileEntity file, AssetEntity asset);
+    boolean removeFileFromAsset(FileEntity file, AssetEntity asset);
 }

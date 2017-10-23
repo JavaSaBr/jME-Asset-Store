@@ -9,7 +9,19 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author Denis Lesheniuk.
  */
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Long> {
+
+    /**
+     * Find user by login
+     *
+     * @param login The user login
+     * @return The user
+     */
     UserEntity findByLogin(String login);
 
+    /**
+     * Remove user by user login
+     *
+     * @param login The user login
+     */
     void removeByLogin(String login);
 }
