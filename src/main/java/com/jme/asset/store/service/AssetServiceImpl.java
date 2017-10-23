@@ -90,7 +90,7 @@ public class AssetServiceImpl implements AssetService {
 
     @Override
     public void createAsset(@NotNull final String nameAsset, String description, @NotNull final UserEntity user) {
-        AssetEntity assetEntity = new AssetEntity();
+        final AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);
         assetEntity.setDescription(description);
         assetEntity.setCreator(user);
