@@ -33,7 +33,7 @@ public class AssetServiceImpl implements AssetService {
     private final FileRepository fileRepository;
 
     @Autowired
-    public AssetServiceImpl(final EntityManagerFactory entityManagerFactory,final AssetRepository assetRepository,
+    public AssetServiceImpl(final EntityManagerFactory entityManagerFactory, final AssetRepository assetRepository,
                             final FileRepository fileRepository) {
         this.entityManagerFactory = entityManagerFactory;
         this.assetRepository = assetRepository;

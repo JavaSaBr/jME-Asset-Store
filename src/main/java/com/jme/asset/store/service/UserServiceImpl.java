@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(@NotNull final String login,@NotNull final String password, final String mail, final String firstName,
+    public void addUser(@NotNull final String login, @NotNull final String password, final String mail, final String firstName,
                         final String lastName, final String middleName, final List<String> roles) {
         final List<RoleEntity> roleEntities = new ArrayList<>();
         for (String role : roles) {
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addRoleToUser(@NotNull final String userName,@NotNull final String roleName) {
+    public void addRoleToUser(@NotNull final String userName, @NotNull final String roleName) {
         final UserEntity user = userRepository.findByLogin(userName);
         final RoleEntity role = roleRepository.findByName(roleName);
         if (user == null || role == null) {
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void removeRoleFromUser(@NotNull final String userName,@NotNull final String roleName) {
+    public void removeRoleFromUser(@NotNull final String userName, @NotNull final String roleName) {
         final UserEntity user = userRepository.findByLogin(userName);
         final RoleEntity role = roleRepository.findByName(roleName);
         if (user == null || role == null) {
