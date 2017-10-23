@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addRoleToUser(final String userName, final String roleName) {
+    public void addRoleToUser(@NotNull final String userName,@NotNull final String roleName) {
         final UserEntity user = userRepository.findByLogin(userName);
         final RoleEntity role = roleRepository.findByName(roleName);
         if (user == null || role == null) {
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void removeRoleFromUser(final String userName,final String roleName) {
+    public void removeRoleFromUser(@NotNull final String userName,@NotNull final String roleName) {
         final UserEntity user = userRepository.findByLogin(userName);
         final RoleEntity role = roleRepository.findByName(roleName);
         if (user == null || role == null) {

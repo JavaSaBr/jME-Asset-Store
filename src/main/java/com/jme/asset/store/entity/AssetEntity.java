@@ -100,7 +100,7 @@ public class AssetEntity extends BaseEntity {
      */
     public void addFile(final FileEntity file) {
         if (files.contains(file)) {
-            throw new RuntimeException("file is already exist");
+            throw new RuntimeException("file is already exists");
         }
         files.add(file);
     }
@@ -112,7 +112,7 @@ public class AssetEntity extends BaseEntity {
      */
     public void removeFile(final FileEntity file) {
         if (files.contains(file)) {
-            throw new RuntimeException("file don't exist");
+            throw new RuntimeException("file doesn't exist");
         }
         files.remove(file);
     }

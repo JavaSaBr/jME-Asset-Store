@@ -178,7 +178,7 @@ public class UserEntity extends BaseEntity {
      */
     public void addRole(final RoleEntity role) {
         if (roles.contains(role)) {
-            throw new RuntimeException("role is already exist");
+            throw new RuntimeException("role is already exists");
         }
         roles.add(role);
     }
@@ -190,7 +190,7 @@ public class UserEntity extends BaseEntity {
      */
     public void removeRole(final RoleEntity role) {
         if (roles.contains(role)) {
-            throw new RuntimeException("role is already exist");
+            throw new RuntimeException("role is already exists");
         }
         roles.remove(role);
     }
