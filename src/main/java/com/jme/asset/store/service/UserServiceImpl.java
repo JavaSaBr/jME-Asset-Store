@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity authenticate(final String login, final String password) {
-        UserEntity user = userRepository.findByLogin(login);
+       final  UserEntity user = userRepository.findByLogin(login);
         if (user != null && DigestUtils.md2Hex(password).equals(user.getPassword())) {
             return user;
         }
