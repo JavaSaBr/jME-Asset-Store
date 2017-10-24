@@ -32,6 +32,8 @@ public class FileEntity extends BaseEntity {
     private UserEntity creator;
 
     /**
+     * Get the file name
+     *
      * @return the file name
      */
     public String getName() {
@@ -39,6 +41,8 @@ public class FileEntity extends BaseEntity {
     }
 
     /**
+     * Set the file name
+     *
      * @param name the file name
      */
     public void setName(String name) {
@@ -46,6 +50,8 @@ public class FileEntity extends BaseEntity {
     }
 
     /**
+     * Get the file content
+     *
      * @return the content of file
      */
     public Blob getContent() {
@@ -53,6 +59,8 @@ public class FileEntity extends BaseEntity {
     }
 
     /**
+     * Set the file content
+     *
      * @param content the content of file
      */
     public void setContent(Blob content) {
@@ -60,6 +68,8 @@ public class FileEntity extends BaseEntity {
     }
 
     /**
+     * Get the file creator
+     *
      * @return the file creator
      */
     public UserEntity getCreator() {
@@ -67,6 +77,8 @@ public class FileEntity extends BaseEntity {
     }
 
     /**
+     * Set the file creator
+     *
      * @param creator the file creator
      */
     public void setCreator(UserEntity creator) {

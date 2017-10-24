@@ -1,5 +1,7 @@
 package com.jme.asset.store.service;
 
+import com.jme.asset.store.entity.UserEntity;
+
 import java.util.List;
 
 /**
@@ -39,4 +41,20 @@ public interface UserService {
      */
     void removeRoleFromUser(String login, String role);
 
+    /**
+     * Authenticate user
+     *
+     * @param login    the user login
+     * @param password the user password
+     * @return the user entity
+     */
+    UserEntity authenticate(String login, String password);
+
+    /**
+     * Find userEntity by login
+     *
+     * @param login the user login
+     * @return the user entity
+     */
+    UserEntity load(String login);
 }

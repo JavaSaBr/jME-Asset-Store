@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManagerFactory;
 import java.io.IOException;
@@ -20,7 +19,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.hibernate.Hibernate.getLobCreator;
@@ -45,16 +43,12 @@ public class AssetServiceImpl implements AssetService {
                            @NotNull final InputStream inputStream) {
         Path temp = null;
         try {
-
             temp = Files.createTempFile("upload", fileName);
-
             Files.copy(inputStream, temp, StandardCopyOption.REPLACE_EXISTING);
-
             try (final InputStream in = Files.newInputStream(temp)) {
                 final long size = Files.size(temp);
                 createFileEntity(fileName, user, in, size);
             }
-
         } catch (final IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -63,19 +57,15 @@ public class AssetServiceImpl implements AssetService {
     }
 
     private @NotNull FileEntity createFileEntity(@NotNull final String fileName, @NotNull final UserEntity user,
-                                                 @NotNull final InputStream content, final long contentLength) {
-
+                                                 @NotNull final InputStream content, @NotNull final long contentLength) {
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         final LobCreator lobCreator = getLobCreator(sessionFactory.getCurrentSession());
         final Blob blob = lobCreator.createBlob(content, contentLength);
-
         final FileEntity fileEntity = new FileEntity();
         fileEntity.setName(fileName);
         fileEntity.setCreator(user);
         fileEntity.setContent(blob);
-
         fileRepository.save(fileEntity);
-
         return fileEntity;
     }
 
@@ -89,7 +79,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createAsset(@NotNull final String nameAsset, String description, @NotNull final UserEntity user) {
+    public void createAsset(@NotNull final String nameAsset, @Nullable final String description, @NotNull final UserEntity user) {
         final AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);
         assetEntity.setDescription(description);
@@ -111,7 +101,6 @@ public class AssetServiceImpl implements AssetService {
         if (file == null || asset == null) {
             throw new NoSuchElementException("No such file or asset");
         }
-
         asset.removeFile(file);
         assetRepository.save(asset);
     }

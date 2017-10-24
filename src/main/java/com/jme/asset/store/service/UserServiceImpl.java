@@ -6,6 +6,7 @@ import com.jme.asset.store.repository.RoleRepository;
 import com.jme.asset.store.repository.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -65,5 +66,19 @@ public class UserServiceImpl implements UserService {
         }
         user.removeRole(role);
         userRepository.save(user);
+    }
+
+    @Override
+    public UserEntity authenticate(final String login, final String password) {
+       final  UserEntity user = userRepository.findByLogin(login);
+        if (user != null && DigestUtils.md2Hex(password).equals(user.getPassword())) {
+            return user;
+        }
+        return null;
+    }
+
+    @Override
+    public @Nullable UserEntity load(final String login) {
+        return userRepository.findByLogin(login);
     }
 }

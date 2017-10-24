@@ -38,6 +38,8 @@ public class AssetEntity extends BaseEntity {
     private UserEntity creator;
 
     /**
+     * Get the asset name
+     *
      * @return the name of asset
      */
     public String getName() {
@@ -45,6 +47,8 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Set the asset name
+     *
      * @param name the name of asset
      */
     public void setName(String name) {
@@ -52,6 +56,8 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Get the asset description
+     *
      * @return the description of asset
      */
     public String getDescription() {
@@ -59,6 +65,8 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Set the asset description
+     *
      * @param description the description of asset
      */
     public void setDescription(String description) {
@@ -66,6 +74,8 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Get the asset files
+     *
      * @return files in asset
      */
     public List<FileEntity> getFiles() {
@@ -73,6 +83,8 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Set the asset files
+     *
      * @param files files in asset
      */
     public void setFiles(List<FileEntity> files) {
@@ -80,6 +92,8 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Get the asset creator
+     *
      * @return the creator of asset
      */
     public UserEntity getCreator() {
@@ -87,6 +101,8 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Set the asset creator
+     *
      * @param creator the creator of asset
      */
     public void setCreator(UserEntity creator) {

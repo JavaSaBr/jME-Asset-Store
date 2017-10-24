@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * The User entity.
+ * The user entity.
  *
  * @author Denis Lesheniuk
  */
@@ -19,140 +19,168 @@ import java.util.List;
 public class UserEntity extends BaseEntity {
 
     /**
-     * The User login.
+     * The user login.
      */
     @Column(name = "login", length = 50, nullable = false, unique = true)
     private String login;
 
     /**
-     * The User first name.
+     * The user first name.
      */
     @Column(name = "first_name", length = 50)
     private String firstName;
 
     /**
-     * The User last name.
+     * The user last name.
      */
     @Column(name = "last_name", length = 50)
     private String lastName;
 
     /**
-     * The User middle name.
+     * The user middle name.
      */
     @Column(name = "middle_name", length = 50)
     private String middleName;
 
     /**
-     * The User mail.
+     * The user mail.
      */
     @Column(name = "mail", length = 50, unique = true)
     private String mail;
 
     /**
-     * The User password.
+     * The user password.
      */
     @Column(name = "password", length = 50, nullable = false)
     private String password;
 
     /**
-     * The User roles.
+     * The user roles.
      */
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
 
     /**
-     * @return the User login.
+     * Get the user login
+     *
+     * @return the user login.
      */
     public String getLogin() {
         return login;
     }
 
     /**
-     * @param login the User login.
+     * Set the user login
+     *
+     * @param login the user login.
      */
     public void setLogin(String login) {
         this.login = login;
     }
 
     /**
-     * @return the User first name.
+     * Get the user first name
+     *
+     * @return the user first name.
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * @param firstName the User first name
+     * Set the user first name
+     *
+     * @param firstName the user first name
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     * @return the User last name.
+     * Get the user last name
+     *
+     * @return the user last name.
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     * @param lastName the User last name.
+     * Set the user last name
+     *
+     * @param lastName the user last name.
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     * @return the User middle name.
+     * Get the user middle name
+     *
+     * @return the user middle name.
      */
     public String getMiddleName() {
         return middleName;
     }
 
     /**
-     * @param middleName the User middle name.
+     * Set the user middle name
+     *
+     * @param middleName the user middle name.
      */
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
     /**
-     * @return the User mail.
+     * Get the user e-mail
+     *
+     * @return the user mail.
      */
     public String getMail() {
         return mail;
     }
 
     /**
-     * @param mail the User mail.
+     * Get set the user e-mail
+     *
+     * @param mail the user e-mail.
      */
     public void setMail(String mail) {
         this.mail = mail;
     }
 
     /**
-     * @return the User password.
+     * Get the user password
+     *
+     * @return the user password.
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * @param password the User password.
+     * Set the user password
+     *
+     * @param password the user password.
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * @return the User roles.
+     * Get the user roles
+     *
+     * @return the user roles.
      */
     public List<RoleEntity> getRoles() {
         return roles;
     }
 
     /**
-     * @param roles User roles.
+     * Set the user roles
+     *
+     * @param roles user roles.
      */
     public void setRoles(List<RoleEntity> roles) {
         this.roles = roles;
