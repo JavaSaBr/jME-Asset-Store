@@ -8,19 +8,19 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 
 /**
- * The Role entity.
+ * The role entity.
  *
  * @author Denis Lesheniuk
  */
 @Entity
-@Table(name="ROLE_ENTITY",
+@Table(name = "ROLE_ENTITY",
         indexes = {
-        @Index(columnList = "name", name = "role_name_index")
+                @Index(columnList = "name", name = "role_name_index")
         })
 public class RoleEntity extends BaseEntity implements GrantedAuthority {
 
     /**
-     * The Role name.
+     * The role name.
      */
     @Column(name = "name", length = 50, nullable = false, unique = true)
     private String name;
@@ -31,14 +31,18 @@ public class RoleEntity extends BaseEntity implements GrantedAuthority {
     }
 
     /**
-     * @return the Role name.
+     * Get the role name
+     *
+     * @return the role name.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name the Role name.
+     * Set the role name
+     *
+     * @param name the role name.
      */
     public void setName(String name) {
         this.name = name;

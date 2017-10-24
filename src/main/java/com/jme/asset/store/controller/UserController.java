@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,23 +22,25 @@ import java.util.List;
  * @author Alena Solonevich
  */
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     @NotNull
     private final UserService userService;
 
     @Autowired
-    public UserController(@NotNull UserService userService) {
+    public UserController(@NotNull final UserService userService) {
         this.userService = userService;
     }
 
     /**
+     * Register the user by user params
+     *
      * @param userParams the user params
-     * @return ResponseEntity with status OK if the registration is successfully, else BAD_REQUEST
+     * @return OK if the registration is successfully, else BAD_REQUEST
      */
-    @PostMapping(value = "user/register")
-    public ResponseEntity<?> register(@NotNull @RequestBody final UserParams userParams) {
-        List<String> roles = new ArrayList();
+    @PostMapping(value = "/register")
+    public ResponseEntity<?> register(@RequestBody final UserParams userParams) {
         final String login = userParams.getLogin();
         if (login == null) {
             return ResponseEntity.badRequest().body("The field login couldn't be null");
@@ -46,28 +49,31 @@ public class UserController {
         if (password == null) {
             return ResponseEntity.badRequest().body("The field password couldn't be null");
         }
-        final String firstName = userParams.getFirstname();
+        final String firstName = userParams.getFirstName();
         final String middleName = userParams.getMiddleName();
-        final String lastname = userParams.getLastName();
+        final String lastName = userParams.getLastName();
         final String mail = userParams.getMail();
+        final List<String> roles = new ArrayList();
         roles.add(RoleService.USER_ROLE);
         try {
-            userService.addUser(login, password, mail, firstName, middleName, lastname, roles);
-        } catch (RuntimeException e) {
+            userService.addUser(login, password, mail, firstName, middleName, lastName, roles);
+        } catch (final RuntimeException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Please, check parameters!");
         }
         return ResponseEntity.ok("User is registered!");
     }
 
     /**
+     * Authorize the user by user params
+     *
      * @param userParams the user params
-     * @return ResponseEntity with status OK if the authorisation is successfully, else BAD_REQUEST
+     * @return OK if the authorisation is successfully, else BAD_REQUEST
      */
-    @PostMapping(value = "user/authorization")
-    public ResponseEntity<?> authorization(@NotNull @RequestBody final UserParams userParams) {
+    @PostMapping(value = "/authorization")
+    public ResponseEntity<?> authorization(@RequestBody final UserParams userParams) {
         final String login = userParams.getLogin();
         final String password = userParams.getPassword();
-        UserEntity user = userService.authenticate(login, password);
+        final UserEntity user = userService.authenticate(login, password);
         if (user == null) {
             return ResponseEntity.badRequest().body("Incorrect login or password!");
         }

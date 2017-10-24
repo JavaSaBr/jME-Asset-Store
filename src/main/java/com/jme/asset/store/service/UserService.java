@@ -51,4 +51,12 @@ public interface UserService {
      * @return the user entity
      */
     UserEntity authenticate(String login, String password);
+
+    /**
+     * Find userEntity by login
+     *
+     * @param login the user login
+     * @return the user entity
+     */
+    UserEntity load(String login);
 }

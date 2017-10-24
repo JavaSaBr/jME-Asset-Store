@@ -21,30 +21,38 @@ public class AssetParam {
     private String name;
 
     /**
-     * @return the aseet description
+     * Get the asset description
+     *
+     * @return the asset description
      */
-    public String getDescription() {
+    public @Nullable String getDescription() {
         return description;
     }
 
     /**
+     * Set the asset description
+     *
      * @param description the asset description
      */
-    public void setDescription(String description) {
+    public void setDescription(@Nullable String description) {
         this.description = description;
     }
 
     /**
+     * Get the asset name
+     *
      * @return the asset name
      */
-    public String getName() {
+    public @NotNull String getName() {
         return name;
     }
 
     /**
+     * Set the asset name
+     *
      * @param name the asset name
      */
-    public void setName(String name) {
+    public void setName(@NotNull String name) {
         this.name = name;
     }
 }

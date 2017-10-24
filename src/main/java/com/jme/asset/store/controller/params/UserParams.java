@@ -14,7 +14,7 @@ public class UserParams {
      * The user first name
      */
     @Nullable
-    private String firstname;
+    private String firstName;
 
     /**
      * The user login
@@ -46,27 +46,35 @@ public class UserParams {
     }
 
     /**
+     * Get the user first name
+     *
      * @return the user first name
      */
-    public String getFirstname() {
-        return firstname;
+    public @Nullable String getFirstName() {
+        return firstName;
     }
 
     /**
-     * @param firstname the user first name
+     * Set the user first name
+     *
+     * @param firstName the user first name
      */
-    public void setFirstname(@Nullable final String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(@Nullable final String firstName) {
+        this.firstName = firstName;
     }
 
     /**
+     * Get the user login
+     *
      * @return the user login
      */
-    public String getLogin() {
+    public @NotNull String getLogin() {
         return login;
     }
 
     /**
+     * Set the user login
+     *
      * @param login the user login
      */
     public void setLogin(@NotNull final String login) {
@@ -74,13 +82,17 @@ public class UserParams {
     }
 
     /**
+     * Get the user password
+     *
      * @return the user password
      */
-    public String getPassword() {
+    public @NotNull String getPassword() {
         return password;
     }
 
     /**
+     * Set the user password
+     *
      * @param password the user password
      */
     public void setPassword(@NotNull final String password) {
@@ -88,13 +100,17 @@ public class UserParams {
     }
 
     /**
+     * Get the user e-mail
+     *
      * @return the user e-mail
      */
-    public String getMail() {
+    public @Nullable String getMail() {
         return mail;
     }
 
     /**
+     * Set the user e-mail
+     *
      * @param mail the user e-mail
      */
     public void setMail(@Nullable final String mail) {
@@ -102,13 +118,16 @@ public class UserParams {
     }
 
     /**
+     * Get the user middle name
+     *
      * @return the user middle name
      */
-    public String getMiddleName() {
+    public @Nullable String getMiddleName() {
         return middleName;
     }
 
     /**
+     * Set the user middle name
      * the user middle name
      */
     public void setMiddleName(@Nullable final String middleName) {
@@ -116,13 +135,17 @@ public class UserParams {
     }
 
     /**
+     * Get the user last name
+     *
      * @return the user last name
      */
-    public String getLastName() {
+    public @Nullable String getLastName() {
         return lastName;
     }
 
     /**
+     * Set the user last name
+     *
      * @param lastName the user last name
      */
     public void setLastName(@Nullable final String lastName) {
