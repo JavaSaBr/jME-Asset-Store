@@ -44,7 +44,6 @@ public interface AssetService {
      *
      * @param file  the file entity file
      * @param asset the asset entity asset
-     * @return the result of removing file from asset
      */
     void removeFileFromAsset(FileEntity file, AssetEntity asset);
 }
