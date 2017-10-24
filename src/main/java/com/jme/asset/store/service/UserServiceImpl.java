@@ -66,4 +66,13 @@ public class UserServiceImpl implements UserService {
         user.removeRole(role);
         userRepository.save(user);
     }
+
+    @Override
+    public UserEntity authenticate(String login, String password) {
+        UserEntity user = userRepository.findByLogin(login);
+        if (user != null && DigestUtils.md2Hex(password).equals(user.getPassword())) {
+            return user;
+        }
+        return null;
+    }
 }
