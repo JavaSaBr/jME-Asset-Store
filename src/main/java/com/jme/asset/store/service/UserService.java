@@ -28,7 +28,6 @@ public interface UserService {
      *
      * @param login the user login
      * @param role  the user role
-     * @return the result of adding
      */
     void addRoleToUser(String login, String role);
 
@@ -37,7 +36,6 @@ public interface UserService {
      *
      * @param login the user login
      * @param role  the user role
-     * @return the result of removing
      */
     void removeRoleFromUser(String login, String role);
 
