@@ -43,11 +43,14 @@ public class AssetController {
      * @param assetParam the asset param
      * @return OK if the asset is created successfully, else BAD_REQUEST
      */
-    @PostMapping(value = "/add/asset")
+    @PostMapping(value = "add/asset")
     public ResponseEntity<?> createAsset(@RequestBody final AssetParam assetParam) {
         final String name = assetParam.getName();
         final String description = assetParam.getDescription();
         final UserEntity user = userService.load("alena");
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
         try {
             assetService.createAsset(name, description, user);
         } catch (final RuntimeException e) {

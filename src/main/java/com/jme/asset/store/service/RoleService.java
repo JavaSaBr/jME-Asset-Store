@@ -12,6 +12,4 @@ public interface RoleService {
     String ADMIN_ROLE = "ADMIN";
 
     String ARTIST_ROLE = "ARTIST";
-
-
 }
