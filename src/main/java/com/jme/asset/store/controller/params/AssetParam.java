@@ -1,6 +1,5 @@
 package com.jme.asset.store.controller.params;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -17,7 +16,7 @@ public class AssetParam {
     /**
      * The asset name
      */
-    @NotNull
+    @Nullable
     private String name;
 
     /**
@@ -43,7 +42,7 @@ public class AssetParam {
      *
      * @return the asset name
      */
-    public @NotNull String getName() {
+    public @Nullable String getName() {
         return name;
     }
 
@@ -52,7 +51,7 @@ public class AssetParam {
      *
      * @param name the asset name
      */
-    public void setName(@NotNull String name) {
+    public void setName(@Nullable String name) {
         this.name = name;
     }
 }

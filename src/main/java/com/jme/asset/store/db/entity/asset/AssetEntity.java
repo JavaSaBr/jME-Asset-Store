@@ -2,6 +2,8 @@ package com.jme.asset.store.db.entity.asset;
 
 import com.jme.asset.store.db.entity.BaseEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -39,6 +41,18 @@ public class AssetEntity extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "creator_id")
     private UserEntity creator;
+
+    public AssetEntity() {
+    }
+
+    public AssetEntity(final long id, @NotNull final String name, @NotNull final String description,
+                       @Nullable final List<FileEntity> files, @NotNull final UserEntity creator) {
+        super(id);
+        this.name = name;
+        this.description = description;
+        this.files = files;
+        this.creator = creator;
+    }
 
     /**
      * Get the asset name

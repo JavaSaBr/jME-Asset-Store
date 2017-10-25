@@ -2,6 +2,7 @@ package com.jme.asset.store.db.entity.asset;
 
 import com.jme.asset.store.db.entity.BaseEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -33,6 +34,17 @@ public class FileEntity extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "creator_id")
     private UserEntity creator;
+
+    public FileEntity() {
+    }
+
+    public FileEntity(final long id, @NotNull final String name, @NotNull final Blob content,
+                      @NotNull final UserEntity creator) {
+        super(id);
+        this.name = name;
+        this.content = content;
+        this.creator = creator;
+    }
 
     /**
      * Get the file name
