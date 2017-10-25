@@ -1,4 +1,4 @@
-package com.jme.asset.store.entity;
+package com.jme.asset.store.db.entity;
 
 import javax.persistence.*;
 

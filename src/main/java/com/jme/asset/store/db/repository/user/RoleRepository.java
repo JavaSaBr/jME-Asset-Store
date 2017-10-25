@@ -1,6 +1,6 @@
-package com.jme.asset.store.repository;
+package com.jme.asset.store.db.repository.user;
 
-import com.jme.asset.store.entity.RoleEntity;
+import com.jme.asset.store.db.entity.user.RoleEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

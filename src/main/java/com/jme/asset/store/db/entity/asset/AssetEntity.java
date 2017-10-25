@@ -1,4 +1,7 @@
-package com.jme.asset.store.entity;
+package com.jme.asset.store.db.entity.asset;
+
+import com.jme.asset.store.db.entity.BaseEntity;
+import com.jme.asset.store.db.entity.user.UserEntity;
 
 import javax.persistence.*;
 import java.util.List;

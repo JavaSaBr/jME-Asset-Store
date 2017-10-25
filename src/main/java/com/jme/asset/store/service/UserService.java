@@ -1,6 +1,6 @@
 package com.jme.asset.store.service;
 
-import com.jme.asset.store.entity.UserEntity;
+import com.jme.asset.store.db.entity.user.UserEntity;
 
 import java.util.List;
 

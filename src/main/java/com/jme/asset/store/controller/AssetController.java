@@ -1,7 +1,7 @@
 package com.jme.asset.store.controller;
 
 import com.jme.asset.store.controller.params.AssetParam;
-import com.jme.asset.store.entity.UserEntity;
+import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.service.AssetService;
 import com.jme.asset.store.service.UserService;
 import org.jetbrains.annotations.NotNull;
