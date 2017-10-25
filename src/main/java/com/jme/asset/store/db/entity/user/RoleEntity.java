@@ -1,5 +1,6 @@
-package com.jme.asset.store.entity;
+package com.jme.asset.store.db.entity.user;
 
+import com.jme.asset.store.db.entity.BaseEntity;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;

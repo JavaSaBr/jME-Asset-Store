@@ -1,20 +1,18 @@
 package com.jme.asset.store.service;
 
-import com.jme.asset.store.entity.RoleEntity;
-import com.jme.asset.store.entity.UserEntity;
-import com.jme.asset.store.repository.RoleRepository;
-import com.jme.asset.store.repository.UserRepository;
+import com.jme.asset.store.db.entity.user.RoleEntity;
+import com.jme.asset.store.db.entity.user.UserEntity;
+import com.jme.asset.store.db.repository.user.RoleRepository;
+import com.jme.asset.store.db.repository.user.UserRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {

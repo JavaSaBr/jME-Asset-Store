@@ -1,8 +1,8 @@
 package com.jme.asset.store.service;
 
-import com.jme.asset.store.entity.AssetEntity;
-import com.jme.asset.store.entity.FileEntity;
-import com.jme.asset.store.entity.UserEntity;
+import com.jme.asset.store.db.entity.asset.AssetEntity;
+import com.jme.asset.store.db.entity.asset.FileEntity;
+import com.jme.asset.store.db.entity.user.UserEntity;
 
 import java.io.InputStream;
 

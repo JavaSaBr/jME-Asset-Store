@@ -1,10 +1,10 @@
 package com.jme.asset.store.service;
 
-import com.jme.asset.store.entity.AssetEntity;
-import com.jme.asset.store.entity.FileEntity;
-import com.jme.asset.store.entity.UserEntity;
-import com.jme.asset.store.repository.AssetRepository;
-import com.jme.asset.store.repository.FileRepository;
+import com.jme.asset.store.db.entity.asset.AssetEntity;
+import com.jme.asset.store.db.entity.asset.FileEntity;
+import com.jme.asset.store.db.entity.user.UserEntity;
+import com.jme.asset.store.db.repository.asset.AssetRepository;
+import com.jme.asset.store.db.repository.asset.FileRepository;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.LobCreator;
 import org.jetbrains.annotations.NotNull;

@@ -1,7 +1,6 @@
-package com.jme.asset.store.entity;
+package com.jme.asset.store.db.entity.user;
 
-import com.jme.asset.store.entity.BaseEntity;
-import org.apache.catalina.LifecycleState;
+import com.jme.asset.store.db.entity.BaseEntity;
 
 import javax.persistence.*;
 import java.util.List;
