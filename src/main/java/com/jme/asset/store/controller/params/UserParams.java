@@ -19,12 +19,12 @@ public class UserParams {
     /**
      * The user login
      */
-    @NotNull
+    @Nullable
     private String login;
     /**
      * The user password
      */
-    @NotNull
+    @Nullable
     private String password;
     /**
      * The user e-mail
@@ -68,7 +68,7 @@ public class UserParams {
      *
      * @return the user login
      */
-    public @NotNull String getLogin() {
+    public @Nullable String getLogin() {
         return login;
     }
 
@@ -86,7 +86,7 @@ public class UserParams {
      *
      * @return the user password
      */
-    public @NotNull String getPassword() {
+    public @Nullable String getPassword() {
         return password;
     }
 

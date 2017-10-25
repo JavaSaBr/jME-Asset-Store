@@ -1,5 +1,6 @@
 package com.jme.asset.store.service;
 
+import static org.hibernate.Hibernate.getLobCreator;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
@@ -19,9 +20,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
-import java.util.NoSuchElementException;
-
-import static org.hibernate.Hibernate.getLobCreator;
 
 @Service
 public class AssetServiceImpl implements AssetService {
@@ -89,18 +87,12 @@ public class AssetServiceImpl implements AssetService {
 
     @Override
     public void addFileToAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
-        if (file == null || asset == null) {
-            throw new NoSuchElementException("No such file or asset");
-        }
         asset.addFile(file);
         assetRepository.save(asset);
     }
 
     @Override
     public void removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
-        if (file == null || asset == null) {
-            throw new NoSuchElementException("No such file or asset");
-        }
         asset.removeFile(file);
         assetRepository.save(asset);
     }

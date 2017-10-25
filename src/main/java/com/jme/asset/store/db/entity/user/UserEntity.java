@@ -1,6 +1,8 @@
 package com.jme.asset.store.db.entity.user;
 
 import com.jme.asset.store.db.entity.BaseEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +17,9 @@ import java.util.List;
         indexes = {
                 @Index(columnList = "login", name = "user_login_index")
         })
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorValue(value = "1")
 public class UserEntity extends BaseEntity {
 
     /**
@@ -58,6 +63,22 @@ public class UserEntity extends BaseEntity {
      */
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(final long id, @NotNull final String login, @Nullable final String firstName,
+                      @Nullable final String lastName, @Nullable final String middleName, @Nullable final String mail,
+                      @NotNull final String password, @NotNull final List<RoleEntity> roles) {
+        super(id);
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.mail = mail;
+        this.password = password;
+        this.roles = roles;
+    }
 
     /**
      * Get the user login
