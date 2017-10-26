@@ -90,11 +90,11 @@ public class UserController {
         final String role = userParams.getRole();
 
         if (login == null || password == null || role == null) {
-            return status(HttpStatus.BAD_REQUEST).body("The fields login and password couldn't be null!");
+            return status(HttpStatus.BAD_REQUEST).body("The fields login, password and role couldn't be null!");
         }
 
         if (!role.equals(RoleService.ARTIST_ROLE) && (!role.equals(RoleService.USER_ROLE))) {
-            return badRequest().body("The role must be USER or ARTIST");
+            return badRequest().body("Your role is incorrect! The role must be USER or ARTIST");
         }
 
         final List<String> roles = new ArrayList<>();
@@ -116,8 +116,8 @@ public class UserController {
         }
 
         return ok("User is registered!");
-    }
 
+    }
 
     /**
      * Authorize the user by user credentials params.
@@ -134,7 +134,7 @@ public class UserController {
         final String userName = params.getUsername();
         final String password = params.getPassword();
         if (userName == null || password == null) {
-            return badRequest().body("Please, check the fields login and password, they couldn't be null!");
+            return badRequest().body("Please, check the fields login, password, they couldn't be null !");
         }
 
         final Authentication authenticationToken =
