@@ -1,4 +1,4 @@
-package com.jme.asset.store.service;
+package com.jme.asset.store.service.impl;
 
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
@@ -8,6 +8,8 @@ import com.jme.asset.store.db.entity.user.RoleEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.db.repository.user.UserRepository;
 import com.jme.asset.store.security.JmeUser;
+import com.jme.asset.store.service.RoleService;
+import com.jme.asset.store.service.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;

@@ -2,7 +2,9 @@ package com.jme.asset.store.controller;
 
 import static com.jme.asset.store.security.util.SecurityUtil.getCurrentUser;
 import static java.util.Objects.requireNonNull;
-import com.jme.asset.store.controller.params.AssetParam;
+
+import com.jme.asset.store.controller.params.AssetCreateParam;
+import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetService;
@@ -43,23 +45,20 @@ public class AssetController {
     /**
      * Create new Asset
      *
-     * @param params the asset param
+     * @param params the asset creation param
      * @return OK if the asset is created successfully, else BAD_REQUEST
      */
     @PostMapping(value = "add/asset")
-    public ResponseEntity<?> createAsset(@RequestBody final AssetParam params) {
-
+    public ResponseEntity<?> createAsset(@RequestBody final AssetCreateParam params) {
         final String name = params.getName();
         final String description = params.getDescription();
         final JmeUser currentUser = requireNonNull(getCurrentUser());
-
         final UserEntity user = currentUser.getUser();
         try {
             assetService.createAsset(name, description, user);
         } catch (final RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The asset is not created!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
-
         return ResponseEntity.ok("The asset is created!");
     }
 
@@ -71,15 +70,13 @@ public class AssetController {
      */
     @PostMapping(value = "add/file")
     public ResponseEntity<?> uploadFile(@RequestParam(name = "file") final MultipartFile multipartFile) {
-        final UserEntity user = userService.load("alena");
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
+        final JmeUser currentUser = requireNonNull((getCurrentUser()));
+        final UserEntity user = currentUser.getUser();
         final String name = multipartFile.getOriginalFilename();
         try {
             assetService.createFile(name, user, multipartFile.getInputStream());
         } catch (final IOException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The file is not  uploaded!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
         return ResponseEntity.ok("The file is uploaded!");
     }

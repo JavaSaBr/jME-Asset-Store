@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @author Alena Solonevich
  */
-public class UserParams {
+public class UserRegisterParams {
 
     /**
      * The user first name
@@ -21,28 +21,32 @@ public class UserParams {
      */
     @Nullable
     private String login;
+
     /**
      * The user password
      */
     @Nullable
     private String password;
+
     /**
      * The user e-mail
      */
     @Nullable
     private String mail;
+
     /**
      * The user middle name
      */
     @Nullable
     private String middleName;
+
     /**
      * The user last name
      */
     @Nullable
     private String lastName;
 
-    public UserParams() {
+    public UserRegisterParams() {
     }
 
     /**
