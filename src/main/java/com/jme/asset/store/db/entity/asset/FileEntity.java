@@ -35,15 +35,20 @@ public class FileEntity extends BaseEntity {
     @JoinColumn(name = "creator_id")
     private UserEntity creator;
 
+    @OneToOne
+    @JoinColumn(name = "type_id", nullable = false)
+    private FileTypeEntity type;
+
     public FileEntity() {
     }
 
     public FileEntity(final long id, @NotNull final String name, @NotNull final Blob content,
-                      @NotNull final UserEntity creator) {
+                      @NotNull final UserEntity creator, final @NotNull FileTypeEntity type) {
         super(id);
         this.name = name;
         this.content = content;
         this.creator = creator;
+        this.type = type;
     }
 
     /**
@@ -51,6 +56,7 @@ public class FileEntity extends BaseEntity {
      *
      * @return the file name
      */
+    @NotNull
     public String getName() {
         return name;
     }
@@ -60,7 +66,7 @@ public class FileEntity extends BaseEntity {
      *
      * @param name the file name
      */
-    public void setName(String name) {
+    public void setName(final @NotNull String name) {
         this.name = name;
     }
 
@@ -69,6 +75,7 @@ public class FileEntity extends BaseEntity {
      *
      * @return the content of file
      */
+    @NotNull
     public Blob getContent() {
         return content;
     }
@@ -78,7 +85,7 @@ public class FileEntity extends BaseEntity {
      *
      * @param content the content of file
      */
-    public void setContent(Blob content) {
+    public void setContent(final @NotNull Blob content) {
         this.content = content;
     }
 
@@ -87,6 +94,7 @@ public class FileEntity extends BaseEntity {
      *
      * @return the file creator
      */
+    @NotNull
     public UserEntity getCreator() {
         return creator;
     }
@@ -96,7 +104,26 @@ public class FileEntity extends BaseEntity {
      *
      * @param creator the file creator
      */
-    public void setCreator(UserEntity creator) {
+    public void setCreator(final @NotNull UserEntity creator) {
         this.creator = creator;
+    }
+
+    /**
+     * Get file's type
+     *
+     * @return type
+     */
+    @NotNull
+    public FileTypeEntity getType() {
+        return type;
+    }
+
+    /**
+     * Set file's type
+     *
+     * @param type file's type
+     */
+    public void setType(final @NotNull FileTypeEntity type) {
+        this.type = type;
     }
 }
