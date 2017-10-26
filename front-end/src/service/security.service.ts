@@ -20,14 +20,14 @@ export class SecurityService {
    *
    * @type {string}
    */
-  private static readonly AUTH_URL = '/?/authenticate';
+  private static readonly AUTH_URL = '/users/authorization';
 
   /**
    * The url of register endpoint.
    *
    * @type {string}
    */
-  private static readonly REGISTER_URL = '/?/register';
+  private static readonly REGISTER_URL = '/users/register';
 
   /**
    * The name of access token header.
@@ -57,7 +57,7 @@ export class SecurityService {
    * @param handler to handle result of authentication.
    */
   public auth(credentials: UserCredentials, handler: (message: string, result: boolean) => void): void {
-    const username = credentials.username;
+    const username = credentials.login;
     this.http.post(SecurityService.AUTH_URL, credentials)
       .toPromise()
       .then(response => {

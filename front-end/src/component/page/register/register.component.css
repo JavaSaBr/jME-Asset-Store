@@ -1,7 +1,7 @@
 
 .register-form-container {
-  width: 400px;
-  margin: 0 auto;
+  width: 500px;
+  margin-left: 65%;
   margin-top: 64px;
 }
 
@@ -19,7 +19,7 @@
 .register-data-row {
   width: 100%;
   display: block;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 

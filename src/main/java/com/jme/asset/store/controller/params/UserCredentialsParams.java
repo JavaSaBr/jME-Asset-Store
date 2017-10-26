@@ -13,7 +13,7 @@ public class UserCredentialsParams {
      * The user name.
      */
     @Nullable
-    private String username;
+    private String login;
 
     /**
      * The user password.
@@ -41,26 +41,26 @@ public class UserCredentialsParams {
     }
 
     /**
-     * Set the user name
+     * Set the user login
      *
-     * @param username the user name.
+     * @param username the user login.
      */
-    public void setUsername(@Nullable final String username) {
-        this.username = username;
+    public void setLogin(@Nullable final String username) {
+        this.login = username;
     }
 
     /**
-     * Get the user name
+     * Get the user login
      *
-     * @return the user name.
+     * @return the user login.
      */
     @Nullable
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
     @Override
     public String toString() {
-        return "UserCredentialsParams{" + "username='" + username + '\'' + ", password='" + password + '\'' + '}';
+        return "UserCredentialsParams{" + "username='" + login + '\'' + ", password='" + password + '\'' + '}';
     }
 }

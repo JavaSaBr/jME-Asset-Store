@@ -87,18 +87,11 @@ public class UserController {
 
         final String login = userParams.getLogin();
         final String password = userParams.getPassword();
-        final String role = userParams.getRole();
+        final List<String> roles = userParams.getRoles();
 
-        if (login == null || password == null || role == null) {
+        if (login == null || password == null || roles == null) {
             return status(HttpStatus.BAD_REQUEST).body("The fields login, password and role couldn't be null!");
         }
-
-        if (!role.equals(RoleService.ARTIST_ROLE) && (!role.equals(RoleService.USER_ROLE))) {
-            return badRequest().body("Your role is incorrect! The role must be USER or ARTIST");
-        }
-
-        final List<String> roles = new ArrayList<>();
-        roles.add(role);
 
         final String firstName = userParams.getFirstName();
         final String middleName = userParams.getMiddleName();
@@ -130,14 +123,14 @@ public class UserController {
 
     public ResponseEntity<?> authorization(@RequestBody final UserCredentialsParams params) {
 
-        final String userName = params.getUsername();
+        final String userName = params.getLogin();
         final String password = params.getPassword();
         if (userName == null || password == null) {
             return badRequest().body("Please, check the fields login, password, they couldn't be null !");
         }
 
         final Authentication authenticationToken =
-                new UsernamePasswordAuthenticationToken(params.getUsername(), params.getPassword());
+                new UsernamePasswordAuthenticationToken(params.getLogin(), params.getPassword());
         final Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(authenticationToken);
@@ -149,7 +142,7 @@ public class UserController {
 
         final Object principal = authentication.getPrincipal();
         if (!(principal instanceof JmeUser)) {
-            return badRequest().body("Can't authenticate the user " + params.getUsername());
+            return badRequest().body("Can't authenticate the user " + params.getLogin());
         }
 
         final SecurityContext securityContext = SecurityContextHolder.getContext();

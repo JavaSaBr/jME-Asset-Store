@@ -224,7 +224,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MatButtonModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatInputModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["d" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatSelectModule */]
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
@@ -432,7 +433,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-form-container\">\r\n  <div class=\"login-form\">\r\n\r\n    <div class=\"login-text-container\">\r\n      <h2 class=\"login-page-title\">Authentication</h2>\r\n      <h3 class=\"login-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"login-data-form mat-elevation-z2\" (ngSubmit)=\"tryAuth()\" #userForm=\"ngForm\">\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"credentials.username\" name=\"name\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"credentials.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n      <button class=\"login-data-row login-button\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!userForm.form.valid\">Login\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"login-form-container\">\r\n  <div class=\"login-form\">\r\n\r\n    <div class=\"login-text-container\">\r\n      <h2 class=\"login-page-title\">Authentication</h2>\r\n      <h3 class=\"login-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"login-data-form mat-elevation-z2\" (ngSubmit)=\"tryAuth()\" #userForm=\"ngForm\">\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"credentials.login\" name=\"name\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"credentials.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n      <button class=\"login-data-row login-button\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!userForm.form.valid\">Login\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -491,7 +492,7 @@ var LoginComponent = (function (_super) {
         this.security.auth(this.credentials, function (message, result) {
             if (result) {
                 _this.error = '';
-                _this.credentials.username = '';
+                _this.credentials.login = '';
                 _this.credentials.password = '';
                 _this.router.navigateByUrl('/');
             }
@@ -524,7 +525,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.register-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 64px;\r\n}\r\n\r\n.register-form {\r\n}\r\n\r\n.register-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.register-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.register-button {\r\n  width: 100%;\r\n}\r\n\r\n.register-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.register-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n.register-form-container {\r\n  width: 500px;\r\n  margin-left: 65%;\r\n  margin-top: 64px;\r\n}\r\n\r\n.register-form {\r\n}\r\n\r\n.register-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.register-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 20px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.register-button {\r\n  width: 100%;\r\n}\r\n\r\n.register-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.register-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -537,7 +538,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"_info.login\" name=\"userName\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"First name\" id=\"firstName\"\r\n               [(ngModel)]=\"_info.firstName\" name=\"firstName\"\r\n               #firstName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Last name\" id=\"lastName\"\r\n               [(ngModel)]=\"_info.lastName\" name=\"lastName\"\r\n               #lastName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Middle name\" id=\"middleName\"\r\n               [(ngModel)]=\"_info.middleName\" name=\"middleName\"\r\n               #middleName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Email\" id=\"mail\"\r\n               [(ngModel)]=\"_info.mail\" name=\"mail\"\r\n               #mail=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"_info.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Confirm Password\" type=\"password\" id=\"confirmPassword\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"_info.confirmPassword\"\r\n               name=\"confirmPassword\"\r\n               #confirmPassword=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Choose your role\">\r\n          <mat-option [value] = \"userRole\" (click) = \"leaveOnlyUserRole()\">\r\n           {{userRole}}\r\n          </mat-option>\r\n          <mat-option [value] = \"authorRole\" (click) = \"addAuthorRole()\">\r\n           {{authorRole}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n      <li *ngFor=\"let role of roles\">\r\n        {{role}}\r\n      </li>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -584,7 +585,10 @@ var RegisterComponent = (function (_super) {
         var _this = _super.call(this) || this;
         _this.security = security;
         _this.router = router;
-        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__["a" /* RegisterUserCredentials */]('', '', '');
+        _this.userRole = "Simple user";
+        _this.authorRole = "Author";
+        _this.roles = ["USER"];
+        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__["a" /* RegisterUserCredentials */]('', '', '', '', '', '', _this.roles, '');
         _this._error = '';
         return _this;
     }
@@ -596,8 +600,12 @@ var RegisterComponent = (function (_super) {
         this.security.register(this._info, function (message, result) {
             if (result) {
                 _this._error = '';
-                _this._info.username = '';
+                _this._info.login = '';
                 _this._info.password = '';
+                _this._info.firstName = '';
+                _this._info.lastName = '';
+                _this._info.middleName = '';
+                _this._info.mail = '';
                 _this._info.confirmPassword = '';
                 _this.router.navigateByUrl('/login');
             }
@@ -626,6 +634,16 @@ var RegisterComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    RegisterComponent.prototype.addAuthorRole = function () {
+        if (!this.roles.includes("AUTHOR"))
+            this.roles.push("AUTHOR");
+    };
+    RegisterComponent.prototype.leaveOnlyUserRole = function () {
+        if (this.roles.includes("AUTHOR")) {
+            var index = this.roles.indexOf("AUTHOR");
+            this.roles.splice(index, 1);
+        }
+    };
     return RegisterComponent;
 }(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
 RegisterComponent = __decorate([
@@ -705,9 +723,14 @@ var __extends = (this && this.__extends) || (function () {
  */
 var RegisterUserCredentials = (function (_super) {
     __extends(RegisterUserCredentials, _super);
-    function RegisterUserCredentials(username, password, repeatPassword) {
-        var _this = _super.call(this, username, password) || this;
-        _this.confirmPassword = repeatPassword;
+    function RegisterUserCredentials(login, password, userName, lastName, middleName, mail, roles, confirmPassword) {
+        var _this = _super.call(this, login, password) || this;
+        _this.firstName = userName;
+        _this.lastName = lastName;
+        _this.middleName = middleName;
+        _this.mail = mail;
+        _this.roles = roles;
+        _this.confirmPassword = confirmPassword;
         return _this;
     }
     return RegisterUserCredentials;
@@ -730,7 +753,7 @@ var RegisterUserCredentials = (function (_super) {
 var UserCredentials = (function () {
     function UserCredentials(username, password) {
         this.password = password;
-        this.username = username;
+        this.login = username;
     }
     return UserCredentials;
 }());
@@ -814,9 +837,8 @@ var User = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_utils__ = __webpack_require__("../../../../../src/util/utils.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_user_user__ = __webpack_require__("../../../../../src/model/user/user.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -836,7 +858,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SecurityService = SecurityService_1 = (function () {
     function SecurityService(http) {
         this.http = http;
-        this._authProperty = new __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__["BehaviorSubject"](false);
+        this._authProperty = new __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](false);
     }
     /**
      * The function to auth a user in the system.
@@ -846,7 +868,7 @@ var SecurityService = SecurityService_1 = (function () {
      */
     SecurityService.prototype.auth = function (credentials, handler) {
         var _this = this;
-        var username = credentials.username;
+        var username = credentials.login;
         this.http.post(SecurityService_1.AUTH_URL, credentials)
             .toPromise()
             .then(function (response) {
@@ -957,13 +979,13 @@ SecurityService.ROLE_CUSTOMER = 'CUSTOMER';
  *
  * @type {string}
  */
-SecurityService.AUTH_URL = '/?/authenticate';
+SecurityService.AUTH_URL = '/users/authorization';
 /**
  * The url of register endpoint.
  *
  * @type {string}
  */
-SecurityService.REGISTER_URL = '/?/register';
+SecurityService.REGISTER_URL = '/users/register';
 /**
  * The name of access token header.
  *
@@ -1009,8 +1031,7 @@ RouteList.PAGE_REGISTER = 'register';
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Utils; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
 
 
 /**
@@ -1037,7 +1058,7 @@ var Utils = (function () {
         }
         console.error(errMsg);
         handler(errMsg);
-        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw(errMsg);
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].throw(errMsg);
     };
     return Utils;
 }());
