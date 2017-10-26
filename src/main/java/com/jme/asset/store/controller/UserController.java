@@ -84,14 +84,26 @@ public class UserController {
      */
     @PostMapping(value = "/register")
     public ResponseEntity<?> register(@RequestBody final UserRegisterParams userParams) {
+
         final String login = userParams.getLogin();
         final String password = userParams.getPassword();
+        final String role = userParams.getRole();
+
+        if (login == null || password == null || role == null) {
+            return status(HttpStatus.BAD_REQUEST).body("The fields login, password and role couldn't be null!");
+        }
+
+        if (!role.equals(RoleService.ARTIST_ROLE) && (!role.equals(RoleService.USER_ROLE))) {
+            return badRequest().body("Your role is incorrect! The role must be USER or ARTIST");
+        }
+
+        final List<String> roles = new ArrayList<>();
+        roles.add(role);
+
         final String firstName = userParams.getFirstName();
         final String middleName = userParams.getMiddleName();
         final String lastName = userParams.getLastName();
         final String mail = userParams.getMail();
-        final List<String> roles = new ArrayList<>();
-        roles.add(RoleService.USER_ROLE);
         try {
             userService.create(UserEntity.class, login, password, roles, user -> {
                 user.setFirstName(firstName);
@@ -102,6 +114,7 @@ public class UserController {
         } catch (final RuntimeException e) {
             return status(HttpStatus.CONFLICT).body(new ErrorResponse(e.getLocalizedMessage()));
         }
+
         return ok("User is registered!");
     }
 
@@ -117,6 +130,12 @@ public class UserController {
 
     public ResponseEntity<?> authorization(@RequestBody final UserCredentialsParams params) {
 
+        final String userName = params.getUsername();
+        final String password = params.getPassword();
+        if (userName == null || password == null) {
+            return badRequest().body("Please, check the fields login, password, they couldn't be null !");
+        }
+
         final Authentication authenticationToken =
                 new UsernamePasswordAuthenticationToken(params.getUsername(), params.getPassword());
         final Authentication authentication;
@@ -127,21 +146,26 @@ public class UserController {
         } catch (final BadCredentialsException e) {
             return badRequest().body(new ErrorResponse(e.getLocalizedMessage()));
         }
-        final SecurityContext securityContext = SecurityContextHolder.getContext();
-        securityContext.setAuthentication(authentication);
 
         final Object principal = authentication.getPrincipal();
         if (!(principal instanceof JmeUser)) {
             return badRequest().body("Can't authenticate the user " + params.getUsername());
         }
+
+        final SecurityContext securityContext = SecurityContextHolder.getContext();
+        securityContext.setAuthentication(authentication);
+
         final JmeUser jmeUser = (JmeUser) principal;
         final AccessTokenEntity newToken = accessTokenService.createNewToken(jmeUser.getUser());
         final ArrayNode roles = JsonNodeFactory.instance.arrayNode();
+
         final Collection<GrantedAuthority> authorities = jmeUser.getAuthorities();
         authorities.forEach(authority -> roles.add(authority.getAuthority()));
+
         final ObjectNode objectNode = JsonNodeFactory.instance.objectNode();
         objectNode.put("token", newToken.getToken());
         objectNode.set("roles", roles);
+
         return ok(objectNode.toString());
     }
 }

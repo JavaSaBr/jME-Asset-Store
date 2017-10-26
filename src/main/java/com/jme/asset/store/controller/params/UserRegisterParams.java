@@ -46,6 +46,12 @@ public class UserRegisterParams {
     @Nullable
     private String lastName;
 
+    /**
+     * The user role
+     */
+    @Nullable
+    private String role;
+
     public UserRegisterParams() {
     }
 
@@ -155,4 +161,21 @@ public class UserRegisterParams {
     public void setLastName(@Nullable final String lastName) {
         this.lastName = lastName;
     }
+
+    /**
+     * Get the user role
+     * @return the user role;
+     */
+    public @Nullable String getRole() {
+        return role;
+    }
+
+    /**
+     * Set the user role
+     * @param role the user role
+     */
+    public void setRole(@Nullable String role) {
+        this.role = role;
+    }
+
 }
