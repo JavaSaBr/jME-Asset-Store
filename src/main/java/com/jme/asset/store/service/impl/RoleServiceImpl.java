@@ -1,7 +1,8 @@
-package com.jme.asset.store.service;
+package com.jme.asset.store.service.impl;
 
 import com.jme.asset.store.db.entity.user.RoleEntity;
 import com.jme.asset.store.db.repository.user.RoleRepository;
+import com.jme.asset.store.service.RoleService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

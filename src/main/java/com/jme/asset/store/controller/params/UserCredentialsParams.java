@@ -22,6 +22,8 @@ public class UserCredentialsParams {
     private String password;
 
     /**
+     * Set the user password
+     *
      * @param password the user password.
      */
     public void setPassword(@Nullable final String password) {
@@ -29,6 +31,8 @@ public class UserCredentialsParams {
     }
 
     /**
+     * Get the user password
+     *
      * @return the user password.
      */
     @Nullable
@@ -37,6 +41,8 @@ public class UserCredentialsParams {
     }
 
     /**
+     * Set the user name
+     *
      * @param username the user name.
      */
     public void setUsername(@Nullable final String username) {
@@ -44,6 +50,8 @@ public class UserCredentialsParams {
     }
 
     /**
+     * Get the user name
+     *
      * @return the user name.
      */
     @Nullable

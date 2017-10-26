@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @author Alena Solonevich
  */
-public class AssetParam {
+public class AssetCreateParam {
     /**
      * The asset description
      */

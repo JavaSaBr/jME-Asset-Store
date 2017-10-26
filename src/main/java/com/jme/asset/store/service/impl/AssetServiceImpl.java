@@ -1,4 +1,4 @@
-package com.jme.asset.store.service;
+package com.jme.asset.store.service.impl;
 
 import static org.hibernate.Hibernate.getLobCreator;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
@@ -6,6 +6,7 @@ import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.db.repository.asset.AssetRepository;
 import com.jme.asset.store.db.repository.asset.FileRepository;
+import com.jme.asset.store.service.AssetService;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.LobCreator;
 import org.jetbrains.annotations.NotNull;
