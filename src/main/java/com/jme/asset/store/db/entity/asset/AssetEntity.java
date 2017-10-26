@@ -21,13 +21,13 @@ public class AssetEntity extends BaseEntity {
      * The name of asset
      */
     @Column(name = "name", nullable = false)
-    private String name;
+    private java.lang.String name;
 
     /**
      * The description of asset
      */
     @Column(name = "description", nullable = false)
-    private String description;
+    private java.lang.String description;
 
     /**
      * Files in asset
@@ -42,16 +42,24 @@ public class AssetEntity extends BaseEntity {
     @JoinColumn(name = "creator_id")
     private UserEntity creator;
 
+    /**
+     * The category of asset
+     */
+    @OneToOne
+    private AssetCategoryEntity category;
+
     public AssetEntity() {
     }
 
-    public AssetEntity(final long id, @NotNull final String name, @NotNull final String description,
-                       @Nullable final List<FileEntity> files, @NotNull final UserEntity creator) {
+    public AssetEntity(final long id, @NotNull final java.lang.String name, @NotNull final java.lang.String description,
+                       @Nullable final List<FileEntity> files, @NotNull final UserEntity creator,
+                       @NotNull final AssetCategoryEntity category) {
         super(id);
         this.name = name;
         this.description = description;
         this.files = files;
         this.creator = creator;
+        this.category = category;
     }
 
     /**
@@ -127,10 +135,29 @@ public class AssetEntity extends BaseEntity {
     }
 
     /**
+     * Get the asset category
+     *
+     * @return the category of asset
+     */
+    public AssetCategoryEntity getCategory() {
+        return category;
+    }
+
+    /**
+     * Set the asset category
+     *
+     * @param category the category of asset
+     */
+    public void setCategory(AssetCategoryEntity category) {
+        this.category = category;
+    }
+
+    /**
      * Add file to the asset
      *
      * @param file the file
      */
+
     public void addFile(final FileEntity file) {
         if (files.contains(file)) {
             throw new RuntimeException("file is already exists");

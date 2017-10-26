@@ -1,5 +1,6 @@
 package com.jme.asset.store.service;
 
+import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
@@ -20,7 +21,7 @@ public interface AssetService {
      * @param user        the user
      * @param inputStream the input stream
      */
-    void createFile(String fileName, UserEntity user, InputStream inputStream);
+    void createFile(java.lang.String fileName, UserEntity user, InputStream inputStream);
 
     /**
      * Create Asset
@@ -29,7 +30,7 @@ public interface AssetService {
      * @param description the description asset
      * @param user        the user
      */
-    void createAsset(String assetName, String description, UserEntity user);
+    void createAsset(java.lang.String assetName, java.lang.String description, UserEntity user, AssetCategoryEntity category);
 
     /**
      * Add file to asset

@@ -1,6 +1,8 @@
 package com.jme.asset.store.service;
 
 import static org.hibernate.Hibernate.getLobCreator;
+
+import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
@@ -37,7 +39,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createFile(@NotNull final String fileName, @NotNull final UserEntity user,
+    public void createFile(@NotNull final java.lang.String fileName, @NotNull final UserEntity user,
                            @NotNull final InputStream inputStream) {
         Path temp = null;
         try {
@@ -54,7 +56,7 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 
-    private @NotNull FileEntity createFileEntity(@NotNull final String fileName, @NotNull final UserEntity user,
+    private @NotNull FileEntity createFileEntity(@NotNull final java.lang.String fileName, @NotNull final UserEntity user,
                                                  @NotNull final InputStream content, @NotNull final long contentLength) {
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         final LobCreator lobCreator = getLobCreator(sessionFactory.getCurrentSession());
@@ -77,11 +79,13 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createAsset(@NotNull final String nameAsset, @Nullable final String description, @NotNull final UserEntity user) {
+    public void createAsset(@NotNull final java.lang.String nameAsset, @Nullable final java.lang.String description,
+                            @NotNull final UserEntity user, @NotNull final AssetCategoryEntity category) {
         final AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);
         assetEntity.setDescription(description);
         assetEntity.setCreator(user);
+        assetEntity.setCategory(category);
         assetRepository.save(assetEntity);
     }
 
