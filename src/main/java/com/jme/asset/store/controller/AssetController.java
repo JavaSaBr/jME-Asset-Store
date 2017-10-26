@@ -56,8 +56,8 @@ public class AssetController {
     @PostMapping(value = "add/asset")
     public ResponseEntity<?> createAsset(@RequestBody final AssetParam params) {
 
-        final java.lang.String name = params.getName();
-        final java.lang.String description = params.getDescription();
+        final String name = params.getName();
+        final String description = params.getDescription();
         final AssetCategoryEntity assetCategory = categoryService.findById(params.getCategory());
         final JmeUser currentUser = requireNonNull(getCurrentUser());
 
@@ -83,7 +83,7 @@ public class AssetController {
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
-        final java.lang.String name = multipartFile.getOriginalFilename();
+        final String name = multipartFile.getOriginalFilename();
         try {
             assetService.createFile(name, user, multipartFile.getInputStream());
         } catch (final IOException e) {

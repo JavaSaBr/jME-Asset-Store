@@ -21,13 +21,13 @@ public class AssetEntity extends BaseEntity {
      * The name of asset
      */
     @Column(name = "name", nullable = false)
-    private java.lang.String name;
+    private String name;
 
     /**
      * The description of asset
      */
     @Column(name = "description", nullable = false)
-    private java.lang.String description;
+    private String description;
 
     /**
      * Files in asset
@@ -51,7 +51,7 @@ public class AssetEntity extends BaseEntity {
     public AssetEntity() {
     }
 
-    public AssetEntity(final long id, @NotNull final java.lang.String name, @NotNull final java.lang.String description,
+    public AssetEntity(final long id, @NotNull final String name, @NotNull final String description,
                        @Nullable final List<FileEntity> files, @NotNull final UserEntity creator,
                        @NotNull final AssetCategoryEntity category) {
         super(id);
@@ -157,7 +157,6 @@ public class AssetEntity extends BaseEntity {
      *
      * @param file the file
      */
-
     public void addFile(final FileEntity file) {
         if (files.contains(file)) {
             throw new RuntimeException("file is already exists");

@@ -22,7 +22,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
-    public void addCategory(@NotNull final java.lang.String name, @Nullable final java.lang.String description,
+    public void addCategory(@NotNull final String name, @Nullable final String description,
                             @Nullable final AssetCategoryEntity parent, @Nullable final List<AssetCategoryEntity> children) {
         AssetCategoryEntity category = null;
         category.setName(name);

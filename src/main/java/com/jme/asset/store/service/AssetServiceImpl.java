@@ -39,7 +39,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createFile(@NotNull final java.lang.String fileName, @NotNull final UserEntity user,
+    public void createFile(@NotNull final String fileName, @NotNull final UserEntity user,
                            @NotNull final InputStream inputStream) {
         Path temp = null;
         try {
@@ -56,7 +56,7 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 
-    private @NotNull FileEntity createFileEntity(@NotNull final java.lang.String fileName, @NotNull final UserEntity user,
+    private @NotNull FileEntity createFileEntity(@NotNull final String fileName, @NotNull final UserEntity user,
                                                  @NotNull final InputStream content, @NotNull final long contentLength) {
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         final LobCreator lobCreator = getLobCreator(sessionFactory.getCurrentSession());
@@ -79,7 +79,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createAsset(@NotNull final java.lang.String nameAsset, @Nullable final java.lang.String description,
+    public void createAsset(@NotNull final String nameAsset, @Nullable final String description,
                             @NotNull final UserEntity user, @NotNull final AssetCategoryEntity category) {
         final AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);

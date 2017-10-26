@@ -21,7 +21,7 @@ public interface AssetService {
      * @param user        the user
      * @param inputStream the input stream
      */
-    void createFile(java.lang.String fileName, UserEntity user, InputStream inputStream);
+    void createFile(String fileName, UserEntity user, InputStream inputStream);
 
     /**
      * Create Asset
@@ -30,7 +30,7 @@ public interface AssetService {
      * @param description the description asset
      * @param user        the user
      */
-    void createAsset(java.lang.String assetName, java.lang.String description, UserEntity user, AssetCategoryEntity category);
+    void createAsset(String assetName, String description, UserEntity user, AssetCategoryEntity category);
 
     /**
      * Add file to asset
