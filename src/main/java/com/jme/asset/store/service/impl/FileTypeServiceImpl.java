@@ -25,37 +25,38 @@ public class FileTypeServiceImpl implements FileTypeService {
     private FileTypeRepository fileTypeRepository;
 
     @Autowired
-    public FileTypeServiceImpl(@NotNull FileTypeRepository fileTypeRepository) {
+    public FileTypeServiceImpl(@NotNull final FileTypeRepository fileTypeRepository) {
         this.fileTypeRepository = fileTypeRepository;
     }
 
     @Override
-    public void createType(@NotNull String name, @NotNull String mimeType, @NotNull String extension) {
+    public void createType(@NotNull final String name, @NotNull final String mimeType, @NotNull final String extension) {
         FileTypeEntity type = createFileTypeEntity(name, mimeType, extension);
         fileTypeRepository.save(type);
     }
 
     @Override
-    public void deleteType(long id) {
+    public void deleteType(final long id) {
         fileTypeRepository.deleteById(id);
     }
 
     @Override
     @Nullable
-    public FileTypeEntity loadType(long id) {
-        Optional<FileTypeEntity> optional = fileTypeRepository.findById(id);
+    public FileTypeEntity loadType(final long id) {
+        final Optional<FileTypeEntity> optional = fileTypeRepository.findById(id);
         return optional.isPresent() ? optional.get() : null;
     }
 
     /**
      * Create FileTypeEntity
-     * @param name type's name
-     * @param mimeType MIME_type
+     *
+     * @param name      type's name
+     * @param mimeType  MIME_type
      * @param extension extension
      * @return FileTypeEntity
      */
-    private FileTypeEntity createFileTypeEntity(@NotNull String name, @NotNull String mimeType,
-                                                @NotNull String extension) {
+    private FileTypeEntity createFileTypeEntity(@NotNull final String name, @NotNull final String mimeType,
+                                                @NotNull final String extension) {
         FileTypeEntity type = new FileTypeEntity();
         type.setName(name);
         type.setMimeType(mimeType);
