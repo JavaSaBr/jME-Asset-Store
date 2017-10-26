@@ -116,7 +116,6 @@ public class UserController {
         }
 
         return ok("User is registered!");
-
     }
 
     /**
