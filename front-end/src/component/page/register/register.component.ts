@@ -1,19 +1,23 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PageComponent} from '../../page.component';
 import {SecurityService} from '../../../service/security.service';
 import {Router} from '@angular/router';
 import {RegisterUserCredentials} from "../../../model/user/register-user-credentials";
-
+import {FormControl, Validators} from '@angular/forms';
 /**
  * @author Alex Brui
  */
+
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 @Component({
   moduleId: module.id,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent extends PageComponent {
+export class RegisterComponent extends PageComponent{
+
+
   /**
    * The user role field.
    */
@@ -87,7 +91,7 @@ export class RegisterComponent extends PageComponent {
   }
 
   /**
-   * Adds author role to roles list.
+   * Adds author role to the roles list.
    */
   addAuthorRole(){
     if(!this.roles.includes("AUTHOR"))
@@ -104,5 +108,17 @@ export class RegisterComponent extends PageComponent {
     }
   }
 
+  /**
+   * Validate of email by regexp.
+   * @type {FormControl}
+   */
+  emailFormControl = new FormControl('', [
+    Validators.pattern(EMAIL_REGEX)
+
+  ]);
+
+  confirmPasswordControll = new FormControl('', [
+
+  ])
 }
 

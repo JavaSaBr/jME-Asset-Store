@@ -36,9 +36,11 @@
       </mat-input-container>
 
       <mat-input-container class="register-data-row">
-        <input matInput placeholder="Email" id="mail"
-               [(ngModel)]="_info.mail" name="mail"
-               #mail="ngModel">
+        <input matInput placeholder="Email" id="mail" [formControl]="emailFormControl"
+               [(ngModel)]="_info.mail" name="mail">
+        <mat-error *ngIf="emailFormControl.hasError('pattern')">
+          Please enter a valid email address
+        </mat-error>
       </mat-input-container>
 
       <mat-input-container class="register-data-row">
@@ -69,7 +71,7 @@
       </mat-form-field>
 
       <button class="register-data-row register-button" type="submit" mat-raised-button color="primary"
-              [disabled]="!registerForm.form.valid">Register
+              [disabled]="!registerForm.form.valid || emailFormControl.hasError('pattern')">Register
       </button>
 
     </form>
