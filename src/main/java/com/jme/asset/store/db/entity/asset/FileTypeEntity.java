@@ -46,8 +46,8 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @return type's name
      */
-    @NotNull
-    public String getName() {
+
+    public @NotNull String getName() {
         return name;
     }
 
@@ -56,7 +56,7 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @param name type's name
      */
-    public void setName(final @NotNull String name) {
+    public void setName(@NotNull final String name) {
         this.name = name;
     }
 
@@ -65,8 +65,8 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @return MIME-type of file
      */
-    @NotNull
-    public String getMimeType() {
+
+    public @NotNull String getMimeType() {
         return mimeType;
     }
 
@@ -75,7 +75,7 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @param mimeType MIME-type of file
      */
-    public void setMimeType(final @NotNull String mimeType) {
+    public void setMimeType(@NotNull final String mimeType) {
         this.mimeType = mimeType;
     }
 
@@ -84,8 +84,8 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @return extension
      */
-    @NotNull
-    public String getExtension() {
+
+    public @NotNull String getExtension() {
         return extension;
     }
 
@@ -94,7 +94,7 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @param extension extension
      */
-    public void setExtension(final @NotNull String extension) {
+    public void setExtension(@NotNull final String extension) {
         this.extension = extension;
     }
 }
