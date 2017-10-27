@@ -1,13 +1,10 @@
 package com.jme.asset.store.db.entity.asset;
 
 import com.jme.asset.store.db.entity.BaseEntity;
-import org.jetbrains.annotations.NotNull;
+
 import org.jetbrains.annotations.Nullable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -34,15 +31,13 @@ public class AssetCategoryEntity extends BaseEntity {
     /**
      * The parent of asset category
      */
-    @Transient
-    @Column(name = "parent")
+    @ManyToOne
     private AssetCategoryEntity parent;
 
     /**
      * The children of asset category
      */
-    @Transient
-    @Column(name = "children")
+    @OneToMany(mappedBy = "parent")
     private List<AssetCategoryEntity> children;
 
     public AssetCategoryEntity() {
@@ -142,10 +137,13 @@ public class AssetCategoryEntity extends BaseEntity {
     /**
      * Remove children from list children of asset category
      *
-     * @param children the children of aseet category
+     * @param children the children of asset category
      */
     public void removeChildren(AssetCategoryEntity children) {
         if (this.children.contains(children))
             this.children.remove(children);
+        else {
+            throw new RuntimeException("children doesn't such ");
+        }
     }
 }
