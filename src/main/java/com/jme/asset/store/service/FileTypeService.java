@@ -18,7 +18,9 @@ public interface FileTypeService {
      * @param mimeType  MIME-type
      * @param extension extension
      */
-    @NotNull FileTypeEntity createType(@NotNull final String name, @NotNull final String mimeType, @NotNull final String extension);
+    @NotNull FileTypeEntity createType(@NotNull final String name,
+                                       @NotNull final String mimeType,
+                                       @NotNull final String extension);
 
     /**
      * Delete type by id

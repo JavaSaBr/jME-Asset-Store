@@ -30,7 +30,9 @@ public class FileTypeServiceImpl implements FileTypeService {
     }
 
     @Override
-    public @NotNull FileTypeEntity createType(@NotNull final String name, @NotNull final String mimeType, @NotNull final String extension) {
+    public @NotNull FileTypeEntity createType(@NotNull final String name,
+                                              @NotNull final String mimeType,
+                                              @NotNull final String extension) {
         final FileTypeEntity type = createFileTypeEntity(name, mimeType, extension);
         fileTypeRepository.save(type);
         return type;
@@ -55,7 +57,8 @@ public class FileTypeServiceImpl implements FileTypeService {
      * @param extension extension
      * @return FileTypeEntity
      */
-    private @NotNull FileTypeEntity createFileTypeEntity(@NotNull final String name, @NotNull final String mimeType,
+    private @NotNull FileTypeEntity createFileTypeEntity(@NotNull final String name,
+                                                         @NotNull final String mimeType,
                                                          @NotNull final String extension) {
         final FileTypeEntity type = new FileTypeEntity();
         type.setName(name);
