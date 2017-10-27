@@ -32,16 +32,27 @@ import java.io.IOException;
 @RequestMapping("/assets")
 public class AssetController {
 
+    /**
+     * The user service
+     */
     @NotNull
     private final UserService userService;
+
+    /**
+     * The asset service
+     */
     @NotNull
     private final AssetService assetService;
+
+    /**
+     * The category service
+     */
     @NotNull
     private final AssetCategoryService categoryService;
 
     @Autowired
     public AssetController(@NotNull final UserService userService, @NotNull final AssetService assetService,
-                           @NotNull AssetCategoryService categoryService) {
+                           @NotNull final AssetCategoryService categoryService) {
         this.userService = userService;
         this.assetService = assetService;
         this.categoryService = categoryService;
@@ -58,7 +69,7 @@ public class AssetController {
 
         final String name = params.getName();
         final String description = params.getDescription();
-        final AssetCategoryEntity assetCategory = categoryService.findById(params.getCategory());
+        final AssetCategoryEntity assetCategory = categoryService.load(params.getCategory());
         final JmeUser currentUser = requireNonNull(getCurrentUser());
 
         final UserEntity user = currentUser.getUser();

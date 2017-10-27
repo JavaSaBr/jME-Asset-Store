@@ -46,10 +46,9 @@ public class AssetCategoryEntity extends BaseEntity {
     private List<AssetCategoryEntity> children;
 
     public AssetCategoryEntity() {
-
     }
 
-    public AssetCategoryEntity(final long id, @NotNull final String name, @Nullable final String description,
+    public AssetCategoryEntity(final long id, @Nullable final String name, @Nullable final String description,
                                @Nullable final AssetCategoryEntity parent, @Nullable final List<AssetCategoryEntity> children) {
         super(id);
         this.name = name;
@@ -63,7 +62,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @return the name of asset category
      */
-    public String getName() {
+    public @Nullable String getName() {
         return name;
     }
 
@@ -72,7 +71,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @param name the name of asset category
      */
-    public void setName(String name) {
+    public void setName(@Nullable final String name) {
         this.name = name;
     }
 
@@ -81,7 +80,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @return the description of asset category
      */
-    public String getDescription() {
+    public @Nullable String getDescription() {
         return description;
     }
 
@@ -90,7 +89,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @param description the description of asset category
      */
-    public void setDescription(String description) {
+    public void setDescription(@Nullable final String description) {
         this.description = description;
     }
 
@@ -99,7 +98,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @return the parent of asset category
      */
-    public AssetCategoryEntity getParent() {
+    public @Nullable AssetCategoryEntity getParent() {
         return parent;
     }
 
@@ -108,7 +107,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @param parent the parent of asset category
      */
-    public void setParent(AssetCategoryEntity parent) {
+    public void setParent(@Nullable final AssetCategoryEntity parent) {
         this.parent = parent;
     }
 
@@ -117,7 +116,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @return the children of asset category
      */
-    public List<AssetCategoryEntity> getChildren() {
+    public @Nullable List<AssetCategoryEntity> getChildren() {
         return children;
     }
 
@@ -126,7 +125,27 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @param children the children of asset category
      */
-    public void setChildren(List<AssetCategoryEntity> children) {
+    public void setChildren(@Nullable final List<AssetCategoryEntity> children) {
         this.children = children;
+    }
+
+    /**
+     * Add children to children of asset category
+     *
+     * @param children the children of asset category
+     */
+    public void addChildren(AssetCategoryEntity children) {
+        if (children != null)
+            this.children.add(children);
+    }
+
+    /**
+     * Remove children from list children of asset category
+     *
+     * @param children the children of aseet category
+     */
+    public void removeChildren(AssetCategoryEntity children) {
+        if (this.children.contains(children))
+            this.children.remove(children);
     }
 }

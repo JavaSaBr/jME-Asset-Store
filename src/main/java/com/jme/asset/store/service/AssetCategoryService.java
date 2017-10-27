@@ -1,6 +1,8 @@
 package com.jme.asset.store.service;
 
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -17,10 +19,8 @@ public interface AssetCategoryService {
      * @param name        the category name
      * @param description the category description
      * @param parent      the category parent
-     * @param children    the category children
      */
-    void addCategory(String name, String description, AssetCategoryEntity parent,
-                     List<AssetCategoryEntity> children);
+    void addCategory(@NotNull String name, @Nullable String description, @Nullable AssetCategoryEntity parent);
 
     /**
      * Find asset category by id
@@ -28,20 +28,36 @@ public interface AssetCategoryService {
      * @param id the category id
      * @return the asset category
      */
-    AssetCategoryEntity findById(Long id);
+    @Nullable AssetCategoryEntity load(@NotNull long id);
 
     /**
      * Remove asset category by id
      *
      * @param id the category id
      */
-    void removeById(Long id);
+    void removeCategory(@NotNull long id);
+
+    /**
+     * The set children to children of asset category
+     *
+     * @param childrenId the category children id
+     * @param categoryId the category id
+     */
+    void setChildren(@NotNull long childrenId, @NotNull long categoryId);
+
+    /**
+     * Remove children from children of asset category
+     *
+     * @param childrenId the category children id
+     * @param categoryId the category id
+     */
+    void removeChildren(@NotNull long childrenId, @NotNull long categoryId);
 
     /**
      * Get all asset categories
      *
      * @return the list of asset categories
      */
-    List<AssetCategoryEntity> getAllCategories();
+    @Nullable List<AssetCategoryEntity> getAllCategories();
 
 }
