@@ -1,14 +1,14 @@
 <div class="register-form-container">
   <div class="register-form">
 
-    <div class="register-text-container">
-      <h2 class="register-page-title">Register a new user</h2>
-      <h3 class="register-page-error" [hidden]="error.length == 0">
-        {{error}}
-      </h3>
-    </div>
-
     <form class="register-data-form mat-elevation-z2" (ngSubmit)="tryRegister()" #registerForm="ngForm">
+
+      <div class="register-text-container">
+        <h2 class="register-page-title">Register a new user</h2>
+        <h3 class="register-page-error" [hidden]="error.length == 0">
+          {{error}}
+        </h3>
+      </div>
 
       <mat-input-container class="register-data-row">
         <input matInput placeholder="Username" id="username" required minlength="{{minUsernameLength}}"
