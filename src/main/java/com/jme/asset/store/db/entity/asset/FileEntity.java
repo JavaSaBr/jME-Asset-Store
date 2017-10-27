@@ -46,7 +46,7 @@ public class FileEntity extends BaseEntity {
     }
 
     public FileEntity(final long id, @NotNull final String name, @NotNull final Blob content,
-                      @NotNull final UserEntity creator, final @NotNull FileTypeEntity type) {
+                      @NotNull final UserEntity creator, @NotNull final FileTypeEntity type) {
         super(id);
         this.name = name;
         this.content = content;
