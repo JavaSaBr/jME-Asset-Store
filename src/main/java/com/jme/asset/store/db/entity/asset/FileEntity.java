@@ -35,6 +35,9 @@ public class FileEntity extends BaseEntity {
     @JoinColumn(name = "creator_id")
     private UserEntity creator;
 
+    /**
+     * Type of file
+     */
     @OneToOne
     @JoinColumn(name = "type_id", nullable = false)
     private FileTypeEntity type;
@@ -56,8 +59,8 @@ public class FileEntity extends BaseEntity {
      *
      * @return the file name
      */
-    @NotNull
-    public String getName() {
+
+    public @NotNull String getName() {
         return name;
     }
 
@@ -66,7 +69,7 @@ public class FileEntity extends BaseEntity {
      *
      * @param name the file name
      */
-    public void setName(final @NotNull String name) {
+    public void setName(@NotNull final String name) {
         this.name = name;
     }
 
@@ -75,8 +78,8 @@ public class FileEntity extends BaseEntity {
      *
      * @return the content of file
      */
-    @NotNull
-    public Blob getContent() {
+
+    public @NotNull Blob getContent() {
         return content;
     }
 
@@ -85,7 +88,7 @@ public class FileEntity extends BaseEntity {
      *
      * @param content the content of file
      */
-    public void setContent(final @NotNull Blob content) {
+    public void setContent(@NotNull final Blob content) {
         this.content = content;
     }
 
@@ -94,8 +97,8 @@ public class FileEntity extends BaseEntity {
      *
      * @return the file creator
      */
-    @NotNull
-    public UserEntity getCreator() {
+
+    public @NotNull UserEntity getCreator() {
         return creator;
     }
 
@@ -104,7 +107,7 @@ public class FileEntity extends BaseEntity {
      *
      * @param creator the file creator
      */
-    public void setCreator(final @NotNull UserEntity creator) {
+    public void setCreator(@NotNull final UserEntity creator) {
         this.creator = creator;
     }
 
@@ -113,8 +116,8 @@ public class FileEntity extends BaseEntity {
      *
      * @return type
      */
-    @NotNull
-    public FileTypeEntity getType() {
+
+    public @NotNull FileTypeEntity getType() {
         return type;
     }
 
@@ -123,7 +126,7 @@ public class FileEntity extends BaseEntity {
      *
      * @param type file's type
      */
-    public void setType(final @NotNull FileTypeEntity type) {
+    public void setType(@NotNull final FileTypeEntity type) {
         this.type = type;
     }
 }

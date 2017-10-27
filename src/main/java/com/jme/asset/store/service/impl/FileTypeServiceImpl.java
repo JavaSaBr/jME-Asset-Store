@@ -30,9 +30,10 @@ public class FileTypeServiceImpl implements FileTypeService {
     }
 
     @Override
-    public void createType(@NotNull final String name, @NotNull final String mimeType, @NotNull final String extension) {
-        FileTypeEntity type = createFileTypeEntity(name, mimeType, extension);
+    public @NotNull FileTypeEntity createType(@NotNull final String name, @NotNull final String mimeType, @NotNull final String extension) {
+        final FileTypeEntity type = createFileTypeEntity(name, mimeType, extension);
         fileTypeRepository.save(type);
+        return type;
     }
 
     @Override
@@ -41,8 +42,7 @@ public class FileTypeServiceImpl implements FileTypeService {
     }
 
     @Override
-    @Nullable
-    public FileTypeEntity loadType(final long id) {
+    public @Nullable FileTypeEntity loadType(final long id) {
         final Optional<FileTypeEntity> optional = fileTypeRepository.findById(id);
         return optional.isPresent() ? optional.get() : null;
     }
@@ -55,9 +55,9 @@ public class FileTypeServiceImpl implements FileTypeService {
      * @param extension extension
      * @return FileTypeEntity
      */
-    private FileTypeEntity createFileTypeEntity(@NotNull final String name, @NotNull final String mimeType,
-                                                @NotNull final String extension) {
-        FileTypeEntity type = new FileTypeEntity();
+    private @NotNull FileTypeEntity createFileTypeEntity(@NotNull final String name, @NotNull final String mimeType,
+                                                         @NotNull final String extension) {
+        final FileTypeEntity type = new FileTypeEntity();
         type.setName(name);
         type.setMimeType(mimeType);
         type.setExtension(extension);

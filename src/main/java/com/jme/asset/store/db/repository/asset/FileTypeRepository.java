@@ -5,7 +5,7 @@ import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
- * The File types repository
+ * The repository to work with file type entities
  *
  * @author Gomanchuk Mikhail
  */
