@@ -7,6 +7,7 @@ import {RegisterUserCredentials} from '../model/user/register-user-credentials';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
+import {CanActivate} from "@angular/router";
 
 @Injectable()
 export class SecurityService {
@@ -144,6 +145,25 @@ export class SecurityService {
    */
   hasRole(toCheck: string): boolean {
 
+    const currentUser = this._user;
+
+    if (currentUser == null) {
+      return null;
+    }
+
+    const roles = currentUser.roles;
+
+    for (const role of roles) {
+      if (role === toCheck) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  hasRoleAdmin(toCheck: string): boolean {
+    toCheck = SecurityService.ROLE_ADMIN;
     const currentUser = this._user;
 
     if (currentUser == null) {

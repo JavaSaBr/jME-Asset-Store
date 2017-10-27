@@ -1,0 +1,21 @@
+.app-settings-form-container {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.app-settings-mat-button {
+  border-collapse: collapse;
+  border-radius: 2px;
+  border-spacing: 2px;
+  padding: 10px;
+  background-color: white;
+}
+.app-settings-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-settings-page-title {
+  color: #636363;
+  text-align: center;
+}

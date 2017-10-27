@@ -23,14 +23,20 @@ app-root {
   flex: 1 1 100%;
 }
 
-app-login, app-register {
+app-login, app-register,app-settings {
   display: flex;
   flex: 1 1 100%;
   flex-direction: row;
   align-items: center;
   align-content: center;
 }
-
+app-settings {
+  display: inline-table;
+  flex: 1 1 100%;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
 h1, h2, h3 {
   font-weight: 400;
 }
