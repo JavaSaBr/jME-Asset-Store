@@ -28,30 +28,30 @@ public interface AssetCategoryService {
      * @param id the category id
      * @return the asset category
      */
-    @Nullable AssetCategoryEntity load(@NotNull long id);
+    @Nullable AssetCategoryEntity load(long id);
 
     /**
      * Remove asset category by id
      *
      * @param id the category id
      */
-    void removeCategory(@NotNull long id);
+    void removeCategory(long id);
 
     /**
-     * The set children to children of asset category
+     * Add child to children of asset category
      *
-     * @param childrenId the category children id
+     * @param childId    the category child id
      * @param categoryId the category id
      */
-    void setChildren(@NotNull long childrenId, @NotNull long categoryId);
+    void addChild(long categoryId, long childId);
 
     /**
-     * Remove children from children of asset category
+     * Remove child from children of asset category
      *
-     * @param childrenId the category children id
+     * @param childId    the category children id
      * @param categoryId the category id
      */
-    void removeChildren(@NotNull long childrenId, @NotNull long categoryId);
+    void removeChild(long categoryId, long childId);
 
     /**
      * Get all asset categories

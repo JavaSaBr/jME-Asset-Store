@@ -127,23 +127,23 @@ public class AssetCategoryEntity extends BaseEntity {
     /**
      * Add children to children of asset category
      *
-     * @param children the children of asset category
+     * @param child the children of asset category
      */
-    public void addChildren(AssetCategoryEntity children) {
-        if (children != null)
-            this.children.add(children);
+    public void addChild(final AssetCategoryEntity child) {
+        if (child != null)
+            this.children.add(child);
     }
 
     /**
-     * Remove children from list children of asset category
+     * Remove child from list children of asset category
      *
-     * @param children the children of asset category
+     * @param child the child of asset category
      */
-    public void removeChildren(AssetCategoryEntity children) {
-        if (this.children.contains(children))
-            this.children.remove(children);
+    public void removeChild(final AssetCategoryEntity child) {
+        if (this.children.contains(child))
+            this.children.remove(child);
         else {
-            throw new RuntimeException("children doesn't such ");
+            throw new RuntimeException("child doesn't such ");
         }
     }
 }

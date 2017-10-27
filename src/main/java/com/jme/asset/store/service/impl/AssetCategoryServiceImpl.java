@@ -26,16 +26,9 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     @NotNull
     private final AssetCategoryRepository assetCategoryRepository;
 
-    /**
-     * The asset category service.
-     */
-   /* @NotNull
-    private final AssetCategoryService assetCategoryService;*/
     @Autowired
-    public AssetCategoryServiceImpl(@NotNull final AssetCategoryRepository assetCategoryRepository/*,
-                                    @NotNull AssetCategoryService assetCategoryService*/) {
+    public AssetCategoryServiceImpl(@NotNull final AssetCategoryRepository assetCategoryRepository) {
         this.assetCategoryRepository = assetCategoryRepository;
-        //this.assetCategoryService = assetCategoryService;
     }
 
     @Override
@@ -44,43 +37,43 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
         final AssetCategoryEntity category = null;
         category.setName(name);
         category.setDescription(description);
-        //category.setParent(parent);
+        category.setParent(parent);
         assetCategoryRepository.save(category);
     }
 
     @Override
-    public @Nullable AssetCategoryEntity load(@NotNull final long id) {
+    public @Nullable AssetCategoryEntity load(final long id) {
         final Optional<AssetCategoryEntity> categoryEntity = assetCategoryRepository.findById(id);
         return categoryEntity.orElse(null);
     }
 
     @Override
-    public void removeCategory(@NotNull final long id) {
+    public void removeCategory(final long id) {
         assetCategoryRepository.deleteById(id);
     }
 
     @Override
-    public void setChildren(@NotNull final long childrenId, @NotNull final long categoryId) {
+    public void addChild(final long categoryId, final long childId) {
         final Optional<AssetCategoryEntity> category = assetCategoryRepository.findById(categoryId);
-        final Optional<AssetCategoryEntity> children = assetCategoryRepository.findById(childrenId);
+        final Optional<AssetCategoryEntity> child = assetCategoryRepository.findById(childId);
         final AssetCategoryEntity categoryEntity = category.get();
-        final AssetCategoryEntity childrenEntity = children.get();
-        if (categoryEntity == null && childrenEntity == null) {
+        final AssetCategoryEntity childEntity = child.get();
+        if (categoryEntity == null && childEntity == null) {
             throw new NoSuchElementException("no such category");
         }
-        categoryEntity.addChildren(childrenEntity);
+        categoryEntity.addChild(childEntity);
     }
 
     @Override
-    public void removeChildren(@NotNull final long childrenId, @NotNull final long categoryId) {
+    public void removeChild(final long categoryId, final long childId) {
         final Optional<AssetCategoryEntity> category = assetCategoryRepository.findById(categoryId);
-        final Optional<AssetCategoryEntity> children = assetCategoryRepository.findById(childrenId);
+        final Optional<AssetCategoryEntity> child = assetCategoryRepository.findById(childId);
         final AssetCategoryEntity categoryEntity = category.get();
-        final AssetCategoryEntity childrenEntity = children.get();
-        if (categoryEntity == null && childrenEntity == null) {
+        final AssetCategoryEntity childEntity = child.get();
+        if (categoryEntity == null && childEntity == null) {
             throw new NoSuchElementException("no such category");
         }
-        categoryEntity.removeChildren(childrenEntity);
+        categoryEntity.removeChild(childEntity);
     }
 
     @Override

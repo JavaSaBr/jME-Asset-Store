@@ -1,6 +1,5 @@
 package com.jme.asset.store.controller.params;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -21,10 +20,9 @@ public class AssetParam {
     private String name;
 
     /**
-     * The asset category
+     * The asset category id
      */
-    @NotNull
-    private long category;
+    private long categoryId;
 
     /**
      * Get the asset description
@@ -67,16 +65,16 @@ public class AssetParam {
      *
      * @return the category id
      */
-    public @Nullable long getCategory() {
-        return category;
+    public long getCategoryId() {
+        return categoryId;
     }
 
     /**
      * Set the category id
      *
-     * @param category the category id
+     * @param categoryId the category id
      */
-    public void setCategory(@NotNull final long category) {
-        this.category = category;
+    public void setCategoryId(final long categoryId) {
+        this.categoryId = categoryId;
     }
 }
