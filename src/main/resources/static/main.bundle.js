@@ -185,12 +185,15 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_page_register_register_component__ = __webpack_require__("../../../../../src/component/page/register/register.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_page_dashboard_dashboard_component__ = __webpack_require__("../../../../../src/component/page/dashboard/dashboard.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__service_security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__validate_validator_module__ = __webpack_require__("../../../../../src/validate/validator.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -215,9 +218,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8__component_page_login_login_component__["a" /* LoginComponent */],
             __WEBPACK_IMPORTED_MODULE_9__component_page_register_register_component__["a" /* RegisterComponent */],
             __WEBPACK_IMPORTED_MODULE_10__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormControlDirective */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_5__app_routing_app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -225,7 +229,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MatButtonModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatInputModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["d" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatSelectModule */]
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatSelectModule */],
+            __WEBPACK_IMPORTED_MODULE_12__validate_validator_module__["a" /* ValidatorModule */]
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
@@ -538,7 +543,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"_info.login\" name=\"userName\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"First name\" id=\"firstName\"\r\n               [(ngModel)]=\"_info.firstName\" name=\"firstName\"\r\n               #firstName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Last name\" id=\"lastName\"\r\n               [(ngModel)]=\"_info.lastName\" name=\"lastName\"\r\n               #lastName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Middle name\" id=\"middleName\"\r\n               [(ngModel)]=\"_info.middleName\" name=\"middleName\"\r\n               #middleName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Email\" id=\"mail\"\r\n               [(ngModel)]=\"_info.mail\" name=\"mail\"\r\n               #mail=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"_info.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Confirm Password\" type=\"password\" id=\"confirmPassword\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"_info.confirmPassword\"\r\n               name=\"confirmPassword\"\r\n               #confirmPassword=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Choose your role\">\r\n          <mat-option [value] = \"userRole\" (click) = \"leaveOnlyUserRole()\">\r\n           {{userRole}}\r\n          </mat-option>\r\n          <mat-option [value] = \"authorRole\" (click) = \"addAuthorRole()\">\r\n           {{authorRole}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n      <li *ngFor=\"let role of roles\">\r\n        {{role}}\r\n      </li>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n\r\n      <div class=\"register-text-container\">\r\n        <h2 class=\"register-page-title\">Register a new user</h2>\r\n        <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n          {{error}}\r\n        </h3>\r\n      </div>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"_info.login\" name=\"userName\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"First name\" id=\"firstName\"\r\n               [(ngModel)]=\"_info.firstName\" name=\"firstName\"\r\n               #firstName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Last name\" id=\"lastName\"\r\n               [(ngModel)]=\"_info.lastName\" name=\"lastName\"\r\n               #lastName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Middle name\" id=\"middleName\"\r\n               [(ngModel)]=\"_info.middleName\" name=\"middleName\"\r\n               #middleName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Email\" id=\"mail\" [formControl]=\"emailFormControl\"\r\n               [(ngModel)]=\"_info.mail\" name=\"mail\">\r\n        <mat-error *ngIf=\"emailFormControl.hasError('pattern')\">\r\n          Please enter a valid email address\r\n        </mat-error>\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"_info.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Confirm Password\" type=\"password\"\r\n               id=\"confirmPassword\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               equals = \"password\"\r\n               [(ngModel)]=\"_info.confirmPassword\"\r\n               name=\"confirmPassword\"\r\n               #confirmPassword=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Choose your role\">\r\n          <mat-option [value] = \"userRole\" (click) = \"removeAuthorRole()\">\r\n           {{userRole}}\r\n          </mat-option>\r\n          <mat-option [value] = \"authorRole\" (click) = \"addAuthorRole()\">\r\n           {{authorRole}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid || emailFormControl.hasError('pattern')\">Register\r\n      </button>\r\n\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -552,6 +557,7 @@ module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"regi
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__ = __webpack_require__("../../../../../src/model/user/register-user-credentials.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -576,17 +582,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * @author Alex Brui
+ * The components provides sets of methods for user registration and form validation.
+ *
+ * @author Denis Lesheniuk.
  */
+/**
+ * The regexp for email validation.
+ * @type {RegExp}
+ */
+var EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var RegisterComponent = (function (_super) {
     __extends(RegisterComponent, _super);
     function RegisterComponent(security, router) {
         var _this = _super.call(this) || this;
         _this.security = security;
         _this.router = router;
+        /**
+         * The user role field.
+         */
         _this.userRole = "Simple user";
+        /**
+         * The author role field.
+         */
         _this.authorRole = "Author";
+        /**
+         * Validate of email by regexp.
+         * @type {FormControl}
+         */
+        _this.emailFormControl = new __WEBPACK_IMPORTED_MODULE_5__angular_forms__["b" /* FormControl */]('', [
+            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["j" /* Validators */].pattern(EMAIL_REGEX)
+        ]);
         _this.roles = ["USER"];
         _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__["a" /* RegisterUserCredentials */]('', '', '', '', '', '', _this.roles, '');
         _this._error = '';
@@ -615,9 +642,19 @@ var RegisterComponent = (function (_super) {
         });
     };
     Object.defineProperty(RegisterComponent.prototype, "info", {
+        /**
+         * Gets the user info.
+         *
+         * @returns {RegisterUserCredentials}
+         */
         get: function () {
             return this._info;
         },
+        /**
+         * Sets the user info.
+         *
+         * @param {RegisterUserCredentials} value
+         */
         set: function (value) {
             this._info = value;
         },
@@ -625,20 +662,36 @@ var RegisterComponent = (function (_super) {
         configurable: true
     });
     Object.defineProperty(RegisterComponent.prototype, "error", {
+        /**
+         * Gets the error.
+         *
+         * @returns {string}
+         */
         get: function () {
             return this._error;
         },
+        /**
+         * Sets the error.
+         *
+         * @param {string} value
+         */
         set: function (value) {
             this._error = value;
         },
         enumerable: true,
         configurable: true
     });
+    /**
+     * Adds author role to the user's list of roles.
+     */
     RegisterComponent.prototype.addAuthorRole = function () {
         if (!this.roles.includes("AUTHOR"))
             this.roles.push("AUTHOR");
     };
-    RegisterComponent.prototype.leaveOnlyUserRole = function () {
+    /**
+     * Remove author role from user's list of roles.
+     */
+    RegisterComponent.prototype.removeAuthorRole = function () {
         if (this.roles.includes("AUTHOR")) {
             var index = this.roles.indexOf("AUTHOR");
             this.roles.splice(index, 1);
@@ -1064,6 +1117,118 @@ var Utils = (function () {
 }());
 
 //# sourceMappingURL=utils.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/validate/equalsValidatorDerective.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EqualsValidatorDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var EqualsValidatorDirective = EqualsValidatorDirective_1 = (function () {
+    /**
+     * The implementation of {@link Validator} interface
+     * provides method for custom form validation.
+     *
+     * @author Denis Lesheniuk.
+     */
+    function EqualsValidatorDirective() {
+    }
+    /**
+     * The implementation of custom validation for
+     * comparing values of two fields .
+     *
+     * @param {AbstractControl} control is the form control.
+     * @returns {{[p: string]: any}} null if form is valid, if not - validation error.
+     */
+    EqualsValidatorDirective.prototype.validate = function (control) {
+        var value = control.value;
+        var parent = control.parent;
+        var targetControl = parent.get(this.equals);
+        if (targetControl == null)
+            return null;
+        var result = value === targetControl.value;
+        return result ? null : { this: { value: value } };
+    };
+    return EqualsValidatorDirective;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", String)
+], EqualsValidatorDirective.prototype, "equals", void 0);
+EqualsValidatorDirective = EqualsValidatorDirective_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
+        selector: '[equals]',
+        providers: [{
+                provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALIDATORS */],
+                useExisting: EqualsValidatorDirective_1,
+                multi: true
+            }]
+    })
+    /**
+     * The implementation of {@link Validator} interface
+     * provides method for custom form validation.
+     *
+     * @author Denis Lesheniuk.
+     */
+], EqualsValidatorDirective);
+
+var EqualsValidatorDirective_1;
+//# sourceMappingURL=equalsValidatorDerective.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/validate/validator.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ValidatorModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalsValidatorDerective__ = __webpack_require__("../../../../../src/validate/equalsValidatorDerective.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ValidatorModule = (function () {
+    function ValidatorModule() {
+    }
+    return ValidatorModule;
+}());
+ValidatorModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]
+        ],
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__equalsValidatorDerective__["a" /* EqualsValidatorDirective */],
+        ],
+        exports: [
+            __WEBPACK_IMPORTED_MODULE_2__equalsValidatorDerective__["a" /* EqualsValidatorDirective */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]
+        ]
+    })
+], ValidatorModule);
+
+//# sourceMappingURL=validator.module.js.map
 
 /***/ }),
 

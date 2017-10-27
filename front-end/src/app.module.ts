@@ -12,6 +12,8 @@ import {RegisterComponent} from "./component/page/register/register.component";
 import {DashboardComponent} from "./component/page/dashboard/dashboard.component";
 import {SecurityService} from "./service/security.service";
 import { FormControlDirective } from '@angular/forms';
+import {ValidatorModule} from "./validate/validator.module";
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { FormControlDirective } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    FormControlDirective
+    FormControlDirective,
   ],
   imports: [
     FormsModule,
@@ -30,7 +32,8 @@ import { FormControlDirective } from '@angular/forms';
     MatButtonModule,
     MatInputModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    ValidatorModule
   ],
   providers: [SecurityService],
   bootstrap: [AppComponent]

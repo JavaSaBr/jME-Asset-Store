@@ -1,6 +1,5 @@
 <div class="register-form-container">
   <div class="register-form">
-
     <form class="register-data-form mat-elevation-z2" (ngSubmit)="tryRegister()" #registerForm="ngForm">
 
       <div class="register-text-container">
@@ -52,8 +51,10 @@
       </mat-input-container>
 
       <mat-input-container class="register-data-row">
-        <input matInput placeholder="Confirm Password" type="password" id="confirmPassword" required minlength="{{minPasswordLength}}"
+        <input matInput placeholder="Confirm Password" type="password"
+               id="confirmPassword" required minlength="{{minPasswordLength}}"
                maxlength="{{maxPasswordLength}}"
+               equals = "password"
                [(ngModel)]="_info.confirmPassword"
                name="confirmPassword"
                #confirmPassword="ngModel">
@@ -61,7 +62,7 @@
 
       <mat-form-field>
         <mat-select placeholder="Choose your role">
-          <mat-option [value] = "userRole" (click) = "leaveOnlyUserRole()">
+          <mat-option [value] = "userRole" (click) = "removeAuthorRole()">
            {{userRole}}
           </mat-option>
           <mat-option [value] = "authorRole" (click) = "addAuthorRole()">

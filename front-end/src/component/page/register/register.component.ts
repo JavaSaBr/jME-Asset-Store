@@ -1,14 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {PageComponent} from '../../page.component';
 import {SecurityService} from '../../../service/security.service';
 import {Router} from '@angular/router';
 import {RegisterUserCredentials} from "../../../model/user/register-user-credentials";
 import {FormControl, Validators} from '@angular/forms';
+import {EqualsValidatorDirective} from "../../../validate/equalsValidatorDerective";
+
 /**
- * @author Alex Brui
+ * The components provides sets of methods for user registration and form validation.
+ *
+ * @author Denis Lesheniuk.
  */
 
+/**
+ * The regexp for email validation.
+ * @type {RegExp}
+ */
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 @Component({
   moduleId: module.id,
   selector: 'app-register',
@@ -17,7 +26,6 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 })
 export class RegisterComponent extends PageComponent{
 
-
   /**
    * The user role field.
    */
@@ -25,7 +33,6 @@ export class RegisterComponent extends PageComponent{
 
   /**
    * The author role field.
-   * @type {string}
    */
   private authorRole: string = "Author";
 
@@ -74,24 +81,44 @@ export class RegisterComponent extends PageComponent{
     });
   }
 
+  /**
+   * Gets the user info.
+   *
+   * @returns {RegisterUserCredentials}
+   */
   get info(): RegisterUserCredentials {
     return this._info;
   }
 
+  /**
+   * Sets the user info.
+   *
+   * @param {RegisterUserCredentials} value
+   */
   set info(value: RegisterUserCredentials) {
     this._info = value;
   }
 
+  /**
+   * Gets the error.
+   *
+   * @returns {string}
+   */
   get error(): string {
     return this._error;
   }
 
+  /**
+   * Sets the error.
+   *
+   * @param {string} value
+   */
   set error(value: string) {
     this._error = value;
   }
 
   /**
-   * Adds author role to the roles list.
+   * Adds author role to the user's list of roles.
    */
   addAuthorRole(){
     if(!this.roles.includes("AUTHOR"))
@@ -99,9 +126,9 @@ export class RegisterComponent extends PageComponent{
   }
 
   /**
-   * Leave only user role in the roles list.
+   * Remove author role from user's list of roles.
    */
-  leaveOnlyUserRole(){
+  removeAuthorRole(){
     if(this.roles.includes("AUTHOR")){
      var index = this.roles.indexOf("AUTHOR");
        this.roles.splice(index, 1);
@@ -117,8 +144,5 @@ export class RegisterComponent extends PageComponent{
 
   ]);
 
-  confirmPasswordControll = new FormControl('', [
-
-  ])
 }
 
