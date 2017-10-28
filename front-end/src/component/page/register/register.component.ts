@@ -6,6 +6,7 @@ import {RegisterUserCredentials} from "../../../model/user/register-user-credent
 import {FormControl, Validators} from '@angular/forms';
 import {EqualsValidatorDirective} from "../../../validate/equalsValidatorDerective";
 
+
 /**
  * The components provides sets of methods for user registration and form validation.
  *
@@ -104,7 +105,7 @@ export class RegisterComponent extends PageComponent{
    *
    * @returns {string}
    */
-  get error(): string {
+  get error(): string{
     return this._error;
   }
 

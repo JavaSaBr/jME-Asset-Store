@@ -930,7 +930,7 @@ var SecurityService = SecurityService_1 = (function () {
             _this._authProperty.next(true);
             handler(null, true);
         })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessage(error, function (ex) { return handler(ex, false); }); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
     };
     /**
      * The function to register a user in the system.
@@ -942,7 +942,7 @@ var SecurityService = SecurityService_1 = (function () {
         this.http.post(SecurityService_1.REGISTER_URL, credentials)
             .toPromise()
             .then(function (response) { return handler(null, true); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessage(error, function (ex) { return handler(ex, false); }); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
     };
     /**
      * Add an access token to header of the request options.
@@ -1105,6 +1105,27 @@ var Utils = (function () {
         var errMsg;
         if (error instanceof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Response */]) {
             errMsg = error.text();
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        handler(errMsg);
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].throw(errMsg);
+    };
+    /**
+     * The method to handle an error from http request.
+     *
+     * @param error the error from the Json obj.
+     * @param handler the error message consumer.
+     * @returns {ErrorObservable}
+     */
+    Utils.handleErrorMessageJson = function (error, handler) {
+        // In a real world app, you might use a remote logging infrastructure
+        var errMsg;
+        if (error instanceof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Response */]) {
+            var body = error.json();
+            errMsg = body.message;
         }
         else {
             errMsg = error.message ? error.message : error.toString();

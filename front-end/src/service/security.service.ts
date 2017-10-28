@@ -66,7 +66,7 @@ export class SecurityService {
         this._authProperty.next(true);
         handler(null, true);
       })
-      .catch(error => Utils.handleErrorMessage(error, (ex: string) => handler(ex, false)));
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
   /**
@@ -79,7 +79,7 @@ export class SecurityService {
     this.http.post(SecurityService.REGISTER_URL, credentials)
       .toPromise()
       .then(response => handler(null, true))
-      .catch(error => Utils.handleErrorMessage(error, (ex: string) => handler(ex, false)));
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
   /**

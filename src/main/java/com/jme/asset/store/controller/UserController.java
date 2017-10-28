@@ -1,7 +1,6 @@
 package com.jme.asset.store.controller;
 
 import static org.springframework.http.ResponseEntity.*;
-
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -13,10 +12,10 @@ import com.jme.asset.store.db.entity.token.AccessTokenEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AccessTokenService;
-import com.jme.asset.store.service.RoleService;
 import com.jme.asset.store.service.UserService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -88,11 +86,6 @@ public class UserController {
         final String login = userParams.getLogin();
         final String password = userParams.getPassword();
         final List<String> roles = userParams.getRoles();
-
-        if (login == null || password == null || roles == null) {
-            return status(HttpStatus.BAD_REQUEST).body("The fields login, password and role couldn't be null!");
-        }
-
         final String firstName = userParams.getFirstName();
         final String middleName = userParams.getMiddleName();
         final String lastName = userParams.getLastName();
@@ -104,7 +97,10 @@ public class UserController {
                 user.setMail(mail);
                 user.setLastName(lastName);
             });
+        }catch (DataIntegrityViolationException e){
+            return status(HttpStatus.CONFLICT).body(new ErrorResponse("User with login " + login + " is already exist. Please choose another login!"));
         } catch (final RuntimeException e) {
+            e.printStackTrace();
             return status(HttpStatus.CONFLICT).body(new ErrorResponse(e.getLocalizedMessage()));
         }
 
@@ -125,9 +121,6 @@ public class UserController {
 
         final String userName = params.getLogin();
         final String password = params.getPassword();
-        if (userName == null || password == null) {
-            return badRequest().body("Please, check the fields login, password, they couldn't be null !");
-        }
 
         final Authentication authenticationToken =
                 new UsernamePasswordAuthenticationToken(params.getLogin(), params.getPassword());
