@@ -3,22 +3,12 @@ import {PageComponent} from '../../page.component';
 import {SecurityService} from '../../../service/security.service';
 import {Router} from '@angular/router';
 import {RegisterUserCredentials} from "../../../model/user/register-user-credentials";
-import {FormControl, Validators} from '@angular/forms';
-import {EqualsValidatorDirective} from "../../../validate/equalsValidatorDerective";
-
 
 /**
- * The components provides sets of methods for user registration and form validation.
+ * The components provides sets of methods for user registration.
  *
- * @author Denis Lesheniuk.
+ * @author Alex Brui
  */
-
-/**
- * The regexp for email validation.
- * @type {RegExp}
- */
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 @Component({
   moduleId: module.id,
   selector: 'app-register',
@@ -75,7 +65,6 @@ export class RegisterComponent extends PageComponent{
         this._info.mail = '';
         this._info.confirmPassword = '';
         this.router.navigateByUrl('/login');
-
       } else {
         this._error = message;
       }
@@ -135,15 +124,5 @@ export class RegisterComponent extends PageComponent{
        this.roles.splice(index, 1);
     }
   }
-
-  /**
-   * Validate of email by regexp.
-   * @type {FormControl}
-   */
-  emailFormControl = new FormControl('', [
-    Validators.pattern(EMAIL_REGEX)
-
-  ]);
-
 }
 

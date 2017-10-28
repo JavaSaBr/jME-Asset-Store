@@ -1,47 +1,38 @@
 <div class="register-form-container">
   <div class="register-form">
     <form class="register-data-form mat-elevation-z2" (ngSubmit)="tryRegister()" #registerForm="ngForm">
-
       <div class="register-text-container">
         <h2 class="register-page-title">Register a new user</h2>
         <h3 class="register-page-error" [hidden]="error.length == 0">
           {{error}}
         </h3>
       </div>
-
       <mat-input-container class="register-data-row">
         <input matInput placeholder="Username" id="username" required minlength="{{minUsernameLength}}"
                maxlength="{{maxUsernameLength}}"
                [(ngModel)]="_info.login" name="userName"
                #name="ngModel">
       </mat-input-container>
-
       <mat-input-container class="register-data-row">
         <input matInput placeholder="First name" id="firstName"
                [(ngModel)]="_info.firstName" name="firstName"
                #firstName="ngModel">
       </mat-input-container>
-
       <mat-input-container class="register-data-row">
         <input matInput placeholder="Last name" id="lastName"
                [(ngModel)]="_info.lastName" name="lastName"
                #lastName="ngModel">
       </mat-input-container>
-
       <mat-input-container class="register-data-row">
         <input matInput placeholder="Middle name" id="middleName"
                [(ngModel)]="_info.middleName" name="middleName"
                #middleName="ngModel">
       </mat-input-container>
-
       <mat-input-container class="register-data-row">
-        <input matInput placeholder="Email" id="mail" [formControl]="emailFormControl"
-               [(ngModel)]="_info.mail" name="mail">
-        <mat-error *ngIf="emailFormControl.hasError('pattern')">
-          Please enter a valid email address
-        </mat-error>
+        <input matInput placeholder="Email" type="email" id="mail" required isEmail
+               [(ngModel)]="_info.mail" name="mail"
+               #mail = "ngModel">
       </mat-input-container>
-
       <mat-input-container class="register-data-row">
         <input matInput placeholder="Password" type="password" id="password" required minlength="{{minPasswordLength}}"
                maxlength="{{maxPasswordLength}}"
@@ -49,7 +40,6 @@
                name="password"
                #password="ngModel">
       </mat-input-container>
-
       <mat-input-container class="register-data-row">
         <input matInput placeholder="Confirm Password" type="password"
                id="confirmPassword" required minlength="{{minPasswordLength}}"
@@ -59,7 +49,6 @@
                name="confirmPassword"
                #confirmPassword="ngModel">
       </mat-input-container>
-
       <mat-form-field>
         <mat-select placeholder="Choose your role">
           <mat-option [value] = "userRole" (click) = "removeAuthorRole()">
@@ -70,11 +59,9 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
       <button class="register-data-row register-button" type="submit" mat-raised-button color="primary"
-              [disabled]="!registerForm.form.valid || emailFormControl.hasError('pattern')">Register
+              [disabled]="!registerForm.form.valid">Register
       </button>
-
     </form>
   </div>
 </div>

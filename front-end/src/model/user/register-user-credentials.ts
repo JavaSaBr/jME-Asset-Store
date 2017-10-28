@@ -3,7 +3,7 @@ import {UserCredentials} from './user-credentials';
 /**
  * The information to register a new user.
  *
- * @author JavaSaBr
+ * @author Alex Brui
  */
 export class RegisterUserCredentials extends UserCredentials {
 
@@ -36,7 +36,6 @@ export class RegisterUserCredentials extends UserCredentials {
    * The user confirm password.
    */
   confirmPassword: string;
-
 
   constructor(login: string, password: string, userName: string, lastName: string, middleName: string, mail: string, roles: string[], confirmPassword: string) {
     super(login, password);
