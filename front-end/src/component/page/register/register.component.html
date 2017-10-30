@@ -51,11 +51,11 @@
       </mat-input-container>
       <mat-form-field>
         <mat-select placeholder="Choose your role">
-          <mat-option [value] = "userRole" (click) = "removeAuthorRole()">
-           {{userRole}}
+          <mat-option [value] = "_userRole" (click) = "removeAuthorRole()">
+           {{_userRole}}
           </mat-option>
-          <mat-option [value] = "authorRole" (click) = "addAuthorRole()">
-           {{authorRole}}
+          <mat-option [value] = "_authorRole" (click) = "addAuthorRole()">
+           {{_authorRole}}
           </mat-option>
         </mat-select>
       </mat-form-field>

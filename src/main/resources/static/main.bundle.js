@@ -98,7 +98,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\r\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\r\n  </button>\r\n  <span class=\"app-toolbar-filler\"></span>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Login\r\n  </button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/register\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Register\r\n  </button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\r\n</mat-toolbar>\r\n<div class=\"root-content\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\n  </button>\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">Login\n  </button>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/register\"\n          routerLinkActive=\"m-toolbar-button-active\">Register\n  </button>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n\n"
 
 /***/ }),
 
@@ -362,7 +362,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n"
+module.exports = "<p>\n  dashboard works!\n</p>\n"
 
 /***/ }),
 
@@ -425,7 +425,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.login-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 64px;\r\n}\r\n\r\n.login-form {\r\n}\r\n\r\n.login-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.login-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.login-button {\r\n  width: 100%;\r\n}\r\n\r\n.login-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.login-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.login-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
+exports.push([module.i, "\n.login-form-container {\n  width: 400px;\n  margin: 0 auto;\n  margin-top: 64px;\n}\n\n.login-form {\n}\n\n.login-data-form {\n  border-collapse: collapse;\n  border-radius: 2px;\n  border-spacing: 0px;\n  padding: 10px;\n  background-color: white;\n}\n\n.login-data-row {\n  width: 100%;\n  display: block;\n  margin-top: 40px;\n  margin-bottom: 20px;\n}\n\n.login-button {\n  width: 100%;\n}\n\n.login-page-title {\n  color: #636363;\n  text-align: center;\n}\n\n.login-page-error {\n  color: #ff002b;\n  text-align: center;\n  margin-top: 10px;\n}\n\n.login-text-container {\n  margin-bottom: 50px;\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -438,7 +438,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-form-container\">\r\n  <div class=\"login-form\">\r\n\r\n    <div class=\"login-text-container\">\r\n      <h2 class=\"login-page-title\">Authentication</h2>\r\n      <h3 class=\"login-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"login-data-form mat-elevation-z2\" (ngSubmit)=\"tryAuth()\" #userForm=\"ngForm\">\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"credentials.login\" name=\"name\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"credentials.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n      <button class=\"login-data-row login-button\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!userForm.form.valid\">Login\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"login-form-container\">\n  <div class=\"login-form\">\n\n    <div class=\"login-text-container\">\n      <h2 class=\"login-page-title\">Authentication</h2>\n      <h3 class=\"login-page-error\" [hidden]=\"error.length == 0\">\n        {{error}}\n      </h3>\n    </div>\n\n    <form class=\"login-data-form mat-elevation-z2\" (ngSubmit)=\"tryAuth()\" #userForm=\"ngForm\">\n      <mat-input-container class=\"login-data-row\">\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\n               maxlength=\"{{maxUsernameLength}}\"\n               [(ngModel)]=\"credentials.login\" name=\"name\"\n               #name=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"login-data-row\">\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\n               maxlength=\"{{maxPasswordLength}}\"\n               [(ngModel)]=\"credentials.password\"\n               name=\"password\"\n               #password=\"ngModel\">\n      </mat-input-container>\n      <button class=\"login-data-row login-button\" mat-raised-button color=\"primary\"\n              [disabled]=\"!userForm.form.valid\">Login\n      </button>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -530,7 +530,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.register-form-container {\r\n  width: 500px;\r\n  margin: 0 auto;\r\n  margin-top: 64px;\r\n}\r\n\r\n.register-form {\r\n}\r\n\r\n.register-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.register-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 20px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.register-button {\r\n  width: 100%;\r\n}\r\n\r\n.register-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.register-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
+exports.push([module.i, "\n.register-form-container {\n  width: 500px;\n  margin: 0 auto;\n  margin-top: 64px;\n}\n\n.register-form {\n}\n\n.register-data-form {\n  border-collapse: collapse;\n  border-radius: 2px;\n  border-spacing: 0px;\n  padding: 10px;\n  background-color: white;\n}\n\n.register-data-row {\n  width: 100%;\n  display: block;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.register-button {\n  width: 100%;\n}\n\n.register-page-title {\n  color: #636363;\n  text-align: center;\n}\n\n.register-page-error {\n  color: #ff002b;\n  text-align: center;\n  margin-top: 10px;\n}\n\n.register-text-container {\n  margin-bottom: 50px;\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -543,7 +543,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n\r\n      <div class=\"register-text-container\">\r\n        <h2 class=\"register-page-title\">Register a new user</h2>\r\n        <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n          {{error}}\r\n        </h3>\r\n      </div>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"_info.login\" name=\"userName\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"First name\" id=\"firstName\"\r\n               [(ngModel)]=\"_info.firstName\" name=\"firstName\"\r\n               #firstName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Last name\" id=\"lastName\"\r\n               [(ngModel)]=\"_info.lastName\" name=\"lastName\"\r\n               #lastName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Middle name\" id=\"middleName\"\r\n               [(ngModel)]=\"_info.middleName\" name=\"middleName\"\r\n               #middleName=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Email\" type=\"email\" id=\"mail\" required isEmail\r\n               [(ngModel)]=\"_info.mail\" name=\"mail\"\r\n               #mail = \"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"_info.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-input-container class=\"register-data-row\">\r\n        <input matInput placeholder=\"Confirm Password\" type=\"password\"\r\n               id=\"confirmPassword\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               equals = \"password\"\r\n               [(ngModel)]=\"_info.confirmPassword\"\r\n               name=\"confirmPassword\"\r\n               #confirmPassword=\"ngModel\">\r\n      </mat-input-container>\r\n\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Choose your role\">\r\n          <mat-option [value] = \"userRole\" (click) = \"removeAuthorRole()\">\r\n           {{userRole}}\r\n          </mat-option>\r\n          <mat-option [value] = \"authorRole\" (click) = \"addAuthorRole()\">\r\n           {{authorRole}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n\r\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n\r\n    </form>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"register-form-container\">\n  <div class=\"register-form\">\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\n      <div class=\"register-text-container\">\n        <h2 class=\"register-page-title\">Register a new user</h2>\n        <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\n          {{error}}\n        </h3>\n      </div>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\n               maxlength=\"{{maxUsernameLength}}\"\n               [(ngModel)]=\"_info.login\" name=\"userName\"\n               #name=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"First name\" id=\"firstName\"\n               [(ngModel)]=\"_info.firstName\" name=\"firstName\"\n               #firstName=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Last name\" id=\"lastName\"\n               [(ngModel)]=\"_info.lastName\" name=\"lastName\"\n               #lastName=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Middle name\" id=\"middleName\"\n               [(ngModel)]=\"_info.middleName\" name=\"middleName\"\n               #middleName=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Email\" type=\"email\" id=\"mail\" required isEmail\n               [(ngModel)]=\"_info.mail\" name=\"mail\"\n               #mail = \"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\n               maxlength=\"{{maxPasswordLength}}\"\n               [(ngModel)]=\"_info.password\"\n               name=\"password\"\n               #password=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Confirm Password\" type=\"password\"\n               id=\"confirmPassword\" required minlength=\"{{minPasswordLength}}\"\n               maxlength=\"{{maxPasswordLength}}\"\n               equals = \"password\"\n               [(ngModel)]=\"_info.confirmPassword\"\n               name=\"confirmPassword\"\n               #confirmPassword=\"ngModel\">\n      </mat-input-container>\n      <mat-form-field>\n        <mat-select placeholder=\"Choose your role\">\n          <mat-option [value] = \"_userRole\" (click) = \"removeAuthorRole()\">\n           {{_userRole}}\n          </mat-option>\n          <mat-option [value] = \"_authorRole\" (click) = \"addAuthorRole()\">\n           {{_authorRole}}\n          </mat-option>\n        </mat-select>\n      </mat-form-field>\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\n              [disabled]=\"!registerForm.form.valid\">Register\n      </button>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -557,6 +557,7 @@ module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"regi
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__ = __webpack_require__("../../../../../src/model/user/register-user-credentials.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_user_roles__ = __webpack_require__("../../../../../src/util/user-roles.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -581,6 +582,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * The components provides sets of methods for user registration.
  *
@@ -595,13 +597,13 @@ var RegisterComponent = (function (_super) {
         /**
          * The user role field.
          */
-        _this.userRole = "Simple user";
+        _this._userRole = "Simple user";
         /**
          * The author role field.
          */
-        _this.authorRole = "Author";
-        _this.roles = ["USER"];
-        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__["a" /* RegisterUserCredentials */]('', '', '', '', '', '', _this.roles, '');
+        _this._authorRole = "Author";
+        _this._roles = [__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].USER_ROLE];
+        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__["a" /* RegisterUserCredentials */]('', '', '', '', '', '', _this._roles, '');
         _this._error = '';
         return _this;
     }
@@ -668,19 +670,19 @@ var RegisterComponent = (function (_super) {
         configurable: true
     });
     /**
-     * Adds author role to the user's list of roles.
+     * Adds author role to the user's list of _roles.
      */
     RegisterComponent.prototype.addAuthorRole = function () {
-        if (!this.roles.includes("AUTHOR"))
-            this.roles.push("AUTHOR");
+        if (!this._roles.includes(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE))
+            this._roles.push(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE);
     };
     /**
-     * Remove author role from user's list of roles.
+     * Remove author role from user's list of _roles.
      */
     RegisterComponent.prototype.removeAuthorRole = function () {
-        if (this.roles.includes("AUTHOR")) {
-            var index = this.roles.indexOf("AUTHOR");
-            this.roles.splice(index, 1);
+        if (this._roles.includes(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE)) {
+            var index = this._roles.indexOf(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE);
+            this._roles.splice(index, 1);
         }
     };
     return RegisterComponent;
@@ -1064,6 +1066,26 @@ RouteList.PAGE_REGISTER = 'register';
 
 /***/ }),
 
+/***/ "../../../../../src/util/user-roles.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserRoles; });
+/**
+ * The class with the all authors roles.
+ */
+var UserRoles = (function () {
+    function UserRoles() {
+    }
+    return UserRoles;
+}());
+
+UserRoles.USER_ROLE = "USER";
+UserRoles.AUTHOR_ROLE = "AUTHOR";
+//# sourceMappingURL=user-roles.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/util/utils.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1149,7 +1171,7 @@ var EmailValidatorDirective = EmailValidatorDirective_1 = (function () {
     function EmailValidatorDirective() {
     }
     /**
-     * The implementation of custom validation for validate.
+     * The implementation of custom validation for email validate.
      *
      * @param {AbstractControl} control
      * @returns {{[p: string]: any}} null if form is valid, if not - validation error.

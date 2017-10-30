@@ -3,6 +3,7 @@ import {PageComponent} from '../../page.component';
 import {SecurityService} from '../../../service/security.service';
 import {Router} from '@angular/router';
 import {RegisterUserCredentials} from "../../../model/user/register-user-credentials";
+import {UserRoles} from "../../../util/user-roles";
 
 /**
  * The components provides sets of methods for user registration.
@@ -20,17 +21,17 @@ export class RegisterComponent extends PageComponent{
   /**
    * The user role field.
    */
-  private userRole: string = "Simple user";
+  private _userRole: string = "Simple user";
 
   /**
    * The author role field.
    */
-  private authorRole: string = "Author";
+  private _authorRole: string = "Author";
 
   /**
-   * The user roles.
+   * The user _roles.
    */
-  private roles: string [];
+  private _roles: string [];
 
   /**
    * The current register user info.
@@ -45,8 +46,8 @@ export class RegisterComponent extends PageComponent{
   constructor(private readonly security: SecurityService,
               private readonly router: Router) {
     super();
-    this.roles = ["USER"];
-    this._info = new RegisterUserCredentials('', '', '', '', '', '', this.roles, '');
+    this._roles = [UserRoles.USER_ROLE];
+    this._info = new RegisterUserCredentials('', '', '', '', '', '', this._roles, '');
     this._error = '';
   }
 
@@ -108,20 +109,20 @@ export class RegisterComponent extends PageComponent{
   }
 
   /**
-   * Adds author role to the user's list of roles.
+   * Adds author role to the user's list of _roles.
    */
   addAuthorRole(){
-    if(!this.roles.includes("AUTHOR"))
-      this.roles.push("AUTHOR");
+    if(!this._roles.includes(UserRoles.AUTHOR_ROLE))
+      this._roles.push(UserRoles.AUTHOR_ROLE);
   }
 
   /**
-   * Remove author role from user's list of roles.
+   * Remove author role from user's list of _roles.
    */
   removeAuthorRole(){
-    if(this.roles.includes("AUTHOR")){
-     var index = this.roles.indexOf("AUTHOR");
-       this.roles.splice(index, 1);
+    if(this._roles.includes(UserRoles.AUTHOR_ROLE)){
+     var index = this._roles.indexOf(UserRoles.AUTHOR_ROLE);
+       this._roles.splice(index, 1);
     }
   }
 }
