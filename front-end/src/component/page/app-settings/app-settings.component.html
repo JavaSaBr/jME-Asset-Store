@@ -1,52 +1,40 @@
 <div class="app-settings-form-container" *ngIf="!hasRoleAdmin">
-  <button class="app-settings-mat-button" class="app-settings-page-title" mat-button
-          [matMenuTriggerFor]="generalSettings">General settings
+  <button class="app-settings-page-title" mat-button [matMenuTriggerFor]="generalSettings">General settings
   </button>
   <mat-menu #generalSettings="matMenu">
-    <button class="app-setting-mat-menu-item" mat-menu-item
-            [matMenuTriggerFor]="appSettings">Application settings
+    <button class="app-settings-page-title" mat-menu-item [matMenuTriggerFor]="appSettings">Application settings
     </button>
-    <button class="app-settings-mat-button" class="app-settings-page-title" mat-menu-item
-            [matMenuTriggerFor]="userSettings">User's settings
+    <button class="app-settings-page-title" mat-menu-item [matMenuTriggerFor]="userSettings">User's settings
     </button>
   </mat-menu>
   <mat-menu #appSettings="matMenu">
-    <button class="app-settings-mat-button app-settings-page-title" mat-menu-item [matMenuTriggerFor]="soundSettings">
-      Sound settings
+    <button class="app-settings-page-title" mat-menu-item [matMenuTriggerFor]="soundSettings"> Sound settings
     </button>
-    <button class="app-settings-mat-button" mat-menu-item [matMenuTriggerFor]="videoSettings">Video settings</button>
-    <button class="app-settings-mat-button" mat-menu-item [matMenuTriggerFor]="downloadsettings">Download settings
-    </button>
-    <button class="app-settings-mat-button" mat-menu-item>Custom settings</button>
-    <button class="app-settings-mat-button" mat-menu-item>FAQ</button>
+    <button mat-menu-item [matMenuTriggerFor]="videoSettings">Video settings</button>
+    <button mat-menu-item [matMenuTriggerFor]="downloadsettings">Download settings</button>
+    <button mat-menu-item>Custom settings</button>
+    <button mat-menu-item>FAQ</button>
   </mat-menu>
   <mat-menu #userSettings="matMenu">
-    <button class="app-settings-mat-button" mat-menu-item>Insects</button>
-    <button class="app-settings-mat-button" mat-menu-item>Molluscs</button>
-    <button class="app-settings-mat-button" mat-menu-item>Crustaceans</button>
-    <button class="app-settings-mat-button" mat-menu-item>Corals</button>
-    <button class="app-settings-mat-button" mat-menu-item>Arachnids</button>
-    <button class="app-settings-mat-button" mat-menu-item>Velvet worms</button>
-    <button class="app-settings-mat-button" mat-menu-item>Horseshoe crabs</button>
+    <button mat-menu-item>Insects</button>
+    <button mat-menu-item>Molluscs</button>
+    <button mat-menu-item>Crustaceans</button>
   </mat-menu>
   <mat-menu #soundSettings="matMenu">
-    <button class="app-settings-mat-button" mat-menu-item>Baikal oilfish</button>
-    <button class="app-settings-mat-button" mat-menu-item>Bala shark</button>
-    <button class="app-settings-mat-button" mat-menu-item>Ballan wrasse</button>
-    <button class="app-settings-mat-button" mat-menu-item>Bamboo shark</button>
-    <button class="app-settings-mat-button" mat-menu-item>Banded killifish</button>
+    <button mat-menu-item>Baikal oilfish</button>
+    <button mat-menu-item>Bala shark</button>
   </mat-menu>
   <mat-menu #videoSettings="matMenu">
-    <button class="app-settings-mat-button" mat-menu-item>Sonoran desert toad</button>
-    <button class="app-settings-mat-button" mat-menu-item>Western toad</button>
-    <button class="app-settings-mat-button" mat-menu-item>Arroyo toad</button>
-    <button class="app-settings-mat-button" mat-menu-item>Yosemite toad</button>
+    <button mat-menu-item>Sonoran desert toad</button>
+    <button mat-menu-item>Western toad</button>
   </mat-menu>
   <mat-menu #downloadsettings="matMenu">
-    <button class="app-settings-mat-button" mat-menu-item>Banded Day Gecko</button>
-    <button class="app-settings-mat-button" mat-menu-item>Banded Gila Monster</button>
-    <button class="app-settings-mat-button" mat-menu-item>Black Tree Monitor</button>
-    <button class="app-settings-mat-button" mat-menu-item>Blue Spiny Lizard</button>
-    <button class="app-settings-mat-button" mat-menu-item disabled>Velociraptor</button>
+    <button mat-menu-item>Banded Day Gecko</button>
+    <button mat-menu-item>Blue Spiny Lizard</button>
+    <button mat-menu-item disabled>Velociraptor</button>
   </mat-menu>
+  <mat-paginator [length]="100"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 </div>

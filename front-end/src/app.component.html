@@ -9,7 +9,7 @@
   <button mat-button class="m-toolbar-button" *ngIf="!authed" routerLink="/register"
           routerLinkActive="m-toolbar-button-active">Register
   </button>
-  <button mat-button class="mat-toolbar-button" *ngIf="!hasRoleAdmin" routerLink="/appsettings" routerLinkActive="hasRoleAdmin()">
+  <button mat-button class="mat-toolbar-button" *ngIf="!hasRoleAdmin" routerLink="/app-settings" routerLinkActive="hasRoleAdmin()">
     App settings</button>
   <button mat-button class="m-toolbar-button" *ngIf="authed" routerLink="/" (click)="logout()">Logout</button>
 </mat-toolbar>

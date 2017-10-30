@@ -10,7 +10,8 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "JMonkeyAssetStoreLogo.png"
+        "JMonkeyAssetStoreLogo.png",
+        "JMonkeyAssetStoreLogo-01.png"
       ],
       "index": "index.html",
       "main": "main.ts",
