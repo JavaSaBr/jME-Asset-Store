@@ -98,7 +98,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\n  </button>\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">Login\n  </button>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/register\"\n          routerLinkActive=\"m-toolbar-button-active\">Register\n  </button>\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\r\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\r\n  </button>\r\n  <span class=\"app-toolbar-filler\"></span>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Login\r\n  </button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/register\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Register\r\n  </button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\r\n</mat-toolbar>\r\n<div class=\"root-content\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -185,15 +185,12 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_page_register_register_component__ = __webpack_require__("../../../../../src/component/page/register/register.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_page_dashboard_dashboard_component__ = __webpack_require__("../../../../../src/component/page/dashboard/dashboard.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__service_security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__validate_validator_module__ = __webpack_require__("../../../../../src/validate/validator.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
 
 
 
@@ -218,19 +215,16 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8__component_page_login_login_component__["a" /* LoginComponent */],
             __WEBPACK_IMPORTED_MODULE_9__component_page_register_register_component__["a" /* RegisterComponent */],
             __WEBPACK_IMPORTED_MODULE_10__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormControlDirective */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_5__app_routing_app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MatButtonModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatInputModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["d" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatSelectModule */],
-            __WEBPACK_IMPORTED_MODULE_12__validate_validator_module__["a" /* ValidatorModule */]
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatToolbarModule */],
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
@@ -362,7 +356,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  dashboard works!\n</p>\n"
+module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -425,7 +419,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n.login-form-container {\n  width: 400px;\n  margin: 0 auto;\n  margin-top: 64px;\n}\n\n.login-form {\n}\n\n.login-data-form {\n  border-collapse: collapse;\n  border-radius: 2px;\n  border-spacing: 0px;\n  padding: 10px;\n  background-color: white;\n}\n\n.login-data-row {\n  width: 100%;\n  display: block;\n  margin-top: 40px;\n  margin-bottom: 20px;\n}\n\n.login-button {\n  width: 100%;\n}\n\n.login-page-title {\n  color: #636363;\n  text-align: center;\n}\n\n.login-page-error {\n  color: #ff002b;\n  text-align: center;\n  margin-top: 10px;\n}\n\n.login-text-container {\n  margin-bottom: 50px;\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, "\r\n.login-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 64px;\r\n}\r\n\r\n.login-form {\r\n}\r\n\r\n.login-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.login-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.login-button {\r\n  width: 100%;\r\n}\r\n\r\n.login-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.login-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.login-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -438,7 +432,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-form-container\">\n  <div class=\"login-form\">\n\n    <div class=\"login-text-container\">\n      <h2 class=\"login-page-title\">Authentication</h2>\n      <h3 class=\"login-page-error\" [hidden]=\"error.length == 0\">\n        {{error}}\n      </h3>\n    </div>\n\n    <form class=\"login-data-form mat-elevation-z2\" (ngSubmit)=\"tryAuth()\" #userForm=\"ngForm\">\n      <mat-input-container class=\"login-data-row\">\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\n               maxlength=\"{{maxUsernameLength}}\"\n               [(ngModel)]=\"credentials.login\" name=\"name\"\n               #name=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"login-data-row\">\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\n               maxlength=\"{{maxPasswordLength}}\"\n               [(ngModel)]=\"credentials.password\"\n               name=\"password\"\n               #password=\"ngModel\">\n      </mat-input-container>\n      <button class=\"login-data-row login-button\" mat-raised-button color=\"primary\"\n              [disabled]=\"!userForm.form.valid\">Login\n      </button>\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"login-form-container\">\r\n  <div class=\"login-form\">\r\n\r\n    <div class=\"login-text-container\">\r\n      <h2 class=\"login-page-title\">Authentication</h2>\r\n      <h3 class=\"login-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"login-data-form mat-elevation-z2\" (ngSubmit)=\"tryAuth()\" #userForm=\"ngForm\">\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\r\n               maxlength=\"{{maxUsernameLength}}\"\r\n               [(ngModel)]=\"credentials.username\" name=\"name\"\r\n               #name=\"ngModel\">\r\n      </mat-input-container>\r\n      <mat-input-container class=\"login-data-row\">\r\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\r\n               maxlength=\"{{maxPasswordLength}}\"\r\n               [(ngModel)]=\"credentials.password\"\r\n               name=\"password\"\r\n               #password=\"ngModel\">\r\n      </mat-input-container>\r\n      <button class=\"login-data-row login-button\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!userForm.form.valid\">Login\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -497,7 +491,7 @@ var LoginComponent = (function (_super) {
         this.security.auth(this.credentials, function (message, result) {
             if (result) {
                 _this.error = '';
-                _this.credentials.login = '';
+                _this.credentials.username = '';
                 _this.credentials.password = '';
                 _this.router.navigateByUrl('/');
             }
@@ -530,7 +524,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n.register-form-container {\n  width: 500px;\n  margin: 0 auto;\n  margin-top: 64px;\n}\n\n.register-form {\n}\n\n.register-data-form {\n  border-collapse: collapse;\n  border-radius: 2px;\n  border-spacing: 0px;\n  padding: 10px;\n  background-color: white;\n}\n\n.register-data-row {\n  width: 100%;\n  display: block;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.register-button {\n  width: 100%;\n}\n\n.register-page-title {\n  color: #636363;\n  text-align: center;\n}\n\n.register-page-error {\n  color: #ff002b;\n  text-align: center;\n  margin-top: 10px;\n}\n\n.register-text-container {\n  margin-bottom: 50px;\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, "\r\n.register-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 64px;\r\n}\r\n\r\n.register-form {\r\n}\r\n\r\n.register-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.register-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.register-button {\r\n  width: 100%;\r\n}\r\n\r\n.register-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.register-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -543,7 +537,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-form-container\">\n  <div class=\"register-form\">\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\n      <div class=\"register-text-container\">\n        <h2 class=\"register-page-title\">Register a new user</h2>\n        <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\n          {{error}}\n        </h3>\n      </div>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Username\" id=\"username\" required minlength=\"{{minUsernameLength}}\"\n               maxlength=\"{{maxUsernameLength}}\"\n               [(ngModel)]=\"_info.login\" name=\"userName\"\n               #name=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"First name\" id=\"firstName\"\n               [(ngModel)]=\"_info.firstName\" name=\"firstName\"\n               #firstName=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Last name\" id=\"lastName\"\n               [(ngModel)]=\"_info.lastName\" name=\"lastName\"\n               #lastName=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Middle name\" id=\"middleName\"\n               [(ngModel)]=\"_info.middleName\" name=\"middleName\"\n               #middleName=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Email\" type=\"email\" id=\"mail\" required isEmail\n               [(ngModel)]=\"_info.mail\" name=\"mail\"\n               #mail = \"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Password\" type=\"password\" id=\"password\" required minlength=\"{{minPasswordLength}}\"\n               maxlength=\"{{maxPasswordLength}}\"\n               [(ngModel)]=\"_info.password\"\n               name=\"password\"\n               #password=\"ngModel\">\n      </mat-input-container>\n      <mat-input-container class=\"register-data-row\">\n        <input matInput placeholder=\"Confirm Password\" type=\"password\"\n               id=\"confirmPassword\" required minlength=\"{{minPasswordLength}}\"\n               maxlength=\"{{maxPasswordLength}}\"\n               equals = \"password\"\n               [(ngModel)]=\"_info.confirmPassword\"\n               name=\"confirmPassword\"\n               #confirmPassword=\"ngModel\">\n      </mat-input-container>\n      <mat-form-field>\n        <mat-select placeholder=\"Choose your role\">\n          <mat-option [value] = \"_userRole\" (click) = \"removeAuthorRole()\">\n           {{_userRole}}\n          </mat-option>\n          <mat-option [value] = \"_authorRole\" (click) = \"addAuthorRole()\">\n           {{_authorRole}}\n          </mat-option>\n        </mat-select>\n      </mat-form-field>\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\n              [disabled]=\"!registerForm.form.valid\">Register\n      </button>\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -557,7 +551,6 @@ module.exports = "<div class=\"register-form-container\">\n  <div class=\"regist
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__ = __webpack_require__("../../../../../src/model/user/register-user-credentials.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_user_roles__ = __webpack_require__("../../../../../src/util/user-roles.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -582,10 +575,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * The components provides sets of methods for user registration.
- *
  * @author Alex Brui
  */
 var RegisterComponent = (function (_super) {
@@ -594,16 +584,7 @@ var RegisterComponent = (function (_super) {
         var _this = _super.call(this) || this;
         _this.security = security;
         _this.router = router;
-        /**
-         * The user role field.
-         */
-        _this._userRole = "Simple user";
-        /**
-         * The author role field.
-         */
-        _this._authorRole = "Author";
-        _this._roles = [__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].USER_ROLE];
-        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__["a" /* RegisterUserCredentials */]('', '', '', '', '', '', _this._roles, '');
+        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_user_register_user_credentials__["a" /* RegisterUserCredentials */]('', '', '');
         _this._error = '';
         return _this;
     }
@@ -615,12 +596,8 @@ var RegisterComponent = (function (_super) {
         this.security.register(this._info, function (message, result) {
             if (result) {
                 _this._error = '';
-                _this._info.login = '';
+                _this._info.username = '';
                 _this._info.password = '';
-                _this._info.firstName = '';
-                _this._info.lastName = '';
-                _this._info.middleName = '';
-                _this._info.mail = '';
                 _this._info.confirmPassword = '';
                 _this.router.navigateByUrl('/login');
             }
@@ -630,19 +607,9 @@ var RegisterComponent = (function (_super) {
         });
     };
     Object.defineProperty(RegisterComponent.prototype, "info", {
-        /**
-         * Gets the user info.
-         *
-         * @returns {RegisterUserCredentials}
-         */
         get: function () {
             return this._info;
         },
-        /**
-         * Sets the user info.
-         *
-         * @param {RegisterUserCredentials} value
-         */
         set: function (value) {
             this._info = value;
         },
@@ -650,41 +617,15 @@ var RegisterComponent = (function (_super) {
         configurable: true
     });
     Object.defineProperty(RegisterComponent.prototype, "error", {
-        /**
-         * Gets the error.
-         *
-         * @returns {string}
-         */
         get: function () {
             return this._error;
         },
-        /**
-         * Sets the error.
-         *
-         * @param {string} value
-         */
         set: function (value) {
             this._error = value;
         },
         enumerable: true,
         configurable: true
     });
-    /**
-     * Adds author role to the user's list of _roles.
-     */
-    RegisterComponent.prototype.addAuthorRole = function () {
-        if (!this._roles.includes(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE))
-            this._roles.push(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE);
-    };
-    /**
-     * Remove author role from user's list of _roles.
-     */
-    RegisterComponent.prototype.removeAuthorRole = function () {
-        if (this._roles.includes(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE)) {
-            var index = this._roles.indexOf(__WEBPACK_IMPORTED_MODULE_5__util_user_roles__["a" /* UserRoles */].AUTHOR_ROLE);
-            this._roles.splice(index, 1);
-        }
-    };
     return RegisterComponent;
 }(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
 RegisterComponent = __decorate([
@@ -760,18 +701,13 @@ var __extends = (this && this.__extends) || (function () {
 /**
  * The information to register a new user.
  *
- * @author Alex Brui
+ * @author JavaSaBr
  */
 var RegisterUserCredentials = (function (_super) {
     __extends(RegisterUserCredentials, _super);
-    function RegisterUserCredentials(login, password, userName, lastName, middleName, mail, roles, confirmPassword) {
-        var _this = _super.call(this, login, password) || this;
-        _this.firstName = userName;
-        _this.lastName = lastName;
-        _this.middleName = middleName;
-        _this.mail = mail;
-        _this.roles = roles;
-        _this.confirmPassword = confirmPassword;
+    function RegisterUserCredentials(username, password, repeatPassword) {
+        var _this = _super.call(this, username, password) || this;
+        _this.confirmPassword = repeatPassword;
         return _this;
     }
     return RegisterUserCredentials;
@@ -794,7 +730,7 @@ var RegisterUserCredentials = (function (_super) {
 var UserCredentials = (function () {
     function UserCredentials(username, password) {
         this.password = password;
-        this.login = username;
+        this.username = username;
     }
     return UserCredentials;
 }());
@@ -878,8 +814,9 @@ var User = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_utils__ = __webpack_require__("../../../../../src/util/utils.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_user_user__ = __webpack_require__("../../../../../src/model/user/user.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -899,7 +836,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SecurityService = SecurityService_1 = (function () {
     function SecurityService(http) {
         this.http = http;
-        this._authProperty = new __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](false);
+        this._authProperty = new __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__["BehaviorSubject"](false);
     }
     /**
      * The function to auth a user in the system.
@@ -909,7 +846,7 @@ var SecurityService = SecurityService_1 = (function () {
      */
     SecurityService.prototype.auth = function (credentials, handler) {
         var _this = this;
-        var username = credentials.login;
+        var username = credentials.username;
         this.http.post(SecurityService_1.AUTH_URL, credentials)
             .toPromise()
             .then(function (response) {
@@ -918,7 +855,7 @@ var SecurityService = SecurityService_1 = (function () {
             _this._authProperty.next(true);
             handler(null, true);
         })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessage(error, function (ex) { return handler(ex, false); }); });
     };
     /**
      * The function to register a user in the system.
@@ -930,7 +867,7 @@ var SecurityService = SecurityService_1 = (function () {
         this.http.post(SecurityService_1.REGISTER_URL, credentials)
             .toPromise()
             .then(function (response) { return handler(null, true); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessage(error, function (ex) { return handler(ex, false); }); });
     };
     /**
      * Add an access token to header of the request options.
@@ -1020,13 +957,13 @@ SecurityService.ROLE_CUSTOMER = 'CUSTOMER';
  *
  * @type {string}
  */
-SecurityService.AUTH_URL = '/users/authorization';
+SecurityService.AUTH_URL = '/?/authenticate';
 /**
  * The url of register endpoint.
  *
  * @type {string}
  */
-SecurityService.REGISTER_URL = '/users/register';
+SecurityService.REGISTER_URL = '/?/register';
 /**
  * The name of access token header.
  *
@@ -1066,33 +1003,14 @@ RouteList.PAGE_REGISTER = 'register';
 
 /***/ }),
 
-/***/ "../../../../../src/util/user-roles.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserRoles; });
-/**
- * The class with the all authors roles.
- */
-var UserRoles = (function () {
-    function UserRoles() {
-    }
-    return UserRoles;
-}());
-
-UserRoles.USER_ROLE = "USER";
-UserRoles.AUTHOR_ROLE = "AUTHOR";
-//# sourceMappingURL=user-roles.js.map
-
-/***/ }),
-
 /***/ "../../../../../src/util/utils.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Utils; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
 
 
 /**
@@ -1119,208 +1037,12 @@ var Utils = (function () {
         }
         console.error(errMsg);
         handler(errMsg);
-        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].throw(errMsg);
-    };
-    /**
-     * The method to handle an error from http request.
-     *
-     * @param error the error from the Json obj.
-     * @param handler the error message consumer.
-     * @returns {ErrorObservable}
-     */
-    Utils.handleErrorMessageJson = function (error, handler) {
-        // In a real world app, you might use a remote logging infrastructure
-        var errMsg;
-        if (error instanceof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Response */]) {
-            var body = error.json();
-            errMsg = body.message;
-        }
-        else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        handler(errMsg);
-        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["a" /* Observable */].throw(errMsg);
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw(errMsg);
     };
     return Utils;
 }());
 
 //# sourceMappingURL=utils.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/validate/email-validator.directive.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailValidatorDirective; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var EmailValidatorDirective = EmailValidatorDirective_1 = (function () {
-    function EmailValidatorDirective() {
-    }
-    /**
-     * The implementation of custom validation for email validate.
-     *
-     * @param {AbstractControl} control
-     * @returns {{[p: string]: any}} null if form is valid, if not - validation error.
-     */
-    EmailValidatorDirective.prototype.validate = function (control) {
-        var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-        var valid = emailRegEx.test(control.value);
-        // console.info(control.value < 1);
-        if (control.value < 1) {
-            return null;
-        }
-        else
-            return valid ? null : { 'isEmail': true };
-    };
-    return EmailValidatorDirective;
-}());
-EmailValidatorDirective = EmailValidatorDirective_1 = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
-        selector: '[isEmail]',
-        providers: [{ provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* NG_VALIDATORS */], useExisting: EmailValidatorDirective_1, multi: true }]
-    })
-    /**
-     * The implementation of {@link Validator} interface
-     * provides method for custom form validation.
-     *
-     * @author Denis Lesheniuk.
-     */
-    ,
-    __metadata("design:paramtypes", [])
-], EmailValidatorDirective);
-
-var EmailValidatorDirective_1;
-//# sourceMappingURL=email-validator.directive.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/validate/equals-validator.derective.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EqualsValidatorDirective; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var EqualsValidatorDirective = EqualsValidatorDirective_1 = (function () {
-    /**
-     * The implementation of {@link Validator} interface
-     * provides method for custom form validation.
-     *
-     * @author Denis Lesheniuk.
-     */
-    function EqualsValidatorDirective() {
-    }
-    /**
-     * The implementation of custom validation for
-     * comparing values of two fields .
-     *
-     * @param {AbstractControl} control is the form control.
-     * @returns {{[p: string]: any}} null if form is valid, if not - validation error.
-     */
-    EqualsValidatorDirective.prototype.validate = function (control) {
-        var value = control.value;
-        var parent = control.parent;
-        var targetControl = parent.get(this.equals);
-        if (targetControl == null)
-            return null;
-        var result = value === targetControl.value;
-        return result ? null : { this: { value: value } };
-    };
-    return EqualsValidatorDirective;
-}());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-    __metadata("design:type", String)
-], EqualsValidatorDirective.prototype, "equals", void 0);
-EqualsValidatorDirective = EqualsValidatorDirective_1 = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
-        selector: '[equals]',
-        providers: [{
-                provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* NG_VALIDATORS */],
-                useExisting: EqualsValidatorDirective_1,
-                multi: true
-            }]
-    })
-    /**
-     * The implementation of {@link Validator} interface
-     * provides method for custom form validation.
-     *
-     * @author Denis Lesheniuk.
-     */
-], EqualsValidatorDirective);
-
-var EqualsValidatorDirective_1;
-//# sourceMappingURL=equals-validator.derective.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/validate/validator.module.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ValidatorModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equals_validator_derective__ = __webpack_require__("../../../../../src/validate/equals-validator.derective.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__email_validator_directive__ = __webpack_require__("../../../../../src/validate/email-validator.directive.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-var ValidatorModule = (function () {
-    function ValidatorModule() {
-    }
-    return ValidatorModule;
-}());
-ValidatorModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]
-        ],
-        declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__equals_validator_derective__["a" /* EqualsValidatorDirective */],
-            __WEBPACK_IMPORTED_MODULE_3__email_validator_directive__["a" /* EmailValidatorDirective */]
-        ],
-        exports: [
-            __WEBPACK_IMPORTED_MODULE_2__equals_validator_derective__["a" /* EqualsValidatorDirective */],
-            __WEBPACK_IMPORTED_MODULE_3__email_validator_directive__["a" /* EmailValidatorDirective */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */]
-        ]
-    })
-], ValidatorModule);
-
-//# sourceMappingURL=validator.module.js.map
 
 /***/ }),
 

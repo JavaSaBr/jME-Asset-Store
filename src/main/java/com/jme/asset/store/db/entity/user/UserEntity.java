@@ -13,10 +13,7 @@ import java.util.List;
  * @author Denis Lesheniuk
  */
 @Entity
-@Table(name = "USER_ENTITY",
-        indexes = {
-                @Index(columnList = "login", name = "user_login_index")
-        })
+@Table(name = "USER_ENTITY", indexes = @Index(columnList = "login", name = "user_login_index"))
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.INTEGER)
 @DiscriminatorValue(value = "1")
