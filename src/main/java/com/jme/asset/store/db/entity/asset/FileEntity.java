@@ -116,7 +116,6 @@ public class FileEntity extends BaseEntity {
      *
      * @return type
      */
-
     public @NotNull FileTypeEntity getType() {
         return type;
     }

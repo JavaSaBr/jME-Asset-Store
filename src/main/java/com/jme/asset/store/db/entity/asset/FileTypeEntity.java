@@ -84,7 +84,6 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @return extension
      */
-
     public @NotNull String getExtension() {
         return extension;
     }
