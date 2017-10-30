@@ -164,11 +164,12 @@ export class SecurityService {
   /**
    * Check  the current user has the role ADMIN.
    *
-   * @param {string} toCheck the role ADMIN.
+   * @param {string} role_admin the role ADMIN.
    * @returns {boolean} true if the current user has the role ADMIN.
    */
-  hasRoleAdmin(toCheck: string): boolean {
-    toCheck = SecurityService.ROLE_ADMIN;
+  hasRoleAdmin(): boolean {
+    let role_admin = SecurityService.ROLE_ADMIN;
+
     const currentUser = this._user;
 
     if (currentUser == null) {
@@ -178,7 +179,7 @@ export class SecurityService {
     const roles = currentUser.roles;
 
     for (const role of roles) {
-      if (role === toCheck) {
+      if (role === role_admin) {
         return true;
       }
     }

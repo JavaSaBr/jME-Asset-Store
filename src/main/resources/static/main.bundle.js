@@ -439,7 +439,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n<body>\r\n<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"859\" width=\"1157\" alt=\"Here is my picture !\"/>\r\n</p>\r\n</body>\r\n"
+module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n<body>\r\n<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\r\n</p>\r\n</body>\r\n"
 
 /***/ }),
 
@@ -1033,11 +1033,11 @@ var SecurityService = SecurityService_1 = (function () {
     /**
      * Check  the current user has the role ADMIN.
      *
-     * @param {string} toCheck the role ADMIN.
+     * @param {string} role_admin the role ADMIN.
      * @returns {boolean} true if the current user has the role ADMIN.
      */
-    SecurityService.prototype.hasRoleAdmin = function (toCheck) {
-        toCheck = SecurityService_1.ROLE_ADMIN;
+    SecurityService.prototype.hasRoleAdmin = function () {
+        var role_admin = SecurityService_1.ROLE_ADMIN;
         var currentUser = this._user;
         if (currentUser == null) {
             return null;
@@ -1045,7 +1045,7 @@ var SecurityService = SecurityService_1 = (function () {
         var roles = currentUser.roles;
         for (var _i = 0, roles_2 = roles; _i < roles_2.length; _i++) {
             var role = roles_2[_i];
-            if (role === toCheck) {
+            if (role === role_admin) {
                 return true;
             }
         }
