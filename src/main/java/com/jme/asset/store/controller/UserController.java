@@ -1,12 +1,13 @@
 package com.jme.asset.store.controller;
 
 import static org.springframework.http.ResponseEntity.*;
+
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jme.asset.store.Routes;
 import com.jme.asset.store.controller.params.UserCredentialsParams;
-import com.jme.asset.store.controller.params.UserParams;
+import com.jme.asset.store.controller.params.UserRegisterParams;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.token.AccessTokenEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
@@ -76,62 +77,67 @@ public class UserController {
     }
 
     /**
-     * Register the user by user params
+     * Register the user by user registration params
      *
-     * @param userParams the user params
+     * @param userParams the user registration params
      * @return OK if the registration is successfully, else BAD_REQUEST
      */
     @PostMapping(value = "/register")
-    public ResponseEntity<?> register(@RequestBody final UserParams userParams) {
+    public ResponseEntity<?> register(@RequestBody final UserRegisterParams userParams) {
 
         final String login = userParams.getLogin();
-        if (login == null) {
-            return badRequest().body("The field login couldn't be null");
+        final String password = userParams.getPassword();
+        final String role = userParams.getRole();
+
+        if (login == null || password == null || role == null) {
+            return status(HttpStatus.BAD_REQUEST).body("The fields login, password and role couldn't be null!");
         }
 
-        final String password = userParams.getPassword();
-        if (password == null) {
-            return badRequest().body("The field password couldn't be null");
+        if (!role.equals(RoleService.ARTIST_ROLE) && (!role.equals(RoleService.USER_ROLE))) {
+            return badRequest().body("Your role is incorrect! The role must be USER or ARTIST");
         }
+
+        final List<String> roles = new ArrayList<>();
+        roles.add(role);
 
         final String firstName = userParams.getFirstName();
         final String middleName = userParams.getMiddleName();
         final String lastName = userParams.getLastName();
         final String mail = userParams.getMail();
-
-        final List<String> roles = new ArrayList<>();
-        roles.add(RoleService.USER_ROLE);
-
         try {
-
             userService.create(UserEntity.class, login, password, roles, user -> {
                 user.setFirstName(firstName);
                 user.setMiddleName(middleName);
                 user.setMail(mail);
                 user.setLastName(lastName);
             });
-
         } catch (final RuntimeException e) {
-            return status(HttpStatus.CONFLICT).body("Please, check parameters!");
+            return status(HttpStatus.CONFLICT).body(new ErrorResponse(e.getLocalizedMessage()));
         }
 
         return ok("User is registered!");
     }
 
     /**
-     * Authorize the user by user params.
+     * Authorize the user by user credentials params.
      *
-     * @param params the user params.
+     * @param params the user credentials params.
      * @return OK if the authorisation is successfully, else BAD_REQUEST.
      */
     @PostMapping(value = "/authorization",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
     public ResponseEntity<?> authorization(@RequestBody final UserCredentialsParams params) {
+
+        final String userName = params.getUsername();
+        final String password = params.getPassword();
+        if (userName == null || password == null) {
+            return badRequest().body("Please, check the fields login, password, they couldn't be null !");
+        }
 
         final Authentication authenticationToken =
                 new UsernamePasswordAuthenticationToken(params.getUsername(), params.getPassword());
-
         final Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(authenticationToken);
@@ -141,18 +147,16 @@ public class UserController {
             return badRequest().body(new ErrorResponse(e.getLocalizedMessage()));
         }
 
-        final SecurityContext securityContext = SecurityContextHolder.getContext();
-        securityContext.setAuthentication(authentication);
-
         final Object principal = authentication.getPrincipal();
-
         if (!(principal instanceof JmeUser)) {
             return badRequest().body("Can't authenticate the user " + params.getUsername());
         }
 
+        final SecurityContext securityContext = SecurityContextHolder.getContext();
+        securityContext.setAuthentication(authentication);
+
         final JmeUser jmeUser = (JmeUser) principal;
         final AccessTokenEntity newToken = accessTokenService.createNewToken(jmeUser.getUser());
-
         final ArrayNode roles = JsonNodeFactory.instance.arrayNode();
 
         final Collection<GrantedAuthority> authorities = jmeUser.getAuthorities();
@@ -160,7 +164,7 @@ public class UserController {
 
         final ObjectNode objectNode = JsonNodeFactory.instance.objectNode();
         objectNode.put("token", newToken.getToken());
-        objectNode.put("roles", roles);
+        objectNode.set("roles", roles);
 
         return ok(objectNode.toString());
     }
