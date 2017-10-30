@@ -69,7 +69,7 @@ public class AssetController {
 
         final String name = params.getName();
         final String description = params.getDescription();
-        final AssetCategoryEntity assetCategory = categoryService.load(params.getCategory());
+        final AssetCategoryEntity assetCategory = categoryService.load(params.getCategoryId());
         final JmeUser currentUser = requireNonNull(getCurrentUser());
 
         final UserEntity user = currentUser.getUser();

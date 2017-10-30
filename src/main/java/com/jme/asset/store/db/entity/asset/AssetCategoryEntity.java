@@ -2,6 +2,7 @@ package com.jme.asset.store.db.entity.asset;
 
 import com.jme.asset.store.db.entity.BaseEntity;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
@@ -129,9 +130,8 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @param child the children of asset category
      */
-    public void addChild(final AssetCategoryEntity child) {
-        if (child != null)
-            this.children.add(child);
+    public void addChild(@NotNull final AssetCategoryEntity child) {
+        children.add(child);
     }
 
     /**
@@ -139,11 +139,9 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @param child the child of asset category
      */
-    public void removeChild(final AssetCategoryEntity child) {
-        if (this.children.contains(child))
-            this.children.remove(child);
-        else {
-            throw new RuntimeException("child doesn't such ");
+    public void removeChild(@NotNull final AssetCategoryEntity child) {
+        if (children.contains(child)) {
+            children.remove(child);
         }
     }
 }
