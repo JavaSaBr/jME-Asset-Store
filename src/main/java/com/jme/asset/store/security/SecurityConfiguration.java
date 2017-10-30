@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers("/index.html", "/")
                 .antMatchers("/inline.bundle.js", "/polyfills.bundle.js", "/styles.bundle.js")
-                .antMatchers("/main.bundle.js", "/vendor.bundle.js", "/favicon.ico")
+                .antMatchers("/main.bundle.js", "/vendor.bundle.js", "/favicon.ico","/JMonkeyAssetStoreLogo.png")
                 .antMatchers(HttpMethod.POST, UserController.API_REGISTER + "/**")
                 .antMatchers(HttpMethod.POST, UserController.API_AUTHORIZATION + "/**");
     }
