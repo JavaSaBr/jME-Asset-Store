@@ -59,7 +59,6 @@ public class FileEntity extends BaseEntity {
      *
      * @return the file name
      */
-
     public @NotNull String getName() {
         return name;
     }
@@ -78,7 +77,6 @@ public class FileEntity extends BaseEntity {
      *
      * @return the content of file
      */
-
     public @NotNull Blob getContent() {
         return content;
     }
@@ -97,7 +95,6 @@ public class FileEntity extends BaseEntity {
      *
      * @return the file creator
      */
-
     public @NotNull UserEntity getCreator() {
         return creator;
     }

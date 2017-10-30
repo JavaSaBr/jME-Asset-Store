@@ -46,7 +46,6 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @return type's name
      */
-
     public @NotNull String getName() {
         return name;
     }
@@ -65,7 +64,6 @@ public class FileTypeEntity extends BaseEntity {
      *
      * @return MIME-type of file
      */
-
     public @NotNull String getMimeType() {
         return mimeType;
     }
