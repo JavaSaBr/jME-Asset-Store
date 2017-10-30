@@ -7,7 +7,6 @@ import {RegisterUserCredentials} from '../model/user/register-user-credentials';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/toPromise';
-import {CanActivate} from "@angular/router";
 
 @Injectable()
 export class SecurityService {
@@ -162,6 +161,12 @@ export class SecurityService {
     return false;
   }
 
+  /**
+   * Check  the current user has the role ADMIN.
+   *
+   * @param {string} toCheck the role ADMIN.
+   * @returns {boolean} true if the current user has the role ADMIN.
+   */
   hasRoleAdmin(toCheck: string): boolean {
     toCheck = SecurityService.ROLE_ADMIN;
     const currentUser = this._user;

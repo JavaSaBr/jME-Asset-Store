@@ -31,7 +31,6 @@ import {AppSettingsComponent} from "./component/page/app-settings/app-settings.c
     MatInputModule,
     MatToolbarModule,
     MatMenuModule
-
   ],
   providers: [SecurityService],
   bootstrap: [AppComponent]

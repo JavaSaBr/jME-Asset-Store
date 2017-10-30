@@ -8,5 +8,5 @@ export class RouteList {
   static readonly PAGE_LOGIN = 'login';
   static readonly PAGE_DASHBOARD = 'dashboard';
   static readonly PAGE_REGISTER = 'register';
-  static readonly PAGE_SETTINGS = 'appsettings';
+  static readonly PAGE_APP_SETTINGS = 'app-settings';
 }

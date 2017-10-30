@@ -52,7 +52,7 @@ var routes = [
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_DASHBOARD, component: __WEBPACK_IMPORTED_MODULE_5__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */] },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_LOGIN, component: __WEBPACK_IMPORTED_MODULE_4__component_page_login_login_component__["a" /* LoginComponent */] },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_REGISTER, component: __WEBPACK_IMPORTED_MODULE_6__component_page_register_register_component__["a" /* RegisterComponent */] },
-    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_SETTINGS, component: __WEBPACK_IMPORTED_MODULE_7__component_page_app_settings_app_settings_component__["a" /* AppSettingsComponent */] }
+    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_APP_SETTINGS, component: __WEBPACK_IMPORTED_MODULE_7__component_page_app_settings_app_settings_component__["a" /* AppSettingsComponent */] }
 ];
 /**
  * The configuration of the router module.
@@ -350,7 +350,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".app-settings-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 10px;\r\n}\r\n.app-settings-mat-button {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 2px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n.app-settings-container {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n\r\n.app-settings-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n  font-family: Roboto, \"Helvetica Neue\", sans-serif;\r\n  height: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, ".app-settings-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 10px;\r\n}\r\n.app-settings-mat-button {\r\n  border-collapse: collapse;\r\n  color: #636363;\r\n  border-radius: 2px;\r\n  border-spacing: 2px;\r\n  padding: 10px;\r\n  background-color: blue;\r\n}\r\n.app-settings-container {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n.app-settings-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n.app-settings-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n.app-setting-mat-menu-item {\r\n  border-collapse: collapse;\r\n  color: #636363;\r\n  border-radius: 2px;\r\n  border-spacing: 2px;\r\n  padding: 10px;\r\n  background-color: blue;\r\n}\r\n", ""]);
 
 // exports
 
@@ -363,7 +363,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/app-settings/app-settings.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-settings-form-container\" *ngIf=\"!hasRoleAdmin\">\r\n<button class=\"app-settings-mat-button\" class=\"app-settings-page-title\" mat-button [matMenuTriggerFor]=\"generalSettings\">General settings</button>\r\n<mat-menu #generalSettings=\"matMenu\">\r\n  <button mat-menu-item [matMenuTriggerFor]=\"appSettings\">Application settings</button>\r\n  <button mat-menu-item [matMenuTriggerFor]=\"userSettings\">User's settings</button>\r\n</mat-menu>\r\n\r\n<mat-menu #appSettings=\"matMenu\">\r\n  <button mat-menu-item [matMenuTriggerFor]=\"soundSettings\">Sound settings</button>\r\n  <button mat-menu-item [matMenuTriggerFor]=\"videoSettings\">Video settings</button>\r\n  <button mat-menu-item [matMenuTriggerFor]=\"downloadsettings\">Download settings</button>\r\n  <button mat-menu-item>Custom settings</button>\r\n  <button mat-menu-item>FAQ</button>\r\n</mat-menu>\r\n\r\n<mat-menu #userSettings=\"matMenu\">\r\n  <button mat-menu-item>Insects</button>\r\n  <button mat-menu-item>Molluscs</button>\r\n  <button mat-menu-item>Crustaceans</button>\r\n  <button mat-menu-item>Corals</button>\r\n  <button mat-menu-item>Arachnids</button>\r\n  <button mat-menu-item>Velvet worms</button>\r\n  <button mat-menu-item>Horseshoe crabs</button>\r\n</mat-menu>\r\n\r\n<mat-menu #soundSettings=\"matMenu\">\r\n  <button mat-menu-item>Baikal oilfish</button>\r\n  <button mat-menu-item>Bala shark</button>\r\n  <button mat-menu-item>Ballan wrasse</button>\r\n  <button mat-menu-item>Bamboo shark</button>\r\n  <button mat-menu-item>Banded killifish</button>\r\n</mat-menu>\r\n\r\n<mat-menu #videoSettings=\"matMenu\">\r\n  <button mat-menu-item>Sonoran desert toad</button>\r\n  <button mat-menu-item>Western toad</button>\r\n  <button mat-menu-item>Arroyo toad</button>\r\n  <button mat-menu-item>Yosemite toad</button>\r\n</mat-menu>\r\n\r\n<mat-menu #downloadsettings=\"matMenu\">\r\n  <button mat-menu-item>Banded Day Gecko</button>\r\n  <button mat-menu-item>Banded Gila Monster</button>\r\n  <button mat-menu-item>Black Tree Monitor</button>\r\n  <button mat-menu-item>Blue Spiny Lizard</button>\r\n  <button mat-menu-item disabled>Velociraptor</button>\r\n</mat-menu>\r\n</div>\r\n"
+module.exports = "<div class=\"app-settings-form-container\" *ngIf=\"!hasRoleAdmin\">\r\n  <button class=\"app-settings-mat-button\" class=\"app-settings-page-title\" mat-button\r\n          [matMenuTriggerFor]=\"generalSettings\">General settings\r\n  </button>\r\n  <mat-menu #generalSettings=\"matMenu\">\r\n    <button class=\"app-setting-mat-menu-item\" mat-menu-item\r\n            [matMenuTriggerFor]=\"appSettings\">Application settings\r\n    </button>\r\n    <button class=\"app-settings-mat-button\" class=\"app-settings-page-title\" mat-menu-item\r\n            [matMenuTriggerFor]=\"userSettings\">User's settings\r\n    </button>\r\n  </mat-menu>\r\n  <mat-menu #appSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button app-settings-page-title\" mat-menu-item [matMenuTriggerFor]=\"soundSettings\">\r\n      Sound settings\r\n    </button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item [matMenuTriggerFor]=\"videoSettings\">Video settings</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item [matMenuTriggerFor]=\"downloadsettings\">Download settings\r\n    </button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Custom settings</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>FAQ</button>\r\n  </mat-menu>\r\n  <mat-menu #userSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Insects</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Molluscs</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Crustaceans</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Corals</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Arachnids</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Velvet worms</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Horseshoe crabs</button>\r\n  </mat-menu>\r\n  <mat-menu #soundSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Baikal oilfish</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Bala shark</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Ballan wrasse</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Bamboo shark</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Banded killifish</button>\r\n  </mat-menu>\r\n  <mat-menu #videoSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Sonoran desert toad</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Western toad</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Arroyo toad</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Yosemite toad</button>\r\n  </mat-menu>\r\n  <mat-menu #downloadsettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Banded Day Gecko</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Banded Gila Monster</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Black Tree Monitor</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Blue Spiny Lizard</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item disabled>Velociraptor</button>\r\n  </mat-menu>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -407,7 +407,7 @@ var AppSettingsComponent = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
 AppSettingsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        selector: 'app-settings',
+        selector: 'app-app-settings',
         template: __webpack_require__("../../../../../src/component/page/app-settings/app-settings.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/app-settings/app-settings.component.css")]
     }),
@@ -439,7 +439,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n<body>\r\n<p><img src=\"JMonkeyAssetStore.jpg\" height=\"356\" width=\"649\"/>\r\n</p>\r\n</body>\r\n"
+module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n<body>\r\n<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"859\" width=\"1157\" alt=\"Here is my picture !\"/>\r\n</p>\r\n</body>\r\n"
 
 /***/ }),
 
@@ -607,7 +607,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\r\n.register-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 64px;\r\n}\r\n\r\n.register-form {\r\n}\r\n\r\n.register-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.register-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.app-settings-button {\r\n  width: 100%;\r\n}\r\n\r\n.register-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.register-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n.register-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 64px;\r\n}\r\n\r\n.register-form {\r\n}\r\n\r\n.register-data-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  background-color: white;\r\n}\r\n\r\n.register-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.register-button {\r\n  width: 100%;\r\n}\r\n\r\n.register-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n.register-text-container {\r\n  margin-bottom: 50px;\r\n  margin-top: 10px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -620,7 +620,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n      <button class=\"register-data-row app-settings-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n      <button class=\"register-data-row\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1030,6 +1030,12 @@ var SecurityService = SecurityService_1 = (function () {
         }
         return false;
     };
+    /**
+     * Check  the current user has the role ADMIN.
+     *
+     * @param {string} toCheck the role ADMIN.
+     * @returns {boolean} true if the current user has the role ADMIN.
+     */
     SecurityService.prototype.hasRoleAdmin = function (toCheck) {
         toCheck = SecurityService_1.ROLE_ADMIN;
         var currentUser = this._user;
@@ -1097,7 +1103,7 @@ var RouteList = (function () {
 RouteList.PAGE_LOGIN = 'login';
 RouteList.PAGE_DASHBOARD = 'dashboard';
 RouteList.PAGE_REGISTER = 'register';
-RouteList.PAGE_SETTINGS = 'appsettings';
+RouteList.PAGE_APP_SETTINGS = 'app-settings';
 //# sourceMappingURL=route-list.js.map
 
 /***/ }),

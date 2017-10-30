@@ -5,17 +5,31 @@
 }
 .app-settings-mat-button {
   border-collapse: collapse;
+  color: #636363;
   border-radius: 2px;
   border-spacing: 2px;
   padding: 10px;
-  background-color: white;
+  background-color: blue;
 }
 .app-settings-container {
   display: flex;
   flex-direction: column;
 }
-
 .app-settings-page-title {
   color: #636363;
   text-align: center;
+}
+.app-settings-data-row {
+  width: 100%;
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.app-setting-mat-menu-item {
+  border-collapse: collapse;
+  color: #636363;
+  border-radius: 2px;
+  border-spacing: 2px;
+  padding: 10px;
+  background-color: blue;
 }
