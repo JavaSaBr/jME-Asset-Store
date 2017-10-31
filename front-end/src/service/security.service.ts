@@ -13,7 +13,7 @@ export class SecurityService {
 
   public static readonly ROLE_ADMIN = 'ADMIN';
   public static readonly ROLE_USER = 'USER';
-  public static readonly ROLE_CUSTOMER = 'CUSTOMER';
+  public static readonly ROLE_ARTIST = 'ARTIST';
 
   /**
    * The url of auth endpoint.

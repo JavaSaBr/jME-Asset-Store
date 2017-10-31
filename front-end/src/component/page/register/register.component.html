@@ -29,9 +29,10 @@
                #middleName="ngModel">
       </mat-input-container>
       <mat-input-container class="register-data-row">
-        <input matInput placeholder="Email" type="email" id="mail" required isEmail
+        <input matInput placeholder="Email" type="email" id="mail"
+               isEmail
                [(ngModel)]="_info.mail" name="mail"
-               #mail = "ngModel">
+               #mail="ngModel">
       </mat-input-container>
       <mat-input-container class="register-data-row">
         <input matInput placeholder="Password" type="password" id="password" required minlength="{{minPasswordLength}}"
@@ -44,21 +45,20 @@
         <input matInput placeholder="Confirm Password" type="password"
                id="confirmPassword" required minlength="{{minPasswordLength}}"
                maxlength="{{maxPasswordLength}}"
-               equals = "password"
-               [(ngModel)]="_info.confirmPassword"
+               equals="password"
+               [(ngModel)]="info.confirmPassword"
                name="confirmPassword"
                #confirmPassword="ngModel">
       </mat-input-container>
-      <mat-form-field>
-        <mat-select placeholder="Choose your role">
-          <mat-option [value] = "_userRole" (click) = "removeAuthorRole()">
-           {{_userRole}}
-          </mat-option>
-          <mat-option [value] = "_authorRole" (click) = "addAuthorRole()">
-           {{_authorRole}}
+
+      <mat-input-container>
+        <mat-select placeholder="Choose your role" [(ngModel)]="_selectedRole" name="role">
+          <mat-option *ngFor="let role of _availableRoles" [value]="role.value">
+            {{ role.viewValue }}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-input-container>
+
       <button class="register-data-row register-button" type="submit" mat-raised-button color="primary"
               [disabled]="!registerForm.form.valid">Register
       </button>

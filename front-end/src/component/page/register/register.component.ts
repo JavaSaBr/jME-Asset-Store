@@ -3,7 +3,6 @@ import {PageComponent} from '../../page.component';
 import {SecurityService} from '../../../service/security.service';
 import {Router} from '@angular/router';
 import {RegisterUserCredentials} from "../../../model/user/register-user-credentials";
-import {UserRoles} from "../../../util/user-roles";
 
 /**
  * The components provides sets of methods for user registration.
@@ -16,17 +15,20 @@ import {UserRoles} from "../../../util/user-roles";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent extends PageComponent{
+export class RegisterComponent extends PageComponent {
 
   /**
-   * The user role field.
+   * The selected by user role.
    */
-  private _userRole: string = "Simple user";
+  private _selectedRole: string;
 
   /**
-   * The author role field.
+   * List of available roles
    */
-  private _authorRole: string = "Author";
+  private _availableRoles = [
+    {value: SecurityService.ROLE_USER, viewValue: 'User'},
+    {value: SecurityService.ROLE_ARTIST, viewValue: 'Artist'}
+  ];
 
   /**
    * The user _roles.
@@ -46,26 +48,28 @@ export class RegisterComponent extends PageComponent{
   constructor(private readonly security: SecurityService,
               private readonly router: Router) {
     super();
-    this._roles = [UserRoles.USER_ROLE];
     this._info = new RegisterUserCredentials('', '', '', '', '', '', this._roles, '');
     this._error = '';
+    this._info.roles = [];
   }
 
   /**
    * Try to register using the current info.
    */
   tryRegister() {
+    this.setRoleList();
     this.security.register(this._info, (message, result) => {
       if (result) {
-        this._error = '';
-        this._info.login = '';
-        this._info.password = '';
-        this._info.firstName = '';
-        this._info.lastName = '';
-        this._info.middleName = '';
-        this._info.mail = '';
-        this._info.confirmPassword = '';
+        let info = this.info;
+        info.login = '';
+        info.password = '';
+        info.firstName = '';
+        info.lastName = '';
+        info.middleName = '';
+        info.mail = '';
+        info.confirmPassword = '';
         this.router.navigateByUrl('/login');
+        this._error = '';
       } else {
         this._error = message;
       }
@@ -95,7 +99,7 @@ export class RegisterComponent extends PageComponent{
    *
    * @returns {string}
    */
-  get error(): string{
+  get error(): string {
     return this._error;
   }
 
@@ -109,20 +113,22 @@ export class RegisterComponent extends PageComponent{
   }
 
   /**
-   * Adds author role to the user's list of _roles.
+   * Based on the user's choice, the method fills the list of user's roles.
    */
-  addAuthorRole(){
-    if(!this._roles.includes(UserRoles.AUTHOR_ROLE))
-      this._roles.push(UserRoles.AUTHOR_ROLE);
-  }
-
-  /**
-   * Remove author role from user's list of _roles.
-   */
-  removeAuthorRole(){
-    if(this._roles.includes(UserRoles.AUTHOR_ROLE)){
-     var index = this._roles.indexOf(UserRoles.AUTHOR_ROLE);
-       this._roles.splice(index, 1);
+  private setRoleList() {
+    switch (this._selectedRole) {
+      case SecurityService.ROLE_USER: {
+        this._info.roles.push(SecurityService.ROLE_USER);
+        break;
+      }
+      case SecurityService.ROLE_ARTIST: {
+        this._info.roles.push(SecurityService.ROLE_USER, SecurityService.ROLE_ARTIST);
+        break;
+      }
+      default: {
+        this._info.roles.push(SecurityService.ROLE_USER);
+        break;
+      }
     }
   }
 }
