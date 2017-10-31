@@ -3,6 +3,8 @@ package com.jme.asset.store.controller.params;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 /**
  * The request params of creating an user.
  *
@@ -50,7 +52,7 @@ public class UserRegisterParams {
      * The user role
      */
     @Nullable
-    private String role;
+    private List<String> roles;
 
     public UserRegisterParams() {
     }
@@ -163,19 +165,19 @@ public class UserRegisterParams {
     }
 
     /**
-     * Get the user role
-     * @return the user role;
+     * Get the user roles
+     * @return the user roles;
      */
-    public @Nullable String getRole() {
-        return role;
+    public @Nullable List<String> getRoles() {
+        return roles;
     }
 
     /**
-     * Set the user role
-     * @param role the user role
+     * Set the user roles
+     * @param roles the user roles
      */
-    public void setRole(@Nullable String role) {
-        this.role = role;
+    public void setRole(@Nullable List <String> roles) {
+        this.roles = roles;
     }
 
 }

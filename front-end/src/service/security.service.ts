@@ -13,21 +13,21 @@ export class SecurityService {
 
   public static readonly ROLE_ADMIN = 'ADMIN';
   public static readonly ROLE_USER = 'USER';
-  public static readonly ROLE_CUSTOMER = 'CUSTOMER';
+  public static readonly ROLE_ARTIST = 'ARTIST';
 
   /**
    * The url of auth endpoint.
    *
    * @type {string}
    */
-  private static readonly AUTH_URL = '/?/authenticate';
+  private static readonly AUTH_URL = '/users/authorization';
 
   /**
    * The url of register endpoint.
    *
    * @type {string}
    */
-  private static readonly REGISTER_URL = '/?/register';
+  private static readonly REGISTER_URL = '/users/register';
 
   /**
    * The name of access token header.
@@ -57,7 +57,7 @@ export class SecurityService {
    * @param handler to handle result of authentication.
    */
   public auth(credentials: UserCredentials, handler: (message: string, result: boolean) => void): void {
-    const username = credentials.username;
+    const username = credentials.login;
     this.http.post(SecurityService.AUTH_URL, credentials)
       .toPromise()
       .then(response => {
@@ -66,7 +66,7 @@ export class SecurityService {
         this._authProperty.next(true);
         handler(null, true);
       })
-      .catch(error => Utils.handleErrorMessage(error, (ex: string) => handler(ex, false)));
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
   /**
@@ -79,7 +79,7 @@ export class SecurityService {
     this.http.post(SecurityService.REGISTER_URL, credentials)
       .toPromise()
       .then(response => handler(null, true))
-      .catch(error => Utils.handleErrorMessage(error, (ex: string) => handler(ex, false)));
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
   /**

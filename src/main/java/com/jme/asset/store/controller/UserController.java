@@ -13,10 +13,12 @@ import com.jme.asset.store.db.entity.token.AccessTokenEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AccessTokenService;
-import com.jme.asset.store.service.RoleService;
 import com.jme.asset.store.service.UserService;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,6 +46,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/" + Routes.API_USERS)
 public class UserController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     public static final String API_REGISTER = "/" + Routes.API_USERS + "/register";
     public static final String API_AUTHORIZATION = "/" + Routes.API_USERS + "/authorization";
@@ -87,19 +90,7 @@ public class UserController {
 
         final String login = userParams.getLogin();
         final String password = userParams.getPassword();
-        final String role = userParams.getRole();
-
-        if (login == null || password == null || role == null) {
-            return status(HttpStatus.BAD_REQUEST).body("The fields login, password and role couldn't be null!");
-        }
-
-        if (!role.equals(RoleService.ARTIST_ROLE) && (!role.equals(RoleService.USER_ROLE))) {
-            return badRequest().body("Your role is incorrect! The role must be USER or ARTIST");
-        }
-
-        final List<String> roles = new ArrayList<>();
-        roles.add(role);
-
+        final List<String> roles = userParams.getRoles();
         final String firstName = userParams.getFirstName();
         final String middleName = userParams.getMiddleName();
         final String lastName = userParams.getLastName();
@@ -111,7 +102,10 @@ public class UserController {
                 user.setMail(mail);
                 user.setLastName(lastName);
             });
+        } catch (final DataIntegrityViolationException e) {
+            return status(HttpStatus.CONFLICT).body(new ErrorResponse("User with login " + login + " is already exist. Please choose another login!"));
         } catch (final RuntimeException e) {
+            LOGGER.warn(e.getMessage(), e);
             return status(HttpStatus.CONFLICT).body(new ErrorResponse(e.getLocalizedMessage()));
         }
 
@@ -130,14 +124,11 @@ public class UserController {
 
     public ResponseEntity<?> authorization(@RequestBody final UserCredentialsParams params) {
 
-        final String userName = params.getUsername();
+        final String userName = params.getLogin();
         final String password = params.getPassword();
-        if (userName == null || password == null) {
-            return badRequest().body("Please, check the fields login, password, they couldn't be null !");
-        }
 
         final Authentication authenticationToken =
-                new UsernamePasswordAuthenticationToken(params.getUsername(), params.getPassword());
+                new UsernamePasswordAuthenticationToken(params.getLogin(), params.getPassword());
         final Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(authenticationToken);
@@ -149,7 +140,7 @@ public class UserController {
 
         final Object principal = authentication.getPrincipal();
         if (!(principal instanceof JmeUser)) {
-            return badRequest().body("Can't authenticate the user " + params.getUsername());
+            return badRequest().body("Can't authenticate the user " + params.getLogin());
         }
 
         final SecurityContext securityContext = SecurityContextHolder.getContext();

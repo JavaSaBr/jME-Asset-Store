@@ -8,7 +8,7 @@ export class UserCredentials {
   /**
    * The user name.
    */
-  username: string;
+  login: string;
 
   /**
    * The user password.
@@ -17,6 +17,6 @@ export class UserCredentials {
 
   constructor(username: string, password: string) {
     this.password = password;
-    this.username = username;
+    this.login = username;
   }
 }

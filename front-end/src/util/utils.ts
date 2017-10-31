@@ -26,4 +26,25 @@ export class Utils {
     handler(errMsg);
     return Observable.throw(errMsg);
   }
+
+  /**
+   * The method to handle an error from http request.
+   *
+   * @param error the error from the Json obj.
+   * @param handler the error message consumer.
+   * @returns {ErrorObservable}
+   */
+  static handleErrorMessageJson(error: Response | any, handler: (value: string) => void): ErrorObservable {
+    // In a real world app, you might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json();
+      errMsg = body.message;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    handler(errMsg);
+    return Observable.throw(errMsg);
+  }
 }
