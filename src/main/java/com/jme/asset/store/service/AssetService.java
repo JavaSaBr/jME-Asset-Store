@@ -17,24 +17,25 @@ import java.io.InputStream;
 public interface AssetService {
 
     /**
-     * Create File
+     * Creates a new file.
      *
-     * @param fileName    the file name
-     * @param user        the user
-     * @param inputStream the input stream
+     * @param fileName    the file name.
+     * @param user        the user.
+     * @param inputStream the input stream.
      */
-    void createFile(@NotNull String fileName, @NotNull UserEntity user, @NotNull InputStream inputStream);
+    @NotNull FileEntity createFile(@NotNull String fileName, @NotNull UserEntity user,
+                                   @NotNull InputStream inputStream);
 
     /**
-     * Create Asset
+     * Create a new asset.
      *
-     * @param assetName   the asset name
-     * @param description the description asset
-     * @param user        the user
-     * @param category    the category asset
+     * @param assetName   the asset name.
+     * @param description the description asset.
+     * @param user        the user.
+     * @param category    the category asset.
      */
-    void createAsset(@NotNull String assetName, @Nullable String description,
-                     @NotNull UserEntity user, @NotNull AssetCategoryEntity category);
+    @NotNull AssetEntity createAsset(@NotNull String assetName, @Nullable String description, @NotNull UserEntity user,
+                                     @NotNull AssetCategoryEntity category);
 
     /**
      * Add file to asset
