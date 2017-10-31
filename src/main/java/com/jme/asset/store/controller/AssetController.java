@@ -3,10 +3,12 @@ package com.jme.asset.store.controller;
 import static com.jme.asset.store.security.util.SecurityUtil.getCurrentUser;
 import static java.util.Objects.requireNonNull;
 
+import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
+import com.jme.asset.store.service.AssetCategoryService;
 import com.jme.asset.store.service.AssetService;
 import com.jme.asset.store.service.UserService;
 import org.jetbrains.annotations.NotNull;
@@ -31,15 +33,30 @@ import java.io.IOException;
 @RequestMapping("/assets")
 public class AssetController {
 
+    /**
+     * The user service
+     */
     @NotNull
     private final UserService userService;
+
+    /**
+     * The asset service
+     */
     @NotNull
     private final AssetService assetService;
 
+    /**
+     * The category service
+     */
+    @NotNull
+    private final AssetCategoryService categoryService;
+
     @Autowired
-    public AssetController(@NotNull final UserService userService, @NotNull final AssetService assetService) {
+    public AssetController(@NotNull final UserService userService, @NotNull final AssetService assetService,
+                           @NotNull final AssetCategoryService categoryService) {
         this.userService = userService;
         this.assetService = assetService;
+        this.categoryService = categoryService;
     }
 
     /**
@@ -52,10 +69,11 @@ public class AssetController {
     public ResponseEntity<?> createAsset(@RequestBody final AssetCreateParam params) {
         final String name = params.getName();
         final String description = params.getDescription();
+        final AssetCategoryEntity assetCategory = categoryService.load(params.getCategoryId());
         final JmeUser currentUser = requireNonNull(getCurrentUser());
         final UserEntity user = currentUser.getUser();
         try {
-            assetService.createAsset(name, description, user);
+            assetService.createAsset(name, description, user, assetCategory);
         } catch (final RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }

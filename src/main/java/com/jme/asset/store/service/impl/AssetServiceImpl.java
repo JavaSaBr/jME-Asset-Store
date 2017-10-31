@@ -1,6 +1,8 @@
 package com.jme.asset.store.service.impl;
 
 import static org.hibernate.Hibernate.getLobCreator;
+
+import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
@@ -78,11 +80,13 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void createAsset(@NotNull final String nameAsset, @Nullable final String description, @NotNull final UserEntity user) {
+    public void createAsset(@NotNull final String nameAsset, @Nullable final String description,
+                            @NotNull final UserEntity user, @NotNull final AssetCategoryEntity category) {
         final AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);
         assetEntity.setDescription(description);
         assetEntity.setCreator(user);
+        assetEntity.setCategory(category);
         assetRepository.save(assetEntity);
     }
 
