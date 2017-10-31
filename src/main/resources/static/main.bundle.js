@@ -29,14 +29,12 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__component_page_login_login_component__ = __webpack_require__("../../../../../src/component/page/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__component_page_dashboard_dashboard_component__ = __webpack_require__("../../../../../src/component/page/dashboard/dashboard.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__component_page_register_register_component__ = __webpack_require__("../../../../../src/component/page/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__component_page_app_settings_app_settings_component__ = __webpack_require__("../../../../../src/component/page/app-settings/app-settings.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -52,7 +50,6 @@ var routes = [
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_DASHBOARD, component: __WEBPACK_IMPORTED_MODULE_5__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */] },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_LOGIN, component: __WEBPACK_IMPORTED_MODULE_4__component_page_login_login_component__["a" /* LoginComponent */] },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_REGISTER, component: __WEBPACK_IMPORTED_MODULE_6__component_page_register_register_component__["a" /* RegisterComponent */] },
-    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_APP_SETTINGS, component: __WEBPACK_IMPORTED_MODULE_7__component_page_app_settings_app_settings_component__["a" /* AppSettingsComponent */] }
 ];
 /**
  * The configuration of the router module.
@@ -101,7 +98,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\r\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\r\n  </button>\r\n   <span class=\"app-toolbar-filler\"></span>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Login\r\n  </button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/register\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Register\r\n  </button>\r\n  <button mat-button class=\"mat-toolbar-button\" *ngIf=\"!hasRoleAdmin\" routerLink=\"/appsettings\" routerLinkActive=\"hasRoleAdmin()\">\r\n    App settings</button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\r\n</mat-toolbar>\r\n<div class=\"root-content\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\r\n  <button mat-button class=\"m-toolbar-button\" routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\r\n  </button>\r\n  <span class=\"app-toolbar-filler\"></span>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/login\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Login\r\n  </button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"!authed\" routerLink=\"/register\"\r\n          routerLinkActive=\"m-toolbar-button-active\">Register\r\n  </button>\r\n  <button mat-button class=\"m-toolbar-button\" *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\r\n</mat-toolbar>\r\n<div class=\"root-content\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -188,14 +185,12 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_page_register_register_component__ = __webpack_require__("../../../../../src/component/page/register/register.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_page_dashboard_dashboard_component__ = __webpack_require__("../../../../../src/component/page/dashboard/dashboard.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__service_security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_page_app_settings_app_settings_component__ = __webpack_require__("../../../../../src/component/page/app-settings/app-settings.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -220,7 +215,6 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8__component_page_login_login_component__["a" /* LoginComponent */],
             __WEBPACK_IMPORTED_MODULE_9__component_page_register_register_component__["a" /* RegisterComponent */],
             __WEBPACK_IMPORTED_MODULE_10__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__component_page_app_settings_app_settings_component__["a" /* AppSettingsComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
@@ -230,8 +224,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MatButtonModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatInputModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["d" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatMenuModule */]
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatToolbarModule */],
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
@@ -342,82 +335,6 @@ var PageComponent = (function (_super) {
 
 /***/ }),
 
-/***/ "../../../../../src/component/page/app-settings/app-settings.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".app-settings-form-container {\r\n  width: 400px;\r\n  margin: 0 auto;\r\n  margin-top: 10px;\r\n}\r\n.app-settings-mat-button {\r\n  border-collapse: collapse;\r\n  color: #636363;\r\n  border-radius: 2px;\r\n  border-spacing: 2px;\r\n  padding: 10px;\r\n  background-color: blue;\r\n}\r\n.app-settings-container {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n.app-settings-page-title {\r\n  color: #636363;\r\n  text-align: center;\r\n}\r\n.app-settings-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n.app-setting-mat-menu-item {\r\n  border-collapse: collapse;\r\n  color: #636363;\r\n  border-radius: 2px;\r\n  border-spacing: 2px;\r\n  padding: 10px;\r\n  background-color: blue;\r\n}\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/component/page/app-settings/app-settings.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"app-settings-form-container\" *ngIf=\"!hasRoleAdmin\">\r\n  <button class=\"app-settings-mat-button\" class=\"app-settings-page-title\" mat-button\r\n          [matMenuTriggerFor]=\"generalSettings\">General settings\r\n  </button>\r\n  <mat-menu #generalSettings=\"matMenu\">\r\n    <button class=\"app-setting-mat-menu-item\" mat-menu-item\r\n            [matMenuTriggerFor]=\"appSettings\">Application settings\r\n    </button>\r\n    <button class=\"app-settings-mat-button\" class=\"app-settings-page-title\" mat-menu-item\r\n            [matMenuTriggerFor]=\"userSettings\">User's settings\r\n    </button>\r\n  </mat-menu>\r\n  <mat-menu #appSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button app-settings-page-title\" mat-menu-item [matMenuTriggerFor]=\"soundSettings\">\r\n      Sound settings\r\n    </button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item [matMenuTriggerFor]=\"videoSettings\">Video settings</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item [matMenuTriggerFor]=\"downloadsettings\">Download settings\r\n    </button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Custom settings</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>FAQ</button>\r\n  </mat-menu>\r\n  <mat-menu #userSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Insects</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Molluscs</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Crustaceans</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Corals</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Arachnids</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Velvet worms</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Horseshoe crabs</button>\r\n  </mat-menu>\r\n  <mat-menu #soundSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Baikal oilfish</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Bala shark</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Ballan wrasse</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Bamboo shark</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Banded killifish</button>\r\n  </mat-menu>\r\n  <mat-menu #videoSettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Sonoran desert toad</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Western toad</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Arroyo toad</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Yosemite toad</button>\r\n  </mat-menu>\r\n  <mat-menu #downloadsettings=\"matMenu\">\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Banded Day Gecko</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Banded Gila Monster</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Black Tree Monitor</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item>Blue Spiny Lizard</button>\r\n    <button class=\"app-settings-mat-button\" mat-menu-item disabled>Velociraptor</button>\r\n  </mat-menu>\r\n</div>\r\n"
-
-/***/ }),
-
-/***/ "../../../../../src/component/page/app-settings/app-settings.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppSettingsComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * @author Alena Solonevich
- */
-var AppSettingsComponent = (function (_super) {
-    __extends(AppSettingsComponent, _super);
-    function AppSettingsComponent() {
-        return _super.call(this) || this;
-    }
-    return AppSettingsComponent;
-}(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
-AppSettingsComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        selector: 'app-app-settings',
-        template: __webpack_require__("../../../../../src/component/page/app-settings/app-settings.component.html"),
-        styles: [__webpack_require__("../../../../../src/component/page/app-settings/app-settings.component.css")]
-    }),
-    __metadata("design:paramtypes", [])
-], AppSettingsComponent);
-
-//# sourceMappingURL=app-settings.component.js.map
-
-/***/ }),
-
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -439,7 +356,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n<body>\r\n<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\r\n</p>\r\n</body>\r\n"
+module.exports = "<p>\r\n  dashboard works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -620,7 +537,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n      <button class=\"register-data-row\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"register-form-container\">\r\n  <div class=\"register-form\">\r\n\r\n    <div class=\"register-text-container\">\r\n      <h2 class=\"register-page-title\">Register a new user</h2>\r\n      <h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n        {{error}}\r\n      </h3>\r\n    </div>\r\n\r\n    <form class=\"register-data-form mat-elevation-z2\" (ngSubmit)=\"tryRegister()\" #registerForm=\"ngForm\">\r\n      <button class=\"register-data-row register-button\" type=\"submit\" mat-raised-button color=\"primary\"\r\n              [disabled]=\"!registerForm.form.valid\">Register\r\n      </button>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1030,27 +947,6 @@ var SecurityService = SecurityService_1 = (function () {
         }
         return false;
     };
-    /**
-     * Check  the current user has the role ADMIN.
-     *
-     * @param {string} role_admin the role ADMIN.
-     * @returns {boolean} true if the current user has the role ADMIN.
-     */
-    SecurityService.prototype.hasRoleAdmin = function () {
-        var role_admin = SecurityService_1.ROLE_ADMIN;
-        var currentUser = this._user;
-        if (currentUser == null) {
-            return null;
-        }
-        var roles = currentUser.roles;
-        for (var _i = 0, roles_2 = roles; _i < roles_2.length; _i++) {
-            var role = roles_2[_i];
-            if (role === role_admin) {
-                return true;
-            }
-        }
-        return false;
-    };
     return SecurityService;
 }());
 SecurityService.ROLE_ADMIN = 'ADMIN';
@@ -1103,7 +999,6 @@ var RouteList = (function () {
 RouteList.PAGE_LOGIN = 'login';
 RouteList.PAGE_DASHBOARD = 'dashboard';
 RouteList.PAGE_REGISTER = 'register';
-RouteList.PAGE_APP_SETTINGS = 'app-settings';
 //# sourceMappingURL=route-list.js.map
 
 /***/ }),
