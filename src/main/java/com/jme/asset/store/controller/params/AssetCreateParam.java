@@ -20,6 +20,11 @@ public class AssetCreateParam {
     private String name;
 
     /**
+     * The asset category id
+     */
+    private long categoryId;
+
+    /**
      * Get the asset description
      *
      * @return the asset description
@@ -53,5 +58,23 @@ public class AssetCreateParam {
      */
     public void setName(@Nullable String name) {
         this.name = name;
+    }
+
+    /**
+     * Get the category id
+     *
+     * @return the category id
+     */
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    /**
+     * Set the category id
+     *
+     * @param categoryId the category id
+     */
+    public void setCategoryId(final long categoryId) {
+        this.categoryId = categoryId;
     }
 }
