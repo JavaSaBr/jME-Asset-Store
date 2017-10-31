@@ -113,6 +113,60 @@ export class RegisterComponent extends PageComponent {
   }
 
   /**
+   * Gets the selected by user role.
+   *
+   * @returns {string}
+   */
+  get selectedRole(): string {
+    return this._selectedRole;
+  }
+
+  /**
+   * Sets the selected by user role.
+   *
+   * @param {string} value
+   */
+  set selectedRole(value: string) {
+    this._selectedRole = value;
+  }
+
+  /**
+   * Gets the list of the available roles.
+   *
+   * @returns {{value: string; viewValue: string}[]}
+   */
+  get availableRoles(): ({ value: string; viewValue: string } | { value: string; viewValue: string })[] {
+    return this._availableRoles;
+  }
+
+  /**
+   * Sets the list of the available roles.
+   *
+   * @param {{value: string; viewValue: string}[]} value
+   */
+  set availableRoles(value: ({ value: string; viewValue: string } | { value: string; viewValue: string })[]) {
+    this._availableRoles = value;
+  }
+
+  /**
+   * Gets the list of user roles.
+   *
+   * @returns {string[]}
+   */
+  get roles(): string[] {
+    return this._roles;
+  }
+
+  /**
+   * Set the list of user roles.
+   *
+   * @param {string[]} value
+   */
+  set roles(value: string[]) {
+    this._roles = value;
+  }
+
+  /**
    * Based on the user's choice, the method fills the list of user's roles.
    */
   private setRoleList() {
