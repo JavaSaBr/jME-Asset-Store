@@ -30,7 +30,7 @@ export class RegisterUserCredentials extends UserCredentials {
   /**
    * The user roles.
    */
-  roles: string [];
+  roles: string[];
 
   /**
    * The user confirm password.

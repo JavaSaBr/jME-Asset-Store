@@ -33,7 +33,7 @@ export class RegisterComponent extends PageComponent {
   /**
    * The user _roles.
    */
-  private _roles: string [];
+  private _roles: string[];
 
   /**
    * The current register user info.

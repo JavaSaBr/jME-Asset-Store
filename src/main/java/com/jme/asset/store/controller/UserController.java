@@ -1,6 +1,7 @@
 package com.jme.asset.store.controller;
 
 import static org.springframework.http.ResponseEntity.*;
+
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -14,6 +15,8 @@ import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AccessTokenService;
 import com.jme.asset.store.service.UserService;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -43,6 +46,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/" + Routes.API_USERS)
 public class UserController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     public static final String API_REGISTER = "/" + Routes.API_USERS + "/register";
     public static final String API_AUTHORIZATION = "/" + Routes.API_USERS + "/authorization";
@@ -97,10 +102,10 @@ public class UserController {
                 user.setMail(mail);
                 user.setLastName(lastName);
             });
-        }catch (DataIntegrityViolationException e){
+        } catch (final DataIntegrityViolationException e) {
             return status(HttpStatus.CONFLICT).body(new ErrorResponse("User with login " + login + " is already exist. Please choose another login!"));
         } catch (final RuntimeException e) {
-            e.printStackTrace();
+            LOGGER.warn(e.getMessage(), e);
             return status(HttpStatus.CONFLICT).body(new ErrorResponse(e.getLocalizedMessage()));
         }
 
