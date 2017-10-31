@@ -6,7 +6,7 @@ import {PageComponent} from "../../page.component";
  */
 @Component({
   moduleId: module.id,
-  selector: 'app-app-settings',
+  selector: 'app-settings',
   templateUrl: './app-settings.component.html',
   styleUrls: ['./app-settings.component.css']
 })

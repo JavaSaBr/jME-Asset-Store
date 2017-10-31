@@ -147,7 +147,7 @@ export class SecurityService {
     const currentUser = this._user;
 
     if (currentUser == null) {
-      return null;
+      return false;
     }
 
     const roles = currentUser.roles;
@@ -173,7 +173,7 @@ export class SecurityService {
     const currentUser = this._user;
 
     if (currentUser == null) {
-      return null;
+      return false;
     }
 
     const roles = currentUser.roles;

@@ -1,31 +1,48 @@
-.app-settings-form-container {
+.app-settings-sidenav-container {
   width: auto;
-  margin: auto;
-  margin-top: 15px;
-  margin-right: 15px;
+  height: auto;
 }
-.app-settings-mat-button {
-  border-collapse: collapse;
+
+.example-sidenav-fab-container {
+  width: 100%;
+  height: 100vh;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.example-sidenav-fab-container mat-sidenav {
+  max-width: 100%;
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.example-sidenav-fab-container .mat-sidenav-content,
+.example-sidenav-fab-container mat-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+.example-scrolling-content {
+  overflow: auto;
+  height: 100%;
+}
+
+.example-fab.mat-mini-fab {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+.example-text-style {
   color: #636363;
-  border-radius: 2px;
-  border-spacing: 2px;
-  padding: 10px;
-  background-color: white;
-  margin-left: auto;
 }
-.app-settings-container {
+
+.mat-raised-button {
+  display: inline-block;
+  width: 100%;
+  margin-top: 2px;
+
+}
+
+.mat-raised-button-flex {
   display: flex;
   flex-direction: column;
-}
-.app-settings-page-title {
-  color: #636363;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  height: 100%;
-  display: flex;
-}
-.app-settings-data-row {
-  width: 100%;
-  display: block;
-  margin-top: 40px;
-  margin-bottom: 20px;
 }
