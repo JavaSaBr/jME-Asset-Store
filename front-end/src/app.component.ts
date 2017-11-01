@@ -53,6 +53,6 @@ export class AppComponent {
    * @returns {boolean}
    */
   get isAdmin(): boolean {
-    return this._isAdmin = this.security.hasRole("ADMIN");
+    return this._isAdmin = this.security.hasRole(SecurityService.ROLE_ADMIN);
   }
 }
