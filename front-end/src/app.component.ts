@@ -23,6 +23,11 @@ export class AppComponent {
    */
   private _authed: boolean;
 
+  /**
+   * The flag that the user is admin.
+   */
+  private _isAdmin: boolean;
+
   constructor(private readonly security: SecurityService) {
     this._authed = false;
     this.security.authProperty
@@ -40,5 +45,14 @@ export class AppComponent {
    */
   get authed(): boolean {
     return this._authed;
+  }
+
+  /**
+   * The flag that the user is admin.
+   *
+   * @returns {boolean}
+   */
+  get isAdmin(): boolean {
+    return this._isAdmin = this.security.hasRole("ADMIN");
   }
 }

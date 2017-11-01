@@ -26,8 +26,7 @@ const routes: Routes = [
     {path: RouteList.PAGE_SETTING_FILE, component: FileSettingComponent, outlet: RouteList.OUTLET_SETTINGS},
     {path: RouteList.PAGE_SETTING_ASSET, component: AssetSettingComponent, outlet: RouteList.OUTLET_SETTINGS},
   ]
-  },
-
+  }
 ];
 
 /**
