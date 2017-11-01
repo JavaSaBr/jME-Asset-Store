@@ -1,0 +1,24 @@
+.menu-container {
+  width: 100%;
+  height: 100vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.menu-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-sidenav {
+  width: 200px;
+  padding: 0;
+}
+
+.menu-button {
+  margin: 0;
+  width: 100%;
+}
+
+

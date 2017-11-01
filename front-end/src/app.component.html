@@ -9,6 +9,11 @@
   <button mat-button class="m-toolbar-button" *ngIf="!authed" routerLink="/register"
           routerLinkActive="m-toolbar-button-active">Register
   </button>
+
+  <button mat-button class="m-toolbar-button" routerLink="/menu"
+          routerLinkActive="m-toolbar-button-active">Menu
+  </button>
+
   <button mat-button class="m-toolbar-button" *ngIf="authed" routerLink="/" (click)="logout()">Logout</button>
 </mat-toolbar>
 <div class="root-content">

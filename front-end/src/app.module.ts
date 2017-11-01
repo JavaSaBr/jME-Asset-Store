@@ -13,6 +13,8 @@ import {DashboardComponent} from "./component/page/dashboard/dashboard.component
 import {SecurityService} from "./service/security.service";
 import { FormControlDirective } from '@angular/forms';
 import {ValidatorModule} from "./validate/validator.module";
+import { MenubarComponent } from './component/page/menubar/menubar.component';
+import {MenubarModule} from "./component/page/menubar/menubar.module";
 
 
 @NgModule({
@@ -31,9 +33,10 @@ import {ValidatorModule} from "./validate/validator.module";
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
-    MatToolbarModule,
     MatSelectModule,
-    ValidatorModule
+    MatToolbarModule,
+    ValidatorModule,
+    MenubarModule
   ],
   providers: [SecurityService],
   bootstrap: [AppComponent]
