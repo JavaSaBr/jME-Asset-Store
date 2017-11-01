@@ -15,6 +15,10 @@ import { FormControlDirective } from '@angular/forms';
 import {ValidatorModule} from "./validate/validator.module";
 import { MenubarComponent } from './component/page/menubar/menubar.component';
 import {MenubarModule} from "./component/page/menubar/menubar.module";
+import { UserSettingComponent } from './component/page/settings/user-setting/user-setting.component';
+import { UploadSettingComponent } from './component/page/settings/upload-setting/upload-setting.component';
+import { FileSettingComponent } from './component/page/settings/file-setting/file-setting.component';
+import { AssetSettingComponent } from './component/page/settings/asset-setting/asset-setting.component';
 
 
 @NgModule({
@@ -24,6 +28,10 @@ import {MenubarModule} from "./component/page/menubar/menubar.module";
     RegisterComponent,
     DashboardComponent,
     FormControlDirective,
+    UserSettingComponent,
+    UploadSettingComponent,
+    FileSettingComponent,
+    AssetSettingComponent,
   ],
   imports: [
     FormsModule,

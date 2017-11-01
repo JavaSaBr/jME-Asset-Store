@@ -1,27 +1,22 @@
 <mat-sidenav-container class="menu-container">
   <mat-sidenav #sidenav mode="side" opened="true" class="menu-sidenav">
-   <ul>
-     <li>
-       <a  routerLinkActive="active"
-     </li>
-   </ul>
+    <a class="menu-button" mat-button color="primary" [routerLink]="['/menu', {outlets: {'settings': ['user']}}]">
+      User setting
+    </a>
+    <a class="menu-button" mat-button color="primary" [routerLink]="['/menu', {outlets: {'settings': ['upload']}}]">
+      Upload setting
+    </a>
+    <a class="menu-button" mat-button color="primary" [routerLink]="['/menu', {outlets: {'settings': ['file']}}]">
+      File setting
+    </a>
+    <a class="menu-button" mat-button color="primary" [routerLink]="['/menu', {outlets: {'settings': ['asset']}}]">
+      Asset setting
+    </a>
 
-    <!-- <button  class = "menu-button" type="button" mat-button>
-      User Settings
-    </button>
-    <button  class = "menu-button" type="button" mat-button>
-      Upload Setting
-    </button>
-    <button class = "menu-button" type="button" mat-button>
-      File Settings
-    </button>
-    <button class = "menu-button" type="button" mat-button>
-      Asset Settings
-    </button>-->
   </mat-sidenav>
 
   <div class="menu-sidenav-content">
-
+    <router-outlet name="settings"></router-outlet>
   </div>
 
 </mat-sidenav-container>
