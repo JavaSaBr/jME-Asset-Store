@@ -39,7 +39,7 @@ export class LoginComponent extends PageComponent {
     this.security.auth(this.credentials, (message, result) => {
       if (result) {
         this.error = '';
-        this.credentials.username = '';
+        this.credentials.login = '';
         this.credentials.password = '';
         this.router.navigateByUrl('/');
       } else {

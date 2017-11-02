@@ -42,16 +42,24 @@ public class AssetEntity extends BaseEntity {
     @JoinColumn(name = "creator_id")
     private UserEntity creator;
 
+    /**
+     * The category of asset
+     */
+    @OneToOne
+    private AssetCategoryEntity category;
+
     public AssetEntity() {
     }
 
     public AssetEntity(final long id, @NotNull final String name, @NotNull final String description,
-                       @Nullable final List<FileEntity> files, @NotNull final UserEntity creator) {
+                       @Nullable final List<FileEntity> files, @NotNull final UserEntity creator,
+                       @NotNull final AssetCategoryEntity category) {
         super(id);
         this.name = name;
         this.description = description;
         this.files = files;
         this.creator = creator;
+        this.category = category;
     }
 
     /**
@@ -59,7 +67,7 @@ public class AssetEntity extends BaseEntity {
      *
      * @return the name of asset
      */
-    public String getName() {
+    public @NotNull String getName() {
         return name;
     }
 
@@ -68,7 +76,7 @@ public class AssetEntity extends BaseEntity {
      *
      * @param name the name of asset
      */
-    public void setName(String name) {
+    public void setName(@NotNull final String name) {
         this.name = name;
     }
 
@@ -77,7 +85,7 @@ public class AssetEntity extends BaseEntity {
      *
      * @return the description of asset
      */
-    public String getDescription() {
+    public @Nullable String getDescription() {
         return description;
     }
 
@@ -86,7 +94,7 @@ public class AssetEntity extends BaseEntity {
      *
      * @param description the description of asset
      */
-    public void setDescription(String description) {
+    public void setDescription(@Nullable final String description) {
         this.description = description;
     }
 
@@ -95,7 +103,7 @@ public class AssetEntity extends BaseEntity {
      *
      * @return files in asset
      */
-    public List<FileEntity> getFiles() {
+    public @Nullable List<FileEntity> getFiles() {
         return files;
     }
 
@@ -104,7 +112,7 @@ public class AssetEntity extends BaseEntity {
      *
      * @param files files in asset
      */
-    public void setFiles(List<FileEntity> files) {
+    public void setFiles(@Nullable final List<FileEntity> files) {
         this.files = files;
     }
 
@@ -113,7 +121,7 @@ public class AssetEntity extends BaseEntity {
      *
      * @return the creator of asset
      */
-    public UserEntity getCreator() {
+    public @NotNull UserEntity getCreator() {
         return creator;
     }
 
@@ -122,8 +130,26 @@ public class AssetEntity extends BaseEntity {
      *
      * @param creator the creator of asset
      */
-    public void setCreator(UserEntity creator) {
+    public void setCreator(@NotNull final UserEntity creator) {
         this.creator = creator;
+    }
+
+    /**
+     * Get the asset category
+     *
+     * @return the category of asset
+     */
+    public @NotNull AssetCategoryEntity getCategory() {
+        return category;
+    }
+
+    /**
+     * Set the asset category
+     *
+     * @param category the category of asset
+     */
+    public void setCategory(@NotNull final AssetCategoryEntity category) {
+        this.category = category;
     }
 
     /**

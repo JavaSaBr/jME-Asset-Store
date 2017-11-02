@@ -1,13 +1,65 @@
 <div class="register-form-container">
   <div class="register-form">
-    <div class="register-text-container">
-      <h2 class="register-page-title">Register a new user</h2>
-      <h3 class="register-page-error" [hidden]="error.length == 0">
-        {{error}}
-      </h3>
-    </div>
     <form class="register-data-form mat-elevation-z2" (ngSubmit)="tryRegister()" #registerForm="ngForm">
-      <button class="register-data-row" type="submit" mat-raised-button color="primary"
+      <div class="register-text-container">
+        <h2 class="register-page-title">Register a new user</h2>
+        <h3 class="register-page-error" [hidden]="error.length == 0">
+          {{error}}
+        </h3>
+      </div>
+      <mat-input-container class="register-data-row">
+        <input matInput placeholder="Username" id="username" required minlength="{{minUsernameLength}}"
+               maxlength="{{maxUsernameLength}}"
+               [(ngModel)]="info.login" name="userName"
+               #name="ngModel">
+      </mat-input-container>
+      <mat-input-container class="register-data-row">
+        <input matInput placeholder="First name" id="firstName"
+               [(ngModel)]="info.firstName" name="firstName"
+               #firstName="ngModel">
+      </mat-input-container>
+      <mat-input-container class="register-data-row">
+        <input matInput placeholder="Last name" id="lastName"
+               [(ngModel)]="info.lastName" name="lastName"
+               #lastName="ngModel">
+      </mat-input-container>
+      <mat-input-container class="register-data-row">
+        <input matInput placeholder="Middle name" id="middleName"
+               [(ngModel)]="info.middleName" name="middleName"
+               #middleName="ngModel">
+      </mat-input-container>
+      <mat-input-container class="register-data-row">
+        <input matInput placeholder="Email" type="email" id="mail"
+               isEmail
+               [(ngModel)]="info.mail" name="mail"
+               #mail="ngModel">
+      </mat-input-container>
+      <mat-input-container class="register-data-row">
+        <input matInput placeholder="Password" type="password" id="password" required minlength="{{minPasswordLength}}"
+               maxlength="{{maxPasswordLength}}"
+               [(ngModel)]="info.password"
+               name="password"
+               #password="ngModel">
+      </mat-input-container>
+      <mat-input-container class="register-data-row">
+        <input matInput placeholder="Confirm Password" type="password"
+               id="confirmPassword" required minlength="{{minPasswordLength}}"
+               maxlength="{{maxPasswordLength}}"
+               equals="password"
+               [(ngModel)]="info.confirmPassword"
+               name="confirmPassword"
+               #confirmPassword="ngModel">
+      </mat-input-container>
+
+      <mat-input-container>
+        <mat-select placeholder="Choose your role" [(ngModel)]="selectedRole" name="role">
+          <mat-option *ngFor="let role of availableRoles" [value]="role.value">
+            {{ role.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-input-container>
+
+      <button class="register-data-row register-button" type="submit" mat-raised-button color="primary"
               [disabled]="!registerForm.form.valid">Register
       </button>
     </form>
