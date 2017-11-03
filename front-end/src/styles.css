@@ -23,7 +23,7 @@ app-root {
   flex: 1 1 100%;
 }
 
-app-login, app-register, app-app-settings {
+app-login, app-register {
   display: flex;
   flex: 1 1 100%;
   flex-direction: row;

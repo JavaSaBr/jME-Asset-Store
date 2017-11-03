@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {FileTypesComponent} from './file-types.component';
+import {AssetCategoryComponent} from './asset-category.component';
 
-describe('FileTypesComponent', () => {
-  let component: FileTypesComponent;
-  let fixture: ComponentFixture<FileTypesComponent>;
+describe('AssetCategoryComponent', () => {
+  let component: AssetCategoryComponent;
+  let fixture: ComponentFixture<AssetCategoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FileTypesComponent]
+      declarations: [AssetCategoryComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileTypesComponent);
+    fixture = TestBed.createComponent(AssetCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

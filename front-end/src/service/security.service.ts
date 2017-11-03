@@ -168,6 +168,7 @@ export class SecurityService {
    * @returns {boolean} true if the current user has the role ADMIN.
    */
   hasRoleAdmin(): boolean {
+    console.log("call the method HasRoleAdmin");
     let role_admin = SecurityService.ROLE_ADMIN;
 
     const currentUser = this._user;

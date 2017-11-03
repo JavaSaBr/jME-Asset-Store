@@ -1,17 +1,12 @@
-<div class="app-settings-sidenav-container" *ngIf="!hasRoleAdmin">
-  <mat-sidenav-container class="example-sidenav-fab-container">
-    <mat-sidenav #sidenav mode="side" opened="true">
-      <div class="mat-raised-button-flex">
-        <button class="mat-raised-button" mat-raised-button class="filetypes" routerLink="/app-settings/file-types">
-          File
-          types
-        </button>
-        <button class="mat-raised-button" mat-raised-button>Download settings</button>
-        <button  class="mat-raised-button" mat-raised-button>Asset settings</button>
-        <button class="mat-raised-button" mat-raised-button>User settings</button>
-      </div>
-    </mat-sidenav>
-  </mat-sidenav-container>
-
+<div *ngIf="hasRoleAdmin()" class="app-settings"><span id="app-settings-title">Application settings</span>
+  <button mat-button [routerLink]="['/app-settings',{outlets: {'settings': ['file-types']}}] ">
+    File types
+  </button>
+  <button mat-button [routerLink]="['/app-settings', {outlets: {'settings':['asset-category']}}]">
+    Asset category
+  </button>
+</div>
+<div *ngIf="hasRoleAdmin()" class="setting-content">
+  <router-outlet name="settings"></router-outlet>
 </div>
 

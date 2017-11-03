@@ -41,4 +41,12 @@ export class AppComponent {
   get authed(): boolean {
     return this._authed;
   }
+
+/**
+ * The method hasRoleAdmin allows user with role ADMIN to see app-setting content
+ * @returns {boolean}
+ */
+  hasRoleAdmin(): boolean {
+    return  this.security.hasRoleAdmin();
+  }
 }
