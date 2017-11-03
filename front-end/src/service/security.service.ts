@@ -11,7 +11,6 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SecurityService {
 
-  public static readonly ROLE_ADMIN = 'ADMIN';
   public static readonly ROLE_USER = 'USER';
   public static readonly ROLE_ARTIST = 'ARTIST';
 
@@ -154,33 +153,6 @@ export class SecurityService {
 
     for (const role of roles) {
       if (role === toCheck) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  /**
-   * Check  the current user has the role ADMIN.
-   *
-   * @param {string} role_admin the role ADMIN.
-   * @returns {boolean} true if the current user has the role ADMIN.
-   */
-  hasRoleAdmin(): boolean {
-    console.log("call the method HasRoleAdmin");
-    let role_admin = SecurityService.ROLE_ADMIN;
-
-    const currentUser = this._user;
-
-    if (currentUser == null) {
-      return false;
-    }
-
-    const roles = currentUser.roles;
-
-    for (const role of roles) {
-      if (role === role_admin) {
         return true;
       }
     }
