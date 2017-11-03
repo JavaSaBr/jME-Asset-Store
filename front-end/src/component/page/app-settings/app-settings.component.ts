@@ -18,7 +18,6 @@ export class AppSettingsComponent extends PageComponent {
   }
 
   hasRole(toCheck: string): boolean {
-
     return this.service.hasRole(toCheck);
   }
 }
