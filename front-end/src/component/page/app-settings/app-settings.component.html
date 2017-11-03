@@ -1,4 +1,4 @@
-<div *ngIf="hasRoleAdmin()" class="app-settings"><span id="app-settings-title">Application settings</span>
+<div *ngIf="hasRole('ADMIN')" class="app-settings">
   <button mat-button [routerLink]="['/app-settings',{outlets: {'settings': ['file-types']}}] ">
     File types
   </button>
@@ -6,7 +6,7 @@
     Asset category
   </button>
 </div>
-<div *ngIf="hasRoleAdmin()" class="setting-content">
+
+<div *ngIf="hasRole('ADMIN')" class="setting-content">
   <router-outlet name="settings"></router-outlet>
 </div>
-

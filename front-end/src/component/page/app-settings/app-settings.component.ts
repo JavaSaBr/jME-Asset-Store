@@ -17,12 +17,8 @@ export class AppSettingsComponent extends PageComponent {
     super();
   }
 
-  /**
-   * The method hasRoleAdmin allows user with role ADMIN to see app-setting content
-   * @returns {boolean}
-   */
-  hasRoleAdmin(): boolean {
-    console.log("Call the method hasRoleAdmin in App-settings");
-    return this.service.hasRoleAdmin();
+  hasRole(toCheck: string): boolean {
+
+    return this.service.hasRole(toCheck);
   }
 }
