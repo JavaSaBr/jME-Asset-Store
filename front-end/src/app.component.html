@@ -1,17 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-toolbar class="app-bar mat-elevation-z6" color="primary">
-  <button mat-button class="m-toolbar-button" routerLink="/dashboard" routerLinkActive="m-toolbar-button-active">Home
+  <button mat-button routerLink="/dashboard" routerLinkActive="m-toolbar-button-active">Home
   </button>
   <span class="app-toolbar-filler"></span>
-  <button mat-button class="m-toolbar-button" *ngIf="!authed" routerLink="/login"
+  <button mat-button *ngIf="!authed" routerLink="/login"
           routerLinkActive="m-toolbar-button-active">Login
   </button>
-  <button mat-button class="m-toolbar-button" *ngIf="!authed" routerLink="/register"
+  <button mat-button *ngIf="!authed" routerLink="/register"
           routerLinkActive="m-toolbar-button-active">Register
   </button>
-  <button mat-button class="m-toolbar-button" *ngIf="authed" routerLink="/" (click)="logout()">Logout</button>
+  <button mat-button *ngIf="hasRole('ADMIN')" routerLink="/app-settings" routerLinkActive="m-toolbar-button-active">
+    App settings
+  </button>
+  <button mat-button *ngIf="authed" routerLink="/" (click)="logout()">Logout</button>
 </mat-toolbar>
 <div class="root-content">
   <router-outlet></router-outlet>
 </div>
-

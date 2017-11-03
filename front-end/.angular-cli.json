@@ -9,7 +9,9 @@
       "outDir": "../src/main/resources/static/",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "JMonkeyAssetStoreLogo.png",
+        "JMonkeyAssetStoreLogo-01.png"
       ],
       "index": "index.html",
       "main": "main.ts",

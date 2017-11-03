@@ -11,7 +11,6 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SecurityService {
 
-  public static readonly ROLE_ADMIN = 'ADMIN';
   public static readonly ROLE_USER = 'USER';
   public static readonly ROLE_ARTIST = 'ARTIST';
 
@@ -147,7 +146,7 @@ export class SecurityService {
     const currentUser = this._user;
 
     if (currentUser == null) {
-      return null;
+      return false;
     }
 
     const roles = currentUser.roles;
