@@ -20,6 +20,7 @@ import {FormControlDirective} from '@angular/forms';
 import {ValidatorModule} from "./validate/validator.module";
 import {AssetCategoryComponent} from './component/page/app-settings/page/asset-category/asset-category.component';
 import {RouterModule} from "@angular/router";
+import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import {RouterModule} from "@angular/router";
     RouterModule,
     MatTabsModule
   ],
-  providers: [SecurityService],
+  providers: [SecurityService, AppSettingsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

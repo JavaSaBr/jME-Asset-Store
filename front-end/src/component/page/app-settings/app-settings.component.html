@@ -1,4 +1,4 @@
-<div *ngIf="hasRole('ADMIN')" class="app-settings">
+<div class="app-settings">
   <button mat-button [routerLink]="['/app-settings',{outlets: {'settings': ['file-types']}}] ">
     File types
   </button>
@@ -7,6 +7,6 @@
   </button>
 </div>
 
-<div *ngIf="hasRole('ADMIN')" class="setting-content">
+<div class="setting-content">
   <router-outlet name="settings"></router-outlet>
 </div>
