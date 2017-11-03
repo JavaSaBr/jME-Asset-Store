@@ -1,12 +1,12 @@
 <div class="app-settings">
-  <button mat-button [routerLink]="['/app-settings',{outlets: {'settings': ['file-types']}}] ">
+  <button mat-button [routerLink]="['./' + RouteList.PAGE_FILE_TYPES]">
     File types
   </button>
-  <button mat-button [routerLink]="['/app-settings', {outlets: {'settings':['asset-category']}}]">
+  <button mat-button [routerLink]="['./' + RouteList.PAGE_ASSET_CATEGORY]">
     Asset category
   </button>
 </div>
 
 <div class="setting-content">
-  <router-outlet name="settings"></router-outlet>
+  <router-outlet></router-outlet>
 </div>

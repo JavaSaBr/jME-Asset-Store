@@ -20,8 +20,8 @@ const routes: Routes = [
   {path: RouteList.PAGE_REGISTER, component: RegisterComponent},
   {
     path: RouteList.PAGE_APP_SETTINGS, component: AppSettingsComponent, canActivate: [AppSettingsGuard], children: [
-    {path: RouteList.PAGE_FILE_TYPES, component: FileTypesComponent, outlet: "settings"},
-    {path: RouteList.PAGE_ASSET_CATEGORY, component: AssetCategoryComponent, outlet: "settings"}
+    {path: RouteList.PAGE_FILE_TYPES, component: FileTypesComponent},
+    {path: RouteList.PAGE_ASSET_CATEGORY, component: AssetCategoryComponent}
   ]
   },
 ];
