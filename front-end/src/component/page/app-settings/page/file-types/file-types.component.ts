@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FileTypes} from "../../../../../model/file-types/file-types";
 
 /**
  * @author Alena Solonevich
@@ -12,7 +13,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class FileTypesComponent implements OnInit {
 
-  constructor() {
+  constructor(fileTypes: FileTypes) {
   }
 
   ngOnInit() {

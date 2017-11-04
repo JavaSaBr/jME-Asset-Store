@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
-  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule
+  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -21,6 +21,7 @@ import {ValidatorModule} from "./validate/validator.module";
 import {AssetCategoryComponent} from './component/page/app-settings/page/asset-category/asset-category.component';
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
+import { NewFile } from './service/file.types.service.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard
     AppSettingsComponent,
     FileTypesComponent,
     FormControlDirective,
-    AssetCategoryComponent
+    AssetCategoryComponent,
+    NewFile.Types.ServiceComponent
   ],
   imports: [
     FormsModule,
@@ -51,7 +53,8 @@ import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard
     MatSelectModule,
     ValidatorModule,
     RouterModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule
   ],
   providers: [SecurityService, AppSettingsGuard],
   bootstrap: [AppComponent]
