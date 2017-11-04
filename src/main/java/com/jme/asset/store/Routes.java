@@ -7,5 +7,7 @@ package com.jme.asset.store;
  */
 public interface Routes {
 
-    String API_USERS = "users";
+    String API = "api";
+    String API_USERS = API + "/users";
+    String API_ASSETS = API + "/assets";
 }

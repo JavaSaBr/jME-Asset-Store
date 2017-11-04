@@ -19,14 +19,14 @@ export class SecurityService {
    *
    * @type {string}
    */
-  private static readonly AUTH_URL = '/users/authorization';
+  private static readonly AUTH_URL = '/api/users/authorization';
 
   /**
    * The url of register endpoint.
    *
    * @type {string}
    */
-  private static readonly REGISTER_URL = '/users/register';
+  private static readonly REGISTER_URL = '/api/users/register';
 
   /**
    * The name of access token header.
