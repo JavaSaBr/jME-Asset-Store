@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 import {SecurityService} from "../../../service/security.service";
 
 /**
@@ -10,11 +10,12 @@ import {SecurityService} from "../../../service/security.service";
  */
 @Injectable()
 export class AppSettingsGuard implements CanActivate {
-  constructor(private readonly security: SecurityService){}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const isAdmin = this.security.hasRole('ADMIN');
-    return isAdmin;
+
+  constructor(private readonly security: SecurityService) {
+  }
+
+  canActivate(next: ActivatedRouteSnapshot,
+              state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.security.hasRole('ADMIN');
   }
 }

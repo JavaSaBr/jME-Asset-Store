@@ -126,7 +126,7 @@ export class SecurityService {
    */
   get accessToken(): string {
 
-    const currentUser = this._user;
+    const currentUser = this.user;
 
     if (currentUser == null) {
       return null;
@@ -143,7 +143,7 @@ export class SecurityService {
    */
   hasRole(toCheck: string): boolean {
 
-    const currentUser = this._user;
+    const currentUser = this.user;
 
     if (currentUser == null) {
       return false;

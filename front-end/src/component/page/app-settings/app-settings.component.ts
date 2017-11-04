@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {PageComponent} from "../../page.component";
-import {SecurityService} from "../../../service/security.service";
 
 /**
  * @author Alena Solonevich
@@ -13,11 +12,7 @@ import {SecurityService} from "../../../service/security.service";
 })
 export class AppSettingsComponent extends PageComponent {
 
-  constructor(private readonly service: SecurityService) {
+  constructor() {
     super();
-  }
-
-  hasRole(toCheck: string): boolean {
-    return this.service.hasRole(toCheck);
   }
 }
