@@ -2,15 +2,14 @@ package com.jme.asset.store.controller;
 
 import static com.jme.asset.store.security.util.SecurityUtil.getCurrentUser;
 import static java.util.Objects.requireNonNull;
-
-import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
+import com.jme.asset.store.Routes;
 import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
+import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetCategoryService;
 import com.jme.asset.store.service.AssetService;
-import com.jme.asset.store.service.UserService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,14 +29,8 @@ import java.io.IOException;
  * @author Alena Solonevich
  */
 @Controller
-@RequestMapping("/assets")
+@RequestMapping("/" + Routes.API_ASSETS)
 public class AssetController {
-
-    /**
-     * The user service
-     */
-    @NotNull
-    private final UserService userService;
 
     /**
      * The asset service
@@ -52,9 +45,8 @@ public class AssetController {
     private final AssetCategoryService categoryService;
 
     @Autowired
-    public AssetController(@NotNull final UserService userService, @NotNull final AssetService assetService,
+    public AssetController(@NotNull final AssetService assetService,
                            @NotNull final AssetCategoryService categoryService) {
-        this.userService = userService;
         this.assetService = assetService;
         this.categoryService = categoryService;
     }
