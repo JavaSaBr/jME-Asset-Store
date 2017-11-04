@@ -12,6 +12,9 @@
   <button mat-button *ngIf="hasRole('ADMIN')" routerLink="/app-settings" routerLinkActive="m-toolbar-button-active">
     App settings
   </button>
+  <button mat-button *ngIf="!hasRole('ARTIST')" routerLink="/login" routerLinkActive="m-toolbar-button-active">
+    App settings
+  </button>
   <button mat-button *ngIf="authed" routerLink="/" (click)="logout()">Logout</button>
 </mat-toolbar>
 <div class="root-content">
