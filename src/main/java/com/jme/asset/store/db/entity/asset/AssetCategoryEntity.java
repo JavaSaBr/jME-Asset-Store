@@ -6,7 +6,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The asset category entity
@@ -32,25 +33,17 @@ public class AssetCategoryEntity extends BaseEntity {
     /**
      * The parent of asset category
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "parent_id")
     private AssetCategoryEntity parent;
 
     /**
      * The children of asset category
      */
     @OneToMany(mappedBy = "parent")
-    private List<AssetCategoryEntity> children;
+    private Set<AssetCategoryEntity> children = new HashSet<AssetCategoryEntity>();
 
     public AssetCategoryEntity() {
-    }
-
-    public AssetCategoryEntity(final long id, @Nullable final String name, @Nullable final String description,
-                               @Nullable final AssetCategoryEntity parent, @Nullable final List<AssetCategoryEntity> children) {
-        super(id);
-        this.name = name;
-        this.description = description;
-        this.parent = parent;
-        this.children = children;
     }
 
     /**
@@ -112,7 +105,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @return the children of asset category
      */
-    public @Nullable List<AssetCategoryEntity> getChildren() {
+    public @Nullable Set<AssetCategoryEntity> getChildren() {
         return children;
     }
 
@@ -121,7 +114,7 @@ public class AssetCategoryEntity extends BaseEntity {
      *
      * @param children the children of asset category
      */
-    public void setChildren(@Nullable final List<AssetCategoryEntity> children) {
+    public void setChildren(@Nullable final Set<AssetCategoryEntity> children) {
         this.children = children;
     }
 
@@ -134,14 +127,4 @@ public class AssetCategoryEntity extends BaseEntity {
         children.add(child);
     }
 
-    /**
-     * Remove child from list children of asset category
-     *
-     * @param child the child of asset category
-     */
-    public void removeChild(@NotNull final AssetCategoryEntity child) {
-        if (children.contains(child)) {
-            children.remove(child);
-        }
-    }
 }
