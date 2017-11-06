@@ -6,6 +6,11 @@
 export class AssetCategoryEntity {
 
   /**
+   * The id asset category
+   */
+  private _id: number;
+
+  /**
    * The name of asset category
    */
   private _name: string;
@@ -26,6 +31,24 @@ export class AssetCategoryEntity {
   private _children: AssetCategoryEntity[];
 
   constructor() {
+  }
+
+  /**
+   * Get the asset component id.
+   *
+   * @returns {number} the asset component id.
+   */
+  get id(): number {
+    return this._id;
+  }
+
+  /**
+   * Set the asset component id.
+   *
+   * @param {number} value the asset component id.
+   */
+  set id(value: number) {
+    this._id = value;
   }
 
   /**
