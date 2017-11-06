@@ -1,1 +1,6 @@
 <p>Asset category works!</p>
+<ul>
+  <li *ngFor="let p of path">{{p.name}}</li>
+</ul>
+
+<button (click)="setTopOfPath(3)"></button>

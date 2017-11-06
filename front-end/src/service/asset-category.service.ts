@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {AssetCategoryEntity} from "../model/entity/AssetCategoryEntity";
+import {AssetCategoryEntity} from "../model/entity/asset-category-entity";
 import {Http} from "@angular/http";
 import {Utils} from "../util/utils";
-import {AssetCategoryParam} from "../model/category/AssetCategoryParam";
+import {AssetCategoryParam} from "../model/category/asset-category-param";
 
 /**
  * The asset category service.

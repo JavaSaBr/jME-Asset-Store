@@ -15,8 +15,9 @@ export class CategoryComponent {
    */
   private _id: string;
 
-
-  constructor() {
+  constructor(name: string, id: string) {
+    this._name = name;
+    this._id = id;
   }
 
   /**
