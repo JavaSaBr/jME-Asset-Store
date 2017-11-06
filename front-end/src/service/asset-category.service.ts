@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 
+/**
+ * The asset category service.
+ *
+ * @author Denis Lesheniuk.
+ */
 @Injectable()
 export class AssetCategoryService {
 
