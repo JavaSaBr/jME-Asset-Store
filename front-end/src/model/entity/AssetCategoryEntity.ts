@@ -6,7 +6,7 @@
 export class AssetCategoryEntity {
 
   /**
-   * The id asset category
+   * The id of asset category
    */
   private _id: number;
 

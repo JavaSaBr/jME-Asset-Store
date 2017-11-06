@@ -1,7 +1,12 @@
-export class AssetCategoryParam{
+/**
+ * The asset category params.
+ *
+ * @author Denis Lesheniuk.
+ */
+export class AssetCategoryParam {
 
   /**
-   * The id asset category
+   * The id of asset category
    */
   private _id: string;
   /**
