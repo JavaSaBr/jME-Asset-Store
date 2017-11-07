@@ -39,7 +39,7 @@ public class FileEntity extends BaseEntity {
      * Type of file
      */
     @OneToOne
-    @JoinColumn(name = "type_id", nullable = false)
+    @JoinColumn(name = "type_id")
     private FileTypeEntity type;
 
     public FileEntity() {

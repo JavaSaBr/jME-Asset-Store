@@ -1,0 +1,14 @@
+<div class="user-assets-data">
+  <ul class="user-assets-daa-rows">
+    <li class="user-asset-data-row" *ngFor="let asset of assets">
+      <button mat-raised-button (onclick)="asset"
+    </li>
+  </ul>
+  <div>
+    <button class="create-asset-button" mat-raised-button color="primary" (click)="createAsset()">create asset</button>
+  </div>
+  <div>
+    <app-load-file></app-load-file>
+  </div>
+</div>
+

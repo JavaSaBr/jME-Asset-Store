@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * The Asset service interface
@@ -24,7 +25,7 @@ public interface AssetService {
      * @param inputStream the input stream.
      */
     @NotNull FileEntity createFile(@NotNull String fileName, @NotNull UserEntity user,
-                                   @NotNull InputStream inputStream);
+                                   @NotNull InputStream inputStream, long id);
 
     /**
      * Create a new asset.
@@ -41,15 +42,25 @@ public interface AssetService {
      * Add file to asset
      *
      * @param file  the file entity file
-     * @param asset the asset entity asset
+     * @param id the asset entity asset id
      */
-    void addFileToAsset(@NotNull FileEntity file, @NotNull AssetEntity asset);
+    void addFileToAsset(@NotNull FileEntity file, long id);
 
     /**
      * Remove file from asset
      *
      * @param file  the file entity file
-     * @param asset the asset entity asset
+     * @param id the asset entity asset id
      */
-    void removeFileFromAsset(@NotNull FileEntity file, @NotNull AssetEntity asset);
+    void removeFileFromAsset(@NotNull FileEntity file, long id);
+
+    /**
+     * User's assets
+     *
+     * @param id user's id
+     * @return list of user's assets
+     *
+     * @author Mikhail Gomanchuk
+     */
+    @Nullable List<AssetEntity> getUserAssets(long id);
 }

@@ -10,5 +10,7 @@ export class RouteList {
   static readonly PAGE_REGISTER = 'register';
   static readonly PAGE_APP_SETTINGS = 'app-settings';
   static readonly PAGE_FILE_TYPES = "file-types";
-  static readonly PAGE_ASSET_CATEGORY = "asset-category"
+  static readonly PAGE_ASSET_CATEGORY = "asset-category";
+  static readonly PAGE_CREATE_ASSET = "create-asset";
+  static readonly PAGE_USER_ASSETS = "user-assets";
 }

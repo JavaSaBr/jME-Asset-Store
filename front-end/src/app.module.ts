@@ -21,6 +21,11 @@ import {ValidatorModule} from "./validate/validator.module";
 import {AssetCategoryComponent} from './component/page/app-settings/page/asset-category/asset-category.component';
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
+import {AddAssetComponent} from "./component/page/create-asset/create-asset.component";
+import {UserAssetsComponent} from "./component/page/user-assets/user-assets.component";
+import {LoadFileComponent} from "./component/page/load-file/load-file.component";
+import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
+import {AssetService} from "./service/asset/asset.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +36,10 @@ import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard
     AppSettingsComponent,
     FileTypesComponent,
     FormControlDirective,
-    AssetCategoryComponent
+    AssetCategoryComponent,
+    AddAssetComponent,
+    UserAssetsComponent,
+    LoadFileComponent
   ],
   imports: [
     FormsModule,
@@ -51,9 +59,10 @@ import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard
     MatSelectModule,
     ValidatorModule,
     RouterModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientModule
   ],
-  providers: [SecurityService, AppSettingsGuard],
+  providers: [SecurityService, AppSettingsGuard, AssetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

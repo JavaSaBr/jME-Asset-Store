@@ -34,7 +34,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     @Override
     public void addCategory(@NotNull final String name, @Nullable final String description,
                             @Nullable final AssetCategoryEntity parent) {
-        final AssetCategoryEntity category = null;
+        final AssetCategoryEntity category = new AssetCategoryEntity();
         category.setName(name);
         category.setDescription(description);
         category.setParent(parent);

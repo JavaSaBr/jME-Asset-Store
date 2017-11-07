@@ -2,12 +2,15 @@ package com.jme.asset.store.service.impl;
 
 import static com.jme.asset.store.util.Utils.safeDelete;
 import static org.hibernate.Hibernate.getLobCreator;
+
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
+import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.db.repository.asset.AssetRepository;
 import com.jme.asset.store.db.repository.asset.FileRepository;
+import com.jme.asset.store.db.repository.asset.FileTypeRepository;
 import com.jme.asset.store.service.AssetService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,6 +27,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * The main implementation of the {@link AssetService}.
@@ -49,18 +54,25 @@ public class AssetServiceImpl implements AssetService {
     @NotNull
     private final FileRepository fileRepository;
 
+    /**
+     * The file type repository
+     */
+    @NotNull
+    private final FileTypeRepository fileTypeRepository;
+
     @Autowired
     public AssetServiceImpl(@NotNull final EntityManagerFactory entityManagerFactory,
                             @NotNull final AssetRepository assetRepository,
-                            @NotNull final FileRepository fileRepository) {
+                            @NotNull final FileRepository fileRepository, @NotNull FileTypeRepository fileTypeRepository) {
         this.entityManagerFactory = entityManagerFactory;
         this.assetRepository = assetRepository;
         this.fileRepository = fileRepository;
+        this.fileTypeRepository = fileTypeRepository;
     }
 
     @Override
     public @NotNull FileEntity createFile(@NotNull final String fileName, @NotNull final UserEntity user,
-                                          @NotNull final InputStream inputStream) {
+                                          @NotNull final InputStream inputStream, final long id) {
         Path temp = null;
         try {
 
@@ -69,7 +81,7 @@ public class AssetServiceImpl implements AssetService {
             Files.copy(inputStream, temp, StandardCopyOption.REPLACE_EXISTING);
 
             try (final InputStream in = Files.newInputStream(temp)) {
-                return createFileEntity(fileName, user, in, Files.size(temp));
+                return createFileEntity(fileName, user, in, Files.size(temp), id);
             }
 
         } catch (final IOException e) {
@@ -89,10 +101,11 @@ public class AssetServiceImpl implements AssetService {
      * @return the created file entity.
      */
     private @NotNull FileEntity createFileEntity(@NotNull final String fileName, @NotNull final UserEntity user,
-                                                 @NotNull final InputStream content, final long contentLength) {
+                                                 @NotNull final InputStream content, final long contentLength,
+                                                 final long id) {
 
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        try(final Session session = sessionFactory.openSession()) {
+        try (final Session session = sessionFactory.openSession()) {
 
             final LobCreator lobCreator = getLobCreator(session);
             final Blob blob = lobCreator.createBlob(content, contentLength);
@@ -101,6 +114,8 @@ public class AssetServiceImpl implements AssetService {
             fileEntity.setName(fileName);
             fileEntity.setCreator(user);
             fileEntity.setContent(blob);
+            FileTypeEntity type = fileTypeRepository.findById(id).orElse(null);
+            fileEntity.setType(type);
 
             fileRepository.save(fileEntity);
 
@@ -125,14 +140,24 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void addFileToAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public void addFileToAsset(@NotNull final FileEntity file, final long id) {
+        AssetEntity asset = assetRepository.findById(id).orElse(null);
+        if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
         asset.addFile(file);
         assetRepository.save(asset);
     }
 
     @Override
-    public void removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public void removeFileFromAsset(@NotNull final FileEntity file, final long id) {
+        AssetEntity asset = assetRepository.findById(id).orElse(null);
+        if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
         asset.removeFile(file);
         assetRepository.save(asset);
+    }
+
+    @Override
+    public @Nullable List<AssetEntity> getUserAssets(long id) {
+        final List<AssetEntity> assets = assetRepository.findAllByCreator_Id(id);
+        return assets;
     }
 }

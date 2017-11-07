@@ -1,0 +1,28 @@
+<div class = "asset-create-form-container">
+  <div class = "asset-create-form">
+    <h2 class = "asset-create-page-title">Create Asset</h2>
+    <h3 class="asset-create-error" [hidden]="_message.length == 0">
+      {{_message}}
+    </h3>
+  </div>
+  <form class="asset-create-form mat-elevation-z2" (ngSubmit)="tryCreate()"  #userForm="ngForm">
+    <div class = "create_asset-data-block">
+      <mat-input-container class = "create-asset-data-row">
+        <input matInput placeholder="Asset name" id = "AssetName"
+               [(ngModel)] = "info.name"
+               name = "name"
+               #name = "ngModel">
+      </mat-input-container>
+    </div>
+    <div class = "create_asset-data-block">
+      <mat-input-container class = "create-asset-data-row">
+        <input matInput placeholder="Asset description" id = "AssetDescription"
+               [(ngModel)] = "info.description"
+               name = "description"
+               #description = "ngModel">
+      </mat-input-container>
+    </div>
+    <button class = "create-asset-button" type="submit" mat-raised-button color="primary"
+            [disabled]= "!isValid()"> create </button>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 package com.jme.asset.store.security;
 
+import com.jme.asset.store.Routes;
 import com.jme.asset.store.controller.UserController;
 import com.jme.asset.store.filter.AuthenticationTokenProcessingFilter;
 import com.jme.asset.store.filter.CsrfHeaderFilter;

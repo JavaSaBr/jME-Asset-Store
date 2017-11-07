@@ -181,4 +181,9 @@ public class UserServiceImpl implements UserService {
     public @Nullable UserEntity load(final String login) {
         return userRepository.findByLogin(login);
     }
+
+    @Override
+    public @Nullable UserEntity load(final long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }

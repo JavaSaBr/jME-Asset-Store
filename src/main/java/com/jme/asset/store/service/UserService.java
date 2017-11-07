@@ -73,4 +73,12 @@ public interface UserService extends UserDetailsService {
      * @return the user entity
      */
     UserEntity load(String login);
+
+    /**
+     * User by id
+     * @param id id of user
+     * @return user by id
+     * @author Gomanchuk Mikhail
+     */
+    @Nullable UserEntity load(long id);
 }
