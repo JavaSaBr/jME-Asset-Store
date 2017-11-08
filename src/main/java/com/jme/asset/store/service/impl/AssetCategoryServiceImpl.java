@@ -8,9 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * The implementation of the asset category.
@@ -48,37 +46,54 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
-    public void removeCategory(final long id) {
-        assetCategoryRepository.deleteById(id);
+    public void removeCategory(@NotNull final AssetCategoryEntity category) {
+
+        final Set<AssetCategoryEntity> children = category.getChildren();
+
+        if (children != null) {
+            for (final AssetCategoryEntity child : children) {
+                child.setParent(null);
+                assetCategoryRepository.delete(child);
+            }
+        }
+
+        category.setParent(null);
+        assetCategoryRepository.delete(category);
     }
 
     @Override
-    public void addChild(final long categoryId, final long childId) {
-        final Optional<AssetCategoryEntity> category = assetCategoryRepository.findById(categoryId);
-        final Optional<AssetCategoryEntity> child = assetCategoryRepository.findById(childId);
-        final AssetCategoryEntity categoryEntity = category.get();
-        final AssetCategoryEntity childEntity = child.get();
-        if (categoryEntity == null && childEntity == null) {
-            throw new NoSuchElementException("no such category");
+    public void addChild(@NotNull final AssetCategoryEntity category, @NotNull final AssetCategoryEntity child) {
+
+        child.setParent(category);
+        assetCategoryRepository.save(child);
+
+        final Set<AssetCategoryEntity> children = category.getChildren();
+        if (children != null) {
+            children.add(child);
+        } else {
+            final Set<AssetCategoryEntity> newChildren = new HashSet<>();
+            newChildren.add(child);
+            category.setChildren(newChildren);
         }
-        categoryEntity.addChild(childEntity);
     }
 
     @Override
-    public void removeChild(final long categoryId, final long childId) {
-        final Optional<AssetCategoryEntity> category = assetCategoryRepository.findById(categoryId);
-        final Optional<AssetCategoryEntity> child = assetCategoryRepository.findById(childId);
-        final AssetCategoryEntity categoryEntity = category.get();
-        final AssetCategoryEntity childEntity = child.get();
-        if (categoryEntity == null && childEntity == null) {
-            throw new NoSuchElementException("no such category");
+    public void removeChild(@NotNull final AssetCategoryEntity category,
+                            @NotNull final AssetCategoryEntity child) {
+
+        final Set<AssetCategoryEntity> children = category.getChildren();
+
+        if (children == null || !children.contains(child)) {
+            throw new NoSuchElementException("Child don't exist in category");
         }
-        categoryEntity.removeChild(childEntity);
+
+        removeCategory(child);
+
+        children.remove(child);
     }
 
     @Override
     public @Nullable List<AssetCategoryEntity> getAllCategories() {
         return assetCategoryRepository.findAllByParentIsNull();
     }
-
 }
