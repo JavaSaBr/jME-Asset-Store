@@ -72,7 +72,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
             children.add(child);
         } else {
             final Set<AssetCategoryEntity> newChildren = new HashSet<>();
-            newChildren.add(category);
+            newChildren.add(child);
             category.setChildren(newChildren);
         }
     }
