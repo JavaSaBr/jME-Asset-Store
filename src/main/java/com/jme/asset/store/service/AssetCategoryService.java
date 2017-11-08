@@ -35,7 +35,7 @@ public interface AssetCategoryService {
      *
      * @param category the category of asset
      */
-    void removeCategory(@NotNull final AssetCategoryEntity category);
+    void removeCategory(@NotNull AssetCategoryEntity category);
 
     /**
      * Add child to children of asset category
@@ -43,7 +43,7 @@ public interface AssetCategoryService {
      * @param category      the asset category
      * @param childCategory the child of asset category
      */
-    void addChild(@NotNull final AssetCategoryEntity category, @NotNull final AssetCategoryEntity childCategory);
+    void addChild(@NotNull AssetCategoryEntity category, @NotNull AssetCategoryEntity childCategory);
 
     /**
      * Remove child from children of asset category
@@ -51,7 +51,7 @@ public interface AssetCategoryService {
      * @param category      the asset category
      * @param childCategory the child of asset category
      */
-    void removeChild(@NotNull final AssetCategoryEntity category, @NotNull final AssetCategoryEntity childCategory);
+    void removeChild(@NotNull AssetCategoryEntity category, @NotNull AssetCategoryEntity childCategory);
 
     /**
      * Get all asset categories
