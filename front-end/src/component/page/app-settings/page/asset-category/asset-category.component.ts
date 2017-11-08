@@ -39,24 +39,6 @@ export class AssetCategoryComponent implements OnInit {
     this._categories = this.categoryService.getCategories();
   }
 
-  /**
-   * Set the current top of path.
-   *
-   * @param {string} componentId the top component id.
-   */
-  setTopOfPath(componentId: string) {
-    for (let i = this._path.length - 1; i > 0; i--) {
-      let component = this._path[i];
-      if (component.id != componentId) {
-        this._path.pop();
-      } else return;
-    }
-  }
-
-  switchTrigger() {
-    this._trigger = !this._trigger;
-  }
-
   tryAddCategory() {
     this._categoryParam.id = this._path[this._path.length - 1].id;
     this.categoryService.addCategory(this.categoryParam, (message, result) => {
@@ -71,6 +53,34 @@ export class AssetCategoryComponent implements OnInit {
         this._error = message;
       }
     });
+  }
+
+  tryDeleteCategory(id: string) {
+    this.categoryService.removeCategory(id, (message, result) => {
+      if (result) {
+        this.tryGetCategories();
+      } else {
+        this._error = message;
+      }
+    });
+  }
+
+  switchTrigger() {
+    this._trigger = !this._trigger;
+  }
+
+  /**
+   * Set the current top of path.
+   *
+   * @param {string} componentId the top component id.
+   */
+  setTopOfPath(componentId: string) {
+    for (let i = this._path.length - 1; i > 0; i--) {
+      let component = this._path[i];
+      if (component.id != componentId) {
+        this._path.pop();
+      } else return;
+    }
   }
 
   /**
@@ -112,7 +122,7 @@ export class AssetCategoryComponent implements OnInit {
   /**
    * Get the add trigger.
    *
-   * @returns {boolean}
+   * @returns {boolean} the trigger.
    */
   get trigger(): boolean {
     return this._trigger;
@@ -121,26 +131,44 @@ export class AssetCategoryComponent implements OnInit {
   /**
    * Set the add trigger.
    *
-   * @param {boolean} value
+   * @param {boolean} value the trigger.
    */
   set trigger(value: boolean) {
     this._trigger = value;
   }
 
-
+  /**
+   * Get the asset category param.
+   *
+   * @returns {AssetCategoryParam} the asset category param.
+   */
   get categoryParam(): AssetCategoryParam {
     return this._categoryParam;
   }
 
+  /**
+   * Set the category param.
+   *
+   * @param {AssetCategoryParam} value the asset category param.
+   */
   set categoryParam(value: AssetCategoryParam) {
     this._categoryParam = value;
   }
 
-
+  /**
+   * Get the error.
+   *
+   * @returns {string} the error.
+   */
   get error(): string {
     return this._error;
   }
 
+  /**
+   * Set the error.
+   *
+   * @param {string} value the error.
+   */
   set error(value: string) {
     this._error = value;
   }

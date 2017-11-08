@@ -7,7 +7,7 @@
 <div class="container">
   <ul class="components">
     <li class="category-container" *ngFor="let category of categories | async">
-      <i class="material-icons">clear</i>
+      <i class="material-icons" (click)="tryDeleteCategory(category.id)">clear</i>
       <div class="category-content">
         <h3>{{category.name}}</h3>
         <p>{{category.description}}</p>
