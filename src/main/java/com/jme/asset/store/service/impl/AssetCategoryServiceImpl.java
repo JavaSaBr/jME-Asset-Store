@@ -48,10 +48,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
-    public void removeCategory(final long id) {
-        final Optional<AssetCategoryEntity> categoryEntityOptional = assetCategoryRepository.findById(id);
-        final AssetCategoryEntity categoryEntity = categoryEntityOptional.get();
-
+    public void removeCategory(@NotNull final AssetCategoryEntity categoryEntity) {
         for (AssetCategoryEntity category : categoryEntity.getChildren()) {
             category.setParent(null);
             assetCategoryRepository.delete(category);
@@ -62,16 +59,9 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
-    public void addChild(final long categoryId, final long childId) {
-        final Optional<AssetCategoryEntity> category = assetCategoryRepository.findById(categoryId);
-        final Optional<AssetCategoryEntity> child = assetCategoryRepository.findById(childId);
-        final AssetCategoryEntity categoryEntity = category.get();
-        final AssetCategoryEntity childEntity = child.get();
-        if (categoryEntity == null || childEntity == null) {
-            throw new NoSuchElementException("no such category");
-        }
-        childEntity.setParent(categoryEntity);
-        assetCategoryRepository.save(childEntity);
+    public void addChild(@NotNull final AssetCategoryEntity category, @NotNull final AssetCategoryEntity childCategory) {
+        childCategory.setParent(category);
+        assetCategoryRepository.save(childCategory);
     }
 
     @Override
