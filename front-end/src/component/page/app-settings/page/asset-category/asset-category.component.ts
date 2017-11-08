@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AssetCategoryEntity} from "../../../../../model/entity/asset-category-entity";
 import {CategoryComponent} from "../../../../../model/category/category-component";
 import {AssetCategoryService} from "../../../../../service/asset-category.service";
+import {AssetCategoryParam} from "../../../../../model/category/asset-category-param";
 
 /**
  * @author Alena Solonevich
@@ -13,13 +14,18 @@ import {AssetCategoryService} from "../../../../../service/asset-category.servic
 })
 export class AssetCategoryComponent implements OnInit {
 
+  private _categoryParam: AssetCategoryParam;
+
   private _path: CategoryComponent[];
 
   private _categories: Promise<AssetCategoryEntity[]>;
 
   private _trigger: boolean;
 
+  private _error: string;
+
   constructor(private readonly categoryService: AssetCategoryService) {
+    this._categoryParam = new AssetCategoryParam;
     this._trigger = false;
     this._path = [];
     this._path.push(new CategoryComponent("root", null));
@@ -49,6 +55,22 @@ export class AssetCategoryComponent implements OnInit {
 
   switchTrigger() {
     this._trigger = !this._trigger;
+  }
+
+  tryAddCategory() {
+    this._categoryParam.id = this._path[this._path.length - 1].id;
+    this.categoryService.addCategory(this.categoryParam, (message, result) => {
+      if (result) {
+        this._categoryParam.name = '';
+        this._categoryParam.description = '';
+        this._categoryParam.id = "";
+        this._error = '';
+        this._trigger = false;
+        this.tryGetCategories();
+      } else {
+        this._error = message;
+      }
+    });
   }
 
   /**
@@ -103,5 +125,23 @@ export class AssetCategoryComponent implements OnInit {
    */
   set trigger(value: boolean) {
     this._trigger = value;
+  }
+
+
+  get categoryParam(): AssetCategoryParam {
+    return this._categoryParam;
+  }
+
+  set categoryParam(value: AssetCategoryParam) {
+    this._categoryParam = value;
+  }
+
+
+  get error(): string {
+    return this._error;
+  }
+
+  set error(value: string) {
+    this._error = value;
   }
 }

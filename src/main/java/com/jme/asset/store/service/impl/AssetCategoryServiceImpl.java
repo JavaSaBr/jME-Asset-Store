@@ -36,6 +36,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
                             @Nullable final Long parentId) {
         final AssetCategoryEntity category = new AssetCategoryEntity();
         final AssetCategoryEntity parent;
+
         final Optional<AssetCategoryEntity> parentOpt = assetCategoryRepository.findById(parentId);
         if (parentOpt.isPresent()) {
             parent = parentOpt.get();

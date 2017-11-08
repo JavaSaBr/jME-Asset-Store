@@ -17,13 +17,14 @@
       <i class="material-icons md-56" *ngIf="!trigger" (click)="switchTrigger()">add_circle_outline</i>
       <form class="input-form" *ngIf="trigger">
         <mat-form-field class="input-form-field">
-          <input matInput placeholder="Name">
+          <input matInput placeholder="Name" [(ngModel)]="categoryParam.name" name="name">
         </mat-form-field>
         <mat-form-field class="input-form-field">
-          <textarea matInput placeholder="Description"></textarea>
+          <textarea matInput placeholder="Description" [(ngModel)]="categoryParam.description"
+                    name="description"></textarea>
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="switchTrigger()">Cancel</button>
-        <button mat-raised-button color="primary">Add</button>
+        <button mat-raised-button color="primary" (click)="tryAddCategory()">Add</button>
       </form>
     </li>
   </ul>
