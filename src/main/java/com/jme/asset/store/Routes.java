@@ -10,4 +10,5 @@ public interface Routes {
     String API = "api";
     String API_USERS = API + "/users";
     String API_ASSETS = API + "/assets";
+    String API_APPSETTINGS_ASSET_CATEGORY = API + "/app-settings/asset-category";
 }
