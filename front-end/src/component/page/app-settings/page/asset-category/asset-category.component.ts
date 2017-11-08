@@ -17,9 +17,16 @@ export class AssetCategoryComponent implements OnInit {
 
   private _categories: Promise<AssetCategoryEntity[]>;
 
+  private _addTrigger: boolean;
+
   constructor(private readonly categoryService: AssetCategoryService) {
     this._path = [];
     this._path.push(new CategoryComponent("root", null));
+    this._path.push(new CategoryComponent("settings", null));
+    this._path.push(new CategoryComponent("video", null));
+    this._path.push(new CategoryComponent("component", null));
+    this._path.push(new CategoryComponent("music", null));
+
     this.tryGetCategories();
   }
 
@@ -28,6 +35,20 @@ export class AssetCategoryComponent implements OnInit {
 
   tryGetCategories(): any {
     this._categories = this.categoryService.getCategories();
+  }
+
+  /**
+   * Set the current top of path.
+   *
+   * @param {string} componentId the top component id.
+   */
+  setTopOfPath(componentId: string) {
+    for (let i = this._path.length - 1; i > 0; i--) {
+      let component = this._path[i];
+      if (component.id != componentId) {
+        this._path.pop();
+      } else return;
+    }
   }
 
   /**
@@ -67,17 +88,20 @@ export class AssetCategoryComponent implements OnInit {
   }
 
   /**
-   * Set the current top of path.
+   * Get the add trigger.
    *
-   * @param {string} componentId the top component id.
+   * @returns {boolean}
    */
-  setTopOfPath(componentId: string) {
-    for (let i = this._path.length - 1; i > 0; i--) {
-      let component = this._path[i];
-      if (component.id != componentId) {
-        this._path.pop();
-      } else return;
-    }
+  get addTrigger(): boolean {
+    return this._addTrigger;
   }
 
+  /**
+   * Set the add trigger.
+   *
+   * @param {boolean} value
+   */
+  set addTrigger(value: boolean) {
+    this._addTrigger = value;
+  }
 }

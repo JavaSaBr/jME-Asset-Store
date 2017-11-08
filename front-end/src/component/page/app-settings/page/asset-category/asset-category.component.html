@@ -1,10 +1,21 @@
-<p>Asset category works!</p>
-<ul>
-  <li *ngFor="let p of path">{{p.name}}</li>
-</ul>
-<ul>
-  <li *ngFor="let category of categories | async">
-    {{category.name}}
+<h1>Asset category settings</h1>
+<ul class="menu-main">
+  <li *ngFor="let p of path">
+    <div>{{p.name}}</div>
   </li>
 </ul>
-<button (click)="setTopOfPath(3)"></button>
+<div class="container">
+  <ul class="components">
+    <li class="category-container" *ngFor="let category of categories | async">
+      <i class="material-icons">clear</i>
+      <div class="category-content">
+        <h3>{{category.name}}</h3>
+        <p>{{category.description}}</p>
+      </div>
+    </li>
+    <li class="add-container">
+        <i class="material-icons md-56">add_circle_outline</i>
+    </li>
+  </ul>
+</div>
+
