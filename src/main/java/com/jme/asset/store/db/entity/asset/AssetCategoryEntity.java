@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jme.asset.store.db.entity.BaseEntity;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
@@ -121,14 +120,4 @@ public class AssetCategoryEntity extends BaseEntity {
     public void setChildren(@Nullable final Set<AssetCategoryEntity> children) {
         this.children = children;
     }
-
-    /**
-     * Add children to children of asset category
-     *
-     * @param child the children of asset category
-     */
-    public void addChild(@NotNull final AssetCategoryEntity child) {
-        children.add(child);
-    }
-
 }
