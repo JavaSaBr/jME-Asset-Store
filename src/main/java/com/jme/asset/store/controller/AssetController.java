@@ -19,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -107,7 +104,7 @@ public class AssetController {
      * @return list of user's assets
      * @author Mikhail Gomanchuk
      */
-    @PostMapping(value = "get/assets")
+    @GetMapping(value = "get/assets")
     public ResponseEntity<?> getUserAssets() {
         final JmeUser currentUser = requireNonNull((getCurrentUser()));
         final UserEntity user = currentUser.getUser();
@@ -116,5 +113,12 @@ public class AssetController {
         } catch (final RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
+    }
+
+    @GetMapping(value = "get/asset")
+    public ResponseEntity<?> getAsset(@RequestParam(name = "id") final long id){
+        final AssetEntity asset = assetService.getAsset(id);
+        if(asset == null) return ResponseEntity.badRequest().body("No asset with id:" + id);
+        return ResponseEntity.ok(asset);
     }
 }

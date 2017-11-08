@@ -15,7 +15,6 @@ import {AssetParams} from "../../../model/params/asset-params";
 export class AddAssetComponent extends PageComponent{
   private _info: AssetParams;
 
-
   private _message: string;
 
   constructor(private readonly router: Router, private assetService: AssetService) {
@@ -25,11 +24,14 @@ export class AddAssetComponent extends PageComponent{
   }
 
   tryCreate() {
-    this.assetService.create(this._info,(message) => {
+    this.assetService.create(this._info,(message, result) => {
         this._message = message;
+        if(result){
+          this._info = new AssetParams("","",0);
+          this.router.navigateByUrl('/user-assets');
+        }
     });
-    this._info = new AssetParams("","",0);
-    this.router.navigateByUrl('/user-assets');
+
   }
 
 

@@ -26,6 +26,7 @@ import {UserAssetsComponent} from "./component/page/user-assets/user-assets.comp
 import {LoadFileComponent} from "./component/page/load-file/load-file.component";
 import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
 import {AssetService} from "./service/asset/asset.service";
+import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {AssetService} from "./service/asset/asset.service";
     AssetCategoryComponent,
     AddAssetComponent,
     UserAssetsComponent,
-    LoadFileComponent
+    LoadFileComponent,
+    AssetPresentationComponent
   ],
   imports: [
     FormsModule,

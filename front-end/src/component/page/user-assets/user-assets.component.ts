@@ -15,14 +15,15 @@ import {UserService} from "../../../service/user-service";
 
 export class UserAssetsComponent extends PageComponent {
 
-  constructor(private assetService: AssetService, private router: Router, private userService: UserService) {
+  constructor(private assetService: AssetService, private router: Router) {
     super();
+  }
+
+  ngOnInit(){
     this.tryGetUsersAssets();
-    this.refreshed = true;
   }
 
   assets: AssetEntity[];
-  refreshed: boolean;
 
   tryGetUsersAssets(): void {
     this.assetService.getAssets()
@@ -33,4 +34,13 @@ export class UserAssetsComponent extends PageComponent {
     this.router.navigateByUrl("/create-asset", {replaceUrl: true});
   }
 
+  toAsset(name: string, id: number) {
+    this.router.navigate(['/assets', name],
+      {
+        queryParams: {
+          'id': id
+        }
+      }
+    );
+  }
 }

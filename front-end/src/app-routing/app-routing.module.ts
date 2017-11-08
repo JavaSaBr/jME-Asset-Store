@@ -11,6 +11,7 @@ import {AssetCategoryComponent} from "../component/page/app-settings/page/asset-
 import {AppSettingsGuard} from "../component/page/app-settings/app-settings.guard";
 import {AddAssetComponent} from "../component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "../component/page/user-assets/user-assets.component";
+import {AssetPresentationComponent} from "../component/page/asset-presentation/asset-presentation.component";
 
 /**
  * The list of routes of this application.
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: RouteList.PAGE_CREATE_ASSET, component: AddAssetComponent},
   {path: RouteList.PAGE_REGISTER, component: RegisterComponent},
   {path:RouteList.PAGE_USER_ASSETS, component: UserAssetsComponent},
+  {path: RouteList.PAGE_ASSET, component: AssetPresentationComponent},
   {
     path: RouteList.PAGE_APP_SETTINGS, component: AppSettingsComponent, canActivate: [AppSettingsGuard], children: [
     {path: RouteList.PAGE_FILE_TYPES, component: FileTypesComponent},

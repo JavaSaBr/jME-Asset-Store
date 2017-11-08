@@ -6,6 +6,7 @@ import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.springframework.http.ResponseEntity;
 
 import java.io.InputStream;
 import java.util.List;
@@ -63,4 +64,6 @@ public interface AssetService {
      * @author Mikhail Gomanchuk
      */
     @Nullable List<AssetEntity> getUserAssets(long id);
+
+    @Nullable AssetEntity getAsset(long id);
 }

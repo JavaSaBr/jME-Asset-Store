@@ -1,7 +1,7 @@
 <div class="user-assets-data">
-  <ul class="user-assets-daa-rows">
+  <ul class="user-assets-data-rows">
     <li class="user-asset-data-row" *ngFor="let asset of assets">
-      <button mat-raised-button (onclick)="asset"
+      <button class = "to-asset-button" (click)="toAsset(asset.name, asset.id)">{{asset.name}}</button>
     </li>
   </ul>
   <div>
