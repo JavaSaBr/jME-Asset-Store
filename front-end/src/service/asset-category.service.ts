@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AssetCategoryEntity} from "../model/entity/asset-category-entity";
-import {Http, RequestOptions} from "@angular/http";
+import {Http, RequestOptions, Headers} from "@angular/http";
 import {Utils} from "../util/utils";
 import {AssetCategoryParam} from "../model/category/asset-category-param";
 import {URLSearchParams} from "@angular/http";
@@ -34,7 +34,7 @@ export class AssetCategoryService {
 
   public addCategory(params: AssetCategoryParam,
                      handler: (message: string, result: boolean) => void) {
-    var options = new RequestOptions();
+    var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
     this.http.post(AssetCategoryService.ADD_CATEGORY_URL, params, options)
       .toPromise()
