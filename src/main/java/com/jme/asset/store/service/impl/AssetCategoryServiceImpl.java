@@ -34,7 +34,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     @Override
     public void addCategory(@NotNull final String name, @Nullable final String description,
                             @Nullable final AssetCategoryEntity parent) {
-        final AssetCategoryEntity category = null;
+        final AssetCategoryEntity category = new AssetCategoryEntity();
         category.setName(name);
         category.setDescription(description);
         category.setParent(parent);
@@ -49,7 +49,16 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
 
     @Override
     public void removeCategory(final long id) {
-        assetCategoryRepository.deleteById(id);
+        final Optional<AssetCategoryEntity> categoryEntityOptional = assetCategoryRepository.findById(id);
+        final AssetCategoryEntity categoryEntity = categoryEntityOptional.get();
+
+        for (AssetCategoryEntity category : categoryEntity.getChildren()) {
+            category.setParent(null);
+            assetCategoryRepository.delete(category);
+        }
+
+        categoryEntity.setParent(null);
+        assetCategoryRepository.delete(categoryEntity);
     }
 
     @Override
@@ -58,22 +67,11 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
         final Optional<AssetCategoryEntity> child = assetCategoryRepository.findById(childId);
         final AssetCategoryEntity categoryEntity = category.get();
         final AssetCategoryEntity childEntity = child.get();
-        if (categoryEntity == null && childEntity == null) {
+        if (categoryEntity == null || childEntity == null) {
             throw new NoSuchElementException("no such category");
         }
-        categoryEntity.addChild(childEntity);
-    }
-
-    @Override
-    public void removeChild(final long categoryId, final long childId) {
-        final Optional<AssetCategoryEntity> category = assetCategoryRepository.findById(categoryId);
-        final Optional<AssetCategoryEntity> child = assetCategoryRepository.findById(childId);
-        final AssetCategoryEntity categoryEntity = category.get();
-        final AssetCategoryEntity childEntity = child.get();
-        if (categoryEntity == null && childEntity == null) {
-            throw new NoSuchElementException("no such category");
-        }
-        categoryEntity.removeChild(childEntity);
+        childEntity.setParent(categoryEntity);
+        assetCategoryRepository.save(childEntity);
     }
 
     @Override

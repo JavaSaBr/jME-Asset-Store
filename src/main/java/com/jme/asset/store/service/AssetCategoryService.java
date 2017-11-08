@@ -46,14 +46,6 @@ public interface AssetCategoryService {
     void addChild(long categoryId, long childId);
 
     /**
-     * Remove child from children of asset category
-     *
-     * @param childId    the category children id
-     * @param categoryId the category id
-     */
-    void removeChild(long categoryId, long childId);
-
-    /**
      * Get all asset categories
      *
      * @return the list of asset categories
