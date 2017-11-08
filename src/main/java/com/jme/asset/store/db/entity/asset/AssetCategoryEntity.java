@@ -1,5 +1,7 @@
 package com.jme.asset.store.db.entity.asset;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jme.asset.store.db.entity.BaseEntity;
 
 import org.jetbrains.annotations.NotNull;
@@ -35,12 +37,14 @@ public class AssetCategoryEntity extends BaseEntity {
      */
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id")
+    @JsonManagedReference
     private AssetCategoryEntity parent;
 
     /**
      * The children of asset category
      */
     @OneToMany(mappedBy = "parent")
+    @JsonBackReference
     private Set<AssetCategoryEntity> children = new HashSet<AssetCategoryEntity>();
 
     public AssetCategoryEntity() {

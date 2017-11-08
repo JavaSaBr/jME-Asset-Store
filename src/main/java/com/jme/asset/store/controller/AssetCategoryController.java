@@ -31,7 +31,7 @@ public class AssetCategoryController {
     }
 
     @GetMapping("/delete-category")
-    public ResponseEntity<?> deleteCategory(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<?> deleteCategory(@RequestParam(name = "id") final Long id) {
         assetCategoryService.removeCategory(id);
         return ResponseEntity.ok("Deleted");
     }
@@ -45,6 +45,12 @@ public class AssetCategoryController {
         assetCategoryService.addCategory(name, description, id);
 
         return ResponseEntity.ok("Added");
+    }
+
+    @GetMapping("/get-children")
+    public ResponseEntity<?> getChildren(@RequestParam(name = "id") final Long id) {
+        final List<AssetCategoryEntity> children = assetCategoryService.getAllChildrenByParrentId(id);
+        return ResponseEntity.ok(children);
     }
 
 }

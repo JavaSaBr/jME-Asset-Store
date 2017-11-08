@@ -1,14 +1,16 @@
 <h1>Asset category settings</h1>
 <ul class="menu-main">
   <li *ngFor="let p of path">
-    <div>{{p.name}}</div>
+    <div (click)="setTopOfPath(p.id)">
+      {{p.name}}
+    </div>
   </li>
 </ul>
 <div class="container">
   <ul class="components">
     <li class="category-container" *ngFor="let category of categories | async">
       <i class="material-icons" (click)="tryDeleteCategory(category.id)">clear</i>
-      <div class="category-content">
+      <div class="category-content" (click)="tryGetChildren(category.name, category.id)">
         <h3>{{category.name}}</h3>
         <p>{{category.description}}</p>
       </div>

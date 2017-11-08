@@ -45,10 +45,10 @@ export class AssetCategoryComponent implements OnInit {
       if (result) {
         this._categoryParam.name = '';
         this._categoryParam.description = '';
-        this._categoryParam.id = "";
         this._error = '';
         this._trigger = false;
-        this.tryGetCategories();
+        this._categoryParam.id = '';
+        this.refreshFor(this._path[this._path.length - 1].id);
       } else {
         this._error = message;
       }
@@ -58,11 +58,24 @@ export class AssetCategoryComponent implements OnInit {
   tryDeleteCategory(id: string) {
     this.categoryService.removeCategory(id, (message, result) => {
       if (result) {
-        this.tryGetCategories();
+        this.refreshFor(this._path[this._path.length - 1].id);
       } else {
         this._error = message;
       }
     });
+  }
+
+  tryGetChildren(name: string, id: string) {
+    this._categories = this.categoryService.getChildrenCategories(id);
+    this.path.push(new CategoryComponent(name, id));
+  }
+
+  refreshFor(id: string) {
+    if (id == null) {
+      this.tryGetCategories();
+    } else {
+      this._categories = this.categoryService.getChildrenCategories(id);
+    }
   }
 
   switchTrigger() {
@@ -75,11 +88,14 @@ export class AssetCategoryComponent implements OnInit {
    * @param {string} componentId the top component id.
    */
   setTopOfPath(componentId: string) {
-    for (let i = this._path.length - 1; i > 0; i--) {
+    for (let i = this._path.length - 1; i >= 0; i--) {
       let component = this._path[i];
       if (component.id != componentId) {
         this._path.pop();
-      } else return;
+      } else {
+        this.refreshFor(this._path[this._path.length - 1].id);
+        return;
+      }
     }
   }
 

@@ -16,7 +16,7 @@ export class AssetCategoryService {
   private static readonly GET_CATEGORIES_URL = "api/app-settings/asset-category/all-categories";
   private static readonly ADD_CATEGORY_URL = "api/app-settings/asset-category/add-category";
   private static readonly REMOVE_CATEGORY_URL = "api/app-settings/asset-category/delete-category";
-  private static readonly GET_CHILD_CATEGORIES = "";
+  private static readonly GET_CHILD_CATEGORIES = "api/app-settings/asset-category/get-children";
 
   constructor(private readonly http: Http) {
   }
@@ -48,7 +48,7 @@ export class AssetCategoryService {
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
-  public getChildCetegories(parentId: string): Promise<AssetCategoryEntity[]> {
+  public getChildrenCategories(parentId: string): Promise<AssetCategoryEntity[]> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('id', parentId);
     return this.http.get(AssetCategoryService.GET_CHILD_CATEGORIES, {search: params})
@@ -64,4 +64,6 @@ export class AssetCategoryService {
     console.error(error.message || error);
     return Promise.reject(error.message || error);
   }
+
+
 }

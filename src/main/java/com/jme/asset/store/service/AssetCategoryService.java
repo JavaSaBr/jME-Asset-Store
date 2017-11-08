@@ -52,4 +52,6 @@ public interface AssetCategoryService {
      */
     @Nullable List<AssetCategoryEntity> getAllCategories();
 
+    List<AssetCategoryEntity> getAllChildrenByParrentId(@NotNull Long id);
+
 }
