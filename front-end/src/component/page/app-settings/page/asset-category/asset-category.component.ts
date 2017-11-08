@@ -18,13 +18,17 @@ export class AssetCategoryComponent implements OnInit {
 
   private _path: CategoryComponent[];
 
-  private _categories: Promise<AssetCategoryEntity[]>;
+  private _categories: AssetCategoryEntity[];
 
   private _trigger: boolean;
 
   private _error: string;
 
   constructor(private readonly categoryService: AssetCategoryService) {
+
+  }
+
+  ngOnInit() {
     this._categoryParam = new AssetCategoryParam;
     this._trigger = false;
     this._path = [];
@@ -32,15 +36,14 @@ export class AssetCategoryComponent implements OnInit {
     this.tryGetCategories();
   }
 
-  ngOnInit() {
-  }
-
-  tryGetCategories(): any {
-    this._categories = this.categoryService.getCategories();
+  tryGetCategories(): void {
+    this.categoryService.getCategories()
+      .then(value => this._categories = value);
   }
 
   tryAddCategory() {
-    this._categoryParam.id = this._path[this._path.length - 1].id;
+    let path = this.path;
+    this._categoryParam.id = path[path.length - 1].id;
     this.categoryService.addCategory(this.categoryParam, (message, result) => {
       if (result) {
         this._categoryParam.name = '';
@@ -66,15 +69,22 @@ export class AssetCategoryComponent implements OnInit {
   }
 
   tryGetChildren(name: string, id: string) {
-    this._categories = this.categoryService.getChildrenCategories(id);
-    this.path.push(new CategoryComponent(name, id));
+
+    this.categoryService.getChildrenCategories(id)
+      .then(value => {
+        this._categories = value;
+        this.path.push(new CategoryComponent(name , id));
+      });
   }
+
+
 
   refreshFor(id: string) {
     if (id == null) {
       this.tryGetCategories();
     } else {
-      this._categories = this.categoryService.getChildrenCategories(id);
+      this.categoryService.getChildrenCategories(id)
+        .then(value => this._categories = value);
     }
   }
 
@@ -102,18 +112,16 @@ export class AssetCategoryComponent implements OnInit {
   /**
    * Get the categories
    *
-   * @returns {Promise<AssetCategoryEntity[]>} the categories.
    */
-  get categories(): Promise<AssetCategoryEntity[]> {
+  get categories(): AssetCategoryEntity[] {
     return this._categories;
   }
 
   /**
    * Set the categories.
    *
-   * @param {Promise<AssetCategoryEntity[]>} value
    */
-  set categories(value: Promise<AssetCategoryEntity[]>) {
+  set categories(value: AssetCategoryEntity[]) {
     this._categories = value;
   }
 

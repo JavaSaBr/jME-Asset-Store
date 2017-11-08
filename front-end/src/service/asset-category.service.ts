@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {AssetCategoryEntity} from "../model/entity/asset-category-entity";
-import {Http} from "@angular/http";
+import {Http, RequestOptions} from "@angular/http";
 import {Utils} from "../util/utils";
 import {AssetCategoryParam} from "../model/category/asset-category-param";
 import {URLSearchParams} from "@angular/http";
+import {SecurityService} from "./security.service";
 
 /**
  * The asset category service.
@@ -18,22 +19,24 @@ export class AssetCategoryService {
   private static readonly REMOVE_CATEGORY_URL = "api/app-settings/asset-category/delete-category";
   private static readonly GET_CHILD_CATEGORIES = "api/app-settings/asset-category/get-children";
 
-  constructor(private readonly http: Http) {
+  constructor(private readonly http: Http, private readonly securityService: SecurityService) {
   }
 
   public getCategories(): Promise<AssetCategoryEntity[]> {
     return this.http.get(AssetCategoryService.GET_CATEGORIES_URL)
       .toPromise()
-      .then(responce => {
-        let body = responce.json();
+      .then(response => {
+        let body = response.json();
         return body;
       })
       .catch(this.handleError);
   }
 
-  public addCategory(assetCategoryParam: AssetCategoryParam,
+  public addCategory(params: AssetCategoryParam,
                      handler: (message: string, result: boolean) => void) {
-    this.http.post(AssetCategoryService.ADD_CATEGORY_URL, assetCategoryParam)
+    var options = new RequestOptions();
+    this.securityService.addAccessToken(options);
+    this.http.post(AssetCategoryService.ADD_CATEGORY_URL, params, options)
       .toPromise()
       .then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
