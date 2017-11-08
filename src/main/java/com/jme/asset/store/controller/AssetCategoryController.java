@@ -32,7 +32,8 @@ public class AssetCategoryController {
 
     @GetMapping("/delete-category")
     public ResponseEntity<?> deleteCategory(@RequestParam(name = "id") final Long id) {
-        assetCategoryService.removeCategory(id);
+        final AssetCategoryEntity categoryEntity = assetCategoryService.load(id);
+        assetCategoryService.removeCategory(categoryEntity);
         return ResponseEntity.ok("Deleted");
     }
 
@@ -41,8 +42,8 @@ public class AssetCategoryController {
         final String name = params.getName();
         final String description = params.getDescription();
         final Long id = params.getId();
-
-        assetCategoryService.addCategory(name, description, id);
+        final AssetCategoryEntity categoryEntity = assetCategoryService.load(id);
+        assetCategoryService.addCategory(name, description, categoryEntity);
 
         return ResponseEntity.ok("Added");
     }

@@ -33,13 +33,6 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     public void addCategory(@NotNull final String name, @Nullable final String description,
                             @Nullable final AssetCategoryEntity parent) {
         final AssetCategoryEntity category = new AssetCategoryEntity();
-        final AssetCategoryEntity parent;
-        if(parentId == null){
-            parent = null;
-        }else {
-            final Optional<AssetCategoryEntity> parentOpt = assetCategoryRepository.findById(parentId);
-                parent = parentOpt.get();
-        }
         category.setName(name);
         category.setDescription(description);
         category.setParent(parent);
