@@ -47,12 +47,12 @@ export class AssetCategoryComponent implements OnInit {
    *
    * @param {string} componentId the top component id.
    */
-  setTopOfPath(componentId: string){
-     for(let i = this._path.length - 1; i > 0; i--){
+  setTopOfPath(componentId: string) {
+    for (let i = this._path.length - 1; i > 0; i--) {
       let component = this._path[i];
-      if(component.id != componentId){
+      if (component.id != componentId) {
         this._path.pop();
-      }else return;
+      } else return;
     }
   }
 
