@@ -85,9 +85,8 @@
 
 .components {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: 100px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
 }
 
 .container {
@@ -97,6 +96,10 @@
 .components {
   list-style-type: none;
   width: 500px;
+}
+
+.container li {
+  height: 224px;
 }
 
 .container h3 {
