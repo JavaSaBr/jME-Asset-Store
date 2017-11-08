@@ -46,6 +46,14 @@ public interface AssetCategoryService {
     void addChild(@NotNull final AssetCategoryEntity category, @NotNull final AssetCategoryEntity childCategory);
 
     /**
+     * Remove child from children of asset category
+     *
+     * @param category      the asset category
+     * @param childCategory the child of asset category
+     */
+    void removeChild(@NotNull final AssetCategoryEntity category, @NotNull final AssetCategoryEntity childCategory);
+
+    /**
      * Get all asset categories
      *
      * @return the list of asset categories

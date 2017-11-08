@@ -65,6 +65,14 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
+    public void removeChild(@NotNull final AssetCategoryEntity category, @NotNull final AssetCategoryEntity childCategory) {
+        if (!category.getChildren().contains(childCategory)) {
+            throw new NoSuchElementException("Child don't exist in category");
+        }
+        removeCategory(childCategory);
+    }
+
+    @Override
     public @Nullable List<AssetCategoryEntity> getAllCategories() {
         return assetCategoryRepository.findAllByParentIsNull();
     }
