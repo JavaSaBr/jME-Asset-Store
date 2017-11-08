@@ -2,7 +2,6 @@ package com.jme.asset.store.db.entity.asset;
 
 import com.jme.asset.store.db.entity.BaseEntity;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
@@ -41,7 +40,7 @@ public class AssetCategoryEntity extends BaseEntity {
      * The children of asset category
      */
     @OneToMany(mappedBy = "parent")
-    private Set<AssetCategoryEntity> children = new HashSet<AssetCategoryEntity>();
+    private Set<AssetCategoryEntity> children = new HashSet<>();
 
     public AssetCategoryEntity() {
     }
@@ -117,14 +116,4 @@ public class AssetCategoryEntity extends BaseEntity {
     public void setChildren(@Nullable final Set<AssetCategoryEntity> children) {
         this.children = children;
     }
-
-    /**
-     * Add children to children of asset category
-     *
-     * @param child the children of asset category
-     */
-    public void addChild(@NotNull final AssetCategoryEntity child) {
-        children.add(child);
-    }
-
 }
