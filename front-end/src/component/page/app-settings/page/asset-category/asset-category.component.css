@@ -150,4 +150,14 @@
   width: 24px;
 }
 
+.input-form-field {
+  width: 150px;
+}
+
+.input-form button {
+  width: 90%;
+  height: 35px;
+  margin-top: 2px;
+}
+
 

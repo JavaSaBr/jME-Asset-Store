@@ -17,16 +17,12 @@ export class AssetCategoryComponent implements OnInit {
 
   private _categories: Promise<AssetCategoryEntity[]>;
 
-  private _addTrigger: boolean;
+  private _trigger: boolean;
 
   constructor(private readonly categoryService: AssetCategoryService) {
+    this._trigger = false;
     this._path = [];
     this._path.push(new CategoryComponent("root", null));
-    this._path.push(new CategoryComponent("settings", null));
-    this._path.push(new CategoryComponent("video", null));
-    this._path.push(new CategoryComponent("component", null));
-    this._path.push(new CategoryComponent("music", null));
-
     this.tryGetCategories();
   }
 
@@ -49,6 +45,10 @@ export class AssetCategoryComponent implements OnInit {
         this._path.pop();
       } else return;
     }
+  }
+
+  switchTrigger() {
+    this._trigger = !this._trigger;
   }
 
   /**
@@ -92,8 +92,8 @@ export class AssetCategoryComponent implements OnInit {
    *
    * @returns {boolean}
    */
-  get addTrigger(): boolean {
-    return this._addTrigger;
+  get trigger(): boolean {
+    return this._trigger;
   }
 
   /**
@@ -101,7 +101,7 @@ export class AssetCategoryComponent implements OnInit {
    *
    * @param {boolean} value
    */
-  set addTrigger(value: boolean) {
-    this._addTrigger = value;
+  set trigger(value: boolean) {
+    this._trigger = value;
   }
 }
