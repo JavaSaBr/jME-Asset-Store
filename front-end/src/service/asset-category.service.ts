@@ -12,7 +12,7 @@ import {AssetCategoryParam} from "../model/category/asset-category-param";
 @Injectable()
 export class AssetCategoryService {
 
-  private static readonly GET_CATEGORIES_URL = "";
+  private static readonly GET_CATEGORIES_URL = "api/app-settings/asset-category/all-categories";
   private static readonly ADD_CATEGORY_URL = "";
   private static readonly REMOVE_CATEGORY_URL = "";
   private static readonly GET_CHILD_CATEGORIES = "";

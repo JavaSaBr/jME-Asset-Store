@@ -15,7 +15,7 @@ public class AssetCategoryParams {
      * The asset category id;
      */
     @Nullable
-    private String id;
+    private Long id;
 
     /**
      * The asset category name;
@@ -34,7 +34,7 @@ public class AssetCategoryParams {
      *
      * @return the asset category id.
      */
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -43,7 +43,7 @@ public class AssetCategoryParams {
      *
      * @param id the asset category id.
      */
-    public void setId(@Nullable final String id) {
+    public void setId(@Nullable final Long id) {
         this.id = id;
     }
 

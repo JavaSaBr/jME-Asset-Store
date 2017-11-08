@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AssetCategoryEntity} from "../../../../../model/entity/asset-category-entity";
 import {CategoryComponent} from "../../../../../model/category/category-component";
+import {AssetCategoryService} from "../../../../../service/asset-category.service";
 
 /**
  * @author Alena Solonevich
@@ -14,14 +15,37 @@ export class AssetCategoryComponent implements OnInit {
 
   private _path: CategoryComponent[];
 
-  private categories: Promise<AssetCategoryEntity[]>;
+  private _categories: Promise<AssetCategoryEntity[]>;
 
-  constructor() {
+  constructor(private readonly categoryService: AssetCategoryService) {
     this._path = [];
     this._path.push(new CategoryComponent("root", null));
+    this.tryGetCategories();
   }
 
   ngOnInit() {
+  }
+
+  tryGetCategories(): any {
+    this._categories = this.categoryService.getCategories();
+  }
+
+  /**
+   * Get the categories
+   *
+   * @returns {Promise<AssetCategoryEntity[]>} the categories.
+   */
+  get categories(): Promise<AssetCategoryEntity[]> {
+    return this._categories;
+  }
+
+  /**
+   * Set the categories.
+   *
+   * @param {Promise<AssetCategoryEntity[]>} value
+   */
+  set categories(value: Promise<AssetCategoryEntity[]>) {
+    this._categories = value;
   }
 
   /**

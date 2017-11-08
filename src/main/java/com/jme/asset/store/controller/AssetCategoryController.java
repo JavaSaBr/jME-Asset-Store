@@ -36,11 +36,13 @@ public class AssetCategoryController {
         return ResponseEntity.ok("Deleted");
     }
 
-    @PostMapping(value = "api/app-settings/asset-category/add-category")
+    @PostMapping(value = "/add-category")
     public ResponseEntity<?> addCategory(@RequestBody final AssetCategoryParams params) {
         final String name = params.getName();
         final String description = params.getDescription();
-        final String id = params.getId();
+        final Long id = params.getId();
+
+        assetCategoryService.addCategory(name, description, id);
 
         return ResponseEntity.ok("Added");
     }

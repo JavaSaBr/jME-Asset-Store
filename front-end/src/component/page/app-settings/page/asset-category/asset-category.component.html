@@ -2,5 +2,9 @@
 <ul>
   <li *ngFor="let p of path">{{p.name}}</li>
 </ul>
-
+<ul>
+  <li *ngFor="let category of categories | async">
+    {{category.name}}
+  </li>
+</ul>
 <button (click)="setTopOfPath(3)"></button>
