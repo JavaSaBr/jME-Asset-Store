@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,6 +59,7 @@ public class AssetController {
      * @return OK if the asset is created successfully, else BAD_REQUEST
      */
     @PostMapping(value = "add/asset")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> createAsset(@RequestBody final AssetCreateParam params) {
         final String name = params.getName();
         final String description = params.getDescription();
