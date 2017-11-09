@@ -12,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * The category controller.
  *
@@ -21,14 +19,14 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/" + Routes.API_ASSETS_CATEGORIES)
-public class CategoryController {
+public class AssetCategoryController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AssetCategoryController.class);
 
     @NotNull
     private final AssetCategoryService assetCategoryService;
 
-    public CategoryController(@NotNull final AssetCategoryService assetCategoryService) {
+    public AssetCategoryController(@NotNull final AssetCategoryService assetCategoryService) {
         this.assetCategoryService = assetCategoryService;
     }
 
@@ -39,14 +37,13 @@ public class CategoryController {
      */
     @GetMapping()
     public ResponseEntity<?> getAll() {
-        final List<AssetCategoryEntity> entities;
         try {
-            entities = assetCategoryService.getAllCategories();
-        } catch (RuntimeException e) {
+            return ResponseEntity.ok(assetCategoryService.getCategories());
+        } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse(e.getLocalizedMessage()));
         }
-        return ResponseEntity.ok(entities);
     }
 
     /**
@@ -57,13 +54,16 @@ public class CategoryController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable final long id) {
-        final AssetCategoryEntity categoryEntity;
         try {
-            categoryEntity = assetCategoryService.load(id);
-            assetCategoryService.removeCategory(categoryEntity);
-        } catch (RuntimeException e) {
+            final AssetCategoryEntity entity = assetCategoryService.load(id);
+            if (entity == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            assetCategoryService.removeCategory(entity);
+        } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse(e.getLocalizedMessage()));
         }
         return ResponseEntity.ok("Deleted.");
     }
@@ -78,18 +78,18 @@ public class CategoryController {
     public ResponseEntity<?> putCategory(@RequestBody final AssetCategoryParams params) {
         final String name = params.getName();
         final String description = params.getDescription();
-        final Long parentId = params.getId();
-        final AssetCategoryEntity parent;
+        final long parentId = params.getId();
         try {
-            if (parentId == null) {
-                parent = null;
-            } else {
-                parent = assetCategoryService.load(parentId);
+            final AssetCategoryEntity parent = parentId != 0 ?
+                    assetCategoryService.load(parentId) : null;
+            if (parentId != 0 && parent == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
             assetCategoryService.addCategory(name, description, parent);
-        } catch (RuntimeException e) {
+        } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse(e.getLocalizedMessage()));
         }
         return ResponseEntity.ok("Added.");
     }
@@ -102,13 +102,12 @@ public class CategoryController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> getChildren(@PathVariable final long id) {
-        final List<AssetCategoryEntity> children;
         try {
-            children = assetCategoryService.getAllChildrenByParrentId(id);
-        } catch (RuntimeException e) {
+            return ResponseEntity.ok(assetCategoryService.getChildren(id));
+        } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse(e.getLocalizedMessage()));
         }
-        return ResponseEntity.ok(children);
     }
 }

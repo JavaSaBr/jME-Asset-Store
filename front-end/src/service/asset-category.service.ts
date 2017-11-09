@@ -3,9 +3,9 @@ import {AssetCategoryEntity} from "../model/entity/asset-category-entity";
 import {Http, RequestOptions, Headers} from "@angular/http";
 import {Utils} from "../util/utils";
 import {AssetCategoryParam} from "../model/category/asset-category-param";
-import {URLSearchParams} from "@angular/http";
+
 import {SecurityService} from "./security.service";
-import * as Url from "url";
+
 
 /**
  * The asset category service.
@@ -15,11 +15,21 @@ import * as Url from "url";
 @Injectable()
 export class AssetCategoryService {
 
-  private static readonly API_ASSETS_CATEGORIES = "api/assets/categories";
+  /**
+   * The url to categories controller.
+   *
+   * @type {string}
+   */
+  private static readonly API_ASSETS_CATEGORIES = "api/asset-categories";
 
   constructor(private readonly http: Http, private readonly securityService: SecurityService) {
   }
 
+  /**
+   * The function to get all categories from server.
+   *
+   * @returns {Promise<AssetCategoryEntity[]>} the all categories.
+   */
   public getCategories(): Promise<AssetCategoryEntity[]> {
     var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
@@ -32,6 +42,12 @@ export class AssetCategoryService {
       .catch(this.handleError);
   }
 
+  /**
+   * The function to put the category to the server.
+   *
+   * @param {AssetCategoryParam} params the asset category param.
+   * @param {(message: string, result: boolean) => void} handler the handler result of putting.
+   */
   public addCategory(params: AssetCategoryParam,
                      handler: (message: string, result: boolean) => void) {
     var options = new RequestOptions({headers: new Headers()});
@@ -42,6 +58,12 @@ export class AssetCategoryService {
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
+  /**
+   * The function to remove the category from server.
+   *
+   * @param {string} id the category id.
+   * @param {(message: string, result: boolean) => void} handler the hundler result of removig
+   */
   public removeCategory(id: string, handler: (message: string, result: boolean) => void) {
     var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
