@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,7 @@ public class AssetCategoryController {
      * @return the all categories.
      */
     @GetMapping()
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(assetCategoryService.getCategories());
@@ -53,6 +55,7 @@ public class AssetCategoryController {
      * @return http status with msg.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> deleteCategory(@PathVariable final long id) {
         try {
             final AssetCategoryEntity entity = assetCategoryService.load(id);
@@ -75,6 +78,7 @@ public class AssetCategoryController {
      * @return http status with msg.
      */
     @PutMapping("/put")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> putCategory(@RequestBody final AssetCategoryParams params) {
         final String name = params.getName();
         final String description = params.getDescription();
@@ -101,6 +105,7 @@ public class AssetCategoryController {
      * @return the children.
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getChildren(@PathVariable final long id) {
         try {
             return ResponseEntity.ok(assetCategoryService.getChildren(id));
