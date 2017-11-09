@@ -39,7 +39,7 @@ export class AssetCategoryService {
         let body = response.json();
         return body;
       })
-      .catch(Utils.handleError);
+      .catch(error => Utils.handleError(error));
   }
 
   /**
@@ -88,6 +88,6 @@ export class AssetCategoryService {
         let body = response.json();
         return body;
       })
-      .catch(Utils.handleError);
+      .catch(error => Utils.handleError(error));
   }
 }

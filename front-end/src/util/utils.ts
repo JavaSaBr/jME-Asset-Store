@@ -48,6 +48,12 @@ export class Utils {
     return Observable.throw(errMsg);
   }
 
+  /**
+   * The method to handle an error from http request.
+   *
+   * @param {Response | any} error the error.
+   * @returns {Promise<never>} the error msg.
+   */
   static handleError(error: Response | any) {
     console.error(error.message || error);
     return Promise.reject(error.message || error);

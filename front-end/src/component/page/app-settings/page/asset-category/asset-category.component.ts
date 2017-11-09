@@ -46,6 +46,7 @@ export class AssetCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._error = '';
     this._categoryParam = new AssetCategoryParam;
     this._label = false;
     this._path = [];
