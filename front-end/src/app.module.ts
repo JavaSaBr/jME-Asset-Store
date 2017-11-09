@@ -15,13 +15,17 @@ import {RegisterComponent} from "./component/page/register/register.component";
 import {DashboardComponent} from "./component/page/dashboard/dashboard.component";
 import {SecurityService} from "./service/security.service";
 import {AppSettingsComponent} from "./component/page/app-settings/app-settings.component";
-import {FileTypesComponent} from './component/page/app-settings/page/file-types/file-types.component';
 import {FormControlDirective} from '@angular/forms';
 import {ValidatorModule} from "./validate/validator.module";
 import {AssetCategoryComponent} from './component/page/app-settings/page/asset-category/asset-category.component';
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
-import { NewFile } from './service/file.types.service.component';
+import {FileTypesService} from "./service/file-types.service";
+import {
+  FileTypesComponent
+} from "./component/page/app-settings/page/file-types/file-types.component";
+import { AddFileTypeComponent } from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
+import {FileTypeDataSource} from "./service/file-type-data-source";
 
 @NgModule({
   declarations: [
@@ -30,10 +34,10 @@ import { NewFile } from './service/file.types.service.component';
     RegisterComponent,
     DashboardComponent,
     AppSettingsComponent,
-    FileTypesComponent,
     FormControlDirective,
+    FileTypesComponent,
     AssetCategoryComponent,
-    NewFile.Types.ServiceComponent
+    AddFileTypeComponent,
   ],
   imports: [
     FormsModule,
@@ -56,7 +60,8 @@ import { NewFile } from './service/file.types.service.component';
     MatTabsModule,
     MatTableModule
   ],
-  providers: [SecurityService, AppSettingsGuard],
+  providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileTypesServiceComponent } from './file.types.service.component';
+import { AddFileTypeComponent } from './add-file-type.component';
 
-describe('NewFile.Types.ServiceComponent', () => {
-  let component: FileTypesServiceComponent;
-  let fixture: ComponentFixture<FileTypesServiceComponent>;
+describe('AddFileTypeComponent', () => {
+  let component: AddFileTypeComponent;
+  let fixture: ComponentFixture<AddFileTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileTypesServiceComponent ]
+      declarations: [ AddFileTypeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileTypesServiceComponent);
+    fixture = TestBed.createComponent(AddFileTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

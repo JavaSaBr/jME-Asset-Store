@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
 export class LoginComponent extends PageComponent {
 
   /**
-   * The current user info.
+   * The current user fileTypesInfo.
    */
   credentials: UserCredentials;
 
@@ -33,7 +33,7 @@ export class LoginComponent extends PageComponent {
   }
 
   /**
-   * Try to auth using the current info.
+   * Try to auth using the current fileTypesInfo.
    */
   tryAuth() {
     this.security.auth(this.credentials, (message, result) => {

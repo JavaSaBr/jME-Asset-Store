@@ -17,7 +17,12 @@ export class AppComponent {
   static readonly MAX_FIRST_NAME_LENGTH = 25;
   static readonly MIN_PASSWORD_LENGTH = 6;
   static readonly MAX_PASSWORD_LENGTH = 25;
-
+  static readonly MIN_FILE_TYPE_NAME = 3;
+  static readonly MAX_FILE_TYPE_NAME = 25;
+  static readonly MIN_FILE_TYPE_MIME = 3;
+  static readonly MAX_FILE_TYPE_MIME = 25;
+  static readonly MIN_FILE_TYPE_EXTENSION = 3;
+  static readonly MAX_FILE_TYPE_EXTENSION = 5;
   /**
    * The flag that the user is authed.
    */

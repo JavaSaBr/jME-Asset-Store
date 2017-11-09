@@ -4,29 +4,42 @@
  * @author Alena Solonevich
  */
 
-export class FileTypes {
+export class FileTypeEntity {
+  /** The id of the file type
+   *
+   */
+  _id: number;
+
   /**
    * The name of the file type
    */
-
-  private _name: string;
+  _name: string;
 
   /**
    * The MIME type of the file type
    */
-  private _mimeType: string;
+  _mimeType: string;
   /**
    * The file type extension
    */
-  private _extension: string;
+  _extension: string;
+
   /**
    * The ID of file type
    */
 
-  constructor(name: string, mimeType: string, extension: string,) {
+  constructor(id: number, name: string, mimeType: string, extension: string,) {
+    this._id = id;
     this._name = name;
     this._mimeType = mimeType;
     this._extension = extension
+  }
+
+  /**
+   * Get the id of file type
+   */
+  get id(): number{
+    return this._id;
   }
 
   /**

@@ -9,6 +9,7 @@ import {AppSettingsComponent} from "../component/page/app-settings/app-settings.
 import {FileTypesComponent} from "../component/page/app-settings/page/file-types/file-types.component";
 import {AssetCategoryComponent} from "../component/page/app-settings/page/asset-category/asset-category.component";
 import {AppSettingsGuard} from "../component/page/app-settings/app-settings.guard";
+import {AddFileTypeComponent} from "../component/page/app-settings/page/file-types/add-file-type/add-file-type.component";
 
 /**
  * The list of routes of this application.
@@ -20,10 +21,14 @@ const routes: Routes = [
   {path: RouteList.PAGE_REGISTER, component: RegisterComponent},
   {
     path: RouteList.PAGE_APP_SETTINGS, component: AppSettingsComponent, canActivate: [AppSettingsGuard], children: [
-    {path: RouteList.PAGE_FILE_TYPES, component: FileTypesComponent},
+    {
+      path: RouteList.PAGE_FILE_TYPES, component: FileTypesComponent, children: [
+      {path: RouteList.PAGE_ADD_FILE_TYPE, component: AddFileTypeComponent}]
+    },
     {path: RouteList.PAGE_ASSET_CATEGORY, component: AssetCategoryComponent}
   ]
   },
+
 ];
 
 /**
