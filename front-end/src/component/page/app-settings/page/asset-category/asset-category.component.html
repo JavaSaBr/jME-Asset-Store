@@ -20,15 +20,15 @@
     </li>
     <li class="add-container">
       <i class="material-icons md-56" *ngIf="!trigger" (click)="switchLabel()">add_circle_outline</i>
-      <form class="input-form" *ngIf="trigger">
+      <form class="input-form" #registerForm="ngForm" *ngIf="trigger" >
         <mat-form-field class="input-form-field">
-          <input matInput placeholder="Name" [(ngModel)]="categoryParam.name" name="name">
+          <input matInput placeholder="Name" [(ngModel)]="categoryParam.name" name="name" required minlength="5">
         </mat-form-field>
         <mat-form-field class="input-form-field">
           <textarea matInput placeholder="Description" [(ngModel)]="categoryParam.description"
                     name="description"></textarea>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="switchLabel()">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!registerForm.form.valid" (click)="switchLabel()">Cancel</button>
         <button mat-raised-button color="primary" (click)="addCategory()">Add</button>
       </form>
     </li>

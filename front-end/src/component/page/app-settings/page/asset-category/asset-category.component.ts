@@ -50,7 +50,7 @@ export class AssetCategoryComponent implements OnInit {
     this._categoryParam = new AssetCategoryParam;
     this._label = false;
     this._path = [];
-    this._path.push(new CategoryComponent("root", null));
+    this._path.push(new CategoryComponent("Home", null));
     this.getCategories();
   }
 
@@ -131,6 +131,9 @@ export class AssetCategoryComponent implements OnInit {
    */
   switchLabel() {
     this._label = !this._label;
+    let categoryParam = this.categoryParam;
+    categoryParam.name = '';
+    categoryParam.description = '';
   }
 
   /**
