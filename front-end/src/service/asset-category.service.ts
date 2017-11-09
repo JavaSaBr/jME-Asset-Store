@@ -39,7 +39,7 @@ export class AssetCategoryService {
         let body = response.json();
         return body;
       })
-      .catch(this.handleError);
+      .catch(Utils.handleError);
   }
 
   /**
@@ -62,7 +62,7 @@ export class AssetCategoryService {
    * The function to remove the category from server.
    *
    * @param {string} id the category id.
-   * @param {(message: string, result: boolean) => void} handler the hundler result of removig
+   * @param {(message: string, result: boolean) => void} handler the handler result of removing.
    */
   public removeCategory(id: string, handler: (message: string, result: boolean) => void) {
     var options = new RequestOptions({headers: new Headers()});
@@ -73,7 +73,13 @@ export class AssetCategoryService {
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
-  public getChildrenCategories(id: string): Promise<AssetCategoryEntity[]> {
+  /**
+   * Get children.
+   *
+   * @param {string} id the parent id.
+   * @returns {Promise<AssetCategoryEntity[]>} result of getting children.
+   */
+  public getChildren(id: string): Promise<AssetCategoryEntity[]> {
     var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
     return this.http.get(AssetCategoryService.API_ASSETS_CATEGORIES + "/" + id, options)
@@ -82,13 +88,6 @@ export class AssetCategoryService {
         let body = response.json();
         return body;
       })
-      .catch(this.handleError);
+      .catch(Utils.handleError);
   }
-
-  private handleError(error: Response | any) {
-    console.error(error.message || error);
-    return Promise.reject(error.message || error);
-  }
-
-
 }

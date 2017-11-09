@@ -9,14 +9,14 @@
 <div class="container">
   <ul class="components">
     <li class="category-container" *ngFor="let category of categories">
-      <i class="material-icons" (click)="tryDeleteCategory(category.id)">clear</i>
-      <div class="category-content" (click)="tryGetChildren(category.name, category.id)">
+      <i class="material-icons" (click)="deleteCategory(category.id)">clear</i>
+      <div class="category-content" (click)="loadChildren(category.name, category.id)">
         <h3>{{category.name}}</h3>
         <p>{{category.description}}</p>
       </div>
     </li>
     <li class="add-container">
-      <i class="material-icons md-56" *ngIf="!trigger" (click)="switchTrigger()">add_circle_outline</i>
+      <i class="material-icons md-56" *ngIf="!trigger" (click)="switchLabel()">add_circle_outline</i>
       <form class="input-form" *ngIf="trigger">
         <mat-form-field class="input-form-field">
           <input matInput placeholder="Name" [(ngModel)]="categoryParam.name" name="name">
@@ -25,8 +25,8 @@
           <textarea matInput placeholder="Description" [(ngModel)]="categoryParam.description"
                     name="description"></textarea>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="switchTrigger()">Cancel</button>
-        <button mat-raised-button color="primary" (click)="tryAddCategory()">Add</button>
+        <button mat-raised-button color="primary" (click)="switchLabel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="addCategory()">Add</button>
       </form>
     </li>
   </ul>

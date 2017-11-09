@@ -5,7 +5,9 @@ import {AssetCategoryService} from "../../../../../service/asset-category.servic
 import {AssetCategoryParam} from "../../../../../model/category/asset-category-param";
 
 /**
- * @author Alena Solonevich
+ *
+ *
+ * @author Denis Lesheniuk
  */
 @Component({
   selector: 'app-asset-category',
@@ -14,14 +16,29 @@ import {AssetCategoryParam} from "../../../../../model/category/asset-category-p
 })
 export class AssetCategoryComponent implements OnInit {
 
+  /**
+   * The category param.
+   */
   private _categoryParam: AssetCategoryParam;
 
+  /**
+   * The category path.
+   */
   private _path: CategoryComponent[];
 
+  /**
+   * The list of categories.
+   */
   private _categories: AssetCategoryEntity[];
 
-  private _trigger: boolean;
+  /**
+   * The label for showing dialog with forms.
+   */
+  private _label: boolean;
 
+  /**
+   * The error.
+   */
   private _error: string;
 
   constructor(private readonly categoryService: AssetCategoryService) {
@@ -30,66 +47,98 @@ export class AssetCategoryComponent implements OnInit {
 
   ngOnInit() {
     this._categoryParam = new AssetCategoryParam;
-    this._trigger = false;
+    this._label = false;
     this._path = [];
     this._path.push(new CategoryComponent("root", null));
-    this.tryGetCategories();
+    this.getCategories();
   }
 
-  tryGetCategories(): void {
+  /**
+   * Get the categories.
+   */
+  getCategories(): void {
     this.categoryService.getCategories()
       .then(value => this._categories = value);
   }
 
-  tryAddCategory() {
+  /**
+   * Add the category.
+   */
+  addCategory() {
     let path = this.path;
-    this._categoryParam.id = path[path.length - 1].id;
+    let categoryParam = this.categoryParam;
+    categoryParam.id = path[path.length - 1].id;
     this.categoryService.addCategory(this.categoryParam, (message, result) => {
       if (result) {
-        this._categoryParam.name = '';
-        this._categoryParam.description = '';
+        categoryParam.name = '';
+        categoryParam.description = '';
+        categoryParam.id = '';
         this._error = '';
-        this._trigger = false;
-        this._categoryParam.id = '';
-        this.refreshFor(this._path[this._path.length - 1].id);
+        this._label = false;
+        this.refreshFor(this.getLastPathElement().id);
       } else {
         this._error = message;
       }
     });
   }
 
-  tryDeleteCategory(id: string) {
+  /**
+   * Delete the category.
+   *
+   * @param {string} id the id of the category.
+   */
+  deleteCategory(id: string) {
     this.categoryService.removeCategory(id, (message, result) => {
       if (result) {
-        this.refreshFor(this._path[this._path.length - 1].id);
+        this.refreshFor(this.getLastPathElement().id);
       } else {
         this._error = message;
       }
     });
   }
 
-  tryGetChildren(name: string, id: string) {
-
-    this.categoryService.getChildrenCategories(id)
+  /**
+   * Load the children.
+   *
+   * @param {string} name the name of the category.
+   * @param {string} id the id of the category.
+   */
+  loadChildren(name: string, id: string) {
+    this.categoryService.getChildren(id)
       .then(value => {
         this._categories = value;
-        this.path.push(new CategoryComponent(name , id));
+        this.path.push(new CategoryComponent(name, id));
       });
   }
 
-
-
+  /**
+   * Refreshing value of this._categories for the id.
+   *
+   * @param {string} id the id of the category.
+   */
   refreshFor(id: string) {
     if (id == null) {
-      this.tryGetCategories();
+      this.getCategories();
     } else {
-      this.categoryService.getChildrenCategories(id)
+      this.categoryService.getChildren(id)
         .then(value => this._categories = value);
     }
   }
 
-  switchTrigger() {
-    this._trigger = !this._trigger;
+  /**
+   * The method switch value of the label.
+   */
+  switchLabel() {
+    this._label = !this._label;
+  }
+
+  /**
+   * Get the last element of the this._path.
+   *
+   * @returns {CategoryComponent} the last component.
+   */
+  getLastPathElement(): CategoryComponent {
+    return this._path[this._path.length - 1];
   }
 
   /**
@@ -103,7 +152,7 @@ export class AssetCategoryComponent implements OnInit {
       if (component.id != componentId) {
         this._path.pop();
       } else {
-        this.refreshFor(this._path[this._path.length - 1].id);
+        this.refreshFor(this.getLastPathElement().id);
         return;
       }
     }
@@ -149,7 +198,7 @@ export class AssetCategoryComponent implements OnInit {
    * @returns {boolean} the trigger.
    */
   get trigger(): boolean {
-    return this._trigger;
+    return this._label;
   }
 
   /**
@@ -158,7 +207,7 @@ export class AssetCategoryComponent implements OnInit {
    * @param {boolean} value the trigger.
    */
   set trigger(value: boolean) {
-    this._trigger = value;
+    this._label = value;
   }
 
   /**

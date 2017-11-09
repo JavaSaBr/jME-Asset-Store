@@ -47,4 +47,9 @@ export class Utils {
     handler(errMsg);
     return Observable.throw(errMsg);
   }
+
+  static handleError(error: Response | any) {
+    console.error(error.message || error);
+    return Promise.reject(error.message || error);
+  }
 }
