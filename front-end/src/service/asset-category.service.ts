@@ -15,10 +15,7 @@ import * as Url from "url";
 @Injectable()
 export class AssetCategoryService {
 
-  private static readonly GET_CATEGORIES_URL = "api/app-settings/asset-category/all-categories";
-  private static readonly ADD_CATEGORY_URL = "api/app-settings/asset-category/add-category";
-  private static readonly REMOVE_CATEGORY_URL = "api/app-settings/asset-category/delete-category";
-  private static readonly GET_CHILD_CATEGORIES = "api/app-settings/asset-category/get-children";
+  private static readonly API_ASSETS_CATEGORIES = "api/assets/categories";
 
   constructor(private readonly http: Http, private readonly securityService: SecurityService) {
   }
@@ -26,7 +23,7 @@ export class AssetCategoryService {
   public getCategories(): Promise<AssetCategoryEntity[]> {
     var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
-    return this.http.get(AssetCategoryService.GET_CATEGORIES_URL, options)
+    return this.http.get(AssetCategoryService.API_ASSETS_CATEGORIES, options)
       .toPromise()
       .then(response => {
         let body = response.json();
@@ -39,7 +36,7 @@ export class AssetCategoryService {
                      handler: (message: string, result: boolean) => void) {
     var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
-    this.http.post(AssetCategoryService.ADD_CATEGORY_URL, params, options)
+    this.http.put(AssetCategoryService.API_ASSETS_CATEGORIES + "/put", params, options)
       .toPromise()
       .then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
@@ -48,19 +45,19 @@ export class AssetCategoryService {
   public removeCategory(id: string, handler: (message: string, result: boolean) => void) {
     var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
-    this.http.delete(AssetCategoryService.REMOVE_CATEGORY_URL + '${id}', options)
+    this.http.delete(AssetCategoryService.API_ASSETS_CATEGORIES + '/' + id, options)
       .toPromise()
       .then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
-  public getChildrenCategories(parentId: string): Promise<AssetCategoryEntity[]> {
+  public getChildrenCategories(id: string): Promise<AssetCategoryEntity[]> {
     var options = new RequestOptions({headers: new Headers()});
     this.securityService.addAccessToken(options);
-    return this.http.get(AssetCategoryService.GET_CHILD_CATEGORIES + '${id}', options)
+    return this.http.get(AssetCategoryService.API_ASSETS_CATEGORIES + "/" + id, options)
       .toPromise()
-      .then(responce => {
-        let body = responce.json();
+      .then(response => {
+        let body = response.json();
         return body;
       })
       .catch(this.handleError);
