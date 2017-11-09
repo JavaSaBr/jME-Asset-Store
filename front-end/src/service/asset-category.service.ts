@@ -5,6 +5,7 @@ import {Utils} from "../util/utils";
 import {AssetCategoryParam} from "../model/category/asset-category-param";
 import {URLSearchParams} from "@angular/http";
 import {SecurityService} from "./security.service";
+import * as Url from "url";
 
 /**
  * The asset category service.
@@ -23,7 +24,9 @@ export class AssetCategoryService {
   }
 
   public getCategories(): Promise<AssetCategoryEntity[]> {
-    return this.http.get(AssetCategoryService.GET_CATEGORIES_URL)
+    var options = new RequestOptions({headers: new Headers()});
+    this.securityService.addAccessToken(options);
+    return this.http.get(AssetCategoryService.GET_CATEGORIES_URL, options)
       .toPromise()
       .then(response => {
         let body = response.json();
@@ -43,18 +46,18 @@ export class AssetCategoryService {
   }
 
   public removeCategory(id: string, handler: (message: string, result: boolean) => void) {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id', id);
-    this.http.get(AssetCategoryService.REMOVE_CATEGORY_URL, {search: params})
+    var options = new RequestOptions({headers: new Headers()});
+    this.securityService.addAccessToken(options);
+    this.http.delete(AssetCategoryService.REMOVE_CATEGORY_URL + '${id}', options)
       .toPromise()
       .then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
   public getChildrenCategories(parentId: string): Promise<AssetCategoryEntity[]> {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id', parentId);
-    return this.http.get(AssetCategoryService.GET_CHILD_CATEGORIES, {search: params})
+    var options = new RequestOptions({headers: new Headers()});
+    this.securityService.addAccessToken(options);
+    return this.http.get(AssetCategoryService.GET_CHILD_CATEGORIES + '${id}', options)
       .toPromise()
       .then(responce => {
         let body = responce.json();

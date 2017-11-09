@@ -42,7 +42,12 @@ public class AssetCategoryController {
         final String name = params.getName();
         final String description = params.getDescription();
         final Long id = params.getId();
-        final AssetCategoryEntity categoryEntity = assetCategoryService.load(id);
+        final AssetCategoryEntity categoryEntity;
+        if (id == null) {
+            categoryEntity = null;
+        } else {
+            categoryEntity = assetCategoryService.load(id);
+        }
         assetCategoryService.addCategory(name, description, categoryEntity);
 
         return ResponseEntity.ok("Added");
