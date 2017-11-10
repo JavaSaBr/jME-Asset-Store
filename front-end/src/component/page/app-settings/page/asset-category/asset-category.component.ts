@@ -5,9 +5,9 @@ import {AssetCategoryService} from "../../../../../service/asset-category.servic
 import {AssetCategoryParam} from "../../../../../model/category/asset-category-param";
 
 /**
+ * Implementation of logic for UI for work with asset category.
  *
- *
- * @author Denis Lesheniuk
+ * @author Denis Lesheniuk.
  */
 @Component({
   selector: 'app-asset-category',
@@ -46,20 +46,20 @@ export class AssetCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._error = '';
-    this._categoryParam = new AssetCategoryParam;
-    this._label = false;
-    this._path = [];
-    this._path.push(new CategoryComponent("Home", null));
-    this.getCategories();
+    this.error = '';
+    this.categoryParam = new AssetCategoryParam;
+    this.label = false;
+    this.path = [];
+    this.path.push(new CategoryComponent("Home", null));
+    this.loadCategories();
   }
 
   /**
    * Get the categories.
    */
-  getCategories(): void {
+  loadCategories(): void {
     this.categoryService.getCategories()
-      .then(value => this._categories = value);
+      .then(value => this.categories = value);
   }
 
   /**
@@ -74,11 +74,11 @@ export class AssetCategoryComponent implements OnInit {
         categoryParam.name = '';
         categoryParam.description = '';
         categoryParam.id = '';
-        this._error = '';
-        this._label = false;
+        this.error = '';
+        this.label = false;
         this.refreshFor(this.getLastPathElement().id);
       } else {
-        this._error = message;
+        this.error = message;
       }
     });
   }
@@ -93,7 +93,7 @@ export class AssetCategoryComponent implements OnInit {
       if (result) {
         this.refreshFor(this.getLastPathElement().id);
       } else {
-        this._error = message;
+        this.error = message;
       }
     });
   }
@@ -107,7 +107,7 @@ export class AssetCategoryComponent implements OnInit {
   loadChildren(name: string, id: string) {
     this.categoryService.getChildren(id)
       .then(value => {
-        this._categories = value;
+        this.categories = value;
         this.path.push(new CategoryComponent(name, id));
       });
   }
@@ -119,10 +119,10 @@ export class AssetCategoryComponent implements OnInit {
    */
   refreshFor(id: string) {
     if (id == null) {
-      this.getCategories();
+      this.loadCategories();
     } else {
       this.categoryService.getChildren(id)
-        .then(value => this._categories = value);
+        .then(value => this.categories = value);
     }
   }
 
@@ -130,7 +130,7 @@ export class AssetCategoryComponent implements OnInit {
    * The method switch value of the label.
    */
   switchLabel() {
-    this._label = !this._label;
+    this.label = !this.label;
     let categoryParam = this.categoryParam;
     categoryParam.name = '';
     categoryParam.description = '';
@@ -142,7 +142,7 @@ export class AssetCategoryComponent implements OnInit {
    * @returns {CategoryComponent} the last component.
    */
   getLastPathElement(): CategoryComponent {
-    return this._path[this._path.length - 1];
+    return this.path[this.path.length - 1];
   }
 
   /**
@@ -151,10 +151,10 @@ export class AssetCategoryComponent implements OnInit {
    * @param {string} componentId the top component id.
    */
   setTopOfPath(componentId: string) {
-    for (let i = this._path.length - 1; i >= 0; i--) {
-      let component = this._path[i];
+    for (let i = this.path.length - 1; i >= 0; i--) {
+      let component = this.path[i];
       if (component.id != componentId) {
-        this._path.pop();
+        this.path.pop();
       } else {
         this.refreshFor(this.getLastPathElement().id);
         return;
@@ -248,5 +248,23 @@ export class AssetCategoryComponent implements OnInit {
    */
   set error(value: string) {
     this._error = value;
+  }
+
+  /**
+   * Get the label.
+   *
+   * @returns {boolean} the label.
+   */
+  get label(): boolean {
+    return this._label;
+  }
+
+  /**
+   * Set the label.
+   *
+   * @param {boolean} value the label.
+   */
+  set label(value: boolean) {
+    this._label = value;
   }
 }

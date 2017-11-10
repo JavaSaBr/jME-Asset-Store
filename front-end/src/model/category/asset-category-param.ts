@@ -19,6 +19,4 @@ export class AssetCategoryParam {
    */
   description: string;
 
-
-
 }

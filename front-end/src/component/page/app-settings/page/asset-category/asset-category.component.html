@@ -28,8 +28,8 @@
           <textarea matInput placeholder="Description" [(ngModel)]="categoryParam.description"
                     name="description"></textarea>
         </mat-form-field>
-        <button mat-raised-button color="primary" [disabled]="!registerForm.form.valid" (click)="switchLabel()">Cancel</button>
-        <button mat-raised-button color="primary" (click)="addCategory()">Add</button>
+        <button mat-raised-button color="primary" (click)="switchLabel()">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!registerForm.form.valid" (click)="addCategory()">Add</button>
       </form>
     </li>
   </ul>
