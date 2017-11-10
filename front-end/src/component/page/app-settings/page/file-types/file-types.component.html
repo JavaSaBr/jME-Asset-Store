@@ -1,4 +1,5 @@
-<div class="example-container mat-elevation-z8">
+<div>
+<div>
   <mat-table #table [dataSource]="dataSource">
 
     <ng-container matColumnDef="name">
@@ -20,12 +21,14 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
-<div class="app-settings">
-  <button mat-button [routerLink]="['./add'] ">
-    Add file type
+
+<div>
+  <button mat-icon-button [routerLink]="['./add'] ">
+    <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
   </button>
 </div>
-
-<div >
+</div>
+<div>
   <router-outlet></router-outlet>
 </div>
+

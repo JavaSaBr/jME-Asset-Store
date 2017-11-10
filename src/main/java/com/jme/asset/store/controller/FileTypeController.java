@@ -39,7 +39,7 @@ public class FileTypeController {
      * return OK, if new file type is added, else BAD_REQUEST
      */
     @PostMapping(value = "/add")
-    //@PreAuthorize("hasRole('" + RoleService.ADMIN_ROLE + "')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> addFileType(@RequestBody final FileTypeCreateParams params) {
         final String name = params.getName();
         final String mimeType = params.getMimeType();
@@ -58,7 +58,7 @@ public class FileTypeController {
      * @return OK, if the list of all file types is loaded, CONFLICT if the list is empty
      */
     @GetMapping(value = "/get/all")
-   // @PreAuthorize("hasRole('" + RoleService.ADMIN_ROLE + "')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getAllFileTypes() {
         if (fileTypeService.loadAllTypes().isEmpty())
             return ResponseEntity.status(HttpStatus.CONFLICT).body("There is no file types yet!");

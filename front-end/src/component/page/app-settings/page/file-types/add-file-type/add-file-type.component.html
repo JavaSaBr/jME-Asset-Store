@@ -14,19 +14,26 @@
                #name="ngModel">
       </mat-input-container>
       <mat-input-container class="register-data-row">
-        <input matInput placeholder="Mime-Type" id="mimeType" required minlength="{{minFileTypeMime}}" maxlength="{{maxFileTypeMime}}"
+        <input matInput placeholder="Mime-Type" id="mimeType" required minlength="{{minFileTypeMime}}"
+               maxlength="{{maxFileTypeMime}}"
                [(ngModel)]="fileTypeInfo.mimeType" name="mimeType"
                #mimeType="ngModel">
       </mat-input-container>
       <mat-input-container class="register-data-row">
-        <input matInput placeholder="Extension" id="extension" required minlength="{{minFileTypeExtension}}" maxlength="{{maxFileTypeExtension}}"
+        <input matInput placeholder="Extension" id="extension" required minlength="{{minFileTypeExtension}}"
+               maxlength="{{maxFileTypeExtension}}"
                [(ngModel)]="fileTypeInfo.extension" name="extension"
                #extension="ngModel">
       </mat-input-container>
 
-      <button class="register-data-row register-button" type="submit" mat-raised-button color="primary"
-              [disabled]="!createForm.form.valid">Add file type
+      <button class="register-data-row register-button" type="submit" mat-raised-button
+              color="primary"
+              [disabled]="!createForm.form.valid"> Add file type
       </button>
+
+
+
+
     </form>
   </div>
 </div>

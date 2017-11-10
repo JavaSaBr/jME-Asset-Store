@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
-  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule
+  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -46,6 +46,7 @@ import {FileTypeDataSource} from "./service/file-type-data-source";
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatIconModule,
     MatInputModule,
     MatToolbarModule,
     MatMenuModule,
