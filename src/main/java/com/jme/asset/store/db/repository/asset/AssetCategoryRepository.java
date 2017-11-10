@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface AssetCategoryRepository extends PagingAndSortingRepository<AssetCategoryEntity, Long> {
     List<AssetCategoryEntity> findAllByParentIsNull();
+    List<AssetCategoryEntity> findAllByParentId(Long id);
+
 }

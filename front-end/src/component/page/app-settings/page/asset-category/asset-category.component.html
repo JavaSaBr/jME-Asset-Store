@@ -1,1 +1,37 @@
-<p>Asset category works!</p>
+<h1>Asset category settings</h1>
+<h3 class="register-page-error" [hidden]="error.length == 0">
+  {{error}}
+</h3>
+<ul class="menu-main">
+  <li *ngFor="let p of path">
+    <div (click)="setTopOfPath(p.id)">
+      {{p.name}}
+    </div>
+  </li>
+</ul>
+<div class="container">
+  <ul class="components">
+    <li class="category-container" *ngFor="let category of categories">
+      <i class="material-icons" (click)="deleteCategory(category.id)">clear</i>
+      <div class="category-content" (click)="loadChildren(category.name, category.id)">
+        <h3>{{category.name}}</h3>
+        <p>{{category.description}}</p>
+      </div>
+    </li>
+    <li class="add-container">
+      <i class="material-icons md-56" *ngIf="!trigger" (click)="switchLabel()">add_circle_outline</i>
+      <form class="input-form" #registerForm="ngForm" *ngIf="trigger" >
+        <mat-form-field class="input-form-field">
+          <input matInput placeholder="Name" [(ngModel)]="categoryParam.name" name="name" required minlength="5">
+        </mat-form-field>
+        <mat-form-field class="input-form-field">
+          <textarea matInput placeholder="Description" [(ngModel)]="categoryParam.description"
+                    name="description"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="switchLabel()">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!registerForm.form.valid" (click)="addCategory()">Add</button>
+      </form>
+    </li>
+  </ul>
+</div>
+

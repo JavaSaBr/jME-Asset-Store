@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * The Asset service interface
@@ -52,4 +53,5 @@ public interface AssetService {
      * @param asset the asset entity asset
      */
     void removeFileFromAsset(@NotNull FileEntity file, @NotNull AssetEntity asset);
+
 }
