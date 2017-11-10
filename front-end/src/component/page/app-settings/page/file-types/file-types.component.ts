@@ -15,7 +15,7 @@ import {FileTypeDataSource} from "../../../../../service/file-type-data-source";
   styleUrls: ['./file-types.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
   preserveWhitespaces: true,
-  providers:[FileTypeDataSource]
+  providers: [FileTypeDataSource]
 })
 export class FileTypesComponent extends PageComponent {
   displayedColumns = ['name', 'mimeType', 'extension'];
@@ -25,8 +25,10 @@ export class FileTypesComponent extends PageComponent {
               private readonly fileTypeDataSource: FileTypeDataSource) {
     super();
     this.dataSource = this.fileTypeDataSource;
+
+  }
+
+  ngOnInit() {
     this.fileTypeDataSource.refresh();
   }
 }
-
-

@@ -26,9 +26,7 @@ import {
 } from "./component/page/app-settings/page/file-types/file-types.component";
 import { AddFileTypeComponent } from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
 import {FileTypeDataSource} from "./service/file-type-data-source";
-=======
 import {AssetCategoryService} from "./service/asset-category.service";
->>>>>>> develop
 
 @NgModule({
   declarations: [

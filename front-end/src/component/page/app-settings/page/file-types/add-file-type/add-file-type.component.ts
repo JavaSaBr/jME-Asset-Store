@@ -3,6 +3,9 @@ import {FileTypesService} from "../../../../../../service/file-types.service";
 import {Router} from "@angular/router";
 import {Component} from "@angular/core";
 import {FileTypeParams} from "../../../../../../model/entity/file-type-params.component";
+import {RouteList} from "../../../../../../util/route-list";
+import {subscribeOn} from "rxjs/operator/subscribeOn";
+import {FileTypeDataSource} from "../../../../../../service/file-type-data-source";
 
 @Component({
   selector: 'app-settings-add-file-type',
@@ -22,10 +25,14 @@ export class AddFileTypeComponent extends PageComponent {
   private _error: string;
 
   constructor(private readonly fileTypesService: FileTypesService,
+              private readonly fileTypeDataSource: FileTypeDataSource,
               private readonly router: Router) {
     super();
     this._fileTypeInfo = new FileTypeParams('', '', '');
     this._error = '';
+  }
+  ngOnInit() {
+    this.fileTypeDataSource.refresh();
   }
 
   /**
@@ -39,10 +46,15 @@ export class AddFileTypeComponent extends PageComponent {
         fileTypeInfo.mimeType = '';
         fileTypeInfo.extension = '';
         this._error = '';
+        this.router.navigateByUrl(RouteList.PAGE_APP_SETTINGS + '/' + RouteList.PAGE_FILE_TYPES);
       } else {
         this._error = message;
       }
     });
+  }
+
+  redirect() {
+    this.router.navigateByUrl(RouteList.PAGE_APP_SETTINGS + '/' + RouteList.PAGE_FILE_TYPES);
   }
 
   /**

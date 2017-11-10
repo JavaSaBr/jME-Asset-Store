@@ -15,7 +15,9 @@ export class FileTypeDataSource extends DataSource<FileTypeEntity> {
     let emptyArray:FileTypeEntity[] = [];
     this.fileTypes = new BehaviorSubject(emptyArray);
   }
+ngOninit(){
 
+}
   public refresh() {
     this.fileTypesService.loadFileTypes().then(value => {
       this.fileTypes.next(value);

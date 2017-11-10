@@ -1,3 +1,51 @@
-.mat-table {
-  overflow: scroll;
+
+.add-file-type-form-container {
+  width: 400px;
+  margin-left: 30%;
+  margin-top: 10%;
+}
+
+.add-file-type-form {
+}
+
+.add-file-type-data-form {
+  border-collapse: collapse;
+  border-radius: 2px;
+  border-spacing: 0px;
+  padding: 10px;
+  background-color: white;
+}
+
+.add-file-type-data-row {
+  width: 100%;
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.add-file-type-button {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.add-file-type-buttons {
+  flex-direction: column;
+  display: flex;
+
+}
+
+.add-file-type-page-title {
+  color: #636363;
+  text-align: center;
+}
+
+.add-file-type-page-error {
+  color: #ff002b;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.add-file-type-text-container {
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
