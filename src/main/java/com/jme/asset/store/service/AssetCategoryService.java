@@ -18,7 +18,7 @@ public interface AssetCategoryService {
      *
      * @param name        the category name
      * @param description the category description
-     * @param parent      the category parent
+     * @param parent    the category parent
      */
     void addCategory(@NotNull String name, @Nullable String description, @Nullable AssetCategoryEntity parent);
 
@@ -54,10 +54,18 @@ public interface AssetCategoryService {
     void removeChild(@NotNull AssetCategoryEntity category, @NotNull AssetCategoryEntity childCategory);
 
     /**
-     * Get all asset categories
+     * Get asset categories
      *
      * @return the list of asset categories
      */
-    @Nullable List<AssetCategoryEntity> getAllCategories();
+    @NotNull List<AssetCategoryEntity> getCategories();
+
+    /**
+     * Get children.
+     *
+     * @param categoryId the parent id.
+     * @return the children.
+     */
+    @NotNull List<AssetCategoryEntity> getChildren(long categoryId);
 
 }
