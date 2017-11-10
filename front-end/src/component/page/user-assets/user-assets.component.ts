@@ -19,15 +19,22 @@ export class UserAssetsComponent extends PageComponent {
     super();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.tryGetUsersAssets();
   }
 
-  assets: AssetEntity[];
+  private _assets: AssetEntity[];
+  private _error: string;
 
   tryGetUsersAssets(): void {
-    this.assetService.getAssets()
-      .then((assets) => this.assets = assets);
+    this.assetService.getAssets((message, assets) => {
+      if (message == null) {
+        this.assets = assets;
+      }
+      else {
+        this._error = message;
+      }
+    })
   }
 
   createAsset() {
@@ -42,5 +49,21 @@ export class UserAssetsComponent extends PageComponent {
         }
       }
     );
+  }
+
+  get assets() {
+    return this._assets;
+  }
+
+  set assets(assets: AssetEntity[]) {
+    this._assets = assets;
+  }
+
+  get error() {
+    return this._error;
+  }
+
+  set error(error: string) {
+    this._error = error;
   }
 }

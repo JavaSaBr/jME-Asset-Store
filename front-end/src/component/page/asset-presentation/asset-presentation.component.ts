@@ -1,9 +1,11 @@
 import {Component} from "@angular/core";
 import {PageComponent} from "../../page.component";
 import {AssetService} from "../../../service/asset/asset.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AssetEntity} from "../../../model/entity/asset-entity";
 import {Subscription} from "rxjs/Subscription";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Component({
   moduleId: module.id,
@@ -15,32 +17,35 @@ import {Subscription} from "rxjs/Subscription";
 
 export class AssetPresentationComponent extends PageComponent {
 
+  private _name: string;
+
   asset: AssetEntity;
-  private routeSubscription: Subscription;
-  private querySubscription: Subscription;
-  private name: string;
 
   constructor(private route: ActivatedRoute, private assetService: AssetService, private router: Router) {
     super();
-
-  }
-
-  ngOnInit() {
-    let id: number = 0;
-    this.routeSubscription = this.route.params.subscribe(params => this.name = params['name']);
-    this.querySubscription = this.route.queryParams.subscribe(
-      (queryParam: any) => {
-        id = queryParam['id'];
+    this.route.queryParams.subscribe((params: Params) => {
+        let id = params['id'];
+        this.loadAsset(id);
       }
     )
-    this.tryCreateAsset(id);
   }
 
-  tryCreateAsset(id: number) {
-    this.assetService.getAsset(id)
-      .then((asset) => {
-        this.asset = asset;
-        console.log(this.asset);
-      });
+  get name() {
+    return this._name;
+  }
+
+  set name(name: string) {
+    this._name = name;
+  }
+
+  loadAsset(id: number): void {
+    this.assetService.loadAsset(id, (message, result) => {
+      if (result != null) {
+        this.asset = result;
+        this.name = result.name;
+      } else {
+        //TODO
+      }
+    })
   }
 }

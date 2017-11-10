@@ -115,8 +115,8 @@ public class AssetController {
         }
     }
 
-    @GetMapping(value = "get/asset")
-    public ResponseEntity<?> getAsset(@RequestParam(name = "id") final long id){
+    @GetMapping(value = "asset/{id}")
+    public ResponseEntity<?> getAsset(@PathVariable("id") final long id){
         final AssetEntity asset = assetService.getAsset(id);
         if(asset == null) return ResponseEntity.badRequest().body("No asset with id:" + id);
         return ResponseEntity.ok(asset);

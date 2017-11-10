@@ -1,7 +1,8 @@
 <div class="user-assets-data">
-  <ul class="user-assets-data-rows">
+  <label *ngIf="error!=null"> {{error}}</label>
+  <ul class="user-assets-data-rows" *ngIf="assets!=null">
     <li class="user-asset-data-row" *ngFor="let asset of assets">
-      <button class = "to-asset-button" (click)="toAsset(asset.name, asset.id)">{{asset.name}}</button>
+      <button class="to-asset-button" (click)="toAsset(asset.name, asset.id)">{{asset.name}}</button>
     </li>
   </ul>
   <div>

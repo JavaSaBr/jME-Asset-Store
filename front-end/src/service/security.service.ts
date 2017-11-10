@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import {UserCredentials} from '../model/user/user-credentials';
 import {Utils} from '../util/utils';
 import {User} from '../model/user/user';
@@ -84,13 +84,26 @@ export class SecurityService {
   /**
    * Add an access token to header of the request options.
    *
-   * @param requestOptions the request options.
+   * @param options the request options.
+   * @return the updated request options.
    */
-  public addAccessToken(requestOptions: RequestOptions): void {
-    const accessToken = this.accessToken;
-    if (accessToken != null) {
-      requestOptions.headers.append(SecurityService.ACCESS_TOKEN_HEADER, accessToken);
+  public appendAccessToken(options?: RequestOptions): RequestOptions {
+
+    if (options == null) {
+      options = new RequestOptions();
     }
+
+    const accessToken = this.accessToken;
+    if (accessToken == null) {
+      return options;
+    }
+
+    if (options.headers == null) {
+      options.headers = new Headers();
+    }
+
+    options.headers.append(SecurityService.ACCESS_TOKEN_HEADER, accessToken);
+    return options;
   }
 
   /**

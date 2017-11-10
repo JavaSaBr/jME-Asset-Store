@@ -24,7 +24,7 @@ export class AddAssetComponent extends PageComponent{
   }
 
   tryCreate() {
-    this.assetService.create(this._info,(message, result) => {
+    this.assetService.createAsset(this._info,(message, result) => {
         this._message = message;
         if(result){
           this._info = new AssetParams("","",0);

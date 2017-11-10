@@ -6,6 +6,7 @@ import {AssetEntity} from "../../model/entity/asset-entity";
 import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {SecurityService} from "../security.service";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 
 @Injectable()
@@ -17,76 +18,48 @@ export class AssetService {
 
   public static UPLOAD_FILE: string = "/api/assets/add/file";
 
-  public static GET_ASSET: string = "/api/assets/get/asset";
+  public static GET_ASSET: string = "/api/assets/asset";
+
+  public currentAsset: BehaviorSubject<AssetEntity> = new BehaviorSubject(null);
 
   constructor(private httpClient: HttpClient, private readonly http: Http, private securityService: SecurityService) {
   }
 
-  public create(asset: AssetParams, handler: (message: string, result: boolean) => void): void {
-    var options = new RequestOptions({
-      method: RequestMethod.Post,
-      url: AssetService.ADD_ASSET_URL,
-      headers: new Headers()
-    });
-    this.securityService.addAccessToken(options);
+  public createAsset(asset: AssetParams, handler: (message: string, result: boolean) => void) {
+    var options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
     this.http.post(AssetService.ADD_ASSET_URL, asset, options)
       .toPromise()
-      .then(response => handler("success", true))
+      .then(response => handler(null, true))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
   }
 
-  public getAssets(): Promise<AssetEntity[]> {
-    let options = new RequestOptions({
-      method: RequestMethod.Get,
-      url: AssetService.USERS_ASSETS,
-      headers: new Headers()
-    });
-    this.securityService.addAccessToken(options);
-    return this.http.get(AssetService.USERS_ASSETS,options)
+  public getAssets(handler: (message: string, files: AssetEntity[])=> void){
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.get(AssetService.USERS_ASSETS, options)
       .toPromise()
-      .then(response => {
-        let body = response.json();
-        return body;
-      })
+      .then(value => handler(null,value.json()))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 
-  public loadFileToAsset(file: File): Observable<HttpEvent<{}>> {
+  public loadFileToAsset(file: File, handler: (message:string)=>void) {
     let formData: FormData = new FormData();
 
     formData.append('file', file);
-    formData.append('type_id','1');
+    formData.append('type_id', '1');
 
-    var options = new RequestOptions({
-      method: RequestMethod.Post,
-      url: AssetService.UPLOAD_FILE,
-      headers: new Headers()
-    });
-    this.securityService.addAccessToken(options);
-
-    const req = new HttpRequest('POST', AssetService.UPLOAD_FILE, formData, {
-      reportProgress: true,
-      responseType: 'text',
-      headers: new HttpHeaders().append('X-Access-Token',options.headers.get('X-Access-Token'))
-    });
-    console.log(req);
-    return this.httpClient.request(req);
+    var options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.post(AssetService.UPLOAD_FILE, formData, options)
+      .toPromise()
+      .then(value => handler("success"))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex)));
   }
 
-  getAsset(id: number): Promise<AssetEntity> {
-    let formData: FormData = new FormData();
-    formData.append('id',id.toString());
-
-    let options = new RequestOptions({
-      method: RequestMethod.Get,
-      url: AssetService.GET_ASSET +"?id=" + id.toLocaleString(),
-      headers: new Headers()
-    });
-    this.securityService.addAccessToken(options);
-    return this.http.get(AssetService.GET_ASSET+"?id=" + id.toLocaleString(),options).toPromise()
-      .then(response => {
-        let body = response.json();
-        console.log(body);
-        return body;
-      });
+  public loadAsset(id: number, handler: (message: string, result: AssetEntity) => void) {
+    this.http.get(AssetService.GET_ASSET + "/" + id, this.securityService.appendAccessToken())
+      .toPromise().then(value => handler(null, value.json()))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 }
