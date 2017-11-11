@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers, RequestOptions, RequestMethod} from "@angular/http";
+import {Http,RequestOptions} from "@angular/http";
 import {AssetParams} from "../../model/params/asset-params";
 import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
-import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
 import {SecurityService} from "../security.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
@@ -16,8 +15,6 @@ export class AssetService {
 
   public static readonly USERS_ASSETS: string = "/api/assets/get/assets";
 
-  public static UPLOAD_FILE: string = "/api/assets/add/file";
-
   public static GET_ASSET: string = "/api/assets/asset";
 
   public currentAsset: BehaviorSubject<AssetEntity> = new BehaviorSubject(null);
@@ -25,36 +22,32 @@ export class AssetService {
   constructor(private httpClient: HttpClient, private readonly http: Http, private securityService: SecurityService) {
   }
 
-  public createAsset(asset: AssetParams, handler: (message: string, result: boolean) => void) {
+  public createAsset(asset: AssetParams, file: File, handler: (message: string, result: boolean, warnings: string[]) => void) {
     var options = new RequestOptions();
     this.securityService.appendAccessToken(options);
-    this.http.post(AssetService.ADD_ASSET_URL, asset, options)
+    var formData = new FormData()
+    formData.append('file', file);
+    formData.append('asset', new Blob([JSON.stringify({
+        "name": asset.name,
+        "description": asset.description,
+        "id": asset.id
+      })], {
+        type: "application/json"
+      }
+    ));
+    this.http.post(AssetService.ADD_ASSET_URL, formData, options)
       .toPromise()
-      .then(response => handler(null, true))
-      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)));
+      .then(response => handler(null, true, response.json()))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false, null)));
   }
 
-  public getAssets(handler: (message: string, files: AssetEntity[])=> void){
+  public loadAssets(handler: (message: string, assets: AssetEntity[]) => void) {
     let options = new RequestOptions();
     this.securityService.appendAccessToken(options);
     this.http.get(AssetService.USERS_ASSETS, options)
       .toPromise()
-      .then(value => handler(null,value.json()))
+      .then(value => handler(null, value.json()))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
-  }
-
-  public loadFileToAsset(file: File, handler: (message:string)=>void) {
-    let formData: FormData = new FormData();
-
-    formData.append('file', file);
-    formData.append('type_id', '1');
-
-    var options = new RequestOptions();
-    this.securityService.appendAccessToken(options);
-    this.http.post(AssetService.UPLOAD_FILE, formData, options)
-      .toPromise()
-      .then(value => handler("success"))
-      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex)));
   }
 
   public loadAsset(id: number, handler: (message: string, result: AssetEntity) => void) {

@@ -13,5 +13,5 @@ export class RouteList {
   static readonly PAGE_ASSET_CATEGORY = "asset-category";
   static readonly PAGE_CREATE_ASSET = "create-asset";
   static readonly PAGE_USER_ASSETS = "user-assets";
-  static readonly PAGE_ASSET = "assets/:name";
+  static readonly PAGE_ASSET = "assets/:id";
 }

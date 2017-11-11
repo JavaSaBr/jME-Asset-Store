@@ -12,6 +12,8 @@ import com.jme.asset.store.db.repository.asset.AssetRepository;
 import com.jme.asset.store.db.repository.asset.FileRepository;
 import com.jme.asset.store.db.repository.asset.FileTypeRepository;
 import com.jme.asset.store.service.AssetService;
+import com.ss.rlib.util.FileUtils;
+import com.ss.rlib.util.array.Array;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.LobCreator;
@@ -19,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManagerFactory;
 import java.io.IOException;
@@ -26,7 +29,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileAttribute;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -98,6 +103,7 @@ public class AssetServiceImpl implements AssetService {
      * @param user          the user.
      * @param content       the content.
      * @param contentLength the content length.
+     * @param id            type id
      * @return the created file entity.
      */
     private @NotNull FileEntity createFileEntity(@NotNull final String fileName, @NotNull final UserEntity user,
@@ -164,5 +170,50 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public @Nullable AssetEntity getAsset(long id) {
         return assetRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<String> addZipFileToAsset(@NotNull final UserEntity user,
+                                          final InputStream content, final String fileName, final long id) {
+
+        List<String> warnings = new ArrayList<>();
+        Path tempFilePath = null;
+        Path tempDirPath = null;
+        try {
+            tempFilePath = Files.createTempFile(fileName, ".zip");
+            tempDirPath = Files.createTempDirectory("upload");
+            Files.copy(content, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
+            FileUtils.unzip(tempDirPath, tempFilePath);
+            final Array<Path> files = FileUtils.getFiles(tempDirPath, false, null);
+
+            for (Path path : files) {
+                final String extension = FileUtils.getExtension(path);
+
+                if (extension == null) {
+                    warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
+                    continue;
+                }
+
+                final FileTypeEntity type =
+                        fileTypeRepository.findByExtension(extension).orElse(null);
+
+                if (type == null) {
+                    warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
+                    continue;
+                }
+
+                try (final InputStream in = Files.newInputStream(tempFilePath)) {
+                    final FileEntity file =
+                            createFileEntity(path.toFile().getName(), user, in, Files.size(tempFilePath), type.getId());
+                    addFileToAsset(file, id);
+                }
+            }
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            safeDelete(tempFilePath);
+            safeDelete(tempDirPath);
+        }
+        return warnings;
     }
 }

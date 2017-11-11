@@ -27,7 +27,7 @@ export class UserAssetsComponent extends PageComponent {
   private _error: string;
 
   tryGetUsersAssets(): void {
-    this.assetService.getAssets((message, assets) => {
+    this.assetService.loadAssets((message, assets) => {
       if (message == null) {
         this.assets = assets;
       }
@@ -41,14 +41,8 @@ export class UserAssetsComponent extends PageComponent {
     this.router.navigateByUrl("/create-asset", {replaceUrl: true});
   }
 
-  toAsset(name: string, id: number) {
-    this.router.navigate(['/assets', name],
-      {
-        queryParams: {
-          'id': id
-        }
-      }
-    );
+  toAsset(id: number) {
+    this.router.navigate(['/assets', id]);
   }
 
   get assets() {

@@ -22,6 +22,11 @@
                #description = "ngModel">
       </mat-input-container>
     </div>
+    <div class = "asset-files">
+      <label class="file-input">
+        <input type="file" accept="application/zip" (change)="selectFile($event)">
+      </label>
+    </div>
     <button class = "create-asset-button" type="submit" mat-raised-button color="primary"
             [disabled]= "!isValid()"> create </button>
   </form>

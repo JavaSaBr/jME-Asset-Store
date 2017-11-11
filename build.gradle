@@ -8,6 +8,7 @@ repositories {
     maven {
         url 'https://repo.spring.io/libs-milestone'
     }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -27,6 +28,8 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-text', version: '1.1'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-rng-core
     compile group: 'org.apache.commons', name: 'commons-rng-core', version: '1.0'
+
+    compile 'com.github.JavaSaBr:RLib:6.4.1'
 
     runtime('mysql:mysql-connector-java:5.1.6')
     runtime('org.postgresql:postgresql:9.4.1212')

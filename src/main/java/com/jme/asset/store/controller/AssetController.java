@@ -17,6 +17,7 @@ import com.jme.asset.store.service.AssetService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -60,21 +62,28 @@ public class AssetController {
      * @param params the asset creation param
      * @return OK if the asset is created successfully, else BAD_REQUEST
      */
+
     @PostMapping(value = "add/asset")
-    public ResponseEntity<?> createAsset(@RequestBody final AssetCreateParam params) {
+    public ResponseEntity<?> createAsset(@RequestPart(name = "file") final MultipartFile file,
+                                         @RequestPart(name = "asset", required = false) final AssetCreateParam params) {
         final String name = params.getName();
         final String description = params.getDescription();
         final AssetCategoryEntity assetCategory = categoryService.load(params.getCategoryId());
+        ///////////////
         categoryService.addCategory("1", "1", null);
         AssetCategoryEntity testCat = categoryService.getAllCategories().get(0);
+        ///
         final JmeUser currentUser = requireNonNull(getCurrentUser());
         final UserEntity user = currentUser.getUser();
+        List<String> warnings;
         try {
-            assetService.createAsset(name, description, user, testCat);
-        } catch (final RuntimeException e) {
+            final AssetEntity asset = assetService.createAsset(name, description, user, testCat);
+            warnings = assetService.addZipFileToAsset(user, file.getInputStream(), file.getOriginalFilename(), asset.getId());
+            warnings.add("The asset is created!");
+        } catch (final Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
-        return ResponseEntity.ok("The asset is created!");
+        return ResponseEntity.ok(warnings);
     }
 
     /**
@@ -85,7 +94,7 @@ public class AssetController {
      */
     @PostMapping(value = "add/file")
     public ResponseEntity<?> uploadFile(@RequestParam(name = "file") final MultipartFile multipartFile,
-                                        @RequestParam(name="type_id") final long id) {
+                                        @RequestParam(name = "type_id") final long id) {
         final JmeUser currentUser = requireNonNull((getCurrentUser()));
         final UserEntity user = currentUser.getUser();
         final String name = multipartFile.getOriginalFilename();
@@ -116,9 +125,9 @@ public class AssetController {
     }
 
     @GetMapping(value = "asset/{id}")
-    public ResponseEntity<?> getAsset(@PathVariable("id") final long id){
+    public ResponseEntity<?> getAsset(@PathVariable("id") final long id) {
         final AssetEntity asset = assetService.getAsset(id);
-        if(asset == null) return ResponseEntity.badRequest().body("No asset with id:" + id);
+        if (asset == null) return ResponseEntity.badRequest().body("No asset with id:" + id);
         return ResponseEntity.ok(asset);
     }
 }

@@ -21,13 +21,9 @@ export class AssetPresentationComponent extends PageComponent {
 
   asset: AssetEntity;
 
-  constructor(private route: ActivatedRoute, private assetService: AssetService, private router: Router) {
+  constructor(private route: ActivatedRoute, private assetService: AssetService) {
     super();
-    this.route.queryParams.subscribe((params: Params) => {
-        let id = params['id'];
-        this.loadAsset(id);
-      }
-    )
+    this.route.params.subscribe((params:Params)=> this.loadAsset(params['id']));
   }
 
   get name() {

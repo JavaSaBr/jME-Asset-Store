@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Router} from '@angular/router';
-import{AssetService} from "../../../service/asset/asset.service";
+import {AssetService} from "../../../service/asset/asset.service";
 import {PageComponent} from "../../page.component";
 import {AssetParams} from "../../../model/params/asset-params";
 
@@ -8,30 +8,38 @@ import {AssetParams} from "../../../model/params/asset-params";
   moduleId: module.id,
   selector: 'app-create-asset',
   templateUrl: './create-asset.component.html',
-  providers:[AssetService],
+  providers: [AssetService],
   styleUrls: ['./create-asset.component.css']
 })
 
-export class AddAssetComponent extends PageComponent{
+export class AddAssetComponent extends PageComponent {
   private _info: AssetParams;
 
   private _message: string;
 
+  private _file: File;
+
   constructor(private readonly router: Router, private assetService: AssetService) {
     super();
     this._message = '';
-    this._info = new AssetParams("","",0);
+    this._info = new AssetParams("", "", 0);
   }
 
   tryCreate() {
-    this.assetService.createAsset(this._info,(message, result) => {
-        this._message = message;
-        if(result){
-          this._info = new AssetParams("","",0);
-          this.router.navigateByUrl('/user-assets');
-        }
+    console.log(this._info);
+    this.assetService.createAsset(this._info, this._file, (message, result, warnings) => {
+      this._message = message;
+      if (warnings != null)
+        warnings.forEach(warning => console.log(warning))
+      if (result) {
+        this.router.navigateByUrl('/user-assets');
+      }
     });
 
+  }
+
+  selectFile(event) {
+    this._file = event.target.files[0];
   }
 
 
@@ -51,7 +59,16 @@ export class AddAssetComponent extends PageComponent{
     this._message = value;
   }
 
-  private isValid(): boolean{
-    return this.info.name.length>0 && this.info.description.length>0;
+
+  get file(): File {
+    return this._file;
+  }
+
+  set file(value: File) {
+    this._file = value;
+  }
+
+  private isValid(): boolean {
+    return this.info.name.length > 0 && this.info.description.length > 0 && this._file != null;
   }
 }

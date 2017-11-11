@@ -1,5 +1,6 @@
 package com.jme.asset.store.db.entity.asset;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jme.asset.store.db.entity.BaseEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import org.jetbrains.annotations.NotNull;
@@ -14,6 +15,7 @@ import java.sql.Blob;
  */
 @Entity
 @Table(name = "FILE_ENTITY")
+@JsonIgnoreProperties(value = "content")
 public class FileEntity extends BaseEntity {
 
     /**

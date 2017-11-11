@@ -1,4 +1,5 @@
 import {UserEntity} from "./user-entity";
+import {FileEntity} from "./file-entity";
 
 export class AssetEntity{
 
@@ -10,10 +11,10 @@ export class AssetEntity{
 
   private _creator: UserEntity;
 
-  private _files: File[];
+  private _files: FileEntity[];
 
 
-  constructor(id: number, name: string, description: string, creator: UserEntity, files: File[]) {
+  constructor(id: number, name: string, description: string, creator: UserEntity, files: FileEntity[]) {
     this._id = id;
     this._name = name;
     this._description = description;
@@ -54,11 +55,11 @@ export class AssetEntity{
     this._id = value;
   }
 
-  get files(): File[] {
+  get files(): FileEntity[] {
     return this._files;
   }
 
-  set files(value: File[]) {
+  set files(value: FileEntity[]) {
     this._files = value;
   }
 }

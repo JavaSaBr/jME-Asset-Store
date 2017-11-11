@@ -7,6 +7,7 @@ import com.jme.asset.store.db.entity.user.UserEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.List;
@@ -65,5 +66,20 @@ public interface AssetService {
      */
     @Nullable List<AssetEntity> getUserAssets(long id);
 
+    /**
+     * Get asset by id
+     * @param id id of asset
+     * @return asset by id
+     */
     @Nullable AssetEntity getAsset(long id);
+
+    /**
+     * Add zip file to asset
+     * @param user creator
+     * @param content InputStream of zip file
+     * @param fileName name of file
+     * @param id asset id
+     * @return List of warnings
+     */
+    List<String> addZipFileToAsset(UserEntity user, InputStream content, String fileName, long id);
 }

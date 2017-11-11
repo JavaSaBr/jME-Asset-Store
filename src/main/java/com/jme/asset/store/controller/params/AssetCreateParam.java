@@ -1,6 +1,7 @@
 package com.jme.asset.store.controller.params;
 
 import org.jetbrains.annotations.Nullable;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * The request params of creating an asset.
