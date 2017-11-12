@@ -31,14 +31,11 @@ export class AssetCategoryService {
    * @returns {Promise<AssetCategoryEntity[]>} the all categories.
    */
   public getCategories(): Promise<AssetCategoryEntity[]> {
-    var options = new RequestOptions({headers: new Headers()});
+    var options = new RequestOptions();
     this.securityService.appendAccessToken(options);
     return this.http.get(AssetCategoryService.API_ASSETS_CATEGORIES, options)
       .toPromise()
-      .then(response => {
-        let body = response.json();
-        return body;
-      })
+      .then(response => response.json())
       .catch(error => Utils.handleError(error));
   }
 
