@@ -24,7 +24,7 @@ import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard
 import {AddAssetComponent} from "./component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "./component/page/user-assets/user-assets.component";
 import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
-import {AssetService} from "./service/asset/asset.service";
+import {AssetCategoryService} from "./service/asset-category.service";
 import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 
 @NgModule({
@@ -36,7 +36,7 @@ import {AssetPresentationComponent} from "./component/page/asset-presentation/as
     AppSettingsComponent,
     FileTypesComponent,
     FormControlDirective,
-    AssetCategoryComponent,
+    AssetCategoryComponent
     AddAssetComponent,
     UserAssetsComponent,
     AssetPresentationComponent
@@ -59,10 +59,10 @@ import {AssetPresentationComponent} from "./component/page/asset-presentation/as
     MatSelectModule,
     ValidatorModule,
     RouterModule,
-    MatTabsModule,
+    MatTabsModule
     HttpClientModule
   ],
-  providers: [SecurityService, AppSettingsGuard, AssetService],
+  providers: [SecurityService, AppSettingsGuard, AssetCategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

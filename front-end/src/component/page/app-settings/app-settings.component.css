@@ -1,6 +1,6 @@
 
 .app-settings {
-  width: 30vh;
+  width:250px;
   height: 100vh;
   text-align: center;
   display: flex;
@@ -21,11 +21,14 @@
 }
 
 .setting-content {
+  margin-left: 250px;
   font-size: 1em;
   color: #636363;
   font-family: inherit;
   float: left;
-  width: 100%;
+  width: 80%;
   height: 100vh;
   text-align: center;
 }
+
+

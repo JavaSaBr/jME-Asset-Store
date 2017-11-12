@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static java.util.Collections.emptyList;
+
 /**
  * The implementation of the asset category.
  *
@@ -93,7 +95,14 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
-    public @Nullable List<AssetCategoryEntity> getAllCategories() {
-        return assetCategoryRepository.findAllByParentIsNull();
+    public @NotNull List<AssetCategoryEntity> getCategories() {
+        final List<AssetCategoryEntity> result = assetCategoryRepository.findAllByParentIsNull();
+        return result == null? emptyList() : result;
     }
+
+    @Override
+    public @NotNull List<AssetCategoryEntity> getChildren(final long id) {
+        return assetCategoryRepository.findAllByParentId(id);
+    }
+
 }
