@@ -13,6 +13,7 @@ import com.jme.asset.store.db.repository.asset.FileRepository;
 import com.jme.asset.store.db.repository.asset.FileTypeRepository;
 import com.jme.asset.store.service.AssetService;
 import com.ss.rlib.util.FileUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import com.ss.rlib.util.array.Array;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,9 +22,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManagerFactory;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -34,6 +35,9 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 /**
  * The main implementation of the {@link AssetService}.
@@ -173,10 +177,10 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public List<String> addZipFileToAsset(@NotNull final UserEntity user,
-                                          final InputStream content, final String fileName, final long id) {
+    public @NotNull List<String> addZipFileToAsset(@NotNull final UserEntity user,
+                                                   final InputStream content, final String fileName, final long id) {
 
-        List<String> warnings = new ArrayList<>();
+        final List<String> warnings = new ArrayList<>();
         Path tempFilePath = null;
         Path tempDirPath = null;
         try {
@@ -186,7 +190,7 @@ public class AssetServiceImpl implements AssetService {
             FileUtils.unzip(tempDirPath, tempFilePath);
             final Array<Path> files = FileUtils.getFiles(tempDirPath, false, null);
 
-            for (Path path : files) {
+            for (final Path path : files) {
                 final String extension = FileUtils.getExtension(path);
 
                 if (extension == null) {
@@ -202,9 +206,9 @@ public class AssetServiceImpl implements AssetService {
                     continue;
                 }
 
-                try (final InputStream in = Files.newInputStream(tempFilePath)) {
+                try (final InputStream in = Files.newInputStream(path)) {
                     final FileEntity file =
-                            createFileEntity(path.toFile().getName(), user, in, Files.size(tempFilePath), type.getId());
+                            createFileEntity(path.toFile().getName(), user, in, Files.size(path), type.getId());
                     addFileToAsset(file, id);
                 }
             }
@@ -215,5 +219,58 @@ public class AssetServiceImpl implements AssetService {
             safeDelete(tempDirPath);
         }
         return warnings;
+    }
+
+    @Override
+    public @NotNull Path downloadAsset(final long id) {
+        final AssetEntity asset = assetRepository.findById(id).orElse(null);
+        if (asset == null)
+            throw new NoSuchElementException("No asset with id: " + id);
+        final List<FileEntity> files = asset.getFiles();
+        Path tempDirectory = null;
+        try {
+            tempDirectory = Files.createTempDirectory(asset.getName());
+            for (FileEntity file : files) {
+                final Blob content = file.getContent();
+                final String extension = file.getType().getExtension();
+                final String fileName = file.getName().replaceFirst('.' + extension, "");
+                final Path tempFile = Files.createTempFile(tempDirectory, fileName, '.' + extension);
+                Files.copy(content.getBinaryStream(), tempFile, StandardCopyOption.REPLACE_EXISTING);
+            }
+            final Path zipFile = pathToZip(tempDirectory, asset.getName());
+            return zipFile;
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            safeDelete(tempDirectory);
+        }
+    }
+
+    private @NotNull Path pathToZip(final @NotNull Path path, final @NotNull String assetName) {
+        try {
+            final Path tempZipFile = Files.createTempFile(assetName, ".zip");
+            final ZipOutputStream zipOutputStream = new ZipOutputStream(Files.newOutputStream(tempZipFile));
+            final Array<Path> files = FileUtils.getFiles(path, false, null);
+            for (Path file : files) {
+                addNewZipEntry(zipOutputStream, path, file);
+            }
+            zipOutputStream.close();
+            return tempZipFile;
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addNewZipEntry(final @NotNull ZipOutputStream zipOutputStream, final @NotNull Path dir,
+                                final @NotNull Path file) {
+        final Path fullPath = dir.resolve(file);
+        try (final InputStream inputStream = Files.newInputStream(fullPath)) {
+            final ZipEntry entry = new ZipEntry(FileUtils.getName(file.toString(), '\\'));
+            zipOutputStream.putNextEntry(entry);
+            IOUtils.copy(inputStream, zipOutputStream);
+            zipOutputStream.closeEntry();
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

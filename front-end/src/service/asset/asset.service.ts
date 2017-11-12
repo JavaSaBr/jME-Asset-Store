@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http,RequestOptions} from "@angular/http";
+import {Http, RequestOptions, ResponseContentType} from "@angular/http";
 import {AssetParams} from "../../model/params/asset-params";
 import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
@@ -17,7 +17,7 @@ export class AssetService {
 
   public static GET_ASSET: string = "/api/assets/asset";
 
-  public currentAsset: BehaviorSubject<AssetEntity> = new BehaviorSubject(null);
+  public static DOWNLOAD_ASSET: string = "/api/assets/download/";
 
   constructor(private httpClient: HttpClient, private readonly http: Http, private securityService: SecurityService) {
   }
@@ -53,6 +53,16 @@ export class AssetService {
   public loadAsset(id: number, handler: (message: string, result: AssetEntity) => void) {
     this.http.get(AssetService.GET_ASSET + "/" + id, this.securityService.appendAccessToken())
       .toPromise().then(value => handler(null, value.json()))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
+  }
+
+  public downloadAsset(id: number, handler: (message: string, file: Blob) => void) {
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    options.responseType = ResponseContentType.Blob;
+    this.http.get(AssetService.DOWNLOAD_ASSET + id.toString(), options)
+      .toPromise()
+      .then(value => handler(null, value.blob()))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 }

@@ -8,25 +8,33 @@ import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
-import com.jme.asset.store.db.entity.asset.FileEntity;
-import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetCategoryService;
 import com.jme.asset.store.service.AssetService;
+import com.jme.asset.store.util.Utils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * The Asset controller provides set of endpoints for working with Asset
@@ -129,5 +137,27 @@ public class AssetController {
         final AssetEntity asset = assetService.getAsset(id);
         if (asset == null) return ResponseEntity.badRequest().body("No asset with id:" + id);
         return ResponseEntity.ok(asset);
+    }
+
+    @GetMapping(value = "download/{id}")
+    public ResponseEntity<?> downloadAsset(final HttpServletResponse response, @PathVariable("id") final long id) {
+        Path filePath = null;
+        try {
+            filePath = assetService.downloadAsset(id);
+            final AssetEntity asset = assetService.getAsset(id);
+            final String mimeType = Files.probeContentType(filePath);
+            final HttpHeaders headers = new HttpHeaders();
+            headers.setAccessControlExposeHeaders(Collections.singletonList("Content-Disposition"));
+            headers.set("Content-Disposition", "attachment; filename=" + asset.getName());
+            headers.setContentType(MediaType.valueOf(mimeType));
+
+            final Resource resource = new UrlResource(filePath.toUri());
+            return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+        } catch (final Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
+        }
+        finally {
+            Utils.safeDelete(filePath);
+        }
     }
 }
