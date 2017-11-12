@@ -32,7 +32,7 @@ export class AssetCategoryService {
    */
   public getCategories(): Promise<AssetCategoryEntity[]> {
     var options = new RequestOptions({headers: new Headers()});
-    this.securityService.addAccessToken(options);
+    this.securityService.appendAccessToken(options);
     return this.http.get(AssetCategoryService.API_ASSETS_CATEGORIES, options)
       .toPromise()
       .then(response => {
@@ -51,7 +51,7 @@ export class AssetCategoryService {
   public addCategory(params: AssetCategoryParam,
                      handler: (message: string, result: boolean) => void) {
     var options = new RequestOptions({headers: new Headers()});
-    this.securityService.addAccessToken(options);
+    this.securityService.appendAccessToken(options);
     this.http.put(AssetCategoryService.API_ASSETS_CATEGORIES + "/put", params, options)
       .toPromise()
       .then(response => handler(null, true))
@@ -66,7 +66,7 @@ export class AssetCategoryService {
    */
   public removeCategory(id: string, handler: (message: string, result: boolean) => void) {
     var options = new RequestOptions({headers: new Headers()});
-    this.securityService.addAccessToken(options);
+    this.securityService.appendAccessToken(options);
     this.http.delete(AssetCategoryService.API_ASSETS_CATEGORIES + '/' + id, options)
       .toPromise()
       .then(response => handler(null, true))
@@ -81,7 +81,7 @@ export class AssetCategoryService {
    */
   public getChildren(id: string): Promise<AssetCategoryEntity[]> {
     var options = new RequestOptions({headers: new Headers()});
-    this.securityService.addAccessToken(options);
+    this.securityService.appendAccessToken(options);
     return this.http.get(AssetCategoryService.API_ASSETS_CATEGORIES + "/" + id, options)
       .toPromise()
       .then(response => {

@@ -26,6 +26,7 @@ import {UserAssetsComponent} from "./component/page/user-assets/user-assets.comp
 import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
 import {AssetCategoryService} from "./service/asset-category.service";
 import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
+import {AssetService} from "./service/asset/asset.service";
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import {AssetPresentationComponent} from "./component/page/asset-presentation/as
     MatTabsModule,
     HttpClientModule
   ],
-  providers: [SecurityService, AppSettingsGuard, AssetCategoryService],
+  providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

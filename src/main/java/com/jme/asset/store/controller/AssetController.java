@@ -158,8 +158,5 @@ public class AssetController {
         } catch (final Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
-        finally {
-            Utils.safeDelete(filePath);
-        }
     }
 }
