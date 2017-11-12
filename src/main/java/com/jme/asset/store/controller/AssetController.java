@@ -81,7 +81,7 @@ public class AssetController {
         final AssetCategoryEntity assetCategory = categoryService.load(params.getCategoryId());
         ///////////////
         categoryService.addCategory("1", "1", null);
-        AssetCategoryEntity testCat = categoryService.getAllCategories().get(0);
+        AssetCategoryEntity testCat = categoryService.load(1);
         ///
         final JmeUser currentUser = requireNonNull(getCurrentUser());
         final UserEntity user = currentUser.getUser();

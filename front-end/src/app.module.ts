@@ -36,7 +36,7 @@ import {AssetPresentationComponent} from "./component/page/asset-presentation/as
     AppSettingsComponent,
     FileTypesComponent,
     FormControlDirective,
-    AssetCategoryComponent
+    AssetCategoryComponent,
     AddAssetComponent,
     UserAssetsComponent,
     AssetPresentationComponent
@@ -59,7 +59,7 @@ import {AssetPresentationComponent} from "./component/page/asset-presentation/as
     MatSelectModule,
     ValidatorModule,
     RouterModule,
-    MatTabsModule
+    MatTabsModule,
     HttpClientModule
   ],
   providers: [SecurityService, AppSettingsGuard, AssetCategoryService],
