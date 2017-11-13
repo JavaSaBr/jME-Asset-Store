@@ -20,6 +20,8 @@ export class AddAssetComponent extends PageComponent {
 
   private _file: File;
 
+
+
   @ViewChild(ChooseAssetCategoryComponent) category: ChooseAssetCategoryComponent;
 
   constructor(private readonly router: Router, private assetService: AssetService) {
@@ -77,5 +79,11 @@ export class AddAssetComponent extends PageComponent {
 
   private chooseCategory(){
     this.router.navigateByUrl("/choose-asset-category");
+  }
+
+
+  myId:number;
+  onChanged(increased:any){
+    this.myId = increased;
   }
 }

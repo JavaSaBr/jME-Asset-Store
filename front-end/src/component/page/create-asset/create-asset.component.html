@@ -28,12 +28,12 @@
       </label>
     </div>
     <div>
-     <select>
-       <option><app-choose-asset-category></app-choose-asset-category></option>
-     </select>
+       <app-choose-asset-category (onChanged)="onChanged($event)"></app-choose-asset-category>
     </div>
     <button class="create-asset-button" type="submit" mat-raised-button color="primary"
             [disabled]="!isValid()"> create
     </button>
   </form>
+
+  {{myId}}
 </div>

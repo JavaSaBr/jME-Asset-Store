@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AssetCategoryParam} from "../../../model/category/asset-category-param";
 import {CategoryComponent} from "../../../model/category/category-component";
 import {AssetCategoryEntity} from "../../../model/entity/asset-category-entity";
@@ -75,7 +75,8 @@ export class ChooseAssetCategoryComponent implements OnInit {
       .then(value => {
         this.categories = value;
         if (this.categories == null || this.categories.length == 0) {
-
+            this.label = true;
+            return;
         }
         this.path.push(new CategoryComponent(name, id));
       });
@@ -103,6 +104,10 @@ export class ChooseAssetCategoryComponent implements OnInit {
    */
   getLastPathElement(): CategoryComponent {
     return this.path[this.path.length - 1];
+  }
+
+  chooseCategory(){
+
   }
 
   /**
@@ -227,4 +232,12 @@ export class ChooseAssetCategoryComponent implements OnInit {
   set label(value: boolean) {
     this._label = value;
   }
+
+
+  @Output() onChanged = new EventEmitter<string>();
+  getCategoryId(id: string){
+    this.onChanged.emit(id);
+  }
+
+
 }
