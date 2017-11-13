@@ -1,8 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import {Router} from '@angular/router';
 import {AssetService} from "../../../service/asset/asset.service";
 import {PageComponent} from "../../page.component";
 import {AssetParams} from "../../../model/params/asset-params";
+import {ChooseAssetCategoryComponent} from "../choose-asset-category/choose-asset-category.component";
 
 @Component({
   moduleId: module.id,
@@ -18,6 +19,8 @@ export class AddAssetComponent extends PageComponent {
   private _message: string;
 
   private _file: File;
+
+  @ViewChild(ChooseAssetCategoryComponent) category: ChooseAssetCategoryComponent;
 
   constructor(private readonly router: Router, private assetService: AssetService) {
     super();
@@ -70,5 +73,9 @@ export class AddAssetComponent extends PageComponent {
 
   private isValid(): boolean {
     return this.info.name.length > 0 && this.info.description.length > 0 && this._file != null;
+  }
+
+  private chooseCategory(){
+    this.router.navigateByUrl("/choose-asset-category");
   }
 }

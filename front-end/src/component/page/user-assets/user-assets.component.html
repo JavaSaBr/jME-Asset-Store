@@ -1,12 +1,14 @@
-<div class="user-assets-data">
+<div class="asset-containers">
   <label *ngIf="error!=null"> {{error}}</label>
-  <ul class="user-assets-data-rows" *ngIf="assets!=null">
-    <li class="user-asset-data-row" *ngFor="let asset of assets">
-      <button class="to-asset-button" (click)="toAsset(asset.id)">{{asset.name}}</button>
+  <ul class="asset-components" *ngIf="assets!=null">
+    <li class="asset-container" *ngFor="let asset of assets">
+      <div class="card" (click)="toAsset(asset.id)">
+        <div class="card-body">{{asset.name}}</div>
+      </div>
+    </li>
+    <li class="create-asset-container">
+      <i class="material-icons md-56" (click)="createAsset()">add_circle_outline</i>
     </li>
   </ul>
-  <div>
-    <button class="create-asset-button" mat-raised-button color="primary" (click)="createAsset()">create asset</button>
-  </div>
 </div>
 

@@ -12,6 +12,7 @@ import {AppSettingsGuard} from "../component/page/app-settings/app-settings.guar
 import {AddAssetComponent} from "../component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "../component/page/user-assets/user-assets.component";
 import {AssetPresentationComponent} from "../component/page/asset-presentation/asset-presentation.component";
+import {ChooseAssetCategoryComponent} from "../component/page/choose-asset-category/choose-asset-category.component";
 
 /**
  * The list of routes of this application.
@@ -20,9 +21,13 @@ const routes: Routes = [
   {path: '', redirectTo: '/' + RouteList.PAGE_DASHBOARD, pathMatch: 'full'},
   {path: RouteList.PAGE_DASHBOARD, component: DashboardComponent},
   {path: RouteList.PAGE_LOGIN, component: LoginComponent},
-  {path: RouteList.PAGE_CREATE_ASSET, component: AddAssetComponent},
+  {
+    path: RouteList.PAGE_CREATE_ASSET, component: AddAssetComponent, children: [
+    {path: RouteList.PAGE_CHOOSE_ASSET_CATEGORY, component: ChooseAssetCategoryComponent}
+  ]
+  },
   {path: RouteList.PAGE_REGISTER, component: RegisterComponent},
-  {path:RouteList.PAGE_USER_ASSETS, component: UserAssetsComponent},
+  {path: RouteList.PAGE_USER_ASSETS, component: UserAssetsComponent},
   {path: RouteList.PAGE_ASSET, component: AssetPresentationComponent},
   {
     path: RouteList.PAGE_APP_SETTINGS, component: AppSettingsComponent, canActivate: [AppSettingsGuard], children: [

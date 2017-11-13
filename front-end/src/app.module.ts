@@ -27,6 +27,7 @@ import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
 import {AssetCategoryService} from "./service/asset-category.service";
 import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 import {AssetService} from "./service/asset/asset.service";
+import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {AssetService} from "./service/asset/asset.service";
     AssetCategoryComponent,
     AddAssetComponent,
     UserAssetsComponent,
-    AssetPresentationComponent
+    AssetPresentationComponent,
+    ChooseAssetCategoryComponent
   ],
   imports: [
     FormsModule,
@@ -61,7 +63,7 @@ import {AssetService} from "./service/asset/asset.service";
     ValidatorModule,
     RouterModule,
     MatTabsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService],
   bootstrap: [AppComponent]

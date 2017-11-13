@@ -29,7 +29,7 @@ public class Utils {
             else {
                 final Array<Path> pathArray = FileUtils.getFiles(file, true, null);
                 for (final Path path : pathArray) {
-                    if (file.equals(path) && pathArray.size() > 1) continue;
+                    if (file.equals(path)) continue;
                     safeDelete(path);
                 }
                 Files.delete(file);

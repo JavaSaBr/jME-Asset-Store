@@ -1,0 +1,22 @@
+<h1>Asset category settings</h1>
+<h3 class="register-page-error" [hidden]="error.length == 0">
+  {{error}}
+</h3>
+<ul class="menu-main">
+  <li *ngFor="let p of path">
+    <div (click)="setTopOfPath(p.id)">
+      {{p.name}}
+    </div>
+  </li>
+</ul>
+<div class="container">
+  <ul class="components">
+    <li class="category-container" *ngFor="let category of categories">
+      <div class="category-content" (click)="loadChildren(category.name, category.id)">
+        <h3>{{category.name}}</h3>
+        <p>{{category.description}}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+

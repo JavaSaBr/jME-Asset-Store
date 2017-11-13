@@ -3,9 +3,7 @@ import {Http, RequestOptions, ResponseContentType} from "@angular/http";
 import {AssetParams} from "../../model/params/asset-params";
 import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
-import {HttpClient} from "@angular/common/http";
 import {SecurityService} from "../security.service";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 
 @Injectable()
@@ -19,7 +17,7 @@ export class AssetService {
 
   public static DOWNLOAD_ASSET: string = "/api/assets/download/";
 
-  constructor(private httpClient: HttpClient, private readonly http: Http, private securityService: SecurityService) {
+  constructor(private readonly http: Http, private securityService: SecurityService) {
   }
 
   public createAsset(asset: AssetParams, file: File, handler: (message: string, result: boolean, warnings: string[]) => void) {
