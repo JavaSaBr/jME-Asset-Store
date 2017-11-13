@@ -26,13 +26,13 @@
                #extension="ngModel">
       </mat-input-container>
       <div class="add-file-type-buttons">
-          <button class="add-file-type-button" type="submit" mat-raised-button color="primary" [disabled]="!createForm.form.valid"> Add file type
-          </button>
-          <button class="add-file-type-button" type="submit" mat-raised-button color="primary" (click)="redirect()"> Cancel
-          </button>
-        </div>
-
-
+        <button class="add-file-type-button" type="submit" mat-raised-button color="primary"
+                [disabled]="!createForm.form.valid"> Add file type
+        </button>
+        <button class="add-file-type-button" type="submit" mat-raised-button color="primary"
+                (click)="redirectToFileTypesPage()"> Cancel
+        </button>
+      </div>
     </form>
   </div>
 </div>

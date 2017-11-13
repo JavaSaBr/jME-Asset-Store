@@ -7,14 +7,10 @@
   color: #3f51b5;
 }
 
-.material-icons.shadow {
-  box-shadow: 10px 13px 17px -13px rgba(0, 0, 0, 0.75);
-}
-
-.material-icons.position {
-  position: fixed;
+.mat-icon-button{
+ position: fixed;
   right: 5%;
-  bottom: 12%;
+  bottom: 5%;
 }
 
 .add-file-type-button-position {
@@ -49,4 +45,3 @@
   font-weight: normal;
   color: inherit;
 }
-

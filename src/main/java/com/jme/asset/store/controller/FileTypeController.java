@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/" + Routes.API_FILE_TYPES)
 public class FileTypeController {
+
     /**
      * The file types service
      */
@@ -60,8 +61,9 @@ public class FileTypeController {
     @GetMapping(value = "/get/all")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getAllFileTypes() {
-        if (fileTypeService.loadAllTypes().isEmpty())
+        if (fileTypeService.loadAllTypes().isEmpty()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("There is no file types yet!");
+        }
         return ResponseEntity.ok(fileTypeService.loadAllTypes());
     }
 }

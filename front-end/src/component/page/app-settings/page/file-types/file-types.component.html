@@ -1,5 +1,6 @@
 <div class="file-type-content">
   <mat-table class="file-type-table" #table [dataSource]="dataSource">
+
     <ng-container matColumnDef="name">
       <mat-header-cell class="file-type-mat-header-cell" *matHeaderCellDef> Name</mat-header-cell>
       <mat-cell class="file-type-mat-cell" *matCellDef="let element"> {{element.name}}</mat-cell>
@@ -19,9 +20,10 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
+
 <div class="add-file-type-button-position">
-  <button  mat-icon-button [routerLink]="['./add'] ">
-    <mat-icon><i class="material-icons md-48 blue position shadow" aria-hidden="true">add_circle</i></mat-icon>
+  <button mat-icon-button [routerLink]="['./add'] ">
+    <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
   </button>
 </div>
 

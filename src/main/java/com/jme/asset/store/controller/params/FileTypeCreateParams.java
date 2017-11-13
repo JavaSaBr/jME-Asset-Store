@@ -8,16 +8,19 @@ import org.jetbrains.annotations.Nullable;
  * @author Alena Solonevich
  */
 public class FileTypeCreateParams {
+
     /**
      * The name of file type
      */
     @Nullable
     private String name;
+
     /**
      * The mime-type of file-type
      */
     @Nullable
     private String mimeType;
+
     /**
      * The extension of file type
      */

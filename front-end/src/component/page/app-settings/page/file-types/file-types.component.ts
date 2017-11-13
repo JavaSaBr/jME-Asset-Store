@@ -17,15 +17,15 @@ import {FileTypeDataSource} from "../../../../../service/file-type-data-source";
   preserveWhitespaces: true,
   providers: [FileTypeDataSource]
 })
+
 export class FileTypesComponent extends PageComponent {
   displayedColumns = ['name', 'mimeType', 'extension'];
   dataSource: DataSource<FileTypeEntity>;
 
-  constructor(private readonly fileTypesService: FileTypesService,
-              private readonly fileTypeDataSource: FileTypeDataSource) {
+  constructor(private readonly fileTypeDataSource: FileTypeDataSource) {
     super();
-    this.dataSource = this.fileTypeDataSource;
-
+    this
+      .dataSource = this.fileTypeDataSource;
   }
 
   ngOnInit() {

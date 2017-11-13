@@ -44,5 +44,4 @@ public interface FileTypeService {
      * @return list of all file types
      */
     @Nullable List<FileTypeEntity> loadAllTypes();
-
 }
