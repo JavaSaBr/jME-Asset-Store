@@ -23,8 +23,7 @@ export class FileTypesComponent extends PageComponent {
 
   constructor(private readonly fileTypeDataSource: FileTypeDataSource) {
     super();
-    this
-      .dataSource = this.fileTypeDataSource;
+    this.dataSource = this.fileTypeDataSource;
   }
 
   ngOnInit() {
