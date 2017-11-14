@@ -76,6 +76,6 @@ public class FileTypeServiceImpl implements FileTypeService {
         for (final FileTypeEntity fileType : allTypes) {
             allFileTypes.add(fileType);
         }
-            return allFileTypes;
+        return allFileTypes;
     }
 }

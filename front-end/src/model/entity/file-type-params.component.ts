@@ -3,7 +3,6 @@
  *
  * @author Alena Solonevich
  */
-
 export class FileTypeParams {
 
   /**

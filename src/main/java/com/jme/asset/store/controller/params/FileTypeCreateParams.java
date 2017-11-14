@@ -1,7 +1,5 @@
 package com.jme.asset.store.controller.params;
 
-import org.jetbrains.annotations.Nullable;
-
 /**
  * The request params of creating file type
  *
@@ -12,19 +10,16 @@ public class FileTypeCreateParams {
     /**
      * The name of file type
      */
-    @Nullable
     private String name;
 
     /**
      * The mime-type of file-type
      */
-    @Nullable
     private String mimeType;
 
     /**
      * The extension of file type
      */
-    @Nullable
     private String extension;
 
     /**
@@ -32,7 +27,7 @@ public class FileTypeCreateParams {
      *
      * @return the name of file type
      */
-    public @Nullable String getName() {
+    public String getName() {
         return name;
     }
 
@@ -41,7 +36,7 @@ public class FileTypeCreateParams {
      *
      * @param name
      */
-    public void setName(@Nullable String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -50,7 +45,7 @@ public class FileTypeCreateParams {
      *
      * @return the mime-type of file type
      */
-    public @Nullable String getMimeType() {
+    public String getMimeType() {
         return mimeType;
     }
 
@@ -59,7 +54,7 @@ public class FileTypeCreateParams {
      *
      * @param mimeType of file type
      */
-    public void setMimeType(@Nullable String mimeType) {
+    public void setMimeType(String mimeType) {
         this.mimeType = mimeType;
     }
 
@@ -68,7 +63,7 @@ public class FileTypeCreateParams {
      *
      * @return the extension of file type
      */
-    public @Nullable String getExtension() {
+    public String getExtension() {
         return extension;
     }
 
@@ -77,7 +72,7 @@ public class FileTypeCreateParams {
      *
      * @param extension of file type
      */
-    public void setExtension(@Nullable String extension) {
+    public void setExtension(String extension) {
         this.extension = extension;
     }
 }

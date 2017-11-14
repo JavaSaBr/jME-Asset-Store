@@ -3,6 +3,7 @@ package com.jme.asset.store.controller;
 import com.jme.asset.store.Routes;
 import com.jme.asset.store.controller.params.FileTypeCreateParams;
 import com.jme.asset.store.controller.response.ErrorResponse;
+import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.service.FileTypeService;
 import com.jme.asset.store.service.RoleService;
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * The File type controller provides set of endpoints for working with file types
@@ -61,9 +64,10 @@ public class FileTypeController {
     @GetMapping(value = "/get/all")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> getAllFileTypes() {
-        if (fileTypeService.loadAllTypes().isEmpty()) {
+        final List<FileTypeEntity> allFileTypes = fileTypeService.loadAllTypes();
+        if (allFileTypes.isEmpty()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("There is no file types yet!");
         }
-        return ResponseEntity.ok(fileTypeService.loadAllTypes());
+        return ResponseEntity.ok(allFileTypes);
     }
 }

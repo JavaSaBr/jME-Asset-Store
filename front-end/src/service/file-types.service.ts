@@ -16,7 +16,8 @@ export class FileTypesService {
   }
 
   public createFileType(fileTypeParams: FileTypeParams, handler: (message: string, result: boolean) => void): void {
-    let options = new RequestOptions({headers: new Headers});
+
+    let options = new RequestOptions();
     this.security.addAccessToken(options);
     this.http.post(FileTypesService.ADD_FILE_TYPE_URL, fileTypeParams)
       .toPromise()
@@ -25,7 +26,7 @@ export class FileTypesService {
   }
 
   public loadFileTypes(): Promise<FileTypeEntity[]> {
-    let options = new RequestOptions({headers: new Headers});
+    let options = new RequestOptions();
     this.security.addAccessToken(options);
     return this.http.get(FileTypesService.LOAD_FILE_TYPE_URL)
       .toPromise()
