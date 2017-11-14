@@ -40,5 +40,4 @@ export class FileTypesService {
   private hadlerError(error: Response | any) {
     return Promise.reject(error.message || error)
   }
-
 }

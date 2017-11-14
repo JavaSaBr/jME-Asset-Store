@@ -97,7 +97,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     @Override
     public @NotNull List<AssetCategoryEntity> getCategories() {
         final List<AssetCategoryEntity> result = assetCategoryRepository.findAllByParentIsNull();
-        return result == null? emptyList() : result;
+        return result == null ? emptyList() : result;
     }
 
     @Override
