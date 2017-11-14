@@ -64,6 +64,11 @@ export class ChooseAssetCategoryComponent implements OnInit {
       .then(value => this.categories = value);
   }
 
+
+  clickOnCategory(){
+
+  }
+
   /**
    * Load the children.
    *
@@ -75,7 +80,7 @@ export class ChooseAssetCategoryComponent implements OnInit {
       .then(value => {
         this.categories = value;
         if (this.categories == null || this.categories.length == 0) {
-            this.label = true;
+            this.getCategoryId(id);
             return;
         }
         this.path.push(new CategoryComponent(name, id));

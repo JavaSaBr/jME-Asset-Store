@@ -28,7 +28,8 @@ export class AssetService {
     formData.append('asset', new Blob([JSON.stringify({
         "name": asset.name,
         "description": asset.description,
-        "id": asset.id
+        "id": asset.id,
+        "categoryId": asset.category_id
       })], {
         type: "application/json"
       }

@@ -20,6 +20,7 @@ export class AddAssetComponent extends PageComponent {
 
   private _file: File;
 
+  viewCategory: boolean;
 
 
   @ViewChild(ChooseAssetCategoryComponent) category: ChooseAssetCategoryComponent;
@@ -27,7 +28,8 @@ export class AddAssetComponent extends PageComponent {
   constructor(private readonly router: Router, private assetService: AssetService) {
     super();
     this._message = '';
-    this._info = new AssetParams("", "", 0);
+    this._info = new AssetParams("", "", 0,0);
+    this.viewCategory = false;
   }
 
   tryCreate() {
@@ -77,13 +79,20 @@ export class AddAssetComponent extends PageComponent {
     return this.info.name.length > 0 && this.info.description.length > 0 && this._file != null;
   }
 
-  private chooseCategory(){
+  private chooseCategory() {
     this.router.navigateByUrl("/choose-asset-category");
   }
 
 
-  myId:number;
-  onChanged(increased:any){
+  myId: string = "choose category";
+
+  onChanged(increased: any) {
     this.myId = increased;
+    this.viewCategory = !this.viewCategory;
+    this._info.category_id = increased;
+  }
+
+  changeViewCategory() {
+    this.viewCategory = !this.viewCategory;
   }
 }

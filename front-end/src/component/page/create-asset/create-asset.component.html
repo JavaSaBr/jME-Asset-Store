@@ -5,35 +5,38 @@
       {{_message}}
     </h3>
   </div>
-  <form class="asset-create-form mat-elevation-z2" (ngSubmit)="tryCreate()" #userForm="ngForm">
-    <div class="create_asset-data-block">
-      <mat-input-container class="create-asset-data-row">
-        <input matInput placeholder="Asset name" id="AssetName"
-               [(ngModel)]="info.name"
-               name="name"
-               #name="ngModel">
-      </mat-input-container>
-    </div>
-    <div class="create_asset-data-block">
-      <mat-input-container class="create-asset-data-row">
-        <input matInput placeholder="Asset description" id="AssetDescription"
-               [(ngModel)]="info.description"
-               name="description"
-               #description="ngModel">
-      </mat-input-container>
-    </div>
-    <div class="asset-files">
-      <label class="file-input">
-        <input type="file" accept="application/zip" (change)="selectFile($event)">
-      </label>
+  <form class="asset-create-form mat-elevation-z2" #userForm="ngForm">
+    <div *ngIf="!viewCategory">
+      <div class="create_asset-data-block">
+        <mat-input-container class="create-asset-data-row">
+          <input matInput placeholder="Asset name" id="AssetName"
+                 [(ngModel)]="info.name"
+                 name="name"
+                 #name="ngModel">
+        </mat-input-container>
+      </div>
+      <div class="create_asset-data-block">
+        <mat-input-container class="create-asset-data-row">
+          <input matInput placeholder="Asset description" id="AssetDescription"
+                 [(ngModel)]="info.description"
+                 name="description"
+                 #description="ngModel">
+        </mat-input-container>
+      </div>
+      <div class="asset-files">
+        <label class="file-input">
+          <input type="file" accept="application/zip" (change)="selectFile($event)">
+        </label>
+      </div>
     </div>
     <div>
-       <app-choose-asset-category (onChanged)="onChanged($event)"></app-choose-asset-category>
+      <button *ngIf="!viewCategory" (click)="changeViewCategory()">{{myId}}</button>
+      <app-choose-asset-category *ngIf="viewCategory" (onChanged)="onChanged($event)"></app-choose-asset-category>
     </div>
-    <button class="create-asset-button" type="submit" mat-raised-button color="primary"
+    <button *ngIf="!viewCategory" class="create-asset-button" (click)="tryCreate()" mat-raised-button color="primary"
             [disabled]="!isValid()"> create
     </button>
   </form>
 
-  {{myId}}
+
 </div>

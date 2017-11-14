@@ -79,14 +79,11 @@ public class AssetController {
         final String name = params.getName();
         final String description = params.getDescription();
         final AssetCategoryEntity assetCategory = categoryService.load(params.getCategoryId());
-        ///////////////
-        AssetCategoryEntity testCat = categoryService.load(22);
-        ///
         final JmeUser currentUser = requireNonNull(getCurrentUser());
         final UserEntity user = currentUser.getUser();
         List<String> warnings;
         try {
-            final AssetEntity asset = assetService.createAsset(name, description, user, testCat);
+            final AssetEntity asset = assetService.createAsset(name, description, user, assetCategory);
             warnings = assetService.addZipFileToAsset(user, file.getInputStream(), file.getOriginalFilename(), asset.getId());
             warnings.add("The asset is created!");
         } catch (final Exception e) {
