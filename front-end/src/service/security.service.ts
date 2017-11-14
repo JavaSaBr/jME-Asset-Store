@@ -84,11 +84,18 @@ export class SecurityService {
   /**
    * Add an access token to header of the request options.
    *
-   * @param requestOptions the request options.
+   * @param options the request options.
+   * @return the updated request options.
    */
-  public addAccessToken(requestOptions: RequestOptions): void {
+  public appendAccessToken(options?: RequestOptions): RequestOptions {
+
+    if (options == null) {
+      options = new RequestOptions();
+    }
+
     const accessToken = this.accessToken;
     if (accessToken == null) {
+<<<<<<< HEAD
       return;
     }
 
@@ -97,6 +104,17 @@ export class SecurityService {
     }
 
     requestOptions.headers.append(SecurityService.ACCESS_TOKEN_HEADER, accessToken);
+=======
+      return options;
+    }
+
+    if (options.headers == null) {
+      options.headers = new Headers();
+    }
+
+    options.headers.append(SecurityService.ACCESS_TOKEN_HEADER, accessToken);
+    return options;
+>>>>>>> adding_asset
   }
 
   /**

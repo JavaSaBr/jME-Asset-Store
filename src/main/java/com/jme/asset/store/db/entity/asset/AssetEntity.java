@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class AssetEntity extends BaseEntity {
      * Files in asset
      */
     @ManyToMany
-    private List<FileEntity> files;
+    private List<FileEntity> files = new ArrayList<>();
 
     /**
      * The creator of asset

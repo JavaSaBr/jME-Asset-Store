@@ -1,0 +1,18 @@
+<div>
+  <label class="asset-name" *ngIf="asset != null"> {{asset.name}}</label>
+  <div class="asset-presentation-files" *ngIf="asset !=null">
+    <div class = "empty-asset" *ngIf="asset.files==null || asset.files.length==0">
+      <label class="empty-asset-label">Asset is empty!</label>
+    </div>
+    <div class = "non-empty-asset" *ngIf="asset.files!=null && asset.files.length!=0">
+      <ul class="asset-files-rows">
+        <li class="asset-file-row" *ngFor="let file of asset.files">
+          <label class="asset-file-name">{{file.name}}</label>
+        </li>
+      </ul>
+    </div>
+    <div class="download-button">
+      <button mat-button color="primary" class="download-asset" (click)="downloadAsset()">download asset</button>
+    </div>
+  </div>
+</div>

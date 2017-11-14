@@ -6,10 +6,15 @@ import static org.hibernate.Hibernate.getLobCreator;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
+import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.db.repository.asset.AssetRepository;
 import com.jme.asset.store.db.repository.asset.FileRepository;
+import com.jme.asset.store.db.repository.asset.FileTypeRepository;
 import com.jme.asset.store.service.AssetService;
+import com.ss.rlib.util.FileUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import com.ss.rlib.util.array.Array;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.LobCreator;
@@ -19,12 +24,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManagerFactory;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileAttribute;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 /**
  * The main implementation of the {@link AssetService}.
@@ -50,18 +63,25 @@ public class AssetServiceImpl implements AssetService {
     @NotNull
     private final FileRepository fileRepository;
 
+    /**
+     * The file type repository
+     */
+    @NotNull
+    private final FileTypeRepository fileTypeRepository;
+
     @Autowired
     public AssetServiceImpl(@NotNull final EntityManagerFactory entityManagerFactory,
                             @NotNull final AssetRepository assetRepository,
-                            @NotNull final FileRepository fileRepository) {
+                            @NotNull final FileRepository fileRepository, @NotNull FileTypeRepository fileTypeRepository) {
         this.entityManagerFactory = entityManagerFactory;
         this.assetRepository = assetRepository;
         this.fileRepository = fileRepository;
+        this.fileTypeRepository = fileTypeRepository;
     }
 
     @Override
     public @NotNull FileEntity createFile(@NotNull final String fileName, @NotNull final UserEntity user,
-                                          @NotNull final InputStream inputStream) {
+                                          @NotNull final InputStream inputStream, final long id) {
         Path temp = null;
         try {
 
@@ -70,7 +90,7 @@ public class AssetServiceImpl implements AssetService {
             Files.copy(inputStream, temp, StandardCopyOption.REPLACE_EXISTING);
 
             try (final InputStream in = Files.newInputStream(temp)) {
-                return createFileEntity(fileName, user, in, Files.size(temp));
+                return createFileEntity(fileName, user, in, Files.size(temp), id);
             }
 
         } catch (final IOException e) {
@@ -87,10 +107,12 @@ public class AssetServiceImpl implements AssetService {
      * @param user          the user.
      * @param content       the content.
      * @param contentLength the content length.
+     * @param id            type id
      * @return the created file entity.
      */
     private @NotNull FileEntity createFileEntity(@NotNull final String fileName, @NotNull final UserEntity user,
-                                                 @NotNull final InputStream content, final long contentLength) {
+                                                 @NotNull final InputStream content, final long contentLength,
+                                                 final long id) {
 
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         try (final Session session = sessionFactory.openSession()) {
@@ -102,6 +124,8 @@ public class AssetServiceImpl implements AssetService {
             fileEntity.setName(fileName);
             fileEntity.setCreator(user);
             fileEntity.setContent(blob);
+            FileTypeEntity type = fileTypeRepository.findById(id).orElse(null);
+            fileEntity.setType(type);
 
             fileRepository.save(fileEntity);
 
@@ -126,14 +150,131 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void addFileToAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public void addFileToAsset(@NotNull final FileEntity file, final long id) {
+        AssetEntity asset = assetRepository.findById(id).orElse(null);
+        if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
         asset.addFile(file);
         assetRepository.save(asset);
     }
 
     @Override
-    public void removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public void removeFileFromAsset(@NotNull final FileEntity file, final long id) {
+        AssetEntity asset = assetRepository.findById(id).orElse(null);
+        if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
         asset.removeFile(file);
         assetRepository.save(asset);
     }
+<<<<<<< HEAD
 }
+=======
+
+    @Override
+    public @Nullable List<AssetEntity> getUserAssets(long id) {
+        final List<AssetEntity> assets = assetRepository.findAllByCreator_Id(id);
+        return assets;
+    }
+
+    @Override
+    public @Nullable AssetEntity getAsset(long id) {
+        return assetRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public @NotNull List<String> addZipFileToAsset(@NotNull final UserEntity user,
+                                                   final InputStream content, final String fileName, final long id) {
+
+        final List<String> warnings = new ArrayList<>();
+        Path tempFilePath = null;
+        Path tempDirPath = null;
+        try {
+            tempFilePath = Files.createTempFile(fileName, ".zip");
+            tempDirPath = Files.createTempDirectory("upload");
+            Files.copy(content, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
+            FileUtils.unzip(tempDirPath, tempFilePath);
+            final Array<Path> files = FileUtils.getFiles(tempDirPath, false, null);
+
+            for (final Path path : files) {
+                final String extension = FileUtils.getExtension(path);
+
+                if (extension == null) {
+                    warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
+                    continue;
+                }
+
+                final FileTypeEntity type =
+                        fileTypeRepository.findByExtension(extension).orElse(null);
+
+                if (type == null) {
+                    warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
+                    continue;
+                }
+
+                try (final InputStream in = Files.newInputStream(path)) {
+                    final FileEntity file =
+                            createFileEntity(path.toFile().getName(), user, in, Files.size(path), type.getId());
+                    addFileToAsset(file, id);
+                }
+            }
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            safeDelete(tempFilePath);
+            safeDelete(tempDirPath);
+        }
+        return warnings;
+    }
+
+    @Override
+    public @NotNull Path downloadAsset(final long id) {
+        final AssetEntity asset = assetRepository.findById(id).orElse(null);
+        if (asset == null)
+            throw new NoSuchElementException("No asset with id: " + id);
+        final List<FileEntity> files = asset.getFiles();
+        Path tempDirectory = null;
+        try {
+            tempDirectory = Files.createTempDirectory(asset.getName());
+            for (FileEntity file : files) {
+                final Blob content = file.getContent();
+                final String extension = file.getType().getExtension();
+                final String fileName = file.getName().replaceFirst('.' + extension, "");
+                final Path tempFile = Files.createTempFile(tempDirectory, fileName, '.' + extension);
+                Files.copy(content.getBinaryStream(), tempFile, StandardCopyOption.REPLACE_EXISTING);
+            }
+            final Path zipFile = pathToZip(tempDirectory, asset.getName());
+            return zipFile;
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            safeDelete(tempDirectory);
+        }
+    }
+
+    private @NotNull Path pathToZip(final @NotNull Path path, final @NotNull String assetName) {
+        try {
+            final Path tempZipFile = Files.createTempFile(assetName, ".zip");
+            final ZipOutputStream zipOutputStream = new ZipOutputStream(Files.newOutputStream(tempZipFile));
+            final Array<Path> files = FileUtils.getFiles(path, false, null);
+            for (Path file : files) {
+                addNewZipEntry(zipOutputStream, path, file);
+            }
+            zipOutputStream.close();
+            return tempZipFile;
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addNewZipEntry(final @NotNull ZipOutputStream zipOutputStream, final @NotNull Path dir,
+                                final @NotNull Path file) {
+        final Path fullPath = dir.resolve(file);
+        try (final InputStream inputStream = Files.newInputStream(fullPath)) {
+            final ZipEntry entry = new ZipEntry(FileUtils.getName(file.toString(), '\\'));
+            zipOutputStream.putNextEntry(entry);
+            IOUtils.copy(inputStream, zipOutputStream);
+            zipOutputStream.closeEntry();
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+>>>>>>> adding_asset

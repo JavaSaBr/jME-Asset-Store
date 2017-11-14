@@ -1,0 +1,24 @@
+.create-asset-data-row{
+  width: 100%;
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.asset-create-error{
+  text-align: center;
+}
+.asset-create-page-title{
+  text-align: center;
+}
+
+.asset-create-form{
+  border-collapse: collapse;
+  border-radius: 2px;
+  border-spacing: 0px;
+  padding: 10px;
+  width: 80%;
+  margin-left: 120px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+

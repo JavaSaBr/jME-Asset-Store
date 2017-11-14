@@ -6,8 +6,12 @@ import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -25,7 +29,7 @@ public interface AssetService {
      * @param inputStream the input stream.
      */
     @NotNull FileEntity createFile(@NotNull String fileName, @NotNull UserEntity user,
-                                   @NotNull InputStream inputStream);
+                                   @NotNull InputStream inputStream, long id);
 
     /**
      * Create a new asset.
@@ -41,17 +45,52 @@ public interface AssetService {
     /**
      * Add file to asset
      *
-     * @param file  the file entity file
-     * @param asset the asset entity asset
+     * @param file the file entity file
+     * @param id   the asset entity asset id
      */
-    void addFileToAsset(@NotNull FileEntity file, @NotNull AssetEntity asset);
+    void addFileToAsset(@NotNull FileEntity file, long id);
 
     /**
      * Remove file from asset
      *
-     * @param file  the file entity file
-     * @param asset the asset entity asset
+     * @param file the file entity file
+     * @param id   the asset entity asset id
      */
-    void removeFileFromAsset(@NotNull FileEntity file, @NotNull AssetEntity asset);
+    void removeFileFromAsset(@NotNull FileEntity file, long id);
 
+    /**
+     * User's assets
+     *
+     * @param id user's id
+     * @return list of user's assets
+     * @author Mikhail Gomanchuk
+     */
+    @Nullable List<AssetEntity> getUserAssets(long id);
+
+    /**
+     * Get asset by id
+     *
+     * @param id id of asset
+     * @return asset by id
+     */
+    @Nullable AssetEntity getAsset(long id);
+
+    /**
+     * Add zip file to asset
+     *
+     * @param user     creator
+     * @param content  InputStream of zip file
+     * @param fileName name of file
+     * @param id       asset id
+     * @return List of warnings
+     */
+    @NotNull List<String> addZipFileToAsset(UserEntity user, InputStream content, String fileName, long id);
+
+    /**
+     * Download asset in zip file
+     *
+     * @param id asset id
+     * @return zip file with asset
+     */
+    @NotNull Path downloadAsset(long id);
 }
