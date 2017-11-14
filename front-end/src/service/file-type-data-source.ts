@@ -12,12 +12,13 @@ export class FileTypeDataSource extends DataSource<FileTypeEntity> {
 
   constructor(private readonly fileTypesService: FileTypesService) {
     super();
-    let emptyArray:FileTypeEntity[] = [];
+    let emptyArray: FileTypeEntity[] = [];
     this.fileTypes = new BehaviorSubject(emptyArray);
   }
-ngOninit(){
 
-}
+  ngOnInit() {
+  }
+
   public refresh() {
     this.fileTypesService.loadFileTypes().then(value => {
       this.fileTypes.next(value);

@@ -73,8 +73,9 @@ public class FileTypeServiceImpl implements FileTypeService {
     public @Nullable List<FileTypeEntity> loadAllTypes() {
         final List<FileTypeEntity> allFileTypes = new ArrayList<>();
         final Iterable<FileTypeEntity> allTypes = fileTypeRepository.findAll();
-        for (final FileTypeEntity fileType : allTypes)
+        for (final FileTypeEntity fileType : allTypes) {
             allFileTypes.add(fileType);
-        return allFileTypes;
+        }
+            return allFileTypes;
     }
 }

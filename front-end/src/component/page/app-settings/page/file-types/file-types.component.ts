@@ -1,5 +1,4 @@
-import {Component, Injectable, ViewEncapsulation} from '@angular/core';
-import {FileTypesService} from "../../../../../service/file-types.service";
+import {Component, ViewEncapsulation} from '@angular/core';
 import {PageComponent} from "../../../../page.component";
 import {DataSource} from "@angular/cdk/collections";
 import {FileTypeEntity} from "../../../../../model/entity/file-type-entity";

@@ -5,8 +5,9 @@
  */
 
 export class FileTypeEntity {
-  /** The id of the file type
-   *
+
+  /**
+   * The id of the file type
    */
   _id: number;
 
@@ -19,14 +20,11 @@ export class FileTypeEntity {
    * The MIME type of the file type
    */
   _mimeType: string;
+
   /**
    * The file type extension
    */
   _extension: string;
-
-  /**
-   * The ID of file type
-   */
 
   constructor(id: number, name: string, mimeType: string, extension: string,) {
     this._id = id;
@@ -38,7 +36,7 @@ export class FileTypeEntity {
   /**
    * Get the id of file type
    */
-  get id(): number{
+  get id(): number {
     return this._id;
   }
 

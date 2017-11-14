@@ -21,10 +21,8 @@ import {AssetCategoryComponent} from './component/page/app-settings/page/asset-c
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
 import {FileTypesService} from "./service/file-types.service";
-import {
-  FileTypesComponent
-} from "./component/page/app-settings/page/file-types/file-types.component";
-import { AddFileTypeComponent } from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
+import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
+import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
 import {FileTypeDataSource} from "./service/file-type-data-source";
 import {AssetCategoryService} from "./service/asset-category.service";
 
@@ -37,9 +35,9 @@ import {AssetCategoryService} from "./service/asset-category.service";
     AppSettingsComponent,
     FormControlDirective,
     FileTypesComponent,
-     FormControlDirective,
+    FormControlDirective,
     AssetCategoryComponent,
-      AddFileTypeComponent,
+    AddFileTypeComponent,
   ],
   imports: [
     FormsModule,

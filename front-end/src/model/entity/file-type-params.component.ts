@@ -20,10 +20,6 @@ export class FileTypeParams {
    */
   extension: string;
 
-  /**
-   * The ID of file type
-   */
-
   constructor(name: string, mimeType: string, extension: string,) {
     this.name = name;
     this.mimeType = mimeType;
