@@ -11,4 +11,5 @@ export class RouteList {
   static readonly PAGE_APP_SETTINGS = 'app-settings';
   static readonly PAGE_FILE_TYPES = "file-types";
   static readonly PAGE_ASSET_CATEGORY = "asset-category"
+  static readonly PAGE_ADD_FILE_TYPE = "add";
 }

@@ -8,6 +8,8 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -65,5 +67,15 @@ public class FileTypeServiceImpl implements FileTypeService {
         type.setMimeType(mimeType);
         type.setExtension(extension);
         return type;
+    }
+
+    @Override
+    public @Nullable List<FileTypeEntity> loadAllTypes() {
+        final List<FileTypeEntity> allFileTypes = new ArrayList<>();
+        final Iterable<FileTypeEntity> allTypes = fileTypeRepository.findAll();
+        for (final FileTypeEntity fileType : allTypes) {
+            allFileTypes.add(fileType);
+        }
+        return allFileTypes;
     }
 }

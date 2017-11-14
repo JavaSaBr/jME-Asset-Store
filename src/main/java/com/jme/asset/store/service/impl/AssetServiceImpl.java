@@ -2,6 +2,7 @@ package com.jme.asset.store.service.impl;
 
 import static com.jme.asset.store.util.Utils.safeDelete;
 import static org.hibernate.Hibernate.getLobCreator;
+
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
@@ -92,7 +93,7 @@ public class AssetServiceImpl implements AssetService {
                                                  @NotNull final InputStream content, final long contentLength) {
 
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        try(final Session session = sessionFactory.openSession()) {
+        try (final Session session = sessionFactory.openSession()) {
 
             final LobCreator lobCreator = getLobCreator(session);
             final Blob blob = lobCreator.createBlob(content, contentLength);

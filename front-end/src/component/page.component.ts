@@ -35,4 +35,28 @@ export abstract class PageComponent extends BaseComponent {
   get maxPasswordLength() {
     return AppComponent.MAX_PASSWORD_LENGTH;
   }
+
+  get minFileTypeName() {
+    return AppComponent.MIN_FILE_TYPE_NAME
+  }
+
+  get maxFileTypeName() {
+    return AppComponent.MAX_FILE_TYPE_NAME;
+  }
+
+  get minFileTypeMime() {
+    return AppComponent.MIN_FILE_TYPE_MIME;
+  }
+
+  get maxFileTypeMime() {
+    return AppComponent.MAX_FILE_TYPE_MIME;
+  }
+
+  get minFileTypeExtension() {
+    return AppComponent.MIN_FILE_TYPE_EXTENSION;
+  }
+
+  get maxFileTypeExtension() {
+    return AppComponent.MAX_FILE_TYPE_EXTENSION;
+  }
 }

@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
-  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule
+  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -15,12 +15,15 @@ import {RegisterComponent} from "./component/page/register/register.component";
 import {DashboardComponent} from "./component/page/dashboard/dashboard.component";
 import {SecurityService} from "./service/security.service";
 import {AppSettingsComponent} from "./component/page/app-settings/app-settings.component";
-import {FileTypesComponent} from './component/page/app-settings/page/file-types/file-types.component';
 import {FormControlDirective} from '@angular/forms';
 import {ValidatorModule} from "./validate/validator.module";
 import {AssetCategoryComponent} from './component/page/app-settings/page/asset-category/asset-category.component';
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
+import {FileTypesService} from "./service/file-types.service";
+import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
+import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
+import {FileTypeDataSource} from "./service/file-type-data-source";
 import {AssetCategoryService} from "./service/asset-category.service";
 
 @NgModule({
@@ -30,9 +33,11 @@ import {AssetCategoryService} from "./service/asset-category.service";
     RegisterComponent,
     DashboardComponent,
     AppSettingsComponent,
+    FormControlDirective,
     FileTypesComponent,
     FormControlDirective,
-    AssetCategoryComponent
+    AssetCategoryComponent,
+    AddFileTypeComponent,
   ],
   imports: [
     FormsModule,
@@ -41,6 +46,7 @@ import {AssetCategoryService} from "./service/asset-category.service";
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatIconModule,
     MatInputModule,
     MatToolbarModule,
     MatMenuModule,
@@ -52,9 +58,10 @@ import {AssetCategoryService} from "./service/asset-category.service";
     MatSelectModule,
     ValidatorModule,
     RouterModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule
   ],
-  providers: [SecurityService, AppSettingsGuard, AssetCategoryService],
+  providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService, AssetCategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
