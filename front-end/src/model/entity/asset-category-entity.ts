@@ -40,15 +40,6 @@ export class AssetCategoryEntity {
    *
    * @returns {number} the asset component id.
    */
-  expand() {
-    this._expanded = !this._expanded;
-  }
-
-  isChildren() {
-    if (this._children == null)
-      return false;
-    return true;
-  }
 
   get id(): number {
     return this._id;

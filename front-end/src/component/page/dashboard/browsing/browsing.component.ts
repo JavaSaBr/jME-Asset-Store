@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AssetCategoryEntity} from "../../../../model/entity/asset-category-entity";
 import {AssetCategoryService} from "../../../../service/asset-category.service";
+import {AssetEntity} from "../../../../model/entity/asset-entity";
+import {AssetService} from "../../../../service/asset/asset.service";
 
 @Component({
   selector: 'app-browsing',
@@ -11,8 +13,11 @@ export class BrowsingComponent implements OnInit {
 
   categories: AssetCategoryEntity[];
   selectNode: AssetCategoryEntity;
+  assets: AssetEntity[];
+  asset: AssetEntity;
 
-  constructor(private readonly categoryService: AssetCategoryService) {
+  constructor(private readonly categoryService: AssetCategoryService,
+              private readonly assetService: AssetService) {
 
   }
 

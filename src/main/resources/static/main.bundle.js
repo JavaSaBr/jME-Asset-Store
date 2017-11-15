@@ -1900,7 +1900,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/tree-view/tree-view.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"tree-nodes\">\n  <li *ngFor=\"let i of nodes\">\n    <div *ngIf=\"!i.expanded\">\n      <i class=\"material-icons\" (click)=\"expand()\">chevron_right</i>\n    </div>\n    <div *ngIf=\"i.expanded\">\n      <i class=\"material-icons\" (click)=\"expand()\">expand_more</i>\n    </div>\n    <span class=\"node-text\" (click)=\"onSelectNode(i)\">{{i.name}}</span>\n    <div *ngIf=\"i.expanded\">\n      <app-tree-view [nodes]=\"i.children\"\n                     [selectNode]=\"selectNode\"\n                     (onSelectedChanged)=\"onSelectNode($event)\">\n      </app-tree-view>\n    </div>\n  </li>\n</ul>\n\n"
+module.exports = "<ul class=\"tree-nodes\">\n  <li *ngFor=\"let i of nodes\">\n    <div *ngIf=\"!i.expanded\">\n      <i class=\"material-icons\" *ngIf=\"(i.children.length > 0)\" (click)=\"i.expanded=!i.expanded\">chevron_right</i>\n    </div>\n    <div *ngIf=\"i.expanded\">\n      <i class=\"material-icons\" *ngIf=\"(i.children.length > 0)\" (click)=\"i.expanded=!i.expanded\">expand_more</i>\n    </div>\n    <span class=\"node-text\" (click)=\"onSelectNode(i)\">{{i.name}}</span>\n    <div *ngIf=\"i.expanded\">\n      <app-tree-view [nodes]=\"i.children\"\n                     [selectNode]=\"selectNode\"\n                     (onSelectedChanged)=\"onSelectNode($event)\">\n      </app-tree-view>\n    </div>\n  </li>\n</ul>\n\n"
 
 /***/ }),
 
@@ -1911,6 +1911,7 @@ module.exports = "<ul class=\"tree-nodes\">\n  <li *ngFor=\"let i of nodes\">\n 
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreeViewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_entity_asset_category_entity__ = __webpack_require__("../../../../../src/model/entity/asset-category-entity.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1922,8 +1923,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var TreeViewComponent = (function () {
-    function TreeViewComponent() {
+    function TreeViewComponent(categoryService) {
+        this.categoryService = categoryService;
         this.onSelectedChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
     }
     TreeViewComponent.prototype.ngOnInit = function () {
@@ -1951,10 +1954,10 @@ TreeViewComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_category_service__["a" /* AssetCategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_category_service__["a" /* AssetCategoryService */]) === "function" && _c || Object])
 ], TreeViewComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=tree-view.component.js.map
 
 /***/ }),

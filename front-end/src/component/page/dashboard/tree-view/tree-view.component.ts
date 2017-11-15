@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AssetCategoryEntity} from "../../../../model/entity/asset-category-entity";
+import {AssetCategoryService} from "../../../../service/asset-category.service";
 
 @Component({
   selector: 'app-tree-view',
@@ -12,7 +13,7 @@ export class TreeViewComponent implements OnInit {
 
   @Output() onSelectedChanged: EventEmitter<AssetCategoryEntity> = new EventEmitter();
 
-  constructor() {
+  constructor(private readonly categoryService: AssetCategoryService) {
 
   }
 
