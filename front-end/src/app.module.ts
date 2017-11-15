@@ -20,20 +20,19 @@ import {ValidatorModule} from "./validate/validator.module";
 import {AssetCategoryComponent} from './component/page/app-settings/page/asset-category/asset-category.component';
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
-<<<<<<< HEAD
 import {FileTypesService} from "./service/file-types.service";
 import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
 import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
 import {FileTypeDataSource} from "./service/file-type-data-source";
-=======
 import {AddAssetComponent} from "./component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "./component/page/user-assets/user-assets.component";
 import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
->>>>>>> adding_asset
 import {AssetCategoryService} from "./service/asset-category.service";
 import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 import {AssetService} from "./service/asset/asset.service";
 import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
+import { TreeViewComponent } from './component/page/dashboard/tree-view/tree-view.component';
+import { BrowsingComponent } from './component/page/dashboard/browsing/browsing.component';
 
 @NgModule({
   declarations: [
@@ -46,14 +45,13 @@ import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-catego
     FileTypesComponent,
     FormControlDirective,
     AssetCategoryComponent,
-<<<<<<< HEAD
     AddFileTypeComponent,
-=======
     AddAssetComponent,
     UserAssetsComponent,
     AssetPresentationComponent,
-    ChooseAssetCategoryComponent
->>>>>>> adding_asset
+    ChooseAssetCategoryComponent,
+    TreeViewComponent,
+    BrowsingComponent
   ],
   imports: [
     FormsModule,
@@ -75,15 +73,11 @@ import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-catego
     ValidatorModule,
     RouterModule,
     MatTabsModule,
-<<<<<<< HEAD
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
-  providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService, AssetCategoryService],
-=======
-    HttpClientModule,
-  ],
-  providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService],
->>>>>>> adding_asset
+  providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService, AssetCategoryService,
+    AssetService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

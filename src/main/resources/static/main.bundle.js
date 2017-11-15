@@ -34,12 +34,20 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_page_app_settings_page_asset_category_asset_category_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/asset-category/asset-category.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_page_app_settings_app_settings_guard__ = __webpack_require__("../../../../../src/component/page/app-settings/app-settings.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_page_create_asset_create_asset_component__ = __webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_page_user_assets_user_assets_component__ = __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_page_asset_presentation_asset_presentation_component__ = __webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__component_page_choose_asset_category_choose_asset_category_component__ = __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -59,7 +67,14 @@ var routes = [
     { path: '', redirectTo: '/' + __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_DASHBOARD, pathMatch: 'full' },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_DASHBOARD, component: __WEBPACK_IMPORTED_MODULE_5__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */] },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_LOGIN, component: __WEBPACK_IMPORTED_MODULE_4__component_page_login_login_component__["a" /* LoginComponent */] },
+    {
+        path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_CREATE_ASSET, component: __WEBPACK_IMPORTED_MODULE_12__component_page_create_asset_create_asset_component__["a" /* AddAssetComponent */], children: [
+            { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_CHOOSE_ASSET_CATEGORY, component: __WEBPACK_IMPORTED_MODULE_15__component_page_choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */] }
+        ]
+    },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_REGISTER, component: __WEBPACK_IMPORTED_MODULE_6__component_page_register_register_component__["a" /* RegisterComponent */] },
+    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_USER_ASSETS, component: __WEBPACK_IMPORTED_MODULE_13__component_page_user_assets_user_assets_component__["a" /* UserAssetsComponent */] },
+    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_ASSET, component: __WEBPACK_IMPORTED_MODULE_14__component_page_asset_presentation_asset_presentation_component__["a" /* AssetPresentationComponent */] },
     {
         path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_APP_SETTINGS, component: __WEBPACK_IMPORTED_MODULE_7__component_page_app_settings_app_settings_component__["a" /* AppSettingsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__component_page_app_settings_app_settings_guard__["a" /* AppSettingsGuard */]], children: [
             {
@@ -86,9 +101,9 @@ AppRoutingModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_2__angular_common__["b" /* CommonModule */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */].forRoot(routes, routerOptions)
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(routes, routerOptions)
         ],
-        exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]],
         declarations: []
     })
 ], AppRoutingModule);
@@ -118,7 +133,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n  <button mat-button routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\n  </button>\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">Login\n  </button>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/register\"\n          routerLinkActive=\"m-toolbar-button-active\">Register\n  </button>\n  <button mat-button *ngIf=\"hasRole('ADMIN')\" routerLink=\"/app-settings\" routerLinkActive=\"m-toolbar-button-active\">\n    App settings\n  </button>\n  <button mat-button *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n  <button mat-button routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\n  </button>\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">Login\n  </button>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/register\"\n          routerLinkActive=\"m-toolbar-button-active\">Register\n  </button>\n  <button mat-button *ngIf=\"true\" routerLink=\"/app-settings\" routerLinkActive=\"m-toolbar-button-active\">\n    App settings\n  </button>\n  <button mat-button *ngIf=\"true\" routerLink=\"/user-assets\" routerLinkActive=\"m-toolbar-button-active\">\n    My assets\n  </button>\n  <button mat-button *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -229,13 +244,29 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_page_app_settings_page_file_types_file_types_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/file-types.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__service_file_type_data_source__ = __webpack_require__("../../../../../src/service/file-type-data-source.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__component_page_create_asset_create_asset_component__ = __webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_page_user_assets_user_assets_component__ = __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__component_page_asset_presentation_asset_presentation_component__ = __webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__component_page_choose_asset_category_choose_asset_category_component__ = __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__component_page_dashboard_tree_view_tree_view_component__ = __webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__component_page_dashboard_browsing_browsing_component__ = __webpack_require__("../../../../../src/component/page/dashboard/browsing/browsing.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
+
+
+
 
 
 
@@ -277,6 +308,12 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormControlDirective */],
             __WEBPACK_IMPORTED_MODULE_14__component_page_app_settings_page_asset_category_asset_category_component__["a" /* AssetCategoryComponent */],
             __WEBPACK_IMPORTED_MODULE_19__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__["a" /* AddFileTypeComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__component_page_create_asset_create_asset_component__["a" /* AddAssetComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__component_page_user_assets_user_assets_component__["a" /* UserAssetsComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__component_page_asset_presentation_asset_presentation_component__["a" /* AssetPresentationComponent */],
+            __WEBPACK_IMPORTED_MODULE_27__component_page_choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */],
+            __WEBPACK_IMPORTED_MODULE_28__component_page_dashboard_tree_view_tree_view_component__["a" /* TreeViewComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__component_page_dashboard_browsing_browsing_component__["a" /* BrowsingComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
@@ -296,11 +333,13 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatFormFieldModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["i" /* MatSelectModule */],
             __WEBPACK_IMPORTED_MODULE_13__validate_validator_module__["a" /* ValidatorModule */],
-            __WEBPACK_IMPORTED_MODULE_15__angular_router__["b" /* RouterModule */],
+            __WEBPACK_IMPORTED_MODULE_15__angular_router__["c" /* RouterModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["l" /* MatTabsModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["k" /* MatTableModule */]
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["k" /* MatTableModule */],
+            __WEBPACK_IMPORTED_MODULE_23__angular_common_http__["a" /* HttpClientModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_20__service_file_type_data_source__["a" /* FileTypeDataSource */], __WEBPACK_IMPORTED_MODULE_16__component_page_app_settings_app_settings_guard__["a" /* AppSettingsGuard */], __WEBPACK_IMPORTED_MODULE_17__service_file_types_service__["a" /* FileTypesService */], __WEBPACK_IMPORTED_MODULE_21__service_asset_category_service__["a" /* AssetCategoryService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_20__service_file_type_data_source__["a" /* FileTypeDataSource */], __WEBPACK_IMPORTED_MODULE_16__component_page_app_settings_app_settings_guard__["a" /* AppSettingsGuard */], __WEBPACK_IMPORTED_MODULE_17__service_file_types_service__["a" /* FileTypesService */], __WEBPACK_IMPORTED_MODULE_24__service_asset_category_service__["a" /* AssetCategoryService */],
+            __WEBPACK_IMPORTED_MODULE_26__service_asset_asset_service__["a" /* AssetService */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -1024,7 +1063,7 @@ AddFileTypeComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], AddFileTypeComponent);
 
 var _a, _b, _c;
@@ -1123,6 +1162,647 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/component/page/asset-presentation/asset-presentation.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/asset-presentation/asset-presentation.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <label class=\"asset-name\" *ngIf=\"asset != null\"> {{asset.name}}</label>\r\n  <div class=\"asset-presentation-files\" *ngIf=\"asset !=null\">\r\n    <div class = \"empty-asset\" *ngIf=\"asset.files==null || asset.files.length==0\">\r\n      <label class=\"empty-asset-label\">Asset is empty!</label>\r\n    </div>\r\n    <div class = \"non-empty-asset\" *ngIf=\"asset.files!=null && asset.files.length!=0\">\r\n      <ul class=\"asset-files-rows\">\r\n        <li class=\"asset-file-row\" *ngFor=\"let file of asset.files\">\r\n          <label class=\"asset-file-name\">{{file.name}}</label>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n    <div class=\"download-button\">\r\n      <button mat-button color=\"primary\" class=\"download-asset\" (click)=\"downloadAsset()\">download asset</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/asset-presentation/asset-presentation.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetPresentationComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AssetPresentationComponent = (function (_super) {
+    __extends(AssetPresentationComponent, _super);
+    function AssetPresentationComponent(route, assetService) {
+        var _this = _super.call(this) || this;
+        _this.route = route;
+        _this.assetService = assetService;
+        _this.route.params.subscribe(function (params) { return _this.loadAsset(params['id']); });
+        return _this;
+    }
+    Object.defineProperty(AssetPresentationComponent.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (name) {
+            this._name = name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AssetPresentationComponent.prototype, "error", {
+        get: function () {
+            return this._error;
+        },
+        set: function (value) {
+            this._error = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AssetPresentationComponent.prototype.loadAsset = function (id) {
+        var _this = this;
+        this.assetService.loadAsset(id, function (message, result) {
+            if (result != null) {
+                _this.asset = result;
+                _this.name = result.name;
+            }
+            else {
+                _this.error = message;
+            }
+        });
+    };
+    AssetPresentationComponent.prototype.downloadAsset = function () {
+        var _this = this;
+        this.assetService.downloadAsset(this.asset.id, function (message, blob) {
+            if (message == null) {
+                Object(__WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver__["saveAs"])(blob, _this.asset.name);
+            }
+            else {
+                _this.error = message;
+            }
+        });
+    };
+    return AssetPresentationComponent;
+}(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
+AssetPresentationComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-asset-asset',
+        template: __webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.html"),
+        providers: [],
+        styles: [__webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]) === "function" && _b || Object])
+], AssetPresentationComponent);
+
+var _a, _b;
+//# sourceMappingURL=asset-presentation.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/choose-asset-category/choose-asset-category.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);", ""]);
+
+// module
+exports.push([module.i, ".menu-main {\r\n  list-style: none;\r\n  margin: 10px 0 5px;\r\n  padding: 10px 0 5px;\r\n  text-align: left;\r\n}\r\n\r\n.menu-main li {\r\n  display: inline-block;\r\n}\r\n\r\n.menu-main li:after {\r\n  content: \"/\";\r\n  color: #606060;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n}\r\n\r\n.menu-main li:last-child:after {\r\n  content: none;\r\n}\r\n\r\n.menu-main div {\r\n  text-decoration: none;\r\n  font-family: 'Ubuntu Condensed', sans-serif;\r\n  letter-spacing: 2px;\r\n  position: relative;\r\n  padding-bottom: 20px;\r\n  margin: 0 34px 0 30px;\r\n  font-size: 17px;\r\n  text-transform: uppercase;\r\n  display: inline-block;\r\n  transition: color .2s;\r\n}\r\n\r\n.menu-main div, .menu-main div:visited {\r\n  color: #9d999d;\r\n}\r\n\r\n.menu-main div.current, .menu-main div:hover {\r\n  color: #4f54fe;\r\n}\r\n\r\n.menu-main div:before,\r\n.menu-main div:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  height: 4px;\r\n  top: auto;\r\n  right: 50%;\r\n  bottom: -5px;\r\n  left: 50%;\r\n  background: #4f54fe;\r\n  transition: .8s;\r\n}\r\n\r\n.menu-main div:hover:before, .menu-main .current:before {\r\n  left: 0;\r\n}\r\n\r\n.menu-main div:hover:after, .menu-main .current:after {\r\n  right: 0;\r\n}\r\n\r\n@media (max-width: 550px) {\r\n  .menu-main {\r\n    padding-top: 0;\r\n  }\r\n\r\n  .menu-main li {\r\n    display: block;\r\n  }\r\n\r\n  .menu-main li:after {\r\n    content: none;\r\n  }\r\n\r\n  .menu-main div {\r\n    padding: 25px 0 20px;\r\n    margin: 0 30px;\r\n  }\r\n}\r\n\r\n.components {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-columns: (1fr)[5];\r\n      grid-template-columns: repeat(5, 1fr);\r\n  grid-gap: 20px;\r\n}\r\n\r\n.container {\r\n  margin: 20px;\r\n}\r\n\r\n.components {\r\n  list-style-type: none;\r\n  width: 500px;\r\n}\r\n\r\n.container li {\r\n  height: 224px;\r\n}\r\n\r\n.container h3 {\r\n  margin-top: 0;\r\n  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;\r\n}\r\n\r\n.container li p {\r\n  font: 200 12px/1.5 Georgia, Times New Roman, serif;\r\n}\r\n\r\n.category-container {\r\n  background-color: #e8e8e8;\r\n  width: 150px;\r\n  height: 224px;\r\n  padding: 10px;\r\n  overflow: auto;\r\n}\r\n\r\n.container div {\r\n  width: 150px;\r\n  height: 200px;\r\n}\r\n\r\n.container li:hover {\r\n  background: rgb(206, 206, 206);\r\n  cursor: pointer;\r\n}\r\n\r\n.material-icons {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  height: 100%;\r\n}\r\n\r\n.material-icons.md-56 {\r\n  font-size: 56px;\r\n}\r\n\r\n.add-container {\r\n  width: 150px;\r\n  height: 224px;\r\n  padding: 10px;\r\n  overflow: auto;\r\n}\r\n\r\n.category-container i {\r\n  position: relative;\r\n  height: 24px;\r\n  width: 24px;\r\n}\r\n\r\n.input-form-field {\r\n  width: 150px;\r\n}\r\n\r\n.input-form button {\r\n  width: 90%;\r\n  height: 35px;\r\n  margin-top: 2px;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/choose-asset-category/choose-asset-category.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Asset category settings</h1>\r\n<h3 class = \"Asset catgister-page-error\" [hidden]=\"error.length == 0\">\r\n  {{error}}\r\n</h3>\r\n<ul class=\"menu-main\">\r\n  <li *ngFor=\"let p of path\">\r\n    <div (click)=\"setTopOfPath(p.id)\">\r\n      {{p.name}}\r\n    </div>\r\n  </li>\r\n</ul>\r\n<div class=\"container\">\r\n  <ul class=\"components\">\r\n    <li class=\"category-container\" *ngFor=\"let category of categories\">\r\n      <i class=\"material-icons\" *ngIf=\"label\" (click)=\"getCategoryId(category.id)\">check_circle</i>\r\n      <div class=\"category-content\" (click)=\"loadChildren(category.name, category.id)\">\r\n        <h3>{{category.name}}</h3>\r\n        <p>{{category.description}}</p>\r\n      </div>\r\n    </li>\r\n  </ul>\r\n</div>\r\n\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChooseAssetCategoryComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_category_asset_category_param__ = __webpack_require__("../../../../../src/model/category/asset-category-param.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_category_category_component__ = __webpack_require__("../../../../../src/model/category/category-component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Implementation of logic for UI for work with asset category.
+ *
+ * @author Denis Lesheniuk.
+ */
+var ChooseAssetCategoryComponent = (function () {
+    function ChooseAssetCategoryComponent(categoryService) {
+        this.categoryService = categoryService;
+        this.onChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+    }
+    ChooseAssetCategoryComponent.prototype.ngOnInit = function () {
+        this.error = '';
+        this.categoryParam = new __WEBPACK_IMPORTED_MODULE_1__model_category_asset_category_param__["a" /* AssetCategoryParam */];
+        this.label = false;
+        this.path = [];
+        this.path.push(new __WEBPACK_IMPORTED_MODULE_2__model_category_category_component__["a" /* CategoryComponent */]("Home", null));
+        this.loadCategories();
+    };
+    /**
+     * Get the categories.
+     */
+    ChooseAssetCategoryComponent.prototype.loadCategories = function () {
+        var _this = this;
+        this.categoryService.getCategories()
+            .then(function (value) { return _this.categories = value; });
+    };
+    ChooseAssetCategoryComponent.prototype.clickOnCategory = function () {
+    };
+    /**
+     * Load the children.
+     *
+     * @param {string} name the name of the category.
+     * @param {string} id the id of the category.
+     */
+    ChooseAssetCategoryComponent.prototype.loadChildren = function (name, id) {
+        var _this = this;
+        this.categoryService.getChildren(id)
+            .then(function (value) {
+            _this.categories = value;
+            if (_this.categories == null || _this.categories.length == 0) {
+                _this.getCategoryId(id);
+                return;
+            }
+            _this.path.push(new __WEBPACK_IMPORTED_MODULE_2__model_category_category_component__["a" /* CategoryComponent */](name, id));
+        });
+    };
+    /**
+     * Refreshing value of this._categories for the id.
+     *
+     * @param {string} id the id of the category.
+     */
+    ChooseAssetCategoryComponent.prototype.refreshFor = function (id) {
+        var _this = this;
+        if (id == null) {
+            this.loadCategories();
+        }
+        else {
+            this.categoryService.getChildren(id)
+                .then(function (value) { return _this.categories = value; });
+        }
+    };
+    /**
+     * Get the last element of the this._path.
+     *
+     * @returns {CategoryComponent} the last component.
+     */
+    ChooseAssetCategoryComponent.prototype.getLastPathElement = function () {
+        return this.path[this.path.length - 1];
+    };
+    ChooseAssetCategoryComponent.prototype.chooseCategory = function () {
+    };
+    /**
+     * Set the current top of path.
+     *
+     * @param {string} componentId the top component id.
+     */
+    ChooseAssetCategoryComponent.prototype.setTopOfPath = function (componentId) {
+        for (var i = this.path.length - 1; i >= 0; i--) {
+            var component = this.path[i];
+            if (component.id != componentId) {
+                this.path.pop();
+            }
+            else {
+                this.refreshFor(this.getLastPathElement().id);
+                return;
+            }
+        }
+    };
+    Object.defineProperty(ChooseAssetCategoryComponent.prototype, "categories", {
+        /**
+         * Get the categories
+         *
+         */
+        get: function () {
+            return this._categories;
+        },
+        /**
+         * Set the categories.
+         *
+         */
+        set: function (value) {
+            this._categories = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ChooseAssetCategoryComponent.prototype, "path", {
+        /**
+         * Get the path.
+         *
+         * @returns {AssetCategoryComponent[]} the path.
+         */
+        get: function () {
+            return this._path;
+        },
+        /**
+         * Set the path.
+         *
+         * @param {AssetCategoryComponent[]} value the path.
+         */
+        set: function (value) {
+            this._path = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ChooseAssetCategoryComponent.prototype, "trigger", {
+        /**
+         * Get the add trigger.
+         *
+         * @returns {boolean} the trigger.
+         */
+        get: function () {
+            return this._label;
+        },
+        /**
+         * Set the add trigger.
+         *
+         * @param {boolean} value the trigger.
+         */
+        set: function (value) {
+            this._label = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ChooseAssetCategoryComponent.prototype, "categoryParam", {
+        /**
+         * Get the asset category param.
+         *
+         * @returns {AssetCategoryParam} the asset category param.
+         */
+        get: function () {
+            return this._categoryParam;
+        },
+        /**
+         * Set the category param.
+         *
+         * @param {AssetCategoryParam} value the asset category param.
+         */
+        set: function (value) {
+            this._categoryParam = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ChooseAssetCategoryComponent.prototype, "error", {
+        /**
+         * Get the error.
+         *
+         * @returns {string} the error.
+         */
+        get: function () {
+            return this._error;
+        },
+        /**
+         * Set the error.
+         *
+         * @param {string} value the error.
+         */
+        set: function (value) {
+            this._error = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ChooseAssetCategoryComponent.prototype, "label", {
+        /**
+         * Get the label.
+         *
+         * @returns {boolean} the label.
+         */
+        get: function () {
+            return this._label;
+        },
+        /**
+         * Set the label.
+         *
+         * @param {boolean} value the label.
+         */
+        set: function (value) {
+            this._label = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ChooseAssetCategoryComponent.prototype.getCategoryId = function (id) {
+        this.onChanged.emit(id);
+    };
+    return ChooseAssetCategoryComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", Object)
+], ChooseAssetCategoryComponent.prototype, "onChanged", void 0);
+ChooseAssetCategoryComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-choose-asset-category',
+        template: __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.html"),
+        styles: [__webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__service_asset_category_service__["a" /* AssetCategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__service_asset_category_service__["a" /* AssetCategoryService */]) === "function" && _a || Object])
+], ChooseAssetCategoryComponent);
+
+var _a;
+//# sourceMappingURL=choose-asset-category.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/create-asset/create-asset.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".create-asset-data-row{\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n.asset-create-error{\r\n  text-align: center;\r\n}\r\n.asset-create-page-title{\r\n  text-align: center;\r\n}\r\n\r\n.asset-create-form{\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  width: 80%;\r\n  margin-left: 120px;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/create-asset/create-asset.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"asset-create-form-container\">\r\n  <div class=\"asset-create-form\">\r\n    <h2 class=\"asset-create-page-title\">Create Asset</h2>\r\n    <h3 class=\"asset-create-error\" [hidden]=\"_message.length == 0\">\r\n      {{_message}}\r\n    </h3>\r\n  </div>\r\n  <form class=\"asset-create-form mat-elevation-z2\" #userForm=\"ngForm\">\r\n    <div *ngIf=\"!viewCategory\">\r\n      <div class=\"create_asset-data-block\">\r\n        <mat-input-container class=\"create-asset-data-row\">\r\n          <input matInput placeholder=\"Asset name\" id=\"AssetName\"\r\n                 [(ngModel)]=\"info.name\"\r\n                 name=\"name\"\r\n                 #name=\"ngModel\">\r\n        </mat-input-container>\r\n      </div>\r\n      <div class=\"create_asset-data-block\">\r\n        <mat-input-container class=\"create-asset-data-row\">\r\n          <input matInput placeholder=\"Asset description\" id=\"AssetDescription\"\r\n                 [(ngModel)]=\"info.description\"\r\n                 name=\"description\"\r\n                 #description=\"ngModel\">\r\n        </mat-input-container>\r\n      </div>\r\n      <div class=\"asset-files\">\r\n        <label class=\"file-input\">\r\n          <input type=\"file\" accept=\"application/zip\" (change)=\"selectFile($event)\">\r\n        </label>\r\n      </div>\r\n    </div>\r\n    <div>\r\n      <button *ngIf=\"!viewCategory\" (click)=\"changeViewCategory()\">{{myId}}</button>\r\n      <app-choose-asset-category *ngIf=\"viewCategory\" (onChanged)=\"onChanged($event)\"></app-choose-asset-category>\r\n    </div>\r\n    <button *ngIf=\"!viewCategory\" class=\"create-asset-button\" (click)=\"tryCreate()\" mat-raised-button color=\"primary\"\r\n            [disabled]=\"!isValid()\"> create\r\n    </button>\r\n  </form>\r\n\r\n\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/create-asset/create-asset.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddAssetComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_params_asset_params__ = __webpack_require__("../../../../../src/model/params/asset-params.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__choose_asset_category_choose_asset_category_component__ = __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var AddAssetComponent = (function (_super) {
+    __extends(AddAssetComponent, _super);
+    function AddAssetComponent(router, assetService) {
+        var _this = _super.call(this) || this;
+        _this.router = router;
+        _this.assetService = assetService;
+        _this.myId = "choose category";
+        _this._message = '';
+        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_params_asset_params__["a" /* AssetParams */]("", "", 0, 0);
+        _this.viewCategory = false;
+        return _this;
+    }
+    AddAssetComponent.prototype.tryCreate = function () {
+        var _this = this;
+        console.log(this._info);
+        this.assetService.createAsset(this._info, this._file, function (message, result, warnings) {
+            _this._message = message;
+            if (warnings != null)
+                warnings.forEach(function (warning) { return console.log(warning); });
+            if (result) {
+                _this.router.navigateByUrl('/user-assets');
+            }
+        });
+    };
+    AddAssetComponent.prototype.selectFile = function (event) {
+        this._file = event.target.files[0];
+    };
+    Object.defineProperty(AddAssetComponent.prototype, "info", {
+        get: function () {
+            return this._info;
+        },
+        set: function (value) {
+            this._info = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AddAssetComponent.prototype, "message", {
+        get: function () {
+            return this._message;
+        },
+        set: function (value) {
+            this._message = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AddAssetComponent.prototype, "file", {
+        get: function () {
+            return this._file;
+        },
+        set: function (value) {
+            this._file = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AddAssetComponent.prototype.isValid = function () {
+        return this.info.name.length > 0 && this.info.description.length > 0 && this._file != null;
+    };
+    AddAssetComponent.prototype.chooseCategory = function () {
+        this.router.navigateByUrl("/choose-asset-category");
+    };
+    AddAssetComponent.prototype.onChanged = function (increased) {
+        this.myId = increased;
+        this.viewCategory = !this.viewCategory;
+        this._info.category_id = increased;
+    };
+    AddAssetComponent.prototype.changeViewCategory = function () {
+        this.viewCategory = !this.viewCategory;
+    };
+    return AddAssetComponent;
+}(__WEBPACK_IMPORTED_MODULE_3__page_component__["a" /* PageComponent */]));
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_5__choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */]) === "function" && _a || Object)
+], AddAssetComponent.prototype, "category", void 0);
+AddAssetComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-create-asset',
+        template: __webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.html"),
+        providers: [__WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]],
+        styles: [__webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]) === "function" && _c || Object])
+], AddAssetComponent);
+
+var _a, _b, _c;
+//# sourceMappingURL=create-asset.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/dashboard/browsing/browsing.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/dashboard/browsing/browsing.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-tree-view [nodes]=\"categories\"\n              [selectNode]=\"selectNode\"\n              (onSelectedChanged)=\"onSelectNode($event)\"></app-tree-view>\n\n<p>{{write()}}</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/dashboard/browsing/browsing.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrowsingComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var BrowsingComponent = (function () {
+    function BrowsingComponent(categoryService) {
+        this.categoryService = categoryService;
+    }
+    BrowsingComponent.prototype.ngOnInit = function () {
+        this.loadCategories();
+    };
+    /**
+     * Get the categories.
+     */
+    BrowsingComponent.prototype.loadCategories = function () {
+        var _this = this;
+        this.categoryService.getCategories()
+            .then(function (value) { return _this.categories = value; });
+    };
+    BrowsingComponent.prototype.onSelectNode = function (node) {
+        this.selectNode = node;
+    };
+    BrowsingComponent.prototype.write = function () {
+        if (this.selectNode == null) {
+            return 'bad';
+        }
+        return this.selectNode.name;
+    };
+    return BrowsingComponent;
+}());
+BrowsingComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-browsing',
+        template: __webpack_require__("../../../../../src/component/page/dashboard/browsing/browsing.component.html"),
+        styles: [__webpack_require__("../../../../../src/component/page/dashboard/browsing/browsing.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__["a" /* AssetCategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__["a" /* AssetCategoryService */]) === "function" && _a || Object])
+], BrowsingComponent);
+
+var _a;
+//# sourceMappingURL=browsing.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1144,7 +1824,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  dashboard works!\n</p>\n<body>\n<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n</p>\n<p><img src=\"JMonkeyAssetStoreLogo-01.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n</p>\n</body>\n"
+module.exports = "<p>\n  dashboard works!\n</p>\n<body>\n<app-browsing>load......./</app-browsing>\n<!--<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n</p>-->\n<p><img src=\"JMonkeyAssetStoreLogo-01.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n</p>\n</body>\n"
 
 /***/ }),
 
@@ -1196,6 +1876,86 @@ DashboardComponent = __decorate([
 ], DashboardComponent);
 
 //# sourceMappingURL=dashboard.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/dashboard/tree-view/tree-view.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".tree-nodes {\n  list-style-type: none;\n  padding-left: 16px;\n}\n\n.material-icons {\n  position: absolute;\n  cursor: pointer;\n  font-size: 15px;\n  height: 20px;\n  padding-top: 1px;\n}\n\n.node-text {\n  padding-left: 15px;\n  padding-right: 3px;\n  cursor: pointer;\n  bottom: 20px;\n}\n\n.node-text:hover {\n  padding-left: 15px;\n  padding-right: 3px;\n  cursor: pointer;\n  -webkit-text-decoration-line: underline;\n          text-decoration-line: underline;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/dashboard/tree-view/tree-view.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<ul class=\"tree-nodes\">\n  <li *ngFor=\"let i of nodes\">\n    <div *ngIf=\"!i.expanded\">\n      <i class=\"material-icons\" (click)=\"expand()\">chevron_right</i>\n    </div>\n    <div *ngIf=\"i.expanded\">\n      <i class=\"material-icons\" (click)=\"expand()\">expand_more</i>\n    </div>\n    <span class=\"node-text\" (click)=\"onSelectNode(i)\">{{i.name}}</span>\n    <div *ngIf=\"i.expanded\">\n      <app-tree-view [nodes]=\"i.children\"\n                     [selectNode]=\"selectNode\"\n                     (onSelectedChanged)=\"onSelectNode($event)\">\n      </app-tree-view>\n    </div>\n  </li>\n</ul>\n\n"
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/dashboard/tree-view/tree-view.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreeViewComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_entity_asset_category_entity__ = __webpack_require__("../../../../../src/model/entity/asset-category-entity.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TreeViewComponent = (function () {
+    function TreeViewComponent() {
+        this.onSelectedChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+    }
+    TreeViewComponent.prototype.ngOnInit = function () {
+    };
+    TreeViewComponent.prototype.onSelectNode = function (node) {
+        this.onSelectedChanged.emit(node);
+    };
+    return TreeViewComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Array)
+], TreeViewComponent.prototype, "nodes", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__model_entity_asset_category_entity__["a" /* AssetCategoryEntity */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__model_entity_asset_category_entity__["a" /* AssetCategoryEntity */]) === "function" && _a || Object)
+], TreeViewComponent.prototype, "selectNode", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]) === "function" && _b || Object)
+], TreeViewComponent.prototype, "onSelectedChanged", void 0);
+TreeViewComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-tree-view',
+        template: __webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.html"),
+        styles: [__webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], TreeViewComponent);
+
+var _a, _b;
+//# sourceMappingURL=tree-view.component.js.map
 
 /***/ }),
 
@@ -1296,7 +2056,7 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], LoginComponent);
 
 var _a, _b;
@@ -1537,11 +2297,135 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/register/register.component.css")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], RegisterComponent);
 
 var _a, _b;
 //# sourceMappingURL=register.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/user-assets/user-assets.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);", ""]);
+
+// module
+exports.push([module.i, ".asset-containers li{\r\n  display: inline-block;\r\n  color: #606060;\r\n}\r\n\r\n.asset-containers{\r\n  text-decoration: none;\r\n  font-family: 'Ubuntu Condensed', sans-serif;\r\n  letter-spacing: 2px;\r\n  position: relative;\r\n  padding-bottom: 20px;\r\n  margin: 0 34px 0 30px;\r\n  font-size: 17px;\r\n  text-transform: uppercase;\r\n  display: inline-block;\r\n  transition: color .2s;\r\n}\r\n\r\n@media (max-width: 550px) {\r\n  .asset-containers li {\r\n    display: block;\r\n  }\r\n\r\n  .asset-containers {\r\n    padding: 25px 0 20px;\r\n    margin: 0 30px;\r\n  }\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/user-assets/user-assets.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"asset-containers\">\r\n  <label *ngIf=\"error!=null\"> {{error}}</label>\r\n  <ul class=\"asset-components\" *ngIf=\"assets!=null\">\r\n    <li class=\"asset-container\" *ngFor=\"let asset of assets\">\r\n      <div class=\"card\" (click)=\"toAsset(asset.id)\">\r\n        <div class=\"card-body\">{{asset.name}}</div>\r\n      </div>\r\n    </li>\r\n    <li class=\"create-asset-container\">\r\n      <i class=\"material-icons md-56\" (click)=\"createAsset()\">add_circle_outline</i>\r\n    </li>\r\n  </ul>\r\n</div>\r\n\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/user-assets/user-assets.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserAssetsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_user_service__ = __webpack_require__("../../../../../src/service/user-service.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var UserAssetsComponent = (function (_super) {
+    __extends(UserAssetsComponent, _super);
+    function UserAssetsComponent(assetService, router) {
+        var _this = _super.call(this) || this;
+        _this.assetService = assetService;
+        _this.router = router;
+        return _this;
+    }
+    UserAssetsComponent.prototype.ngOnInit = function () {
+        this.tryGetUsersAssets();
+    };
+    UserAssetsComponent.prototype.tryGetUsersAssets = function () {
+        var _this = this;
+        this.assetService.loadAssets(function (message, assets) {
+            if (message == null) {
+                _this.assets = assets;
+            }
+            else {
+                _this._error = message;
+            }
+        });
+    };
+    UserAssetsComponent.prototype.createAsset = function () {
+        this.router.navigateByUrl("/create-asset", { replaceUrl: true });
+    };
+    UserAssetsComponent.prototype.toAsset = function (id) {
+        this.router.navigate(['/assets', id]);
+    };
+    Object.defineProperty(UserAssetsComponent.prototype, "assets", {
+        get: function () {
+            return this._assets;
+        },
+        set: function (assets) {
+            this._assets = assets;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UserAssetsComponent.prototype, "error", {
+        get: function () {
+            return this._error;
+        },
+        set: function (error) {
+            this._error = error;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return UserAssetsComponent;
+}(__WEBPACK_IMPORTED_MODULE_3__page_component__["a" /* PageComponent */]));
+UserAssetsComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-user-assets-asset',
+        template: __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.html"),
+        providers: [__WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */], __WEBPACK_IMPORTED_MODULE_4__service_user_service__["a" /* UserService */]],
+        styles: [__webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object])
+], UserAssetsComponent);
+
+var _a, _b;
+//# sourceMappingURL=user-assets.component.js.map
 
 /***/ }),
 
@@ -1666,6 +2550,145 @@ var CategoryComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/model/entity/asset-category-entity.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetCategoryEntity; });
+/**
+ * The asset category entity.
+ *
+ * @author Denis Lesheniuk.
+ */
+var AssetCategoryEntity = (function () {
+    function AssetCategoryEntity() {
+        this._expanded = false;
+    }
+    /**
+     * Get the asset component id.
+     *
+     * @returns {number} the asset component id.
+     */
+    AssetCategoryEntity.prototype.expand = function () {
+        this._expanded = !this._expanded;
+    };
+    AssetCategoryEntity.prototype.isChildren = function () {
+        if (this._children == null)
+            return false;
+        return true;
+    };
+    Object.defineProperty(AssetCategoryEntity.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        /**
+         * Set the asset component id.
+         *
+         * @param {number} value the asset component id.
+         */
+        set: function (value) {
+            this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AssetCategoryEntity.prototype, "name", {
+        /**
+         * Get the asset category name;
+         *
+         * @returns {string} the asset category name.
+         */
+        get: function () {
+            return this._name;
+        },
+        /**
+         * Set the asset category name.
+         *
+         * @param {string} value the casset category name.
+         */
+        set: function (value) {
+            this._name = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AssetCategoryEntity.prototype, "description", {
+        /**
+         * Get the asset category description.
+         *
+         * @returns {string} the asset category description.
+         */
+        get: function () {
+            return this._description;
+        },
+        /**
+         * Set the asset category description.
+         *
+         * @param {string} value the asset category description.
+         */
+        set: function (value) {
+            this._description = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AssetCategoryEntity.prototype, "parent", {
+        /**
+         * Get the asset category parent.
+         *
+         * @returns {AssetCategoryEntity} the asset category parent.
+         */
+        get: function () {
+            return this._parent;
+        },
+        /**
+         * Set the asset category parent.
+         *
+         * @param {AssetCategoryEntity} value
+         */
+        set: function (value) {
+            this._parent = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AssetCategoryEntity.prototype, "children", {
+        /**
+         * Get the asset category children.
+         *
+         * @returns {AssetCategoryEntity[]} the asset category children.
+         */
+        get: function () {
+            return this._children;
+        },
+        /**
+         * Set the asset category children.
+         *
+         * @param {AssetCategoryEntity[]} value the asset category children.
+         */
+        set: function (value) {
+            this._children = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AssetCategoryEntity.prototype, "expanded", {
+        get: function () {
+            return this._expanded;
+        },
+        set: function (value) {
+            this._expanded = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return AssetCategoryEntity;
+}());
+
+//# sourceMappingURL=asset-category-entity.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/model/entity/file-type-params.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1686,6 +2709,25 @@ var FileTypeParams = (function () {
 }());
 
 //# sourceMappingURL=file-type-params.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/model/params/asset-params.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetParams; });
+var AssetParams = (function () {
+    function AssetParams(name, description, id, category_id) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.category_id = category_id;
+    }
+    return AssetParams;
+}());
+
+//# sourceMappingURL=asset-params.js.map
 
 /***/ }),
 
@@ -1856,14 +2898,11 @@ var AssetCategoryService = AssetCategoryService_1 = (function () {
      * @returns {Promise<AssetCategoryEntity[]>} the all categories.
      */
     AssetCategoryService.prototype.getCategories = function () {
-        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]() });
-        this.securityService.addAccessToken(options);
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
         return this.http.get(AssetCategoryService_1.API_ASSETS_CATEGORIES, options)
             .toPromise()
-            .then(function (response) {
-            var body = response.json();
-            return body;
-        })
+            .then(function (response) { return response.json(); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleError(error); });
     };
     /**
@@ -1874,7 +2913,7 @@ var AssetCategoryService = AssetCategoryService_1 = (function () {
      */
     AssetCategoryService.prototype.addCategory = function (params, handler) {
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]() });
-        this.securityService.addAccessToken(options);
+        this.securityService.appendAccessToken(options);
         this.http.put(AssetCategoryService_1.API_ASSETS_CATEGORIES + "/put", params, options)
             .toPromise()
             .then(function (response) { return handler(null, true); })
@@ -1888,7 +2927,7 @@ var AssetCategoryService = AssetCategoryService_1 = (function () {
      */
     AssetCategoryService.prototype.removeCategory = function (id, handler) {
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]() });
-        this.securityService.addAccessToken(options);
+        this.securityService.appendAccessToken(options);
         this.http.delete(AssetCategoryService_1.API_ASSETS_CATEGORIES + '/' + id, options)
             .toPromise()
             .then(function (response) { return handler(null, true); })
@@ -1902,7 +2941,7 @@ var AssetCategoryService = AssetCategoryService_1 = (function () {
      */
     AssetCategoryService.prototype.getChildren = function (id) {
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]() });
-        this.securityService.addAccessToken(options);
+        this.securityService.appendAccessToken(options);
         return this.http.get(AssetCategoryService_1.API_ASSETS_CATEGORIES + "/" + id, options)
             .toPromise()
             .then(function (response) {
@@ -1926,6 +2965,89 @@ AssetCategoryService = AssetCategoryService_1 = __decorate([
 
 var AssetCategoryService_1, _a, _b;
 //# sourceMappingURL=asset-category.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/service/asset/asset.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_utils__ = __webpack_require__("../../../../../src/util/utils.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AssetService = AssetService_1 = (function () {
+    function AssetService(http, securityService) {
+        this.http = http;
+        this.securityService = securityService;
+    }
+    AssetService.prototype.createAsset = function (asset, file, handler) {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('asset', new Blob([JSON.stringify({
+                "name": asset.name,
+                "description": asset.description,
+                "id": asset.id,
+                "categoryId": asset.category_id
+            })], {
+            type: "application/json"
+        }));
+        this.http.post(AssetService_1.ADD_ASSET_URL, formData, options)
+            .toPromise()
+            .then(function (response) { return handler(null, true, response.json()); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false, null); }); });
+    };
+    AssetService.prototype.loadAssets = function (handler) {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
+        this.http.get(AssetService_1.USERS_ASSETS, options)
+            .toPromise()
+            .then(function (value) { return handler(null, value.json()); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, null); }); });
+    };
+    AssetService.prototype.loadAsset = function (id, handler) {
+        this.http.get(AssetService_1.GET_ASSET + "/" + id, this.securityService.appendAccessToken())
+            .toPromise().then(function (value) { return handler(null, value.json()); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, null); }); });
+    };
+    AssetService.prototype.downloadAsset = function (id, handler) {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
+        options.responseType = __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* ResponseContentType */].Blob;
+        this.http.get(AssetService_1.DOWNLOAD_ASSET + id.toString(), options)
+            .toPromise()
+            .then(function (value) { return handler(null, value.blob()); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, null); }); });
+    };
+    return AssetService;
+}());
+AssetService.ADD_ASSET_URL = "/api/assets/add/asset";
+AssetService.USERS_ASSETS = "/api/assets/get/assets";
+AssetService.GET_ASSET = "/api/assets/asset";
+AssetService.DOWNLOAD_ASSET = "/api/assets/download/";
+AssetService = AssetService_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__security_service__["a" /* SecurityService */]) === "function" && _b || Object])
+], AssetService);
+
+var AssetService_1, _a, _b;
+//# sourceMappingURL=asset.service.js.map
 
 /***/ }),
 
@@ -2024,7 +3146,7 @@ var FileTypesService = FileTypesService_1 = (function () {
     }
     FileTypesService.prototype.createFileType = function (fileTypeParams, handler) {
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
-        this.security.addAccessToken(options);
+        this.security.appendAccessToken(options);
         this.http.post(FileTypesService_1.ADD_FILE_TYPE_URL, fileTypeParams)
             .toPromise()
             .then(function (response) { return handler(null, true); })
@@ -2032,7 +3154,7 @@ var FileTypesService = FileTypesService_1 = (function () {
     };
     FileTypesService.prototype.loadFileTypes = function () {
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
-        this.security.addAccessToken(options);
+        this.security.appendAccessToken(options);
         return this.http.get(FileTypesService_1.LOAD_FILE_TYPE_URL)
             .toPromise()
             .then(function (response) {
@@ -2124,17 +3246,22 @@ var SecurityService = SecurityService_1 = (function () {
     /**
      * Add an access token to header of the request options.
      *
-     * @param requestOptions the request options.
+     * @param options the request options.
+     * @return the updated request options.
      */
-    SecurityService.prototype.addAccessToken = function (requestOptions) {
+    SecurityService.prototype.appendAccessToken = function (options) {
+        if (options == null) {
+            options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        }
         var accessToken = this.accessToken;
         if (accessToken == null) {
-            return;
+            return options;
         }
-        if (requestOptions.headers == null) {
-            requestOptions.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        if (options.headers == null) {
+            options.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         }
-        requestOptions.headers.append(SecurityService_1.ACCESS_TOKEN_HEADER, accessToken);
+        options.headers.append(SecurityService_1.ACCESS_TOKEN_HEADER, accessToken);
+        return options;
     };
     /**
      * The function to logout from the system.
@@ -2235,6 +3362,49 @@ var SecurityService_1, _a;
 
 /***/ }),
 
+/***/ "../../../../../src/service/user-service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UserService = UserService_1 = (function () {
+    function UserService(http) {
+        this.http = http;
+    }
+    UserService.prototype.getUserById = function (id) {
+        return this.http.post(UserService_1.USER_BY_ID + id.toLocaleString(), null)
+            .toPromise()
+            .then(function (response) {
+            var body = response.json();
+            return body;
+        });
+    };
+    return UserService;
+}());
+UserService.USER_BY_ID = "/api/users/get/user?id=";
+UserService = UserService_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], UserService);
+
+var UserService_1, _a;
+//# sourceMappingURL=user-service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/util/route-list.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2258,6 +3428,10 @@ RouteList.PAGE_APP_SETTINGS = 'app-settings';
 RouteList.PAGE_FILE_TYPES = "file-types";
 RouteList.PAGE_ASSET_CATEGORY = "asset-category";
 RouteList.PAGE_ADD_FILE_TYPE = "add";
+RouteList.PAGE_CREATE_ASSET = "create-asset";
+RouteList.PAGE_USER_ASSETS = "user-assets";
+RouteList.PAGE_ASSET = "assets/:id";
+RouteList.PAGE_CHOOSE_ASSET_CATEGORY = "choose-asset-category";
 //# sourceMappingURL=route-list.js.map
 
 /***/ }),

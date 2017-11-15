@@ -24,19 +24,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManagerFactory;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.FileAttribute;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
@@ -164,9 +161,7 @@ public class AssetServiceImpl implements AssetService {
         asset.removeFile(file);
         assetRepository.save(asset);
     }
-<<<<<<< HEAD
-}
-=======
+
 
     @Override
     public @Nullable List<AssetEntity> getUserAssets(long id) {
@@ -277,4 +272,3 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 }
->>>>>>> adding_asset

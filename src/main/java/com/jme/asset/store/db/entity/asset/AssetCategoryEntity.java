@@ -36,14 +36,14 @@ public class AssetCategoryEntity extends BaseEntity {
      */
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id")
-    @JsonManagedReference
+    @JsonBackReference
     private AssetCategoryEntity parent;
 
     /**
      * The children of asset category
      */
     @OneToMany(mappedBy = "parent")
-    @JsonBackReference
+    @JsonManagedReference
     private Set<AssetCategoryEntity> children = new HashSet<AssetCategoryEntity>();
 
     public AssetCategoryEntity() {

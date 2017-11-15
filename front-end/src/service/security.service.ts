@@ -95,16 +95,6 @@ export class SecurityService {
 
     const accessToken = this.accessToken;
     if (accessToken == null) {
-<<<<<<< HEAD
-      return;
-    }
-
-    if (requestOptions.headers == null) {
-      requestOptions.headers = new Headers();
-    }
-
-    requestOptions.headers.append(SecurityService.ACCESS_TOKEN_HEADER, accessToken);
-=======
       return options;
     }
 
@@ -114,7 +104,6 @@ export class SecurityService {
 
     options.headers.append(SecurityService.ACCESS_TOKEN_HEADER, accessToken);
     return options;
->>>>>>> adding_asset
   }
 
   /**

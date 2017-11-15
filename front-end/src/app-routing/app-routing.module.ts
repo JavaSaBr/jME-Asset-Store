@@ -9,14 +9,11 @@ import {AppSettingsComponent} from "../component/page/app-settings/app-settings.
 import {FileTypesComponent} from "../component/page/app-settings/page/file-types/file-types.component";
 import {AssetCategoryComponent} from "../component/page/app-settings/page/asset-category/asset-category.component";
 import {AppSettingsGuard} from "../component/page/app-settings/app-settings.guard";
-<<<<<<< HEAD
 import {AddFileTypeComponent} from "../component/page/app-settings/page/file-types/add-file-type/add-file-type.component";
-=======
 import {AddAssetComponent} from "../component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "../component/page/user-assets/user-assets.component";
 import {AssetPresentationComponent} from "../component/page/asset-presentation/asset-presentation.component";
 import {ChooseAssetCategoryComponent} from "../component/page/choose-asset-category/choose-asset-category.component";
->>>>>>> adding_asset
 
 /**
  * The list of routes of this application.
