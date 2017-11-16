@@ -150,7 +150,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void addFileToAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public void addFileToAsset(@NotNull final FileEntity file, long id) {
         AssetEntity asset = assetRepository.findById(id).orElse(null);
         if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
         asset.addFile(file);
@@ -158,7 +158,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
+    public void removeFileFromAsset(@NotNull final FileEntity file, long id) {
         AssetEntity asset = assetRepository.findById(id).orElse(null);
         if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
         asset.removeFile(file);
