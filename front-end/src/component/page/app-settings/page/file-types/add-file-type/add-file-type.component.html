@@ -1,0 +1,38 @@
+<div class="add-file-type-form-container">
+  <div class="add-file-type-form">
+    <form class="add-file-type-data-form mat-elevation-z2" (ngSubmit)="tryCreateFileType()" #createForm="ngForm">
+      <div class="add-file-type-text-container">
+        <h2 class="add-file-type-page-title">Add new file type</h2>
+        <h3 class="add-file-type-page-error" [hidden]="error.length == 0">
+          {{error}}
+        </h3>
+      </div>
+      <mat-input-container class="add-file-type-data-row">
+        <input matInput placeholder="Name of file type" id="name" required minlength="{{minFileTypeName}}"
+               maxlength="{{maxFileTypeName}}"
+               [(ngModel)]="fileTypeInfo.name" name="name"
+               #name="ngModel">
+      </mat-input-container>
+      <mat-input-container class="add-file-type-data-row">
+        <input matInput placeholder="Mime-Type" id="mimeType" required minlength="{{minFileTypeMime}}"
+               maxlength="{{maxFileTypeMime}}"
+               [(ngModel)]="fileTypeInfo.mimeType" name="mimeType"
+               #mimeType="ngModel">
+      </mat-input-container>
+      <mat-input-container class="add-file-type-data-row">
+        <input matInput placeholder="Extension" id="extension" required minlength="{{minFileTypeExtension}}"
+               maxlength="{{maxFileTypeExtension}}"
+               [(ngModel)]="fileTypeInfo.extension" name="extension"
+               #extension="ngModel">
+      </mat-input-container>
+      <div class="add-file-type-buttons">
+        <button class="add-file-type-button" type="submit" mat-raised-button color="primary"
+                [disabled]="!createForm.form.valid"> Add file type
+        </button>
+        <button class="add-file-type-button" type="submit" mat-raised-button color="primary"
+                (click)="redirectToFileTypesPage()"> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

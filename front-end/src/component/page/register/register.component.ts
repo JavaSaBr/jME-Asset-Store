@@ -36,7 +36,7 @@ export class RegisterComponent extends PageComponent {
   private _roles: string[];
 
   /**
-   * The current register user info.
+   * The current register user fileTypesInfo.
    */
   private _info: RegisterUserCredentials;
 
@@ -54,7 +54,7 @@ export class RegisterComponent extends PageComponent {
   }
 
   /**
-   * Try to register using the current info.
+   * Try to register using the current fileTypesInfo.
    */
   tryRegister() {
     this.setRoleList();
@@ -77,7 +77,7 @@ export class RegisterComponent extends PageComponent {
   }
 
   /**
-   * Gets the user info.
+   * Gets the user fileTypesInfo.
    *
    * @returns {RegisterUserCredentials}
    */
@@ -86,7 +86,7 @@ export class RegisterComponent extends PageComponent {
   }
 
   /**
-   * Sets the user info.
+   * Sets the user fileTypesInfo.
    *
    * @param {RegisterUserCredentials} value
    */

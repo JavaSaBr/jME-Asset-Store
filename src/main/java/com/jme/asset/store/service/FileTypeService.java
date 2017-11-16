@@ -4,6 +4,8 @@ import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 /**
  * Service for File's types
  *
@@ -35,4 +37,11 @@ public interface FileTypeService {
      * @param id id of type
      */
     @Nullable FileTypeEntity loadType(final long id);
+
+    /**
+     * Load list of all file types
+     *
+     * @return list of all file types
+     */
+    @Nullable List<FileTypeEntity> loadAllTypes();
 }
