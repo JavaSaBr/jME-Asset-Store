@@ -50,7 +50,9 @@ export class AssetService {
   }
 
   public loadAsset(id: number, handler: (message: string, result: AssetEntity) => void) {
-    this.http.get(AssetService.GET_ASSET + "/" + id, this.securityService.appendAccessToken())
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.get(AssetService.GET_ASSET + "/" + id, options)
       .toPromise().then(value => handler(null, value.json()))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }

@@ -87,10 +87,10 @@ export class SecurityService {
    * @param requestOptions the request options.
    * @return the updated request options.
    */
-  public addAccessToken(requestOptions: RequestOptions): void {
+  public appendAccessToken(requestOptions: RequestOptions): void {
 
-    if (options == null) {
-      options = new RequestOptions();
+    if ( requestOptions == null) {
+      requestOptions = new RequestOptions();
     }
 
     const accessToken = this.accessToken;
