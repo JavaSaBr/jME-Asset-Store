@@ -1,50 +1,32 @@
-<div class="asset-containers">
+<div class="file-type-content">
   <label *ngIf="error!=null"> {{error}}</label>
-  <ul class="asset-components" *ngIf="assets!=null">
-    <li class="asset-container" *ngFor="let asset of assets">
-      <div class="card" (click)="toAsset(asset.id)">
-        <div class="card-body">{{asset.name}}</div>
-      </div>
-    </li>
-    <li class="create-asset-container">
-      <i class="material-icons md-56" (click)="createAsset()">add_circle_outline</i>
-    </li>
-  </ul>
 
 
-  <div class="file-type-content">
-    <mat-table class="file-type-table" #table [dataSource]="dataSource">
+  <i class="material-icons md-56" (click)="createAsset()">add_circle_outline</i>
+  <mat-table class="file-type-table" #table [dataSource]="dataSource">
 
-      <ng-container matColumnDef="name">
-        <mat-header-cell class="file-type-mat-header-cell" *matHeaderCellDef> Name</mat-header-cell>
-        <mat-cell class="file-type-mat-cell" *matCellDef="let element"> {{element.name}}</mat-cell>
-      </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="mimeType">
-        <mat-header-cell class="file-type-mat-header-cell" *matHeaderCellDef> Mime-Type</mat-header-cell>
-        <mat-cell class="file-type-mat-cell" *matCellDef="let element"> {{element.mimeType}}</mat-cell>
-      </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="Description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="extension">
-        <mat-header-cell class="file-type-mat-header-cell" *matHeaderCellDef> Extension</mat-header-cell>
-        <mat-cell class="file-type-mat-cell" *matCellDef="let element"> {{element.extension}}</mat-cell>
-      </ng-container>
+    <mat-header-row class="file-type-mat-header-cell" *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-      <mat-header-row class="file-type-mat-header-cell" *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
+  </mat-table>
 
-  <div class="add-file-type-button-position">
-    <button mat-icon-button [routerLink]="['./add'] ">
-      <mat-icon><i class="material-icons md-48 blue" aria-hidden="true">add_circle</i></mat-icon>
-    </button>
-  </div>
 
   <div class="form-file-type">
     <router-outlet></router-outlet>
   </div>
 
-
 </div>
+
 

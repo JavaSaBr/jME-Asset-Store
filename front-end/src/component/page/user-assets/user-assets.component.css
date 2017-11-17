@@ -28,3 +28,50 @@
     margin: 0 30px;
   }
 }
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.material-icons.blue {
+  color: #3f51b5;
+}
+
+.mat-icon-button{
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+}
+
+.add-file-type-button-position {
+  position: absolute;
+  float: right;
+  z-index: 10;
+}
+
+.form-file-type {
+  position: relative;
+}
+
+.file-type-content {
+  position: absolute;
+  width:100%;
+}
+
+.file-type-table {
+  background: inherit;
+  overflow-y: scroll;
+  max-height: 100vh;
+}
+
+.file-type-mat-header-cell {
+  font-family: inherit;
+  font-weight: bold;
+  font-size: inherit;
+}
+
+.file-type-mat-cell {
+  font-family: inherit;
+  font-weight: normal;
+  color: inherit;
+}
