@@ -1,8 +1,14 @@
 <div class="file-type-content">
   <label *ngIf="error!=null"> {{error}}</label>
 
+  <div class="add-file-type-button-position">
+    <button mat-icon-button>
+      <mat-icon (click)="createAsset()">
+        <i class="material-icons md-48 blue" aria-hidden="true">add_circle</i>
+      </mat-icon>
+    </button>
+  </div>
 
-  <i class="material-icons md-56" (click)="createAsset()">add_circle_outline</i>
   <mat-table class="file-type-table" #table [dataSource]="dataSource">
 
     <!-- Position Column -->

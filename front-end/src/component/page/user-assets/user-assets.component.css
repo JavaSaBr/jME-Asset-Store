@@ -75,3 +75,9 @@
   font-weight: normal;
   color: inherit;
 }
+
+.add-file-type-button-position {
+  position: absolute;
+  float: right;
+  z-index: 10;
+}
