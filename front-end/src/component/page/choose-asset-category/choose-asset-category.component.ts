@@ -74,10 +74,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
     this.categoryService.getChildren(id)
       .then(value => {
         this.categories = value;
-        if (this.categories == null || this.categories.length == 0) {
-            this.getCategoryConponents(this.path);
-            return;
-        }
         this.path.push(new CategoryComponent(name, id));
       });
   }
@@ -231,8 +227,8 @@ export class ChooseAssetCategoryComponent implements OnInit {
 
 
   @Output() onChanged = new EventEmitter<CategoryComponent[]>();
-  getCategoryConponents(components: CategoryComponent[]){
-    this.onChanged.emit(components);
+  getCategoryComponents(){
+    this.onChanged.emit(this.path);
   }
 
 

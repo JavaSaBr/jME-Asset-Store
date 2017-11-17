@@ -18,6 +18,10 @@
         <p>{{category.description}}</p>
       </div>
     </li>
+    <li class="add-container" *ngIf="categories == 0">
+      <i class="material-icons md-56" (click)="getCategoryComponents()">add_circle_outline</i>
+    </li>
   </ul>
+  
 </div>
 
