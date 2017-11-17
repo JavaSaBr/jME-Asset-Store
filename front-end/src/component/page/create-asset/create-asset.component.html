@@ -1,6 +1,6 @@
 <div class="asset-create-form-container">
   <div class="asset-create-form">
-    <h2 class="asset-create-page-title">Create Asset</h2>
+    <h1>Create Asset</h1>
     <h3 class="asset-create-error" [hidden]="_message.length == 0">
       {{_message}}
     </h3>
@@ -23,16 +23,26 @@
                  #description="ngModel">
         </mat-input-container>
       </div>
-      <div class="asset-files">
-        <label class="file-input">
-          <input type="file" accept="application/zip" (change)="selectFile($event)">
-        </label>
+
+      <div class="file-input-button" *ngIf="!viewCategory">
+        <button mat-icon-button (click)="fileInput.click()">
+          <mat-icon aria-label="Choose category">
+            <i class="material-icons">add_box</i></mat-icon>
+          <span>Select file</span>
+          <input #fileInput type="file" accept="application/zip" (change)="selectFile($event)" style="display:none;"/>
+        </button>
       </div>
-    </div>
-    <div>
-      <button *ngIf="!viewCategory" (click)="changeViewCategory()">Choose category</button>
-      <app-choose-asset-category *ngIf="viewCategory" (onChanged)="onChanged($event)"></app-choose-asset-category>
-      <ul class="menu-main">
+
+      <div class="category-add-button" *ngIf="!viewCategory" (click)="changeViewCategory()">
+        <button mat-icon-button>
+          <mat-icon aria-label="Choose category">
+            <i class="material-icons">perm_media</i></mat-icon>
+          <span>Choose category</span>
+        </button>
+      </div>
+
+
+      <ul class="menu-main" *ngIf="!viewCategory">
         <li *ngFor="let p of _path">
           <div>
             {{p.name}}
@@ -40,10 +50,14 @@
         </li>
       </ul>
     </div>
+
+    <div *ngIf="viewCategory">
+      <app-choose-asset-category (onChanged)="onChanged($event)"></app-choose-asset-category>
+    </div>
     <button *ngIf="!viewCategory" class="create-asset-button" (click)="tryCreate()" mat-raised-button color="primary"
             [disabled]="!isValid()"> create
     </button>
   </form>
-{{info.category_id}}
+  {{info.category_id}}
 
 </div>

@@ -12,7 +12,6 @@
 <div class="container">
   <ul class="components">
     <li class="category-container" *ngFor="let category of categories">
-      <i class="material-icons" *ngIf="label" (click)="getCategoryId(category.id)">check_circle</i>
       <div class="category-content" (click)="loadChildren(category.name, category.id)">
         <h3>{{category.name}}</h3>
         <p>{{category.description}}</p>
@@ -22,6 +21,5 @@
       <i class="material-icons md-56" (click)="getCategoryComponents()">add_circle_outline</i>
     </li>
   </ul>
-  
 </div>
 

@@ -4,7 +4,6 @@ import {CategoryComponent} from "../../../model/category/category-component";
 import {AssetCategoryEntity} from "../../../model/entity/asset-category-entity";
 import {AssetCategoryService} from "../../../service/asset-category.service";
 
-
 /**
  * Implementation of logic for UI for work with asset category.
  *

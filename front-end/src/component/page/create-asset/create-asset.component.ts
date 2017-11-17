@@ -101,4 +101,5 @@ export class AddAssetComponent extends PageComponent {
   changeViewCategory() {
     this.viewCategory = !this.viewCategory;
   }
+
 }

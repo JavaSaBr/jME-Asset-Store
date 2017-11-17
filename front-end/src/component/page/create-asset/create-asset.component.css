@@ -1,17 +1,21 @@
-.create-asset-data-row{
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+
+.create-asset-data-row {
   width: 100%;
   display: block;
   margin-top: 40px;
   margin-bottom: 20px;
 }
-.asset-create-error{
-  text-align: center;
-}
-.asset-create-page-title{
+
+.asset-create-error {
   text-align: center;
 }
 
-.asset-create-form{
+.asset-create-page-title {
+  text-align: center;
+}
+
+.asset-create-form {
   border-collapse: collapse;
   border-radius: 2px;
   border-spacing: 0px;
@@ -21,8 +25,6 @@
   margin-top: 40px;
   margin-bottom: 20px;
 }
-
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
 
 .menu-main {
   list-style: none;
@@ -74,6 +76,23 @@
   left: 50%;
   background: #4f54fe;
   transition: .8s;
+}
+
+.asset-create-form-container {
+  text-align: center;
+  font-size: 1em;
+  color: #636363;
+  font-family: inherit;
+}
+
+.file-input-button {
+  text-align: left;
+  margin-left: 2px;
+}
+
+.category-add-button {
+  text-align: left;
+  margin-left: 2px;
 }
 
 
