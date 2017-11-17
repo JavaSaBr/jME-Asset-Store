@@ -1,7 +1,8 @@
-package com.jme.asset.store.controller.response;
+package com.jme.asset.store.controller;
 
 import com.jme.asset.store.Routes;
 import com.jme.asset.store.controller.params.AssetCategoryParams;
+import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.service.AssetCategoryService;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +38,7 @@ public class AssetCategoryController {
      * @return the all categories.
      */
     @GetMapping()
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(assetCategoryService.getCategories());
@@ -105,7 +106,7 @@ public class AssetCategoryController {
      * @return the children.
      */
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<?> getChildren(@PathVariable final long id) {
         try {
             return ResponseEntity.ok(assetCategoryService.getChildren(id));

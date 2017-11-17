@@ -4,6 +4,7 @@ import {AssetService} from "../../../service/asset/asset.service";
 import {PageComponent} from "../../page.component";
 import {AssetParams} from "../../../model/params/asset-params";
 import {ChooseAssetCategoryComponent} from "../choose-asset-category/choose-asset-category.component";
+import {CategoryComponent} from "../../../model/category/category-component";
 
 @Component({
   moduleId: module.id,
@@ -14,14 +15,21 @@ import {ChooseAssetCategoryComponent} from "../choose-asset-category/choose-asse
 })
 
 export class AddAssetComponent extends PageComponent {
+
+  /**
+   * The category path.
+   */
+  private _path: CategoryComponent[];
+
   private _info: AssetParams;
 
   private _message: string;
 
   private _file: File;
 
-  viewCategory: boolean;
+  myId: number = 0;
 
+  viewCategory: boolean;
 
   @ViewChild(ChooseAssetCategoryComponent) category: ChooseAssetCategoryComponent;
 
@@ -83,13 +91,11 @@ export class AddAssetComponent extends PageComponent {
     this.router.navigateByUrl("/choose-asset-category");
   }
 
-
-  myId: string = "choose category";
-
-  onChanged(increased: any) {
-    this.myId = increased;
+  onChanged(path: any) {
+    this._path = path;
     this.viewCategory = !this.viewCategory;
-    this._info.category_id = increased;
+    this._info.category_id = path[path.length - 1].id;
+    this.myId = this._info.category_id;
   }
 
   changeViewCategory() {

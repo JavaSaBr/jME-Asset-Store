@@ -64,11 +64,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
       .then(value => this.categories = value);
   }
 
-
-  clickOnCategory(){
-
-  }
-
   /**
    * Load the children.
    *
@@ -80,7 +75,7 @@ export class ChooseAssetCategoryComponent implements OnInit {
       .then(value => {
         this.categories = value;
         if (this.categories == null || this.categories.length == 0) {
-            this.getCategoryId(id);
+            this.getCategoryConponents(this.path);
             return;
         }
         this.path.push(new CategoryComponent(name, id));
@@ -109,10 +104,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
    */
   getLastPathElement(): CategoryComponent {
     return this.path[this.path.length - 1];
-  }
-
-  chooseCategory(){
-
   }
 
   /**
@@ -239,9 +230,9 @@ export class ChooseAssetCategoryComponent implements OnInit {
   }
 
 
-  @Output() onChanged = new EventEmitter<string>();
-  getCategoryId(id: string){
-    this.onChanged.emit(id);
+  @Output() onChanged = new EventEmitter<CategoryComponent[]>();
+  getCategoryConponents(components: CategoryComponent[]){
+    this.onChanged.emit(components);
   }
 
 

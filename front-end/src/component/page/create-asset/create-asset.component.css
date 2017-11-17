@@ -22,3 +22,61 @@
   margin-bottom: 20px;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+
+.menu-main {
+  list-style: none;
+  margin: 10px 0 5px;
+  padding: 10px 0 5px;
+  text-align: left;
+}
+
+.menu-main li {
+  display: inline-block;
+}
+
+.menu-main li:after {
+  content: "|";
+  color: #606060;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.menu-main li:last-child:after {
+  content: none;
+}
+
+.menu-main div {
+  text-decoration: none;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 20px;
+  margin: 0 3px 0 7px;
+  font-size: 17px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: color .2s;
+}
+
+.menu-main div, .menu-main div:visited {
+  color: #9d999d;
+}
+
+.menu-main div:before,
+.menu-main div:after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  top: auto;
+  right: 50%;
+  bottom: -5px;
+  left: 50%;
+  background: #4f54fe;
+  transition: .8s;
+}
+
+
+
+
+

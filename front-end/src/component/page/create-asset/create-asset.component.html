@@ -30,8 +30,15 @@
       </div>
     </div>
     <div>
-      <button *ngIf="!viewCategory" (click)="changeViewCategory()">{{myId}}</button>
+      <button *ngIf="!viewCategory" (click)="changeViewCategory()">Choose category</button>
       <app-choose-asset-category *ngIf="viewCategory" (onChanged)="onChanged($event)"></app-choose-asset-category>
+      <ul class="menu-main">
+        <li *ngFor="let p of _path">
+          <div>
+            {{p.name}}
+          </div>
+        </li>
+      </ul>
     </div>
     <button *ngIf="!viewCategory" class="create-asset-button" (click)="tryCreate()" mat-raised-button color="primary"
             [disabled]="!isValid()"> create
