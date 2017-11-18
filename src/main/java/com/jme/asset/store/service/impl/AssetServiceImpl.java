@@ -246,6 +246,8 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 
+
+
     private @NotNull Path pathToZip(final @NotNull Path path, final @NotNull String assetName) {
         try {
             final Path tempZipFile = Files.createTempFile(assetName, ".zip");

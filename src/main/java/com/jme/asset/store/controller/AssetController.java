@@ -9,6 +9,7 @@ import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
+import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetCategoryService;
@@ -35,8 +36,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The Asset controller provides set of endpoints for working with Asset
@@ -154,5 +157,17 @@ public class AssetController {
         } catch (final Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
+    }
+
+    @GetMapping(value = "files/{id}")
+    public ResponseEntity<?> getFilesList(@PathVariable("id") final long id){
+
+        final List<FileEntity> files = assetService.getAsset(id).getFiles();
+        final List<String> fileNames = new ArrayList<>();
+        for (FileEntity file : files) {
+            String name = file.getName();
+            fileNames.add(name);
+        }
+        return ResponseEntity.ok(fileNames);
     }
 }

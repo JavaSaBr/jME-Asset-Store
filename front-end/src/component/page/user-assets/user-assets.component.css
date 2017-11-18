@@ -5,30 +5,6 @@
   color: #606060;
 }
 
-.asset-containers{
-  text-decoration: none;
-  font-family: 'Ubuntu Condensed', sans-serif;
-  letter-spacing: 2px;
-  position: relative;
-  padding-bottom: 20px;
-  margin: 0 34px 0 30px;
-  font-size: 17px;
-  text-transform: uppercase;
-  display: inline-block;
-  transition: color .2s;
-}
-
-@media (max-width: 550px) {
-  .asset-containers li {
-    display: block;
-  }
-
-  .asset-containers {
-    padding: 25px 0 20px;
-    margin: 0 30px;
-  }
-}
-
 .material-icons.md-48 {
   font-size: 48px;
 }
@@ -58,11 +34,6 @@
   width:100%;
 }
 
-.file-type-table {
-  background: inherit;
-  overflow-y: scroll;
-  max-height: 100vh;
-}
 
 .file-type-mat-header-cell {
   font-family: inherit;
@@ -80,4 +51,23 @@
   position: absolute;
   float: right;
   z-index: 10;
+}
+
+
+
+.wrapper {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 220px 220px 220px 220px 220px ;
+  grid-gap: 30px;
+
+
+}
+
+.box {
+  background-color: rgba(0, 0, 0, 0.22);
+
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
 }

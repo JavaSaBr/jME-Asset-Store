@@ -93,4 +93,6 @@ public interface AssetService {
      * @return zip file with asset
      */
     @NotNull Path downloadAsset(long id);
+
+
 }

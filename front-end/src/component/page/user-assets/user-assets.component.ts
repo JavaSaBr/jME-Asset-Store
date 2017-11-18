@@ -18,20 +18,28 @@ import {AssetDataSource} from "../../../service/asset/asset-data-source";
 export class UserAssetsComponent extends PageComponent {
 
   private _error: string;
-  private displayedColumns: string[] = ['Name', 'Description'];
-  private dataSource: DataSource<AssetEntity>;
+  assets: AssetEntity[];
+  private fileList: string[];
 
-  constructor(private router: Router, private readonly assetDataSource: AssetDataSource) {
+
+  constructor(private readonly assetService: AssetService, private router: Router) {
     super();
-    this.dataSource = assetDataSource;
   }
 
   ngOnInit() {
-    this.assetDataSource.refresh();
+    this.loadAssets();
   }
 
   createAsset() {
     this.router.navigateByUrl("/create-asset", {replaceUrl: true});
+  }
+
+  loadAssets(): void {
+    this.assetService.loadAssets((message, assets) => {
+      if (message == null) {
+        this.assets = assets;
+      }
+    })
   }
 
   toAsset(id: number) {
@@ -46,5 +54,12 @@ export class UserAssetsComponent extends PageComponent {
     this._error = error;
   }
 
+  loadFilesList(id: number){
+    this.assetService.getFilesList(id, (message, result) =>{
+      if(message == null){
+        this.fileList = result;
+      }
+    })
+  }
 
 }

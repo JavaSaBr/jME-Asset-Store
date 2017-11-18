@@ -4,6 +4,7 @@ import {AssetParams} from "../../model/params/asset-params";
 import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
 import {SecurityService} from "../security.service";
+import {error} from "util";
 
 
 @Injectable()
@@ -16,6 +17,8 @@ export class AssetService {
   public static GET_ASSET: string = "/api/assets/asset";
 
   public static DOWNLOAD_ASSET: string = "/api/assets/download/";
+
+  public static FILES_LIST: string = "/api/assets/files/";
 
   constructor(private readonly http: Http, private securityService: SecurityService) {
   }
@@ -64,6 +67,15 @@ export class AssetService {
     this.http.get(AssetService.DOWNLOAD_ASSET + id.toString(), options)
       .toPromise()
       .then(value => handler(null, value.blob()))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
+  }
+
+  public getFilesList(id: number, handler: (message: string, result: string[])=>void){
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.get(AssetService.FILES_LIST + "/" + id.toString(), options)
+      .toPromise()
+      .then(result => handler(null, result.json()))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 }
