@@ -21,9 +21,18 @@ public interface AssetRepository extends PagingAndSortingRepository<AssetEntity,
     AssetEntity findByName(String assetName);
 
     /**
-     * find all assets by creator_id
+     * Find all assets by creator_id
+     *
      * @param id id of creator
      * @return list of creator's assets
      */
     List<AssetEntity> findAllByCreator_Id(long id);
+
+    /**
+     * Find all assets by category_id
+     *
+     * @param id category id
+     * @return list of category assets
+     */
+    List<AssetEntity> findAllByCategory_Id(long id);
 }

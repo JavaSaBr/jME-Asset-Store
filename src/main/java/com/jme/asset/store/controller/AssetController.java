@@ -4,7 +4,6 @@ import static com.jme.asset.store.security.util.SecurityUtil.getCurrentUser;
 import static java.util.Objects.requireNonNull;
 
 import com.jme.asset.store.Routes;
-import com.jme.asset.store.controller.params.AssetCategoryParams;
 import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
@@ -13,9 +12,9 @@ import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetCategoryService;
 import com.jme.asset.store.service.AssetService;
-import com.jme.asset.store.util.Utils;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+
 import org.jetbrains.annotations.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -23,16 +22,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -72,7 +67,6 @@ public class AssetController {
      * @param params the asset creation param
      * @return OK if the asset is created successfully, else BAD_REQUEST
      */
-
     @PostMapping(value = "add/asset")
     public ResponseEntity<?> createAsset(@RequestPart(name = "file") final MultipartFile file,
                                          @RequestPart(name = "asset", required = false) final AssetCreateParam params) {
@@ -110,7 +104,6 @@ public class AssetController {
         } catch (final IOException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
-
     }
 
     /**
@@ -130,6 +123,45 @@ public class AssetController {
         }
     }
 
+    /**
+     * Get all assets
+     *
+     * @return list of assets
+     */
+    @GetMapping(value = "all")
+    public ResponseEntity<?> getAssets() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(assetService.getAssets());
+        } catch (final RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse((e.getLocalizedMessage())));
+        }
+    }
+
+    /**
+     * Get assets by category id
+     *
+     * @param id category id
+     * @return list of assets
+     */
+    @GetMapping(value = "category/{id}")
+    public ResponseEntity<?> getAssets(@PathVariable("id") final long id) {
+        final AssetCategoryEntity category = categoryService.load(id);
+        if (category == null) {
+            return ResponseEntity.badRequest().body("Doesn't exist category with id " + id);
+        }
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(assetService.getAssets(category));
+        } catch (final RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse((e.getLocalizedMessage())));
+        }
+    }
+
+    /**
+     * Get asset by asset id
+     *
+     * @param id asset id
+     * @return asset by asset id
+     */
     @GetMapping(value = "asset/{id}")
     public ResponseEntity<?> getAsset(@PathVariable("id") final long id) {
         final AssetEntity asset = assetService.getAsset(id);

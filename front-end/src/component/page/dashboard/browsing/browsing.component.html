@@ -1,5 +1,31 @@
-<app-tree-view [nodes]="categories"
-              [selectNode]="selectNode"
-              (onSelectedChanged)="onSelectNode($event)"></app-tree-view>
-
-<p>{{write()}}</p>
+<div class="categories">
+  <app-tree-view [nodes]="categories"
+                 [selectNode]="selectNode"
+                 (onSelectedChanged)="sortAssets($event)">
+  </app-tree-view>
+</div>
+<div class="content">
+  <!--<p><img src="JMonkeyAssetStoreLogo.png" height="314" width="624" alt="Here is my picture !"/>
+  </p>-->
+  <p><img src="JMonkeyAssetStoreLogo-01.png" height="314" width="624" alt="Here is my picture !"/>
+  </p>
+  <div class="assets">
+    <div *ngFor="let asset of assets">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>{{asset.name}}</mat-card-title>
+          <mat-card-subtitle>creator: {{asset.creator.login}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="JMonkeyAssetStoreLogo.png">
+        <mat-card-content>
+          <p>
+            {{asset.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LOOK</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

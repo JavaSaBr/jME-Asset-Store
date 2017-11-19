@@ -1,19 +1,36 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AssetCategoryEntity} from "../../../../model/entity/asset-category-entity";
-import {AssetCategoryService} from "../../../../service/asset-category.service";
 
+/**
+ * Implementation of recursion for asset categories.
+ *
+ * @author Andrei Yunkevich.
+ */
 @Component({
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.css']
 })
 export class TreeViewComponent implements OnInit {
+
+  /**
+   * The category.
+   */
   @Input() nodes: AssetCategoryEntity[];
+
+  /**
+   * The asset category.
+   */
   @Input() selectNode: AssetCategoryEntity;
 
+  /**
+   * The asset category
+   *
+   * @type {EventEmitter<any>} AssetCategoryEntity
+   */
   @Output() onSelectedChanged: EventEmitter<AssetCategoryEntity> = new EventEmitter();
 
-  constructor(private readonly categoryService: AssetCategoryService) {
+  constructor() {
 
   }
 
@@ -21,6 +38,11 @@ export class TreeViewComponent implements OnInit {
 
   }
 
+  /**
+   * Get asset category.
+   *
+   * @param {AssetCategoryEntity} node the asset category
+   */
   onSelectNode(node: AssetCategoryEntity) {
     this.onSelectedChanged.emit(node);
   }

@@ -6,7 +6,6 @@ import {AssetCategoryParam} from "../model/category/asset-category-param";
 
 import {SecurityService} from "./security.service";
 
-
 /**
  * The asset category service.
  *
@@ -87,4 +86,5 @@ export class AssetCategoryService {
       })
       .catch(error => Utils.handleError(error));
   }
+
 }

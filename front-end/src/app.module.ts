@@ -6,7 +6,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
-  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule
+  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule,
+  MatCardModule
+
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -31,8 +33,8 @@ import {AssetCategoryService} from "./service/asset-category.service";
 import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 import {AssetService} from "./service/asset/asset.service";
 import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
-import { TreeViewComponent } from './component/page/dashboard/tree-view/tree-view.component';
-import { BrowsingComponent } from './component/page/dashboard/browsing/browsing.component';
+import {TreeViewComponent} from './component/page/dashboard/tree-view/tree-view.component';
+import {BrowsingComponent} from './component/page/dashboard/browsing/browsing.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { BrowsingComponent } from './component/page/dashboard/browsing/browsing.
     RouterModule,
     MatTabsModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule
   ],
   providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService, AssetCategoryService,
     AssetService],

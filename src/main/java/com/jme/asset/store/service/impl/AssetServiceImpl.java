@@ -8,6 +8,7 @@ import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
+import com.jme.asset.store.db.repository.asset.AssetCategoryRepository;
 import com.jme.asset.store.db.repository.asset.AssetRepository;
 import com.jme.asset.store.db.repository.asset.FileRepository;
 import com.jme.asset.store.db.repository.asset.FileTypeRepository;
@@ -66,14 +67,20 @@ public class AssetServiceImpl implements AssetService {
     @NotNull
     private final FileTypeRepository fileTypeRepository;
 
+    @NotNull
+    private final AssetCategoryRepository categoryRepository;
+
     @Autowired
     public AssetServiceImpl(@NotNull final EntityManagerFactory entityManagerFactory,
                             @NotNull final AssetRepository assetRepository,
-                            @NotNull final FileRepository fileRepository, @NotNull FileTypeRepository fileTypeRepository) {
+                            @NotNull final FileRepository fileRepository,
+                            @NotNull FileTypeRepository fileTypeRepository,
+                            @NotNull final AssetCategoryRepository categoryRepository) {
         this.entityManagerFactory = entityManagerFactory;
         this.assetRepository = assetRepository;
         this.fileRepository = fileRepository;
         this.fileTypeRepository = fileTypeRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -164,14 +171,34 @@ public class AssetServiceImpl implements AssetService {
 
 
     @Override
-    public @Nullable List<AssetEntity> getUserAssets(long id) {
+    public @Nullable List<AssetEntity> getUserAssets(final long id) {
         final List<AssetEntity> assets = assetRepository.findAllByCreator_Id(id);
         return assets;
     }
 
     @Override
-    public @Nullable AssetEntity getAsset(long id) {
+    public @Nullable List<AssetEntity> getAssets() {
+        return (List<AssetEntity>) assetRepository.findAll();
+    }
+
+    @Override
+    public @Nullable AssetEntity getAsset(final long id) {
         return assetRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public @Nullable List<AssetEntity> getAssets(@NotNull AssetCategoryEntity category) {
+        @NotNull final AssetCategoryServiceImpl categoryService = new AssetCategoryServiceImpl(categoryRepository);
+        @NotNull final List<AssetCategoryEntity> categories = categoryService.getCategoryAndAllChildren(category);
+        final List<AssetEntity> assets = new ArrayList<>();
+
+        for (AssetCategoryEntity categoryEntity : categories) {
+            for (AssetEntity asset : assetRepository.findAllByCategory_Id(categoryEntity.getId())) {
+                assets.add(asset);
+            }
+        }
+
+        return assets;
     }
 
     @Override

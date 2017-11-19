@@ -322,21 +322,22 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MatButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["d" /* MatIconModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["e" /* MatInputModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["m" /* MatToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["g" /* MatMenuModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["h" /* MatPaginatorModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["j" /* MatSidenavModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["f" /* MatListModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatGridListModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatFormFieldModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["i" /* MatSelectModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["e" /* MatIconModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["f" /* MatInputModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["n" /* MatToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["h" /* MatMenuModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["i" /* MatPaginatorModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["k" /* MatSidenavModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["g" /* MatListModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["d" /* MatGridListModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatFormFieldModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["j" /* MatSelectModule */],
             __WEBPACK_IMPORTED_MODULE_13__validate_validator_module__["a" /* ValidatorModule */],
             __WEBPACK_IMPORTED_MODULE_15__angular_router__["c" /* RouterModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["l" /* MatTabsModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["k" /* MatTableModule */],
-            __WEBPACK_IMPORTED_MODULE_23__angular_common_http__["a" /* HttpClientModule */]
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["m" /* MatTabsModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["l" /* MatTableModule */],
+            __WEBPACK_IMPORTED_MODULE_23__angular_common_http__["a" /* HttpClientModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatCardModule */]
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_20__service_file_type_data_source__["a" /* FileTypeDataSource */], __WEBPACK_IMPORTED_MODULE_16__component_page_app_settings_app_settings_guard__["a" /* AppSettingsGuard */], __WEBPACK_IMPORTED_MODULE_17__service_file_types_service__["a" /* FileTypesService */], __WEBPACK_IMPORTED_MODULE_24__service_asset_category_service__["a" /* AssetCategoryService */],
             __WEBPACK_IMPORTED_MODULE_26__service_asset_asset_service__["a" /* AssetService */]],
@@ -1728,7 +1729,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".card {\n  float: left;\n  margin: 10px;\n  position: relative;\n  width: 200px;\n}\n\n.categories {\n  width: 250px;\n  height: 100%;\n  /*text-align: center;*/\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  color: #636363;\n  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.30);\n  position: absolute;\n}\n\n.content {\n  margin-left: 250px;\n}\n", ""]);
 
 // exports
 
@@ -1741,7 +1742,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/browsing/browsing.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-tree-view [nodes]=\"categories\"\n              [selectNode]=\"selectNode\"\n              (onSelectedChanged)=\"onSelectNode($event)\"></app-tree-view>\n\n<p>{{write()}}</p>\n"
+module.exports = "<div class=\"categories\">\n  <app-tree-view [nodes]=\"categories\"\n                 [selectNode]=\"selectNode\"\n                 (onSelectedChanged)=\"sortAssets($event)\">\n  </app-tree-view>\n</div>\n<div class=\"content\">\n  <!--<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n  </p>-->\n  <p><img src=\"JMonkeyAssetStoreLogo-01.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n  </p>\n  <div class=\"assets\">\n    <div *ngFor=\"let asset of assets\">\n      <mat-card class=\"card\">\n        <mat-card-header>\n          <mat-card-title>{{asset.name}}</mat-card-title>\n          <mat-card-subtitle>creator: {{asset.creator.login}}</mat-card-subtitle>\n        </mat-card-header>\n        <img mat-card-image src=\"JMonkeyAssetStoreLogo.png\">\n        <mat-card-content>\n          <p>\n            {{asset.description}}\n          </p>\n        </mat-card-content>\n        <mat-card-actions>\n          <button mat-button>LOOK</button>\n        </mat-card-actions>\n      </mat-card>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1752,6 +1753,7 @@ module.exports = "<app-tree-view [nodes]=\"categories\"\n              [selectNo
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrowsingComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1763,12 +1765,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+/**
+ * Implementation of logic for UI for work with asset category and asset.
+ *
+ * @author Andrei Yunkevich
+ */
 var BrowsingComponent = (function () {
-    function BrowsingComponent(categoryService) {
+    function BrowsingComponent(categoryService, assetService) {
         this.categoryService = categoryService;
+        this.assetService = assetService;
     }
     BrowsingComponent.prototype.ngOnInit = function () {
         this.loadCategories();
+        this.loadAssets();
     };
     /**
      * Get the categories.
@@ -1778,12 +1788,27 @@ var BrowsingComponent = (function () {
         this.categoryService.getCategories()
             .then(function (value) { return _this.categories = value; });
     };
-    BrowsingComponent.prototype.onSelectNode = function (node) {
-        this.selectNode = node;
+    /**
+     * Get the assets.
+     */
+    BrowsingComponent.prototype.loadAssets = function () {
+        var _this = this;
+        this.assetService.loadAllAssets()
+            .then(function (value) { return _this.assets = value; });
     };
-    BrowsingComponent.prototype.write = function () {
+    /**
+     * Get assets by category.
+     *
+     * @param {AssetCategoryEntity} select asset category
+     */
+    BrowsingComponent.prototype.sortAssets = function (select) {
+        var _this = this;
+        this.assetService.loadCategoryAssets(select.id.toString())
+            .then(function (value) { return _this.assets = value; });
+    };
+    BrowsingComponent.prototype.textSelectNode = function () {
         if (this.selectNode == null) {
-            return 'bad';
+            return 'all';
         }
         return this.selectNode.name;
     };
@@ -1795,10 +1820,10 @@ BrowsingComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/dashboard/browsing/browsing.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/dashboard/browsing/browsing.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__["a" /* AssetCategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__["a" /* AssetCategoryService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__["a" /* AssetCategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_asset_category_service__["a" /* AssetCategoryService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]) === "function" && _b || Object])
 ], BrowsingComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=browsing.component.js.map
 
 /***/ }),
@@ -1811,7 +1836,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 
@@ -1824,7 +1849,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  dashboard works!\n</p>\n<body>\n<app-browsing>load......./</app-browsing>\n<!--<p><img src=\"JMonkeyAssetStoreLogo.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n</p>-->\n<p><img src=\"JMonkeyAssetStoreLogo-01.png\" height=\"314\" width=\"624\" alt=\"Here is my picture !\"/>\n</p>\n</body>\n"
+module.exports = "<app-browsing>loading.../</app-browsing>\n\n"
 
 /***/ }),
 
@@ -1900,7 +1925,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/dashboard/tree-view/tree-view.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"tree-nodes\">\n  <li *ngFor=\"let i of nodes\">\n    <div *ngIf=\"!i.expanded\">\n      <i class=\"material-icons\" *ngIf=\"(i.children.length > 0)\" (click)=\"i.expanded=!i.expanded\">chevron_right</i>\n    </div>\n    <div *ngIf=\"i.expanded\">\n      <i class=\"material-icons\" *ngIf=\"(i.children.length > 0)\" (click)=\"i.expanded=!i.expanded\">expand_more</i>\n    </div>\n    <span class=\"node-text\" (click)=\"onSelectNode(i)\">{{i.name}}</span>\n    <div *ngIf=\"i.expanded\">\n      <app-tree-view [nodes]=\"i.children\"\n                     [selectNode]=\"selectNode\"\n                     (onSelectedChanged)=\"onSelectNode($event)\">\n      </app-tree-view>\n    </div>\n  </li>\n</ul>\n\n"
+module.exports = "<ul class=\"tree-nodes\">\n  <li *ngFor=\"let i of nodes\">\n    <div *ngIf=\"!i.expanded\">\n      <i class=\"material-icons\" *ngIf=\"(i.children.length > 0)\" (click)=\"i.expanded=!i.expanded\">chevron_right</i>\n    </div>\n    <div *ngIf=\"i.expanded\">\n      <i class=\"material-icons\" *ngIf=\"(i.children.length > 0)\" (click)=\"i.expanded=!i.expanded\">expand_more</i>\n    </div>\n    <span class=\"node-text\" (click)=\"onSelectNode(i)\"> {{i.name}}</span>\n    <div *ngIf=\"i.expanded\">\n      <app-tree-view [nodes]=\"i.children\"\n                     [selectNode]=\"selectNode\"\n                     (onSelectedChanged)=\"onSelectNode($event)\">\n      </app-tree-view>\n    </div>\n  </li>\n</ul>\n\n"
 
 /***/ }),
 
@@ -1911,7 +1936,6 @@ module.exports = "<ul class=\"tree-nodes\">\n  <li *ngFor=\"let i of nodes\">\n 
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreeViewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_entity_asset_category_entity__ = __webpack_require__("../../../../../src/model/entity/asset-category-entity.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1923,14 +1947,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
+/**
+ * Implementation of recursion for asset categories.
+ *
+ * @author Andrei Yunkevich.
+ */
 var TreeViewComponent = (function () {
-    function TreeViewComponent(categoryService) {
-        this.categoryService = categoryService;
+    function TreeViewComponent() {
+        /**
+         * The asset category
+         *
+         * @type {EventEmitter<any>} AssetCategoryEntity
+         */
         this.onSelectedChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
     }
     TreeViewComponent.prototype.ngOnInit = function () {
     };
+    /**
+     * Get asset category.
+     *
+     * @param {AssetCategoryEntity} node the asset category
+     */
     TreeViewComponent.prototype.onSelectNode = function (node) {
         this.onSelectedChanged.emit(node);
     };
@@ -1954,10 +1991,10 @@ TreeViewComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_category_service__["a" /* AssetCategoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_category_service__["a" /* AssetCategoryService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [])
 ], TreeViewComponent);
 
-var _a, _b, _c;
+var _a, _b;
 //# sourceMappingURL=tree-view.component.js.map
 
 /***/ }),
@@ -2567,20 +2604,12 @@ var AssetCategoryEntity = (function () {
     function AssetCategoryEntity() {
         this._expanded = false;
     }
-    /**
-     * Get the asset component id.
-     *
-     * @returns {number} the asset component id.
-     */
-    AssetCategoryEntity.prototype.expand = function () {
-        this._expanded = !this._expanded;
-    };
-    AssetCategoryEntity.prototype.isChildren = function () {
-        if (this._children == null)
-            return false;
-        return true;
-    };
     Object.defineProperty(AssetCategoryEntity.prototype, "id", {
+        /**
+         * Get the asset component id.
+         *
+         * @returns {number} the asset component id.
+         */
         get: function () {
             return this._id;
         },
@@ -3024,6 +3053,25 @@ var AssetService = AssetService_1 = (function () {
             .then(function (value) { return handler(null, value.json()); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, null); }); });
     };
+    AssetService.prototype.loadAllAssets = function () {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
+        return this.http.get(AssetService_1.ALL_ASSETS, options)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleError(error); });
+    };
+    AssetService.prototype.loadCategoryAssets = function (id) {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]() });
+        this.securityService.appendAccessToken(options);
+        return this.http.get(AssetService_1.CATEGORY_ASSETS + id, options)
+            .toPromise()
+            .then(function (response) {
+            var body = response.json();
+            return body;
+        })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleError(error); });
+    };
     AssetService.prototype.loadAsset = function (id, handler) {
         this.http.get(AssetService_1.GET_ASSET + "/" + id, this.securityService.appendAccessToken())
             .toPromise().then(function (value) { return handler(null, value.json()); })
@@ -3044,6 +3092,8 @@ AssetService.ADD_ASSET_URL = "/api/assets/add/asset";
 AssetService.USERS_ASSETS = "/api/assets/get/assets";
 AssetService.GET_ASSET = "/api/assets/asset";
 AssetService.DOWNLOAD_ASSET = "/api/assets/download/";
+AssetService.CATEGORY_ASSETS = "/api/assets/category/";
+AssetService.ALL_ASSETS = "/api/assets/all/";
 AssetService = AssetService_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__security_service__["a" /* SecurityService */]) === "function" && _b || Object])

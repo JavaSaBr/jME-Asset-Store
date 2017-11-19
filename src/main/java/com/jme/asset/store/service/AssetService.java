@@ -68,12 +68,27 @@ public interface AssetService {
     @Nullable List<AssetEntity> getUserAssets(long id);
 
     /**
+     * All assets
+     *
+     * @return list of assets
+     */
+    @Nullable List<AssetEntity> getAssets();
+
+    /**
      * Get asset by id
      *
      * @param id id of asset
      * @return asset by id
      */
     @Nullable AssetEntity getAsset(long id);
+
+    /**
+     * Get assets by category
+     *
+     * @param category asset category
+     * @return assets by category
+     */
+    @Nullable List<AssetEntity> getAssets(@NotNull AssetCategoryEntity category);
 
     /**
      * Add zip file to asset
