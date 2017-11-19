@@ -31,6 +31,7 @@ import {AssetCategoryService} from "./service/asset-category.service";
 import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
 import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 import {AssetService} from "./service/asset/asset.service";
+import { AssetFilesComponent } from './component/page/asset-files/asset-files.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {AssetService} from "./service/asset/asset.service";
     UserAssetsComponent,
     AssetPresentationComponent,
     ChooseAssetCategoryComponent,
-    AddFileTypeComponent
+    AddFileTypeComponent,
+    AssetFilesComponent
   ],
   imports: [
     FormsModule,

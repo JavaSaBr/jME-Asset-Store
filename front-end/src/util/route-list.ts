@@ -16,5 +16,6 @@ export class RouteList {
   static readonly PAGE_ASSET = "assets/:id";
   static readonly PAGE_CHOOSE_ASSET_CATEGORY = "choose-asset-category";
   static readonly PAGE_ADD_FILE_TYPE = "add";
+  static readonly PAGE_ASSET_FILES = "files";
 
 }

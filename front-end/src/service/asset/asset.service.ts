@@ -5,6 +5,7 @@ import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
 import {SecurityService} from "../security.service";
 import {error} from "util";
+import {FileTypeEntity} from "../../model/entity/file-type-entity";
 
 
 @Injectable()
@@ -70,7 +71,7 @@ export class AssetService {
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 
-  public getFilesList(id: number, handler: (message: string, result: string[])=>void){
+  public getFiles(id: number, handler: (message: string, result: FileTypeEntity[])=>void){
     let options = new RequestOptions();
     this.securityService.appendAccessToken(options);
     this.http.get(AssetService.FILES_LIST + "/" + id.toString(), options)

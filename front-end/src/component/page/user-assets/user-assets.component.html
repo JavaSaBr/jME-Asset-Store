@@ -9,17 +9,17 @@
     </button>
   </div>
 
-  <div class="form-file-type">
-    <router-outlet></router-outlet>
-  </div>
 
   <ul class="wrapper">
-    <li class="box" *ngFor="let element of assets" (click)="loadFilesList(element.id)">
+    <li class="box" *ngFor="let element of assets" (click)="loadFiles(element.id)">
       <h2>{{element.name}}</h2>
       <p>{{element.description}}</p>
     </li>
   </ul>
 
+  <div class="files-container" *ngIf="showFiles">
+    <app-asset-files [files]="files" (onChanged)="hideFiles($event)"></app-asset-files>
+  </div>
 </div>
 
 

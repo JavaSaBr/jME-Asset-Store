@@ -17,6 +17,8 @@ import com.jme.asset.store.service.AssetService;
 import com.jme.asset.store.util.Utils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -50,6 +52,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/" + Routes.API_ASSETS)
 public class AssetController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AssetController.class);
     /**
      * The asset service
      */
@@ -161,13 +164,12 @@ public class AssetController {
 
     @GetMapping(value = "files/{id}")
     public ResponseEntity<?> getFilesList(@PathVariable("id") final long id){
-
-        final List<FileEntity> files = assetService.getAsset(id).getFiles();
-        final List<String> fileNames = new ArrayList<>();
-        for (FileEntity file : files) {
-            String name = file.getName();
-            fileNames.add(name);
+        try{
+            return ResponseEntity.ok(assetService.getAsset(id).getFiles());
+        }catch (final RuntimeException e) {
+            LOGGER.error(e.getLocalizedMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse(e.getLocalizedMessage()));
         }
-        return ResponseEntity.ok(fileNames);
     }
 }

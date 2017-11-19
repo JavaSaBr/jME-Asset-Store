@@ -6,6 +6,7 @@ import {AssetEntity} from "../../../model/entity/asset-entity";
 import {UserService} from "../../../service/user-service";
 import {DataSource} from "@angular/cdk/collections";
 import {AssetDataSource} from "../../../service/asset/asset-data-source";
+import {FileTypeEntity} from "../../../model/entity/file-type-entity";
 
 @Component({
   moduleId: module.id,
@@ -18,8 +19,9 @@ import {AssetDataSource} from "../../../service/asset/asset-data-source";
 export class UserAssetsComponent extends PageComponent {
 
   private _error: string;
-  assets: AssetEntity[];
-  private fileList: string[];
+  private _assets: AssetEntity[];
+  private _files: FileTypeEntity[];
+  private _showFiles: boolean;
 
 
   constructor(private readonly assetService: AssetService, private router: Router) {
@@ -28,6 +30,7 @@ export class UserAssetsComponent extends PageComponent {
 
   ngOnInit() {
     this.loadAssets();
+    this.showFiles = false;
   }
 
   createAsset() {
@@ -37,7 +40,7 @@ export class UserAssetsComponent extends PageComponent {
   loadAssets(): void {
     this.assetService.loadAssets((message, assets) => {
       if (message == null) {
-        this.assets = assets;
+        this._assets = assets;
       }
     })
   }
@@ -54,12 +57,41 @@ export class UserAssetsComponent extends PageComponent {
     this._error = error;
   }
 
-  loadFilesList(id: number){
-    this.assetService.getFilesList(id, (message, result) =>{
+
+  get assets(): AssetEntity[] {
+    return this._assets;
+  }
+
+  set assets(value: AssetEntity[]) {
+    this._assets = value;
+  }
+
+  get files(): FileTypeEntity[] {
+    return this._files;
+  }
+
+  set files(value: FileTypeEntity[]) {
+    this._files = value;
+  }
+
+  get showFiles(): boolean {
+    return this._showFiles;
+  }
+
+  set showFiles(value: boolean) {
+    this._showFiles = value;
+  }
+
+  loadFiles(id: number){
+    this.assetService.getFiles(id, (message, result) =>{
       if(message == null){
-        this.fileList = result;
+        this._files = result;
+        this.showFiles = true;
       }
     })
   }
 
+  hideFiles(showFiles: boolean){
+    this.showFiles = showFiles;
+  }
 }

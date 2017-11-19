@@ -16,6 +16,7 @@ import {AssetPresentationComponent} from "../component/page/asset-presentation/a
 import {ChooseAssetCategoryComponent} from "../component/page/choose-asset-category/choose-asset-category.component";
 
 import {AddFileTypeComponent} from "../component/page/app-settings/page/file-types/add-file-type/add-file-type.component";
+import {AssetFilesComponent} from "../component/page/asset-files/asset-files.component";
 
 /**
  * The list of routes of this application.
@@ -30,7 +31,8 @@ const routes: Routes = [
   ]
   },
   {path: RouteList.PAGE_REGISTER, component: RegisterComponent},
-  {path: RouteList.PAGE_USER_ASSETS, component: UserAssetsComponent},
+  {
+    path: RouteList.PAGE_USER_ASSETS, component: UserAssetsComponent},
   {path: RouteList.PAGE_ASSET, component: AssetPresentationComponent},
   {
     path: RouteList.PAGE_APP_SETTINGS, component: AppSettingsComponent, canActivate: [AppSettingsGuard], children: [
