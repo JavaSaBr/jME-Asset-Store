@@ -82,16 +82,16 @@ export class UserAssetsComponent extends PageComponent {
     this._showFiles = value;
   }
 
-  loadFiles(id: number){
-    this.assetService.getFiles(id, (message, result) =>{
-      if(message == null){
+  loadFiles(id: number) {
+    this.assetService.getFiles(id, (message, result) => {
+      if (message == null) {
         this._files = result;
         this.showFiles = true;
       }
     })
   }
 
-  hideFiles(showFiles: boolean){
+  hideFiles(showFiles: boolean) {
     this.showFiles = showFiles;
   }
 }

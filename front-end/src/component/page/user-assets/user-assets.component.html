@@ -17,9 +17,10 @@
     </li>
   </ul>
 
-  <div class="files-container" *ngIf="showFiles">
-    <app-asset-files [files]="files" (onChanged)="hideFiles($event)"></app-asset-files>
-  </div>
 </div>
 
+<div class="files-container" *ngIf="showFiles">
+  <i class="material-icons" (click)="showFiles = false">clear</i>
+  <app-asset-files [files]="files" (onChanged)="hideFiles($event)"></app-asset-files>
+</div>
 

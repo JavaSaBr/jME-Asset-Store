@@ -11,13 +11,15 @@ export class AssetFilesComponent implements OnInit {
 
   @Input() files: FileEntity[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   @Output() onChanged = new EventEmitter<boolean>();
-  hideFiles(){
+
+  hideFiles() {
     this.onChanged.emit(false);
   }
 }
