@@ -6,7 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
-  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule
+  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -72,7 +73,8 @@ import { AssetFilesComponent } from './component/page/asset-files/asset-files.co
     RouterModule,
     MatTabsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService, FileTypesService],
   bootstrap: [AppComponent]
