@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
 
-.asset-containers li {
-  display: inline-block;
-  color: #606060;
-}
-
 .material-icons.md-48 {
   font-size: 48px;
 }
@@ -30,20 +25,11 @@
 }
 
 .file-type-content {
+  color: #636363;
+  font-family: inherit;
   position: absolute;
   width: 100%;
-}
-
-.file-type-mat-header-cell {
-  font-family: inherit;
-  font-weight: bold;
-  font-size: inherit;
-}
-
-.file-type-mat-cell {
-  font-family: inherit;
-  font-weight: normal;
-  color: inherit;
+  overflow-y: visible;
 }
 
 .add-file-type-button-position {
@@ -53,26 +39,38 @@
 }
 
 .wrapper {
+  margin-left: 20%;
   list-style-type: none;
   display: grid;
-  grid-template-columns: 220px 220px 220px 220px 220px;
+  grid-template-columns: 220px 220px 220px;
   grid-gap: 30px;
-
 }
 
 .box {
-  background-color: rgba(0, 0, 0, 0.22);
+  border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+  border: 0px solid #000000;
+  background-color: rgba(248, 255, 249, 0.02);
 
-  border-radius: 5px;
-  padding: 20px;
+  -webkit-box-shadow: 0px 0px 27px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 27px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 27px -4px rgba(0, 0, 0, 0.75);
+
   text-align: center;
+}
+
+.box i {
+  font-size: 80px;
+  margin: 15px;
 }
 
 .files-container {
   background-color: rgba(20, 66, 122, 0.65);
-  position: absolute;
-  height: 100%;
+  position: fixed;
+  height: 103%;
   width: 100%;
+  margin-top: -4.8%;
 }
 
 .files-container i {

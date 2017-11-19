@@ -31,8 +31,8 @@
           <span>Select file</span>
           <input #fileInput type="file" accept="application/zip" (change)="selectFile($event)" style="display:none;"/>
         </button>
-        <div *ngIf="file != null">
-          {{file.name}}
+        <div *ngIf="file != null" class="menu-main">
+          <div>{{file.name}}</div>
         </div>
       </div>
 

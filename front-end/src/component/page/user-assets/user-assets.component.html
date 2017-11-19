@@ -12,11 +12,10 @@
 
   <ul class="wrapper">
     <li class="box" *ngFor="let element of assets" (click)="loadFiles(element.id)">
-      <h2>{{element.name}}</h2>
-      <p>{{element.description}}</p>
+      <i class="material-icons md-48">archive</i>
+      <h3>{{element.name}}</h3>
     </li>
   </ul>
-
 </div>
 
 <div class="files-container" *ngIf="showFiles">

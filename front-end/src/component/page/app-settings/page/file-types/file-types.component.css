@@ -26,6 +26,8 @@
 .file-type-content {
   position: absolute;
   width: 81.5%;
+  color: #636363;
+  font-family: inherit;
 }
 
 .file-type-table {
