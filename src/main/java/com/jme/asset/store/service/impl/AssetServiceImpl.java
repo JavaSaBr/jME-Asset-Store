@@ -131,10 +131,8 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public @NotNull List<String> addZipFileToAsset(@NotNull final UserEntity user,
-                                                   @NotNull final InputStream content,
-                                                   @NotNull final MultipartFile file,
-                                                   @NotNull final AssetEntity asset) {
+    public @NotNull List<String> addZipFileToAsset(@NotNull final UserEntity user, @NotNull final InputStream content,
+                                                   @NotNull final MultipartFile file, @NotNull final AssetEntity asset) {
         final List<String> warnings = new ArrayList<>();
         Path tempFilePath = null;
         Path tempDirPath = null;
@@ -143,10 +141,10 @@ public class AssetServiceImpl implements AssetService {
             tempDirPath = Files.createTempDirectory("upload");
             Files.copy(content, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
             FileUtils.unzip(tempDirPath, tempFilePath);
-            final Array<Path> files = FileUtils.getFiles(tempDirPath, false, null);
+            final Array<Path> files = FileUtils.getFiles(tempDirPath, false);
             for (final Path path : files) {
                 final String extension = FileUtils.getExtension(path);
-                if (extension == null) {
+                if (extension.equals("")) {
                     warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
                     continue;
                 }
@@ -177,6 +175,9 @@ public class AssetServiceImpl implements AssetService {
         Path tempDirectory = null;
         try {
             tempDirectory = Files.createTempDirectory(asset.getName());
+            if (files == null) {
+                return pathToZip(tempDirectory, asset.getName());
+            }
             for (FileEntity file : files) {
                 final Blob content = file.getContent();
                 final String extension = file.getType().getExtension();
