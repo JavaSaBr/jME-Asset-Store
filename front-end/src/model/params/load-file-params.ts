@@ -1,5 +1,5 @@
-export class LoadFileParams{
-  file: File;
+export class LoadFileParams {
 
+  file: File;
   asset_id: number;
 }

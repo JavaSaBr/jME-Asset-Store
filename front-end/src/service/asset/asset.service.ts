@@ -6,7 +6,6 @@ import {AssetEntity} from "../../model/entity/asset-entity";
 import {SecurityService} from "../security.service";
 import {FileTypeEntity} from "../../model/entity/file-type-entity";
 
-
 @Injectable()
 export class AssetService {
 

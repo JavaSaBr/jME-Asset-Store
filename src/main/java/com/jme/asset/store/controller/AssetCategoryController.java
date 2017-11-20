@@ -110,6 +110,9 @@ public class AssetCategoryController {
     public ResponseEntity<?> getChildren(@PathVariable final long id) {
         try {
             final AssetCategoryEntity parent = assetCategoryService.load(id);
+            if(parent == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
             return ResponseEntity.ok(assetCategoryService.getChildren(parent));
         } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());

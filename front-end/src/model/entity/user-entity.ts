@@ -1,4 +1,4 @@
-export class UserEntity{
+export class UserEntity {
 
   private _login: string;
 
@@ -23,7 +23,6 @@ export class UserEntity{
     this._password = password;
     this._roles = roles;
   }
-
 
   get login(): string {
     return this._login;

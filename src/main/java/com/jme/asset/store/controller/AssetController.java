@@ -83,8 +83,14 @@ public class AssetController {
     public ResponseEntity<?> createAsset(@RequestPart(name = "file") final MultipartFile file,
                                          @RequestPart(name = "asset", required = false) final AssetCreateParam params) {
         final String name = params.getName();
+        if(name == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Argument 'name' can not be null!"));
+        }
         final String description = params.getDescription();
         final AssetCategoryEntity assetCategory = categoryService.load(params.getCategoryId());
+        if(assetCategory == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
         final JmeUser currentUser = requireNonNull(getCurrentUser());
         final UserEntity user = currentUser.getUser();
         List<String> warnings;
@@ -111,6 +117,9 @@ public class AssetController {
         final JmeUser currentUser = requireNonNull((getCurrentUser()));
         final UserEntity user = currentUser.getUser();
         final String name = multipartFile.getOriginalFilename();
+        if(name == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Argument 'file' can not be null!"));
+        }
         try {
             final FileTypeEntity fileType = fileTypeService.loadType(id);
             assetService.createFile(name, user, multipartFile.getInputStream(), fileType);

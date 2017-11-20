@@ -1,8 +1,8 @@
 <div class="asset-create-form-container">
   <div class="asset-create-form">
     <h1>Create Asset</h1>
-    <h3 class="asset-create-error" [hidden]="_message.length == 0">
-      {{_message}}
+    <h3 class="asset-create-error" [hidden]="message.length == 0">
+      {{message}}
     </h3>
   </div>
   <form class="asset-create-form mat-elevation-z2" #userForm="ngForm">
@@ -46,7 +46,7 @@
 
 
       <ul class="menu-main" *ngIf="!viewCategory">
-        <li *ngFor="let p of _path">
+        <li *ngFor="let p of path">
           <div>
             {{p.name}}
           </div>

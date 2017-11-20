@@ -8,7 +8,11 @@ import {AssetDataSource} from "../../../service/asset/asset-data-source";
 import {FileTypeEntity} from "../../../model/entity/file-type-entity";
 import {saveAs} from 'file-saver/FileSaver'
 
-
+/**
+ * Implementation of logic for UI for work with user's assets.
+ *
+ * @author Denis Lesheniuk.
+ */
 @Component({
   moduleId: module.id,
   selector: 'app-user-assets-asset',
@@ -16,12 +20,6 @@ import {saveAs} from 'file-saver/FileSaver'
   providers: [AssetService, UserService, AssetDataSource],
   styleUrls: ['./user-assets.component.css']
 })
-
-/**
- * Implementation of logic for UI for work with user's assets.
- *
- * @author Denis Lesheniuk.
- */
 export class UserAssetsComponent extends PageComponent {
 
   /**
@@ -66,7 +64,7 @@ export class UserAssetsComponent extends PageComponent {
   loadAssets(): void {
     this.assetService.loadAssets((message, assets) => {
       if (message == null) {
-        this._assets = assets;
+        this.assets = assets;
       }
     })
   }
@@ -108,7 +106,7 @@ export class UserAssetsComponent extends PageComponent {
   loadFiles(id: number) {
     this.assetService.getFiles(id, (message, result) => {
       if (message == null) {
-        this._files = result;
+        this.files = result;
         this.showFiles = true;
       }
     })
