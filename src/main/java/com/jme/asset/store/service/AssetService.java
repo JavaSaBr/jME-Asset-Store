@@ -3,6 +3,7 @@ package com.jme.asset.store.service;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
+import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,9 +29,12 @@ public interface AssetService {
      * @param fileName    the file name.
      * @param user        the user.
      * @param inputStream the input stream.
+     * @param file        the file.
      */
-    @NotNull FileEntity createFile(@NotNull String fileName, @NotNull UserEntity user,
-                                   @NotNull InputStream inputStream, long id);
+    @NotNull FileEntity createFile(@NotNull String fileName,
+                                   @NotNull UserEntity user,
+                                   @NotNull InputStream inputStream,
+                                   @NotNull FileTypeEntity file);
 
     /**
      * Create a new asset.
@@ -40,7 +44,9 @@ public interface AssetService {
      * @param user        the user.
      * @param category    the category asset.
      */
-    @NotNull AssetEntity createAsset(@NotNull String assetName, @Nullable String description, @NotNull UserEntity user,
+    @NotNull AssetEntity createAsset(@NotNull String assetName,
+                                     @Nullable String description,
+                                     @NotNull UserEntity user,
                                      @NotNull AssetCategoryEntity category);
 
     /**
@@ -79,10 +85,10 @@ public interface AssetService {
     /**
      * Add zip file to asset
      *
-     * @param user     creator
-     * @param content  InputStream of zip file
-     * @param file the file
-     * @param asset the asset.
+     * @param user    creator
+     * @param content InputStream of zip file
+     * @param file    the file
+     * @param asset   the asset.
      * @return List of warnings
      */
     @NotNull List<String> addZipFileToAsset(@NotNull final UserEntity user,

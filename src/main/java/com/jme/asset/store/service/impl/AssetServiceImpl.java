@@ -25,20 +25,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManagerFactory;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.FileAttribute;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
@@ -82,19 +78,17 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public @NotNull FileEntity createFile(@NotNull final String fileName, @NotNull final UserEntity user,
-                                          @NotNull final InputStream inputStream, final long id) {
+    public @NotNull FileEntity createFile(@NotNull final String fileName,
+                                          @NotNull final UserEntity user,
+                                          @NotNull final InputStream inputStream,
+                                          @NotNull final FileTypeEntity file) {
         Path temp = null;
         try {
-
             temp = Files.createTempFile("upload", fileName);
-
             Files.copy(inputStream, temp, StandardCopyOption.REPLACE_EXISTING);
-
             try (final InputStream in = Files.newInputStream(temp)) {
-                return createFileEntity(fileName, user, in, Files.size(temp), id);
+                return createFileEntity(fileName, user, in, Files.size(temp), file.getId());
             }
-
         } catch (final IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -112,25 +106,22 @@ public class AssetServiceImpl implements AssetService {
      * @param id            type id
      * @return the created file entity.
      */
-    private @NotNull FileEntity createFileEntity(@NotNull final String fileName, @NotNull final UserEntity user,
-                                                 @NotNull final InputStream content, final long contentLength,
+    private @NotNull FileEntity createFileEntity(@NotNull final String fileName,
+                                                 @NotNull final UserEntity user,
+                                                 @NotNull final InputStream content,
+                                                 final long contentLength,
                                                  final long id) {
-
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
         try (final Session session = sessionFactory.openSession()) {
-
             final LobCreator lobCreator = getLobCreator(session);
             final Blob blob = lobCreator.createBlob(content, contentLength);
-
             final FileEntity fileEntity = new FileEntity();
             fileEntity.setName(fileName);
             fileEntity.setCreator(user);
             fileEntity.setContent(blob);
             FileTypeEntity type = fileTypeRepository.findById(id).orElse(null);
             fileEntity.setType(type);
-
             fileRepository.save(fileEntity);
-
             return fileEntity;
         }
     }
@@ -139,15 +130,12 @@ public class AssetServiceImpl implements AssetService {
     public @NotNull AssetEntity createAsset(@NotNull final String nameAsset, @Nullable final String description,
                                             @NotNull final UserEntity user,
                                             @NotNull final AssetCategoryEntity category) {
-
         final AssetEntity assetEntity = new AssetEntity();
         assetEntity.setName(nameAsset);
         assetEntity.setDescription(description);
         assetEntity.setCreator(user);
         assetEntity.setCategory(category);
-
         assetRepository.save(assetEntity);
-
         return assetEntity;
     }
 
@@ -174,7 +162,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public @Nullable AssetEntity getAsset(long id) {
+    public @Nullable AssetEntity getAsset(final long id) {
         return assetRepository.findById(id).orElse(null);
     }
 
@@ -183,7 +171,6 @@ public class AssetServiceImpl implements AssetService {
                                                    @NotNull final InputStream content,
                                                    @NotNull final MultipartFile file,
                                                    @NotNull final AssetEntity asset) {
-
         final List<String> warnings = new ArrayList<>();
         Path tempFilePath = null;
         Path tempDirPath = null;
@@ -193,23 +180,18 @@ public class AssetServiceImpl implements AssetService {
             Files.copy(content, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
             FileUtils.unzip(tempDirPath, tempFilePath);
             final Array<Path> files = FileUtils.getFiles(tempDirPath, false, null);
-
             for (final Path path : files) {
                 final String extension = FileUtils.getExtension(path);
-
                 if (extension == null) {
                     warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
                     continue;
                 }
-
                 final FileTypeEntity type =
                         fileTypeRepository.findByExtension(extension).orElse(null);
-
                 if (type == null) {
                     warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
                     continue;
                 }
-
                 try (final InputStream in = Files.newInputStream(path)) {
                     final FileEntity newFile =
                             createFileEntity(path.toFile().getName(), user, in, Files.size(path), type.getId());
@@ -226,7 +208,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public @NotNull Path downloadAsset(AssetEntity asset) {
+    public @NotNull Path downloadAsset(@NotNull final AssetEntity asset) {
         final List<FileEntity> files = asset.getFiles();
         Path tempDirectory = null;
         try {
@@ -267,7 +249,8 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 
-    private void addNewZipEntry(final @NotNull ZipOutputStream zipOutputStream, final @NotNull Path dir,
+    private void addNewZipEntry(final @NotNull ZipOutputStream zipOutputStream,
+                                final @NotNull Path dir,
                                 final @NotNull Path file) {
         final Path fullPath = dir.resolve(file);
         try (final InputStream inputStream = Files.newInputStream(fullPath)) {

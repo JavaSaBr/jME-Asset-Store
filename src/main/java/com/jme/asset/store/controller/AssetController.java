@@ -4,18 +4,16 @@ import static com.jme.asset.store.security.util.SecurityUtil.getCurrentUser;
 import static java.util.Objects.requireNonNull;
 
 import com.jme.asset.store.Routes;
-import com.jme.asset.store.controller.params.AssetCategoryParams;
 import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
-import com.jme.asset.store.db.entity.asset.FileEntity;
+import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetCategoryService;
 import com.jme.asset.store.service.AssetService;
-import com.jme.asset.store.util.Utils;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import com.jme.asset.store.service.FileTypeService;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,16 +30,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * The Asset controller provides set of endpoints for working with Asset
@@ -65,11 +58,16 @@ public class AssetController {
     @NotNull
     private final AssetCategoryService categoryService;
 
+    @NotNull
+    private final FileTypeService fileTypeService;
+
     @Autowired
     public AssetController(@NotNull final AssetService assetService,
-                           @NotNull final AssetCategoryService categoryService) {
+                           @NotNull final AssetCategoryService categoryService,
+                           @NotNull final FileTypeService fileTypeService) {
         this.assetService = assetService;
         this.categoryService = categoryService;
+        this.fileTypeService = fileTypeService;
     }
 
     /**
@@ -113,8 +111,11 @@ public class AssetController {
         final UserEntity user = currentUser.getUser();
         final String name = multipartFile.getOriginalFilename();
         try {
-            assetService.createFile(name, user, multipartFile.getInputStream(), id);
+            final FileTypeEntity fileType = fileTypeService.loadType(id);
+            assetService.createFile(name, user, multipartFile.getInputStream(), fileType);
             return ResponseEntity.ok("The file is uploaded!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         } catch (final IOException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
