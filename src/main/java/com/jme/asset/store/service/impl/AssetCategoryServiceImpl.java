@@ -101,8 +101,8 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
-    public @NotNull List<AssetCategoryEntity> getChildren(final long id) {
-        return assetCategoryRepository.findAllByParentId(id);
+    public @NotNull List<AssetCategoryEntity> getChildren(@NotNull final AssetCategoryEntity parent) {
+        return assetCategoryRepository.findAllByParent(parent);
     }
 
 }

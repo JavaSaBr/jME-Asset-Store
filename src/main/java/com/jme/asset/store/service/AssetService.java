@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The Asset service interface
@@ -89,10 +90,10 @@ public interface AssetService {
     /**
      * Download asset in zip file
      *
-     * @param id asset id
+     * @param assetEntity the asset.
      * @return zip file with asset
      */
-    @NotNull Path downloadAsset(long id);
+    @NotNull Path downloadAsset(AssetEntity assetEntity);
 
     /**
      * Remove asset.
@@ -100,6 +101,4 @@ public interface AssetService {
      * @param assetEntity the asset.
      */
     void removeAsset(AssetEntity assetEntity);
-
-
 }

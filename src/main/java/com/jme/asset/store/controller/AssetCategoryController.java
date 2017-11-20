@@ -5,6 +5,7 @@ import com.jme.asset.store.controller.params.AssetCategoryParams;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.service.AssetCategoryService;
+import com.jme.asset.store.service.AssetService;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +68,7 @@ public class AssetCategoryController {
         } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ErrorResponse(e.getLocalizedMessage()));
+                    .body(new ErrorResponse("Can not be removed!"));
         }
         return ResponseEntity.ok("Deleted.");
     }
@@ -109,7 +110,8 @@ public class AssetCategoryController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<?> getChildren(@PathVariable final long id) {
         try {
-            return ResponseEntity.ok(assetCategoryService.getChildren(id));
+            final AssetCategoryEntity parent = assetCategoryService.load(id);
+            return ResponseEntity.ok(assetCategoryService.getChildren(parent));
         } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

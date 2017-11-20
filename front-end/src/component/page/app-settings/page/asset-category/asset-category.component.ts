@@ -60,6 +60,7 @@ export class AssetCategoryComponent implements OnInit {
   loadCategories(): void {
     this.categoryService.getCategories()
       .then(value => this.categories = value);
+    this.error = "";
   }
 
   /**
@@ -109,6 +110,7 @@ export class AssetCategoryComponent implements OnInit {
       .then(value => {
         this.categories = value;
         this.path.push(new CategoryComponent(name, id));
+        this.error = "";
       });
   }
 
@@ -120,6 +122,7 @@ export class AssetCategoryComponent implements OnInit {
   refreshFor(id: string) {
     if (id == null) {
       this.loadCategories();
+      this.error = "";
     } else {
       this.categoryService.getChildren(id)
         .then(value => this.categories = value);
@@ -134,6 +137,7 @@ export class AssetCategoryComponent implements OnInit {
     let categoryParam = this.categoryParam;
     categoryParam.name = '';
     categoryParam.description = '';
+    this.error = "";
   }
 
   /**

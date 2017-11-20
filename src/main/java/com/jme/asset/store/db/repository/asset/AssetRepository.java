@@ -1,10 +1,12 @@
 package com.jme.asset.store.db.repository.asset;
 
+import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The Asset repository
@@ -27,6 +29,5 @@ public interface AssetRepository extends PagingAndSortingRepository<AssetEntity,
      * @return list of creator's assets
      */
     List<AssetEntity> findAllByCreator_Id(long id);
-
 
 }

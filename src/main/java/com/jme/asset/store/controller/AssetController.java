@@ -180,7 +180,7 @@ public class AssetController {
     }
 
     @DeleteMapping(value = "asset/{id}")
-    @PreAuthorize("hasAuthority('ARTIST')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'ARTIST')")
     public ResponseEntity<?> deleteAsset(@PathVariable("id") final long id) {
         try {
             final AssetEntity assetEntity = assetService.getAsset(id);
