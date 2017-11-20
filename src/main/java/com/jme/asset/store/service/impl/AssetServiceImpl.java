@@ -223,10 +223,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public @NotNull Path downloadAsset(final long id) {
-        final AssetEntity asset = assetRepository.findById(id).orElse(null);
-        if (asset == null)
-            throw new NoSuchElementException("No asset with id: " + id);
+    public @NotNull Path downloadAsset(AssetEntity asset) {
         final List<FileEntity> files = asset.getFiles();
         Path tempDirectory = null;
         try {

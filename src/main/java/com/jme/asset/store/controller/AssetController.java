@@ -152,8 +152,8 @@ public class AssetController {
     public ResponseEntity<?> downloadAsset(final HttpServletResponse response, @PathVariable("id") final long id) {
         Path filePath = null;
         try {
-            filePath = assetService.downloadAsset(id);
             final AssetEntity asset = assetService.getAsset(id);
+            filePath = assetService.downloadAsset(asset);
             final String mimeType = Files.probeContentType(filePath);
             final HttpHeaders headers = new HttpHeaders();
             headers.setAccessControlExposeHeaders(Collections.singletonList("Content-Disposition"));
