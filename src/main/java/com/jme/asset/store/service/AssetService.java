@@ -55,7 +55,7 @@ public interface AssetService {
      * @param file the file entity file
      * @param id   the asset entity asset id
      */
-    void addFileToAsset(@NotNull FileEntity file, long id);
+    void addFileToAsset(@NotNull FileEntity file, @NotNull AssetEntity asset);
 
     /**
      * Remove file from asset

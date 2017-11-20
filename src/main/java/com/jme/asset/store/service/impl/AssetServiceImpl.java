@@ -140,9 +140,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void addFileToAsset(@NotNull final FileEntity file, long id) {
-        AssetEntity asset = assetRepository.findById(id).orElse(null);
-        if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
+    public void addFileToAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
         asset.addFile(file);
         assetRepository.save(asset);
     }
@@ -195,7 +193,7 @@ public class AssetServiceImpl implements AssetService {
                 try (final InputStream in = Files.newInputStream(path)) {
                     final FileEntity newFile =
                             createFileEntity(path.toFile().getName(), user, in, Files.size(path), type.getId());
-                    addFileToAsset(newFile, asset.getId());
+                    addFileToAsset(newFile, asset);
                 }
             }
         } catch (final IOException e) {
