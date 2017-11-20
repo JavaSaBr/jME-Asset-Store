@@ -11,6 +11,6 @@ export class UserAssetGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-   return this.securityService.hasRole('ARTIST');
+    return this.securityService.hasRole('ARTIST');
   }
 }

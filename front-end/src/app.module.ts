@@ -25,12 +25,10 @@ import {FileTypesService} from "./service/file-types.service";
 import {AddAssetComponent} from "./component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "./component/page/user-assets/user-assets.component";
 import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
-import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
-import {FileTypeDataSource} from "./service/file-type-data-source";
 import {AssetCategoryService} from "./service/asset-category.service";
 import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
-import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 import {AssetService} from "./service/asset/asset.service";
 import {AssetFilesComponent} from './component/page/asset-files/asset-files.component';
 import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
@@ -48,7 +46,6 @@ import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
     AssetCategoryComponent,
     AddAssetComponent,
     UserAssetsComponent,
-    AssetPresentationComponent,
     ChooseAssetCategoryComponent,
     AddFileTypeComponent,
     AssetFilesComponent

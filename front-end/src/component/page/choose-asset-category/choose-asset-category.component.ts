@@ -16,6 +16,11 @@ import {AssetCategoryService} from "../../../service/asset-category.service";
 })
 export class ChooseAssetCategoryComponent implements OnInit {
 
+  /**
+   * The components.
+   *
+   * @type {EventEmitter<CategoryComponent[]>}
+   */
   @Output() components = new EventEmitter<CategoryComponent[]>();
 
   /**

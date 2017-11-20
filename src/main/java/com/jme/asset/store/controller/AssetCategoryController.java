@@ -5,7 +5,6 @@ import com.jme.asset.store.controller.params.AssetCategoryParams;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.service.AssetCategoryService;
-import com.jme.asset.store.service.AssetService;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

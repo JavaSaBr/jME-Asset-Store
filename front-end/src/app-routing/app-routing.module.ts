@@ -11,7 +11,6 @@ import {AssetCategoryComponent} from "../component/page/app-settings/page/asset-
 import {AppSettingsGuard} from "../component/page/app-settings/app-settings.guard";
 import {AddAssetComponent} from "../component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "../component/page/user-assets/user-assets.component";
-import {AssetPresentationComponent} from "../component/page/asset-presentation/asset-presentation.component";
 import {ChooseAssetCategoryComponent} from "../component/page/choose-asset-category/choose-asset-category.component";
 import {AddFileTypeComponent} from "../component/page/app-settings/page/file-types/add-file-type/add-file-type.component";
 import {UserAssetGuard} from "../component/page/user-assets/user-asset.guard";
@@ -30,7 +29,6 @@ const routes: Routes = [
   },
   {path: RouteList.PAGE_REGISTER, component: RegisterComponent},
   {path: RouteList.PAGE_USER_ASSETS, component: UserAssetsComponent, canActivate: [UserAssetGuard]},
-  {path: RouteList.PAGE_ASSET, component: AssetPresentationComponent},
   {
     path: RouteList.PAGE_APP_SETTINGS, component: AppSettingsComponent, canActivate: [AppSettingsGuard], children: [
     {
