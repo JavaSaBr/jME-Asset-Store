@@ -1,4 +1,5 @@
 <div class="file-type-content">
+  <h1 class="position-center">My Assets</h1>
   <label *ngIf="error!=null"> {{error}}</label>
 
   <div class="add-file-type-button-position">
@@ -11,9 +12,21 @@
 
 
   <ul class="wrapper">
-    <li class="box" *ngFor="let asset of assets" (click)="loadFiles(asset.id)" >
-      <i class="material-icons md-48" matTooltip="{{asset.description}}">archive</i>
-      <h3>{{asset.name}}</h3>
+    <li class="box" *ngFor="let asset of assets">
+      <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item class="position-center" (click)="downloadAsset(asset.id, asset.name)">
+          <mat-icon>
+            <i class="material-icons size-32">archive</i>
+          </mat-icon>
+        </button>
+        <button mat-menu-item class="position-center">
+          <mat-icon>
+            <i class="material-icons size-32">delete_sweep</i>
+          </mat-icon>
+        </button>
+      </mat-menu>
+      <h3 matTooltip="{{asset.description}}" (click)="loadFiles(asset.id)">{{asset.name}}</h3>
     </li>
   </ul>
 </div>

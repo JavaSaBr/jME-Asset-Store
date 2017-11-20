@@ -16,6 +16,8 @@ import {AssetCategoryService} from "../../../service/asset-category.service";
 })
 export class ChooseAssetCategoryComponent implements OnInit {
 
+  @Output() components = new EventEmitter<CategoryComponent[]>();
+
   /**
    * The category param.
    */
@@ -41,9 +43,7 @@ export class ChooseAssetCategoryComponent implements OnInit {
    */
   private _error: string;
 
-
   constructor(private readonly categoryService: AssetCategoryService) {
-
   }
 
   ngOnInit() {
@@ -91,7 +91,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
     }
   }
 
-
   /**
    * Get the last element of the this._path.
    *
@@ -116,6 +115,13 @@ export class ChooseAssetCategoryComponent implements OnInit {
         return;
       }
     }
+  }
+
+  /**
+   * Get components of category.
+   */
+  getCategoryComponents() {
+    this.components.emit(this.path);
   }
 
   /**
@@ -223,12 +229,4 @@ export class ChooseAssetCategoryComponent implements OnInit {
   set label(value: boolean) {
     this._label = value;
   }
-
-
-  @Output() onChanged = new EventEmitter<CategoryComponent[]>();
-  getCategoryComponents(){
-    this.onChanged.emit(this.path);
-  }
-
-
 }

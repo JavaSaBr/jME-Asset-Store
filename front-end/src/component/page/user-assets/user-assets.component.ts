@@ -4,9 +4,10 @@ import {Router} from '@angular/router';
 import {PageComponent} from "../../page.component";
 import {AssetEntity} from "../../../model/entity/asset-entity";
 import {UserService} from "../../../service/user-service";
-import {DataSource} from "@angular/cdk/collections";
 import {AssetDataSource} from "../../../service/asset/asset-data-source";
 import {FileTypeEntity} from "../../../model/entity/file-type-entity";
+import {saveAs} from 'file-saver/FileSaver'
+
 
 @Component({
   moduleId: module.id,
@@ -22,6 +23,7 @@ export class UserAssetsComponent extends PageComponent {
   private _assets: AssetEntity[];
   private _files: FileTypeEntity[];
   private _showFiles: boolean;
+  private file: Blob;
 
 
   constructor(private readonly assetService: AssetService, private router: Router) {
@@ -47,6 +49,14 @@ export class UserAssetsComponent extends PageComponent {
 
   toAsset(id: number) {
     this.router.navigate(['/assets', id]);
+  }
+
+  downloadAsset(id: number, name: string){
+    this.assetService.downloadAsset(id,(message, file) =>{
+      if(message == null) {
+        saveAs(file, name)
+      }
+    })
   }
 
   get error() {

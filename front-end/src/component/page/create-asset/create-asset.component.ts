@@ -36,7 +36,7 @@ export class AddAssetComponent extends PageComponent {
   constructor(private readonly router: Router, private assetService: AssetService) {
     super();
     this._message = '';
-    this._info = new AssetParams("", "", 0,0);
+    this._info = new AssetParams("", "", 0, 0);
     this.viewCategory = false;
   }
 
@@ -101,5 +101,4 @@ export class AddAssetComponent extends PageComponent {
   changeViewCategory() {
     this.viewCategory = !this.viewCategory;
   }
-
 }

@@ -1,8 +1,8 @@
 <h1>Choose category</h1>
-<h3 class = "Asset catgister-page-error" [hidden]="error.length == 0">
+<h3 class="register-page-error" [hidden]="error.length == 0">
   {{error}}
 </h3>
-<ul class="menu-main">
+<ul class="components-path">
   <li *ngFor="let p of path">
     <div (click)="setTopOfPath(p.id)">
       {{p.name}}

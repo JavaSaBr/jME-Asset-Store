@@ -55,7 +55,7 @@
     </div>
 
     <div *ngIf="viewCategory">
-      <app-choose-asset-category (onChanged)="onChanged($event)"></app-choose-asset-category>
+      <app-choose-asset-category (components)="onChanged($event)"></app-choose-asset-category>
     </div>
     <button *ngIf="!viewCategory" class="create-asset-button" (click)="tryCreate()" mat-raised-button color="primary"
             [disabled]="!isValid()"> create

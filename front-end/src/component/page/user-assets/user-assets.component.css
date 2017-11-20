@@ -39,11 +39,19 @@
 }
 
 .wrapper {
+  margin-top: 5%;
   margin-left: 20%;
   list-style-type: none;
   display: grid;
   grid-template-columns: 220px 220px 220px;
   grid-gap: 30px;
+}
+
+.box i {
+  position: relative;
+  float: right;
+  margin: 5px;
+  font-size: 24px;
 }
 
 .box {
@@ -58,11 +66,6 @@
   box-shadow: 0px 0px 27px -4px rgba(0, 0, 0, 0.75);
 
   text-align: center;
-}
-
-.box i {
-  font-size: 80px;
-  margin: 15px;
 }
 
 .files-container {
@@ -80,3 +83,12 @@
   margin-top: 2%;
   margin-left: 92%;
 }
+
+.size-32{
+  font-size: 32px;
+}
+
+.position-center{
+  text-align: center;
+}
+

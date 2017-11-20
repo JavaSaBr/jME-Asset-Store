@@ -4,7 +4,6 @@ import {AssetParams} from "../../model/params/asset-params";
 import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
 import {SecurityService} from "../security.service";
-import {error} from "util";
 import {FileTypeEntity} from "../../model/entity/file-type-entity";
 
 
