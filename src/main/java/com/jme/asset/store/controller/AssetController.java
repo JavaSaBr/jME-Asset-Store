@@ -91,7 +91,7 @@ public class AssetController {
         List<String> warnings;
         try {
             final AssetEntity asset = assetService.createAsset(name, description, user, assetCategory);
-            warnings = assetService.addZipFileToAsset(user, file.getInputStream(), file.getOriginalFilename(), asset.getId());
+            warnings = assetService.addZipFileToAsset(user, file.getInputStream(), file, asset);
             warnings.add("The asset is created!");
         } catch (final Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));

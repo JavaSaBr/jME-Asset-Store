@@ -22,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManagerFactory;
 import java.io.File;
@@ -179,13 +180,15 @@ public class AssetServiceImpl implements AssetService {
 
     @Override
     public @NotNull List<String> addZipFileToAsset(@NotNull final UserEntity user,
-                                                   final InputStream content, final String fileName, final long id) {
+                                                   @NotNull final InputStream content,
+                                                   @NotNull final MultipartFile file,
+                                                   @NotNull final AssetEntity asset) {
 
         final List<String> warnings = new ArrayList<>();
         Path tempFilePath = null;
         Path tempDirPath = null;
         try {
-            tempFilePath = Files.createTempFile(fileName, ".zip");
+            tempFilePath = Files.createTempFile(file.getName(), ".zip");
             tempDirPath = Files.createTempDirectory("upload");
             Files.copy(content, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
             FileUtils.unzip(tempDirPath, tempFilePath);
@@ -208,9 +211,9 @@ public class AssetServiceImpl implements AssetService {
                 }
 
                 try (final InputStream in = Files.newInputStream(path)) {
-                    final FileEntity file =
+                    final FileEntity newFile =
                             createFileEntity(path.toFile().getName(), user, in, Files.size(path), type.getId());
-                    addFileToAsset(file, id);
+                    addFileToAsset(newFile, asset.getId());
                 }
             }
         } catch (final IOException e) {
@@ -246,7 +249,7 @@ public class AssetServiceImpl implements AssetService {
 
     @Override
     public void removeAsset(final @NotNull AssetEntity assetEntity) {
-            assetRepository.delete(assetEntity);
+        assetRepository.delete(assetEntity);
     }
 
     private @NotNull Path pathToZip(final @NotNull Path path, final @NotNull String assetName) {

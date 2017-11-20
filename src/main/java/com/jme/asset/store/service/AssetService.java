@@ -81,11 +81,14 @@ public interface AssetService {
      *
      * @param user     creator
      * @param content  InputStream of zip file
-     * @param fileName name of file
-     * @param id       asset id
+     * @param file the file
+     * @param asset the asset.
      * @return List of warnings
      */
-    @NotNull List<String> addZipFileToAsset(UserEntity user, InputStream content, String fileName, long id);
+    @NotNull List<String> addZipFileToAsset(@NotNull final UserEntity user,
+                                            @NotNull final InputStream content,
+                                            @NotNull final MultipartFile file,
+                                            @NotNull final AssetEntity asset);
 
     /**
      * Download asset in zip file
