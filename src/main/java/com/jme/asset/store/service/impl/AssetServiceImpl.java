@@ -122,8 +122,7 @@ public class AssetServiceImpl implements AssetService {
 
     @Override
     public @Nullable List<AssetEntity> getUserAssets(@NotNull final UserEntity creator) {
-        final List<AssetEntity> assets = assetRepository.findAllByCreator(creator);
-        return assets;
+        return assetRepository.findAllByCreator(creator);
     }
 
     @Override
@@ -185,8 +184,7 @@ public class AssetServiceImpl implements AssetService {
                 final Path tempFile = Files.createTempFile(tempDirectory, fileName, '.' + extension);
                 Files.copy(content.getBinaryStream(), tempFile, StandardCopyOption.REPLACE_EXISTING);
             }
-            final Path zipFile = pathToZip(tempDirectory, asset.getName());
-            return zipFile;
+            return pathToZip(tempDirectory, asset.getName());
         } catch (final Exception e) {
             throw new RuntimeException(e);
         } finally {

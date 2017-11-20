@@ -8,13 +8,16 @@ import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.AssetCategoryEntity;
 import com.jme.asset.store.db.entity.asset.AssetEntity;
+import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetCategoryService;
 import com.jme.asset.store.service.AssetService;
 import com.jme.asset.store.service.FileTypeService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,13 +86,13 @@ public class AssetController {
     public ResponseEntity<?> createAsset(@RequestPart(name = "file") final MultipartFile file,
                                          @RequestPart(name = "asset", required = false) final AssetCreateParam params) {
         final String name = params.getName();
-        if(name == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Argument 'name' can not be null!"));
+        if (name == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("The field 'name' can not be null!"));
         }
         final String description = params.getDescription();
         final AssetCategoryEntity assetCategory = categoryService.load(params.getCategoryId());
-        if(assetCategory == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        if (assetCategory == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("The category is not found!"));
         }
         final JmeUser currentUser = requireNonNull(getCurrentUser());
         final UserEntity user = currentUser.getUser();
@@ -117,16 +120,17 @@ public class AssetController {
         final JmeUser currentUser = requireNonNull((getCurrentUser()));
         final UserEntity user = currentUser.getUser();
         final String name = multipartFile.getOriginalFilename();
-        if(name == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Argument 'file' can not be null!"));
+        if (name == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("The field 'name' can not be null!"));
         }
         try {
             final FileTypeEntity fileType = fileTypeService.loadType(id);
+            if (fileType == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("The file type is not found!"));
+            }
             assetService.createFile(name, user, multipartFile.getInputStream(), fileType);
             return ResponseEntity.ok("The file is uploaded!");
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
-        } catch (final IOException e) {
+        } catch (RuntimeException | IOException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
     }
@@ -175,6 +179,9 @@ public class AssetController {
         Path filePath;
         try {
             final AssetEntity asset = assetService.getAsset(id);
+            if (asset == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("The asset is not found!"));
+            }
             filePath = assetService.downloadAsset(asset);
             final String mimeType = Files.probeContentType(filePath);
             final HttpHeaders headers = new HttpHeaders();
@@ -196,9 +203,17 @@ public class AssetController {
      */
     @GetMapping(value = "files/{id}")
     @PreAuthorize("hasAuthority('ARTIST')")
-    public ResponseEntity<?> getFilesList(@PathVariable("id") final long id) {
+    public @Nullable ResponseEntity<?> getFilesList(@PathVariable("id") final long id) {
         try {
-            return ResponseEntity.ok(assetService.getAsset(id).getFiles());
+            final AssetEntity asset = assetService.getAsset(id);
+            if (asset == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("The asset is not found!"));
+            }
+            final List<FileEntity> files = asset.getFiles();
+            if (files == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            return ResponseEntity.ok(files);
         } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -217,8 +232,9 @@ public class AssetController {
     public ResponseEntity<?> deleteAsset(@PathVariable("id") final long id) {
         try {
             final AssetEntity assetEntity = assetService.getAsset(id);
-            if (assetEntity == null)
+            if (assetEntity == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
             assetService.removeAsset(assetEntity);
         } catch (final RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));

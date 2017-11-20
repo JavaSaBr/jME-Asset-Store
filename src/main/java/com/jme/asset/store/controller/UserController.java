@@ -163,9 +163,11 @@ public class UserController {
     }
 
     @PostMapping("/get/user")
-    public @Nullable ResponseEntity<?> getUser(@RequestParam(name="id") final long id) {
+    public ResponseEntity<?> getUser(@RequestParam(name = "id") final long id) {
         final UserEntity user = userService.load(id);
-        if(user==null) return badRequest().body(null);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
         return ok(user);
     }
 }
