@@ -27,9 +27,9 @@ public interface FileTypeService {
     /**
      * Delete type by id
      *
-     * @param id id of type
+     * @param fileType the file type.
      */
-    void deleteType(final long id);
+    void deleteType(@NotNull final FileTypeEntity fileType);
 
     /**
      * Load type by id

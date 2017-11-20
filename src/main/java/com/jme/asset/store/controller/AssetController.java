@@ -29,7 +29,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,6 +57,9 @@ public class AssetController {
     @NotNull
     private final AssetCategoryService categoryService;
 
+    /**
+     * The file type service.
+     */
     @NotNull
     private final FileTypeService fileTypeService;
 
@@ -76,7 +78,6 @@ public class AssetController {
      * @param params the asset creation param
      * @return OK if the asset is created successfully, else BAD_REQUEST
      */
-
     @PostMapping(value = "add/asset")
     @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> createAsset(@RequestPart(name = "file") final MultipartFile file,
@@ -139,6 +140,12 @@ public class AssetController {
         }
     }
 
+    /**
+     * Get the asset.
+     *
+     * @param id the asset id.
+     * @return the asset.
+     */
     @GetMapping(value = "asset/{id}")
     @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> getAsset(@PathVariable("id") final long id) {
@@ -147,10 +154,16 @@ public class AssetController {
         return ResponseEntity.ok(asset);
     }
 
+    /**
+     * Download the asset.
+     *
+     * @param id the asset id.
+     * @return the resource.
+     */
     @GetMapping(value = "download/{id}")
     @PreAuthorize("hasAuthority('ARTIST')")
-    public ResponseEntity<?> downloadAsset(final HttpServletResponse response, @PathVariable("id") final long id) {
-        Path filePath = null;
+    public ResponseEntity<?> downloadAsset(@PathVariable("id") final long id) {
+        Path filePath;
         try {
             final AssetEntity asset = assetService.getAsset(id);
             filePath = assetService.downloadAsset(asset);
@@ -159,7 +172,6 @@ public class AssetController {
             headers.setAccessControlExposeHeaders(Collections.singletonList("Content-Disposition"));
             headers.set("Content-Disposition", "attachment; filename=" + asset.getName());
             headers.setContentType(MediaType.valueOf(mimeType));
-
             final Resource resource = new UrlResource(filePath.toUri());
             return new ResponseEntity<>(resource, headers, HttpStatus.OK);
         } catch (final Exception e) {
@@ -167,6 +179,12 @@ public class AssetController {
         }
     }
 
+    /**
+     * Get files of the asset.
+     *
+     * @param id the asset id.
+     * @return the list of the asset files.
+     */
     @GetMapping(value = "files/{id}")
     @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> getFilesList(@PathVariable("id") final long id) {
@@ -179,6 +197,12 @@ public class AssetController {
         }
     }
 
+    /**
+     * Delete the asset.
+     *
+     * @param id the asset id.
+     * @return http status and msg.
+     */
     @DeleteMapping(value = "asset/{id}")
     @PreAuthorize("hasAnyAuthority('ARTIST')")
     public ResponseEntity<?> deleteAsset(@PathVariable("id") final long id) {

@@ -20,9 +20,6 @@ import java.util.Optional;
 @Service
 public class FileTypeServiceImpl implements FileTypeService {
 
-    /**
-     * Repository of types
-     */
     @NotNull
     private FileTypeRepository fileTypeRepository;
 
@@ -41,14 +38,24 @@ public class FileTypeServiceImpl implements FileTypeService {
     }
 
     @Override
-    public void deleteType(final long id) {
-        fileTypeRepository.deleteById(id);
+    public void deleteType(@NotNull final FileTypeEntity fileType) {
+        fileTypeRepository.delete(fileType);
     }
 
     @Override
     public @Nullable FileTypeEntity loadType(final long id) {
         final Optional<FileTypeEntity> optional = fileTypeRepository.findById(id);
         return optional.isPresent() ? optional.get() : null;
+    }
+
+    @Override
+    public @Nullable List<FileTypeEntity> loadAllTypes() {
+        final List<FileTypeEntity> allFileTypes = new ArrayList<>();
+        final Iterable<FileTypeEntity> allTypes = fileTypeRepository.findAll();
+        for (final FileTypeEntity fileType : allTypes) {
+            allFileTypes.add(fileType);
+        }
+        return allFileTypes;
     }
 
     /**
@@ -67,15 +74,5 @@ public class FileTypeServiceImpl implements FileTypeService {
         type.setMimeType(mimeType);
         type.setExtension(extension);
         return type;
-    }
-
-    @Override
-    public @Nullable List<FileTypeEntity> loadAllTypes() {
-        final List<FileTypeEntity> allFileTypes = new ArrayList<>();
-        final Iterable<FileTypeEntity> allTypes = fileTypeRepository.findAll();
-        for (final FileTypeEntity fileType : allTypes) {
-            allFileTypes.add(fileType);
-        }
-        return allFileTypes;
     }
 }

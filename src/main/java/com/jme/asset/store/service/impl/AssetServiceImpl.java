@@ -33,7 +33,6 @@ import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -96,36 +95,6 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 
-    /**
-     * Creates a new file entity.
-     *
-     * @param fileName      the file name.
-     * @param user          the user.
-     * @param content       the content.
-     * @param contentLength the content length.
-     * @param id            type id
-     * @return the created file entity.
-     */
-    private @NotNull FileEntity createFileEntity(@NotNull final String fileName,
-                                                 @NotNull final UserEntity user,
-                                                 @NotNull final InputStream content,
-                                                 final long contentLength,
-                                                 final long id) {
-        final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-        try (final Session session = sessionFactory.openSession()) {
-            final LobCreator lobCreator = getLobCreator(session);
-            final Blob blob = lobCreator.createBlob(content, contentLength);
-            final FileEntity fileEntity = new FileEntity();
-            fileEntity.setName(fileName);
-            fileEntity.setCreator(user);
-            fileEntity.setContent(blob);
-            FileTypeEntity type = fileTypeRepository.findById(id).orElse(null);
-            fileEntity.setType(type);
-            fileRepository.save(fileEntity);
-            return fileEntity;
-        }
-    }
-
     @Override
     public @NotNull AssetEntity createAsset(@NotNull final String nameAsset, @Nullable final String description,
                                             @NotNull final UserEntity user,
@@ -146,9 +115,7 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public void removeFileFromAsset(@NotNull final FileEntity file, long id) {
-        AssetEntity asset = assetRepository.findById(id).orElse(null);
-        if (asset == null) throw new NoSuchElementException("No asset with id: " + id);
+    public void removeFileFromAsset(@NotNull final FileEntity file, @NotNull final AssetEntity asset) {
         asset.removeFile(file);
         assetRepository.save(asset);
     }
@@ -258,6 +225,36 @@ public class AssetServiceImpl implements AssetService {
             zipOutputStream.closeEntry();
         } catch (final IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Creates a new file entity.
+     *
+     * @param fileName      the file name.
+     * @param user          the user.
+     * @param content       the content.
+     * @param contentLength the content length.
+     * @param id            type id
+     * @return the created file entity.
+     */
+    private @NotNull FileEntity createFileEntity(@NotNull final String fileName,
+                                                 @NotNull final UserEntity user,
+                                                 @NotNull final InputStream content,
+                                                 final long contentLength,
+                                                 final long id) {
+        final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        try (final Session session = sessionFactory.openSession()) {
+            final LobCreator lobCreator = getLobCreator(session);
+            final Blob blob = lobCreator.createBlob(content, contentLength);
+            final FileEntity fileEntity = new FileEntity();
+            fileEntity.setName(fileName);
+            fileEntity.setCreator(user);
+            fileEntity.setContent(blob);
+            FileTypeEntity type = fileTypeRepository.findById(id).orElse(null);
+            fileEntity.setType(type);
+            fileRepository.save(fileEntity);
+            return fileEntity;
         }
     }
 }
