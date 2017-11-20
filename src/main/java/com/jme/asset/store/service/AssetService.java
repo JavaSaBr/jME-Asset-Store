@@ -94,5 +94,12 @@ public interface AssetService {
      */
     @NotNull Path downloadAsset(long id);
 
+    /**
+     * Remove asset.
+     *
+     * @param assetEntity the asset.
+     */
+    void removeAsset(AssetEntity assetEntity);
+
 
 }

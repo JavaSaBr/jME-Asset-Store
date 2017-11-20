@@ -246,7 +246,10 @@ public class AssetServiceImpl implements AssetService {
         }
     }
 
-
+    @Override
+    public void removeAsset(final @NotNull AssetEntity assetEntity) {
+            assetRepository.delete(assetEntity);
+    }
 
     private @NotNull Path pathToZip(final @NotNull Path path, final @NotNull String assetName) {
         try {

@@ -59,6 +59,16 @@ export class UserAssetsComponent extends PageComponent {
     })
   }
 
+  deleteAsset(id: number){
+    this.assetService.removeAsset(id, (message, result) =>{
+      if(result){
+        this.loadAssets();
+      }else{
+        this.error = message;
+      }
+    })
+  }
+
   get error() {
     return this._error;
   }

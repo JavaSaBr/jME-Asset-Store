@@ -163,13 +163,26 @@ public class AssetController {
     }
 
     @GetMapping(value = "files/{id}")
-    public ResponseEntity<?> getFilesList(@PathVariable("id") final long id){
-        try{
+    public ResponseEntity<?> getFilesList(@PathVariable("id") final long id) {
+        try {
             return ResponseEntity.ok(assetService.getAsset(id).getFiles());
-        }catch (final RuntimeException e) {
+        } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErrorResponse(e.getLocalizedMessage()));
         }
+    }
+
+    @DeleteMapping(value = "asset/{id}")
+    public ResponseEntity<?> deleteAsset(@PathVariable("id") final long id) {
+        try {
+            final AssetEntity assetEntity = assetService.getAsset(id);
+            if (assetEntity == null)
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            assetService.removeAsset(assetEntity);
+        } catch (final RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
+        }
+        return ResponseEntity.ok("Deleted");
     }
 }

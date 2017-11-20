@@ -78,4 +78,13 @@ export class AssetService {
       .then(result => handler(null, result.json()))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
+
+  public removeAsset(id: number, handler: (message: string, result: boolean) => void){
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.delete(AssetService.GET_ASSET + "/" + id.toString(), options)
+      .toPromise()
+      .then(value => handler(null, true))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)))
+  }
 }
