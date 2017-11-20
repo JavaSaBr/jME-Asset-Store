@@ -80,7 +80,7 @@ public class AssetController {
      */
 
     @PostMapping(value = "add/asset")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'AUTHOR')")
+    @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> createAsset(@RequestPart(name = "file") final MultipartFile file,
                                          @RequestPart(name = "asset", required = false) final AssetCreateParam params) {
         final String name = params.getName();
@@ -106,7 +106,7 @@ public class AssetController {
      * @return OK if the file is uploaded successfully, else BAD_REQUEST
      */
     @PostMapping(value = "add/file")
-    @PreAuthorize("hasAnyAuthority('ADMIN','AUTHOR')")
+    @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> uploadFile(@RequestParam(name = "file") final MultipartFile multipartFile,
                                         @RequestParam(name = "type_id") final long id) {
         final JmeUser currentUser = requireNonNull((getCurrentUser()));
@@ -128,7 +128,7 @@ public class AssetController {
      * @author Mikhail Gomanchuk
      */
     @GetMapping(value = "get/assets")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER', 'AUTHOR')")
+    @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> getUserAssets() {
         final JmeUser currentUser = requireNonNull((getCurrentUser()));
         final UserEntity user = currentUser.getUser();
@@ -140,7 +140,7 @@ public class AssetController {
     }
 
     @GetMapping(value = "asset/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER', 'AUTHOR')")
+    @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> getAsset(@PathVariable("id") final long id) {
         final AssetEntity asset = assetService.getAsset(id);
         if (asset == null) return ResponseEntity.badRequest().body("No asset with id:" + id);
@@ -148,7 +148,7 @@ public class AssetController {
     }
 
     @GetMapping(value = "download/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER', 'AUTHOR')")
+    @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> downloadAsset(final HttpServletResponse response, @PathVariable("id") final long id) {
         Path filePath = null;
         try {
@@ -168,7 +168,7 @@ public class AssetController {
     }
 
     @GetMapping(value = "files/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER', 'AUTHOR')")
+    @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> getFilesList(@PathVariable("id") final long id) {
         try {
             return ResponseEntity.ok(assetService.getAsset(id).getFiles());
@@ -180,7 +180,7 @@ public class AssetController {
     }
 
     @DeleteMapping(value = "asset/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'AUTHOR')")
+    @PreAuthorize("hasAuthority('ARTIST')")
     public ResponseEntity<?> deleteAsset(@PathVariable("id") final long id) {
         try {
             final AssetEntity assetEntity = assetService.getAsset(id);

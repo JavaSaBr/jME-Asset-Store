@@ -33,6 +33,7 @@ import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-catego
 import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
 import {AssetService} from "./service/asset/asset.service";
 import {AssetFilesComponent} from './component/page/asset-files/asset-files.component';
+import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
 
 @NgModule({
   declarations: [
@@ -77,7 +78,7 @@ import {AssetFilesComponent} from './component/page/asset-files/asset-files.comp
     MatTooltipModule,
     MatMenuModule
   ],
-  providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService, FileTypesService],
+  providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService, FileTypesService, UserAssetGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
