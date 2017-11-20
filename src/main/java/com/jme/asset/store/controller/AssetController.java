@@ -118,7 +118,6 @@ public class AssetController {
         } catch (final IOException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
-
     }
 
     /**
@@ -133,7 +132,7 @@ public class AssetController {
         final JmeUser currentUser = requireNonNull((getCurrentUser()));
         final UserEntity user = currentUser.getUser();
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(assetService.getUserAssets(user.getId()));
+            return ResponseEntity.status(HttpStatus.OK).body(assetService.getUserAssets(user));
         } catch (final RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getLocalizedMessage()));
         }
@@ -180,7 +179,7 @@ public class AssetController {
     }
 
     @DeleteMapping(value = "asset/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'ARTIST')")
+    @PreAuthorize("hasAnyAuthority('ARTIST')")
     public ResponseEntity<?> deleteAsset(@PathVariable("id") final long id) {
         try {
             final AssetEntity assetEntity = assetService.getAsset(id);

@@ -62,11 +62,11 @@ public interface AssetService {
     /**
      * User's assets
      *
-     * @param id user's id
+     * @param user the user.
      * @return list of user's assets
      * @author Mikhail Gomanchuk
      */
-    @Nullable List<AssetEntity> getUserAssets(long id);
+    @Nullable List<AssetEntity> getUserAssets(@NotNull final UserEntity user);
 
     /**
      * Get asset by id
@@ -93,12 +93,12 @@ public interface AssetService {
      * @param assetEntity the asset.
      * @return zip file with asset
      */
-    @NotNull Path downloadAsset(AssetEntity assetEntity);
+    @NotNull Path downloadAsset(@NotNull final AssetEntity assetEntity);
 
     /**
      * Remove asset.
      *
      * @param assetEntity the asset.
      */
-    void removeAsset(AssetEntity assetEntity);
+    void removeAsset(@NotNull final AssetEntity assetEntity);
 }

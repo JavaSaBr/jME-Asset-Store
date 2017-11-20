@@ -167,8 +167,8 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public @Nullable List<AssetEntity> getUserAssets(long id) {
-        final List<AssetEntity> assets = assetRepository.findAllByCreator_Id(id);
+    public @Nullable List<AssetEntity> getUserAssets(@NotNull final UserEntity creator) {
+        final List<AssetEntity> assets = assetRepository.findAllByCreator(creator);
         return assets;
     }
 
