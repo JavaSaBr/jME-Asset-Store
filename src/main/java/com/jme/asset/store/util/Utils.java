@@ -20,8 +20,8 @@ public class Utils {
      *
      * @param file the file to delete.
      */
-    public static boolean safeDelete(@Nullable final Path file) {
-        if (file == null) return true;
+    public static void safeDelete(@Nullable final Path file) {
+        if (file == null) return;
         FileUtils.delete(file);
     }
 }
