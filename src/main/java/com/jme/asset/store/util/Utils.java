@@ -20,19 +20,23 @@ public class Utils {
      *
      * @param file the file to delete.
      */
-    public static void safeDelete(@Nullable final Path file) {
-        if (file == null) {
-            return;
-        }
-        if (Files.isRegularFile(file)) {
-            FileUtils.delete(file);
-        } else {
-            final Array<Path> pathArray = FileUtils.getFiles(file, true, null);
-            for (final Path path : pathArray) {
-                if (file.equals(path)) continue;
-                safeDelete(path);
+    public static boolean safeDelete(@Nullable final Path file) {
+        if (file == null) return true;
+        try {
+            if (Files.isRegularFile(file))
+                FileUtils.delete(file);
+            else {
+                final Array<Path> pathArray = FileUtils.getFiles(file, true, null);
+                for (final Path path : pathArray) {
+                    if (file.equals(path)) continue;
+                    safeDelete(path);
+                }
+                FileUtils.delete(file);
             }
-            FileUtils.delete(file);
+            return true;
+        } catch (final RuntimeException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
