@@ -33,6 +33,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -250,10 +251,14 @@ public class AssetServiceImpl implements AssetService {
             fileEntity.setName(fileName);
             fileEntity.setCreator(user);
             fileEntity.setContent(blob);
-            FileTypeEntity type = fileTypeRepository.findById(id).orElse(null);
-            fileEntity.setType(type);
-            fileRepository.save(fileEntity);
-            return fileEntity;
+            Optional<FileTypeEntity> fileType = fileTypeRepository.findById(id);
+            if(!fileType.isPresent()){
+                return fileEntity;
+            }else {
+                fileEntity.setType(fileType.get());
+                fileRepository.save(fileEntity);
+                return fileEntity;
+            }
         }
     }
 }
