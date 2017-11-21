@@ -42,7 +42,6 @@ public class RoleServiceImpl implements RoleService {
                 entity = roleRepository.findByName(name);
             }
         }
-
         return Objects.requireNonNull(entity, "Not found a role.");
     }
 }

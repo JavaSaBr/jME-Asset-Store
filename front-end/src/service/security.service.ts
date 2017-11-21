@@ -85,8 +85,14 @@ export class SecurityService {
    * Add an access token to header of the request options.
    *
    * @param requestOptions the request options.
+   * @return the updated request options.
    */
-  public addAccessToken(requestOptions: RequestOptions): void {
+  public appendAccessToken(requestOptions: RequestOptions): void {
+
+    if ( requestOptions == null) {
+      requestOptions = new RequestOptions();
+    }
+
     const accessToken = this.accessToken;
     if (accessToken == null) {
       return;

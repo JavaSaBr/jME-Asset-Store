@@ -2,6 +2,7 @@ package com.jme.asset.store.service.impl;
 
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
+
 import com.jme.asset.store.AssetStoreApplication;
 import com.jme.asset.store.db.entity.user.AdminUserEntity;
 import com.jme.asset.store.db.entity.user.RoleEntity;
@@ -170,7 +171,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity authenticate(final String login, final String password) {
-       final  UserEntity user = userRepository.findByLogin(login);
+        final UserEntity user = userRepository.findByLogin(login);
         if (user != null && DigestUtils.md2Hex(password).equals(user.getPassword())) {
             return user;
         }
@@ -180,5 +181,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public @Nullable UserEntity load(final String login) {
         return userRepository.findByLogin(login);
+    }
+
+    @Override
+    public @Nullable UserEntity load(final long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }

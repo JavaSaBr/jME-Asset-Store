@@ -6,7 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
-  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule
+  MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -21,10 +22,16 @@ import {AssetCategoryComponent} from './component/page/app-settings/page/asset-c
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
 import {FileTypesService} from "./service/file-types.service";
+import {AddAssetComponent} from "./component/page/create-asset/create-asset.component";
+import {UserAssetsComponent} from "./component/page/user-assets/user-assets.component";
 import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
+import {HttpClientModule} from "@angular/common/http";
 import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
-import {FileTypeDataSource} from "./service/file-type-data-source";
 import {AssetCategoryService} from "./service/asset-category.service";
+import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
+import {AssetService} from "./service/asset/asset.service";
+import {AssetFilesComponent} from './component/page/asset-files/asset-files.component';
+import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
 
 @NgModule({
   declarations: [
@@ -37,7 +44,11 @@ import {AssetCategoryService} from "./service/asset-category.service";
     FileTypesComponent,
     FormControlDirective,
     AssetCategoryComponent,
+    AddAssetComponent,
+    UserAssetsComponent,
+    ChooseAssetCategoryComponent,
     AddFileTypeComponent,
+    AssetFilesComponent
   ],
   imports: [
     FormsModule,
@@ -59,9 +70,12 @@ import {AssetCategoryService} from "./service/asset-category.service";
     ValidatorModule,
     RouterModule,
     MatTabsModule,
-    MatTableModule
+    HttpClientModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatMenuModule
   ],
-  providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService, AssetCategoryService],
+  providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService, FileTypesService, UserAssetGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

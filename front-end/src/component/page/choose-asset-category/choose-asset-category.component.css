@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+
+.components-path {
+  list-style: none;
+  margin: 10px 0 5px;
+  padding: 10px 0 5px;
+  text-align: left;
+}
+
+.components-path li {
+  display: inline-block;
+}
+
+.components-path li:after {
+  content: ">";
+  color: #606060;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.components-path:last-child:after {
+  content: none;
+}
+
+.components-path div {
+  text-decoration: none;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 20px;
+  margin: 0 34px 0 30px;
+  font-size: 17px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: color .2s;
+}
+
+.components-path div, .components-path div:visited {
+  color: #9d999d;
+}
+
+.components-path.current, .components-path div:hover {
+  color: #4f54fe;
+}
+
+.components-path div:before,
+.components-path div:after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  top: auto;
+  right: 50%;
+  bottom: -5px;
+  left: 50%;
+  background: #4f54fe;
+  transition: .8s;
+}
+
+.components-path div:hover:before, .components-path .current:before {
+  left: 0;
+}
+
+.components-path div:hover:after, .components-path .current:after {
+  right: 0;
+}
+
+@media (max-width: 550px) {
+  .components-path {
+    padding-top: 0;
+  }
+
+  .components-path {
+    display: block;
+  }
+
+  .components-path:after {
+    content: none;
+  }
+
+  .components-path div {
+    padding: 25px 0 20px;
+    margin: 0 30px;
+  }
+}
+
+.components {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+}
+
+.container {
+  margin: 20px;
+}
+
+.components {
+  list-style-type: none;
+  width: 500px;
+}
+
+.container li {
+  height: 224px;
+}
+
+.container h3 {
+  margin-top: 0;
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+.container li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+.category-container {
+  background-color: #e8e8e8;
+  width: 150px;
+  height: 224px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.container div {
+  width: 150px;
+  height: 200px;
+}
+
+.container li:hover {
+  background: rgb(206, 206, 206);
+  cursor: pointer;
+}
+
+.material-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.material-icons.md-56 {
+  font-size: 56px;
+}
+
+.add-container {
+  width: 150px;
+  height: 224px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.category-container i {
+  position: relative;
+  height: 24px;
+  width: 24px;
+}
+
+.input-form-field {
+  width: 150px;
+}
+
+.input-form button {
+  width: 90%;
+  height: 35px;
+  margin-top: 2px;
+}
+
+.register-page-error {
+  color: #ff002b;
+  text-align: center;
+  margin-top: 10px;
+}
+
+

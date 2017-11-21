@@ -1,0 +1,25 @@
+<h1>Choose category</h1>
+<h3 class="register-page-error" [hidden]="error.length == 0">
+  {{error}}
+</h3>
+<ul class="components-path">
+  <li *ngFor="let p of path">
+    <div (click)="setTopOfPath(p.id)">
+      {{p.name}}
+    </div>
+  </li>
+</ul>
+<div class="container">
+  <ul class="components">
+    <li class="category-container" *ngFor="let category of categories">
+      <div class="category-content" (click)="loadChildren(category.name, category.id)">
+        <h3>{{category.name}}</h3>
+        <p>{{category.description}}</p>
+      </div>
+    </li>
+    <li class="add-container" *ngIf="categories == 0">
+      <i class="material-icons md-56" (click)="getCategoryComponents()">add_circle_outline</i>
+    </li>
+  </ul>
+</div>
+

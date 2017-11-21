@@ -1,0 +1,65 @@
+<div class="asset-create-form-container">
+  <div class="asset-create-form">
+    <h1>Create Asset</h1>
+    <h3 class="asset-create-error" [hidden]="message.length == 0">
+      {{message}}
+    </h3>
+  </div>
+  <form class="asset-create-form mat-elevation-z2" #userForm="ngForm">
+    <div *ngIf="!viewCategory">
+      <div class="create_asset-data-block">
+        <mat-input-container class="create-asset-data-row">
+          <input matInput placeholder="Asset name" id="AssetName"
+                 [(ngModel)]="info.name"
+                 name="name"
+                 #name="ngModel">
+        </mat-input-container>
+      </div>
+      <div class="create_asset-data-block">
+        <mat-input-container class="create-asset-data-row">
+          <input matInput placeholder="Asset description" id="AssetDescription"
+                 [(ngModel)]="info.description"
+                 name="description"
+                 #description="ngModel">
+        </mat-input-container>
+      </div>
+
+      <div class="file-input-button" *ngIf="!viewCategory">
+        <button mat-icon-button (click)="fileInput.click()">
+          <mat-icon aria-label="Choose category">
+            <i class="material-icons">add_box</i></mat-icon>
+          <span>Select file</span>
+          <input #fileInput type="file" accept="application/zip" (change)="selectFile($event)" style="display:none;"/>
+        </button>
+        <div *ngIf="file != null" class="menu-main">
+          <div>{{file.name}}</div>
+        </div>
+      </div>
+
+      <div class="category-add-button" *ngIf="!viewCategory" (click)="changeViewCategory()">
+        <button mat-icon-button>
+          <mat-icon aria-label="Choose category">
+            <i class="material-icons">perm_media</i></mat-icon>
+          <span>Choose category</span>
+        </button>
+      </div>
+
+
+      <ul class="menu-main" *ngIf="!viewCategory">
+        <li *ngFor="let p of path">
+          <div>
+            {{p.name}}
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="viewCategory">
+      <app-choose-asset-category (components)="onChanged($event)"></app-choose-asset-category>
+    </div>
+    <button *ngIf="!viewCategory" class="create-asset-button" (click)="tryCreate()" mat-raised-button color="primary"
+            [disabled]="!isValid()"> create
+    </button>
+  </form>
+
+</div>

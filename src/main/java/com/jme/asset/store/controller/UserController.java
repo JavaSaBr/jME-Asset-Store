@@ -15,6 +15,7 @@ import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AccessTokenService;
 import com.jme.asset.store.service.UserService;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 import java.util.List;
@@ -158,5 +160,14 @@ public class UserController {
         objectNode.set("roles", roles);
 
         return ok(objectNode.toString());
+    }
+
+    @PostMapping("/get/user")
+    public ResponseEntity<?> getUser(@RequestParam(name = "id") final long id) {
+        final UserEntity user = userService.load(id);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        return ok(user);
     }
 }

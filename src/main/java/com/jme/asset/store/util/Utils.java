@@ -1,5 +1,7 @@
 package com.jme.asset.store.util;
 
+import com.ss.rlib.util.FileUtils;
+import com.ss.rlib.util.array.Array;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -17,16 +19,9 @@ public class Utils {
      * Try to delete the file.
      *
      * @param file the file to delete.
-     * @return false if we had some errors.
      */
-    public static boolean safeDelete(@Nullable final Path file) {
-        if (file == null) return true;
-        try {
-            Files.delete(file);
-            return true;
-        } catch (final IOException e) {
-            e.printStackTrace();
-            return false;
-        }
+    public static void safeDelete(@Nullable final Path file) {
+        if (file == null) return;
+        FileUtils.delete(file);
     }
 }
