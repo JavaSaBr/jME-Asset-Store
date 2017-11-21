@@ -14,5 +14,8 @@ import java.util.Optional;
  * @author Gomanchuk Mikhail
  */
 public interface FileTypeRepository extends PagingAndSortingRepository<FileTypeEntity, Long> {
-    @NotNull Optional<FileTypeEntity> findByExtension(@NotNull final String extension);
+
+    @NotNull Optional<FileTypeEntity> findByExtension(@NotNull String extension);
+    @NotNull Optional<FileTypeEntity> findByExtensionAndMimeType(@NotNull String extension, @NotNull String mimeType);
+    @NotNull Optional<FileTypeEntity> findByMimeType(@NotNull String mimeType);
 }

@@ -22,21 +22,6 @@ public class Utils {
      */
     public static boolean safeDelete(@Nullable final Path file) {
         if (file == null) return true;
-        try {
-            if (Files.isRegularFile(file))
-                FileUtils.delete(file);
-            else {
-                final Array<Path> pathArray = FileUtils.getFiles(file, true, null);
-                for (final Path path : pathArray) {
-                    if (file.equals(path)) continue;
-                    safeDelete(path);
-                }
-                FileUtils.delete(file);
-            }
-            return true;
-        } catch (final RuntimeException e) {
-            e.printStackTrace();
-            return false;
-        }
+        FileUtils.delete(file);
     }
 }

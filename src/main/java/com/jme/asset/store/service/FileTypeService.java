@@ -44,4 +44,13 @@ public interface FileTypeService {
      * @return list of all file types
      */
     @Nullable List<FileTypeEntity> loadAllTypes();
+
+    /**
+     * Try to find a file type for the extension and mime type.
+     *
+     * @param extension the extension.
+     * @param mimeType the mime type.
+     * @return the file type or null.
+     */
+    @Nullable FileTypeEntity findType(@Nullable String extension, @Nullable String mimeType);
 }

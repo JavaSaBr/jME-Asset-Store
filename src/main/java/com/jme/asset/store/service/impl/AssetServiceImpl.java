@@ -10,10 +10,11 @@ import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
 import com.jme.asset.store.db.repository.asset.AssetRepository;
 import com.jme.asset.store.db.repository.asset.FileRepository;
-import com.jme.asset.store.db.repository.asset.FileTypeRepository;
 import com.jme.asset.store.service.AssetService;
+import com.jme.asset.store.service.FileTypeService;
 import com.ss.rlib.util.FileUtils;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import com.ss.rlib.util.IOUtils;
+import com.ss.rlib.util.StringUtils;
 import com.ss.rlib.util.array.Array;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,7 +34,6 @@ import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -62,32 +62,32 @@ public class AssetServiceImpl implements AssetService {
     private final FileRepository fileRepository;
 
     /**
-     * The file type repository
+     * The file type service.
      */
     @NotNull
-    private final FileTypeRepository fileTypeRepository;
+    private final FileTypeService fileTypeService;
 
     @Autowired
     public AssetServiceImpl(@NotNull final EntityManagerFactory entityManagerFactory,
                             @NotNull final AssetRepository assetRepository,
-                            @NotNull final FileRepository fileRepository, @NotNull FileTypeRepository fileTypeRepository) {
+                            @NotNull final FileRepository fileRepository, @NotNull final FileTypeService fileTypeService) {
         this.entityManagerFactory = entityManagerFactory;
         this.assetRepository = assetRepository;
         this.fileRepository = fileRepository;
-        this.fileTypeRepository = fileTypeRepository;
+        this.fileTypeService = fileTypeService;
     }
 
     @Override
     public @NotNull FileEntity createFile(@NotNull final String fileName,
                                           @NotNull final UserEntity user,
                                           @NotNull final InputStream inputStream,
-                                          @NotNull final FileTypeEntity file) {
+                                          @NotNull final FileTypeEntity fileType) {
         Path temp = null;
         try {
             temp = Files.createTempFile("upload", fileName);
             Files.copy(inputStream, temp, StandardCopyOption.REPLACE_EXISTING);
             try (final InputStream in = Files.newInputStream(temp)) {
-                return createFileEntity(fileName, user, in, Files.size(temp), file.getId());
+                return createFileEntity(fileName, user, in, fileType, Files.size(temp));
             }
         } catch (final IOException e) {
             throw new RuntimeException(e);
@@ -138,35 +138,43 @@ public class AssetServiceImpl implements AssetService {
         Path tempFilePath = null;
         Path tempDirPath = null;
         try {
+
             tempFilePath = Files.createTempFile(file.getName(), ".zip");
             tempDirPath = Files.createTempDirectory("upload");
+
             Files.copy(content, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
             FileUtils.unzip(tempDirPath, tempFilePath);
+
             final Array<Path> files = FileUtils.getFiles(tempDirPath, false);
+
             for (final Path path : files) {
+
                 final String extension = FileUtils.getExtension(path);
-                if (extension.equals("")) {
+                if (StringUtils.isEmpty(extension)) {
                     warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
                     continue;
                 }
-                final FileTypeEntity type =
-                        fileTypeRepository.findByExtension(extension).orElse(null);
+
+                final FileTypeEntity type = fileTypeService.findType(extension, null);
                 if (type == null) {
                     warnings.add("Unknown type of file: " + path.toFile().getName() + " . It will be skipped");
                     continue;
                 }
+
                 try (final InputStream in = Files.newInputStream(path)) {
-                    final FileEntity newFile =
-                            createFileEntity(path.toFile().getName(), user, in, Files.size(path), type.getId());
+                    final String fileName = path.getFileName().toString();
+                    final FileEntity newFile = createFileEntity(fileName, user, in, type, Files.size(path));
                     addFileToAsset(newFile, asset);
                 }
             }
+
         } catch (final IOException e) {
             throw new RuntimeException(e);
         } finally {
             safeDelete(tempFilePath);
             safeDelete(tempDirPath);
         }
+
         return warnings;
     }
 
@@ -199,29 +207,38 @@ public class AssetServiceImpl implements AssetService {
         assetRepository.delete(assetEntity);
     }
 
-    private @NotNull Path pathToZip(final @NotNull Path path, final @NotNull String assetName) {
+    private @NotNull Path pathToZip(@NotNull final Path path, @NotNull final String assetName) {
+
+        ZipOutputStream zipOutputStream = null;
         try {
+
             final Path tempZipFile = Files.createTempFile(assetName, ".zip");
-            final ZipOutputStream zipOutputStream = new ZipOutputStream(Files.newOutputStream(tempZipFile));
-            final Array<Path> files = FileUtils.getFiles(path, false, null);
-            for (Path file : files) {
+            zipOutputStream = new ZipOutputStream(Files.newOutputStream(tempZipFile));
+
+            for (final Path file : FileUtils.getFiles(path, false)) {
                 addNewZipEntry(zipOutputStream, path, file);
             }
-            zipOutputStream.close();
+
             return tempZipFile;
+
         } catch (final IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            IOUtils.close(zipOutputStream);
         }
     }
 
-    private void addNewZipEntry(final @NotNull ZipOutputStream zipOutputStream,
-                                final @NotNull Path dir,
-                                final @NotNull Path file) {
+    private void addNewZipEntry(@NotNull final ZipOutputStream zipOutputStream,
+                                @NotNull final Path dir,
+                                @NotNull final Path file) {
+
         final Path fullPath = dir.resolve(file);
+
         try (final InputStream inputStream = Files.newInputStream(fullPath)) {
-            final ZipEntry entry = new ZipEntry(FileUtils.getName(file.toString(), '\\'));
+            final String fileName = file.getFileName().toString();
+            final ZipEntry entry = new ZipEntry(fileName);
             zipOutputStream.putNextEntry(entry);
-            IOUtils.copy(inputStream, zipOutputStream);
+            IOUtils.copy(inputStream, zipOutputStream, new byte[512], false);
             zipOutputStream.closeEntry();
         } catch (final IOException e) {
             throw new RuntimeException(e);
@@ -234,31 +251,31 @@ public class AssetServiceImpl implements AssetService {
      * @param fileName      the file name.
      * @param user          the user.
      * @param content       the content.
+     * @param fileType      the file type.
      * @param contentLength the content length.
-     * @param id            type id
      * @return the created file entity.
      */
     private @NotNull FileEntity createFileEntity(@NotNull final String fileName,
                                                  @NotNull final UserEntity user,
                                                  @NotNull final InputStream content,
-                                                 final long contentLength,
-                                                 final long id) {
+                                                 @NotNull final FileTypeEntity fileType,
+                                                 final long contentLength) {
+
         final SessionFactory sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+
         try (final Session session = sessionFactory.openSession()) {
+
             final LobCreator lobCreator = getLobCreator(session);
             final Blob blob = lobCreator.createBlob(content, contentLength);
             final FileEntity fileEntity = new FileEntity();
             fileEntity.setName(fileName);
             fileEntity.setCreator(user);
             fileEntity.setContent(blob);
-            Optional<FileTypeEntity> fileType = fileTypeRepository.findById(id);
-            if(!fileType.isPresent()){
-                return fileEntity;
-            }else {
-                fileEntity.setType(fileType.get());
-                fileRepository.save(fileEntity);
-                return fileEntity;
-            }
+            fileEntity.setType(fileType);
+
+            fileRepository.save(fileEntity);
+
+            return fileEntity;
         }
     }
 }

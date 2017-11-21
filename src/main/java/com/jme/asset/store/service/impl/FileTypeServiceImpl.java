@@ -3,6 +3,7 @@ package com.jme.asset.store.service.impl;
 import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.repository.asset.FileTypeRepository;
 import com.jme.asset.store.service.FileTypeService;
+import com.ss.rlib.util.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,18 @@ public class FileTypeServiceImpl implements FileTypeService {
             allFileTypes.add(fileType);
         }
         return allFileTypes;
+    }
+
+    @Override
+    public @Nullable FileTypeEntity findType(@Nullable final String extension, @Nullable final String mimeType) {
+
+        if (!StringUtils.isEmpty(extension) && !StringUtils.isEmpty(mimeType)) {
+            return fileTypeRepository.findByExtensionAndMimeType(extension, mimeType).orElse(null);
+        } else if (!StringUtils.isEmpty(extension)) {
+            return fileTypeRepository.findByExtension(extension).orElse(null);
+        }
+
+        return fileTypeRepository.findByMimeType(mimeType).orElse(null);
     }
 
     /**
