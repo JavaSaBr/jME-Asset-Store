@@ -1,4 +1,5 @@
-export class FileEntity{
+export class FileEntity {
+
   private _id: number;
   private _content: Blob;
   private _name: string;
@@ -12,7 +13,6 @@ export class FileEntity{
     this._creator_id = creator_id;
     this._type_id = type_id;
   }
-
 
   get id(): number {
     return this._id;

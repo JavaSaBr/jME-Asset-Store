@@ -4,7 +4,6 @@ import {CategoryComponent} from "../../../model/category/category-component";
 import {AssetCategoryEntity} from "../../../model/entity/asset-category-entity";
 import {AssetCategoryService} from "../../../service/asset-category.service";
 
-
 /**
  * Implementation of logic for UI for work with asset category.
  *
@@ -16,6 +15,13 @@ import {AssetCategoryService} from "../../../service/asset-category.service";
   styleUrls: ['./choose-asset-category.component.css']
 })
 export class ChooseAssetCategoryComponent implements OnInit {
+
+  /**
+   * The components.
+   *
+   * @type {EventEmitter<CategoryComponent[]>}
+   */
+  @Output() components = new EventEmitter<CategoryComponent[]>();
 
   /**
    * The category param.
@@ -42,9 +48,7 @@ export class ChooseAssetCategoryComponent implements OnInit {
    */
   private _error: string;
 
-
   constructor(private readonly categoryService: AssetCategoryService) {
-
   }
 
   ngOnInit() {
@@ -64,11 +68,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
       .then(value => this.categories = value);
   }
 
-
-  clickOnCategory(){
-
-  }
-
   /**
    * Load the children.
    *
@@ -79,10 +78,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
     this.categoryService.getChildren(id)
       .then(value => {
         this.categories = value;
-        if (this.categories == null || this.categories.length == 0) {
-            this.getCategoryId(id);
-            return;
-        }
         this.path.push(new CategoryComponent(name, id));
       });
   }
@@ -101,7 +96,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
     }
   }
 
-
   /**
    * Get the last element of the this._path.
    *
@@ -109,10 +103,6 @@ export class ChooseAssetCategoryComponent implements OnInit {
    */
   getLastPathElement(): CategoryComponent {
     return this.path[this.path.length - 1];
-  }
-
-  chooseCategory(){
-
   }
 
   /**
@@ -130,6 +120,13 @@ export class ChooseAssetCategoryComponent implements OnInit {
         return;
       }
     }
+  }
+
+  /**
+   * Get components of category.
+   */
+  getCategoryComponents() {
+    this.components.emit(this.path);
   }
 
   /**
@@ -237,12 +234,4 @@ export class ChooseAssetCategoryComponent implements OnInit {
   set label(value: boolean) {
     this._label = value;
   }
-
-
-  @Output() onChanged = new EventEmitter<string>();
-  getCategoryId(id: string){
-    this.onChanged.emit(id);
-  }
-
-
 }

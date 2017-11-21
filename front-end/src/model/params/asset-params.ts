@@ -1,4 +1,5 @@
 export class AssetParams {
+
   name: string;
   description: string;
   id: number;

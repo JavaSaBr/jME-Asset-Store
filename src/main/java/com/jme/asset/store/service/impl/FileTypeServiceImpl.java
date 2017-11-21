@@ -3,6 +3,7 @@ package com.jme.asset.store.service.impl;
 import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.repository.asset.FileTypeRepository;
 import com.jme.asset.store.service.FileTypeService;
+import com.ss.rlib.util.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,6 @@ import java.util.Optional;
 @Service
 public class FileTypeServiceImpl implements FileTypeService {
 
-    /**
-     * Repository of types
-     */
     @NotNull
     private FileTypeRepository fileTypeRepository;
 
@@ -41,14 +39,36 @@ public class FileTypeServiceImpl implements FileTypeService {
     }
 
     @Override
-    public void deleteType(final long id) {
-        fileTypeRepository.deleteById(id);
+    public void deleteType(@NotNull final FileTypeEntity fileType) {
+        fileTypeRepository.delete(fileType);
     }
 
     @Override
     public @Nullable FileTypeEntity loadType(final long id) {
         final Optional<FileTypeEntity> optional = fileTypeRepository.findById(id);
         return optional.isPresent() ? optional.get() : null;
+    }
+
+    @Override
+    public @Nullable List<FileTypeEntity> loadAllTypes() {
+        final List<FileTypeEntity> allFileTypes = new ArrayList<>();
+        final Iterable<FileTypeEntity> allTypes = fileTypeRepository.findAll();
+        for (final FileTypeEntity fileType : allTypes) {
+            allFileTypes.add(fileType);
+        }
+        return allFileTypes;
+    }
+
+    @Override
+    public @Nullable FileTypeEntity findType(@Nullable final String extension, @Nullable final String mimeType) {
+
+        if (!StringUtils.isEmpty(extension) && !StringUtils.isEmpty(mimeType)) {
+            return fileTypeRepository.findByExtensionAndMimeType(extension, mimeType).orElse(null);
+        } else if (!StringUtils.isEmpty(extension)) {
+            return fileTypeRepository.findByExtension(extension).orElse(null);
+        }
+
+        return fileTypeRepository.findByMimeType(mimeType).orElse(null);
     }
 
     /**
@@ -67,15 +87,5 @@ public class FileTypeServiceImpl implements FileTypeService {
         type.setMimeType(mimeType);
         type.setExtension(extension);
         return type;
-    }
-
-    @Override
-    public @Nullable List<FileTypeEntity> loadAllTypes() {
-        final List<FileTypeEntity> allFileTypes = new ArrayList<>();
-        final Iterable<FileTypeEntity> allTypes = fileTypeRepository.findAll();
-        for (final FileTypeEntity fileType : allTypes) {
-            allFileTypes.add(fileType);
-        }
-        return allFileTypes;
     }
 }

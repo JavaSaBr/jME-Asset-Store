@@ -4,7 +4,7 @@ import {AssetParams} from "../../model/params/asset-params";
 import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
 import {SecurityService} from "../security.service";
-
+import {FileTypeEntity} from "../../model/entity/file-type-entity";
 
 @Injectable()
 export class AssetService {
@@ -20,6 +20,8 @@ export class AssetService {
   public static CATEGORY_ASSETS: string = "/api/assets/category/";
 
   public static ALL_ASSETS: string = "/api/assets/all/";
+
+  public static FILES_LIST: string = "/api/assets/files/";
 
   constructor(private readonly http: Http, private securityService: SecurityService) {
   }
@@ -75,7 +77,9 @@ export class AssetService {
   }
 
   public loadAsset(id: number, handler: (message: string, result: AssetEntity) => void) {
-    this.http.get(AssetService.GET_ASSET + "/" + id, this.securityService.appendAccessToken())
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.get(AssetService.GET_ASSET + "/" + id, options)
       .toPromise().then(value => handler(null, value.json()))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
@@ -88,5 +92,23 @@ export class AssetService {
       .toPromise()
       .then(value => handler(null, value.blob()))
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
+  }
+
+  public getFiles(id: number, handler: (message: string, result: FileTypeEntity[]) => void) {
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.get(AssetService.FILES_LIST + "/" + id.toString(), options)
+      .toPromise()
+      .then(result => handler(null, result.json()))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
+  }
+
+  public removeAsset(id: number, handler: (message: string, result: boolean) => void) {
+    let options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    this.http.delete(AssetService.GET_ASSET + "/" + id.toString(), options)
+      .toPromise()
+      .then(value => handler(null, true))
+      .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, false)))
   }
 }

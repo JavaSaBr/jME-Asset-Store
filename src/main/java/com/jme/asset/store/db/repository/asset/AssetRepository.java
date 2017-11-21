@@ -1,6 +1,7 @@
 package com.jme.asset.store.db.repository.asset;
 
 import com.jme.asset.store.db.entity.asset.AssetEntity;
+import com.jme.asset.store.db.entity.user.UserEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public interface AssetRepository extends PagingAndSortingRepository<AssetEntity,
     AssetEntity findByName(String assetName);
 
     /**
-     * Find all assets by creator_id
+     * Find all assets by creator.
      *
-     * @param id id of creator
+     * @param creator is th creator.
      * @return list of creator's assets
      */
-    List<AssetEntity> findAllByCreator_Id(long id);
+    List<AssetEntity> findAllByCreator(UserEntity creator);
 
     /**
      * Find all assets by category_id
@@ -35,4 +36,5 @@ public interface AssetRepository extends PagingAndSortingRepository<AssetEntity,
      * @return list of category assets
      */
     List<AssetEntity> findAllByCategory_Id(long id);
+
 }

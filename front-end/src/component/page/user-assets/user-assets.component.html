@@ -1,14 +1,38 @@
-<div class="asset-containers">
+<div class="file-type-content">
+  <h1 class="position-center">My Assets</h1>
   <label *ngIf="error!=null"> {{error}}</label>
-  <ul class="asset-components" *ngIf="assets!=null">
-    <li class="asset-container" *ngFor="let asset of assets">
-      <div class="card" (click)="toAsset(asset.id)">
-        <div class="card-body">{{asset.name}}</div>
-      </div>
-    </li>
-    <li class="create-asset-container">
-      <i class="material-icons md-56" (click)="createAsset()">add_circle_outline</i>
+
+  <div class="add-file-type-button-position">
+    <button mat-icon-button>
+      <mat-icon (click)="createAsset()">
+        <i class="material-icons md-48 blue" aria-hidden="true">add_circle</i>
+      </mat-icon>
+    </button>
+  </div>
+
+
+  <ul class="wrapper">
+    <li class="box" *ngFor="let asset of assets">
+      <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item class="position-center" (click)="downloadAsset(asset.id, asset.name)">
+          <mat-icon>
+            <i class="material-icons size-32">archive</i>
+          </mat-icon>
+        </button>
+        <button mat-menu-item class="position-center" (click)="deleteAsset(asset.id)">
+          <mat-icon>
+            <i class="material-icons size-32">delete_sweep</i>
+          </mat-icon>
+        </button>
+      </mat-menu>
+      <h2 matTooltip="{{asset.description}}" (click)="loadFiles(asset.id)">{{asset.name}}</h2>
     </li>
   </ul>
+</div>
+
+<div class="files-container" *ngIf="showFiles">
+  <i class="material-icons" (click)="showFiles = false">clear</i>
+  <app-asset-files [files]="files" (onChanged)="hideFiles($event)"></app-asset-files>
 </div>
 

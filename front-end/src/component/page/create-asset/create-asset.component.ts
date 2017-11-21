@@ -4,6 +4,7 @@ import {AssetService} from "../../../service/asset/asset.service";
 import {PageComponent} from "../../page.component";
 import {AssetParams} from "../../../model/params/asset-params";
 import {ChooseAssetCategoryComponent} from "../choose-asset-category/choose-asset-category.component";
+import {CategoryComponent} from "../../../model/category/category-component";
 
 @Component({
   moduleId: module.id,
@@ -12,30 +13,36 @@ import {ChooseAssetCategoryComponent} from "../choose-asset-category/choose-asse
   providers: [AssetService],
   styleUrls: ['./create-asset.component.css']
 })
-
 export class AddAssetComponent extends PageComponent {
+
+  /**
+   * The category path.
+   */
+  private _path: CategoryComponent[];
+
   private _info: AssetParams;
 
   private _message: string;
 
   private _file: File;
 
-  viewCategory: boolean;
+  myId: number = 0;
 
+  viewCategory: boolean;
 
   @ViewChild(ChooseAssetCategoryComponent) category: ChooseAssetCategoryComponent;
 
   constructor(private readonly router: Router, private assetService: AssetService) {
     super();
-    this._message = '';
-    this._info = new AssetParams("", "", 0,0);
+    this.message = '';
+    this.info = new AssetParams("", "", 0, 0);
     this.viewCategory = false;
   }
 
   tryCreate() {
-    console.log(this._info);
-    this.assetService.createAsset(this._info, this._file, (message, result, warnings) => {
-      this._message = message;
+    console.log(this.info);
+    this.assetService.createAsset(this.info, this.file, (message, result, warnings) => {
+      this.message = message;
       if (warnings != null)
         warnings.forEach(warning => console.log(warning))
       if (result) {
@@ -46,7 +53,7 @@ export class AddAssetComponent extends PageComponent {
   }
 
   selectFile(event) {
-    this._file = event.target.files[0];
+    this.file = event.target.files[0];
   }
 
 
@@ -66,7 +73,6 @@ export class AddAssetComponent extends PageComponent {
     this._message = value;
   }
 
-
   get file(): File {
     return this._file;
   }
@@ -75,21 +81,27 @@ export class AddAssetComponent extends PageComponent {
     this._file = value;
   }
 
+  get path(): CategoryComponent[] {
+    return this._path;
+  }
+
+  set path(value: CategoryComponent[]) {
+    this._path = value;
+  }
+
   private isValid(): boolean {
-    return this.info.name.length > 0 && this.info.description.length > 0 && this._file != null;
+    return this.info.name.length > 0 && this.info.description.length > 0 && this.file != null;
   }
 
   private chooseCategory() {
     this.router.navigateByUrl("/choose-asset-category");
   }
 
-
-  myId: string = "choose category";
-
-  onChanged(increased: any) {
-    this.myId = increased;
+  onChanged(path: any) {
+    this.path = path;
     this.viewCategory = !this.viewCategory;
-    this._info.category_id = increased;
+    this.info.category_id = path[path.length - 1].id;
+    this.myId = this.info.category_id;
   }
 
   changeViewCategory() {

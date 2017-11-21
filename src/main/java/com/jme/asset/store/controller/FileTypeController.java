@@ -5,7 +5,6 @@ import com.jme.asset.store.controller.params.FileTypeCreateParams;
 import com.jme.asset.store.controller.response.ErrorResponse;
 import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.service.FileTypeService;
-import com.jme.asset.store.service.RoleService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

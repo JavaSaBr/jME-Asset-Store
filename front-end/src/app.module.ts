@@ -7,8 +7,7 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
   MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule,
-  MatCardModule
-
+  MatCardModule, MatTooltipModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -23,18 +22,19 @@ import {AssetCategoryComponent} from './component/page/app-settings/page/asset-c
 import {RouterModule} from "@angular/router";
 import {AppSettingsGuard} from "./component/page/app-settings/app-settings.guard";
 import {FileTypesService} from "./service/file-types.service";
-import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
-import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
-import {FileTypeDataSource} from "./service/file-type-data-source";
 import {AddAssetComponent} from "./component/page/create-asset/create-asset.component";
 import {UserAssetsComponent} from "./component/page/user-assets/user-assets.component";
-import {HttpClient, HttpClientModule, HttpParams} from "@angular/common/http";
+import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
+import {HttpClientModule} from "@angular/common/http";
+import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
+import {FileTypeDataSource} from "./service/file-type-data-source";
 import {AssetCategoryService} from "./service/asset-category.service";
-import {AssetPresentationComponent} from "./component/page/asset-presentation/asset-presentation.component";
-import {AssetService} from "./service/asset/asset.service";
 import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
 import {TreeViewComponent} from './component/page/dashboard/tree-view/tree-view.component';
 import {BrowsingComponent} from './component/page/dashboard/browsing/browsing.component';
+import {AssetService} from "./service/asset/asset.service";
+import {AssetFilesComponent} from './component/page/asset-files/asset-files.component';
+import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
 
 @NgModule({
   declarations: [
@@ -50,10 +50,13 @@ import {BrowsingComponent} from './component/page/dashboard/browsing/browsing.co
     AddFileTypeComponent,
     AddAssetComponent,
     UserAssetsComponent,
-    AssetPresentationComponent,
     ChooseAssetCategoryComponent,
     TreeViewComponent,
-    BrowsingComponent
+    BrowsingComponent,
+    UserAssetsComponent,
+    ChooseAssetCategoryComponent,
+    AddFileTypeComponent,
+    AssetFilesComponent
   ],
   imports: [
     FormsModule,
@@ -77,11 +80,13 @@ import {BrowsingComponent} from './component/page/dashboard/browsing/browsing.co
     MatTabsModule,
     MatTableModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule
   ],
   providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService, AssetCategoryService,
-    AssetService],
+    AssetService, UserAssetGuard],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

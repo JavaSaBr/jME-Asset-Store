@@ -33,11 +33,11 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__component_page_app_settings_page_file_types_file_types_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/file-types.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__component_page_app_settings_page_asset_category_asset_category_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/asset-category/asset-category.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__component_page_app_settings_app_settings_guard__ = __webpack_require__("../../../../../src/component/page/app-settings/app-settings.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_page_create_asset_create_asset_component__ = __webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_page_user_assets_user_assets_component__ = __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_page_asset_presentation_asset_presentation_component__ = __webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__component_page_choose_asset_category_choose_asset_category_component__ = __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__component_page_create_asset_create_asset_component__ = __webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__component_page_user_assets_user_assets_component__ = __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__component_page_choose_asset_category_choose_asset_category_component__ = __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__component_page_user_assets_user_asset_guard__ = __webpack_require__("../../../../../src/component/page/user-assets/user-asset.guard.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,18 +68,17 @@ var routes = [
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_DASHBOARD, component: __WEBPACK_IMPORTED_MODULE_5__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */] },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_LOGIN, component: __WEBPACK_IMPORTED_MODULE_4__component_page_login_login_component__["a" /* LoginComponent */] },
     {
-        path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_CREATE_ASSET, component: __WEBPACK_IMPORTED_MODULE_12__component_page_create_asset_create_asset_component__["a" /* AddAssetComponent */], children: [
-            { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_CHOOSE_ASSET_CATEGORY, component: __WEBPACK_IMPORTED_MODULE_15__component_page_choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */] }
+        path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_CREATE_ASSET, component: __WEBPACK_IMPORTED_MODULE_11__component_page_create_asset_create_asset_component__["a" /* AddAssetComponent */], children: [
+            { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_CHOOSE_ASSET_CATEGORY, component: __WEBPACK_IMPORTED_MODULE_13__component_page_choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */] }
         ]
     },
     { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_REGISTER, component: __WEBPACK_IMPORTED_MODULE_6__component_page_register_register_component__["a" /* RegisterComponent */] },
-    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_USER_ASSETS, component: __WEBPACK_IMPORTED_MODULE_13__component_page_user_assets_user_assets_component__["a" /* UserAssetsComponent */] },
-    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_ASSET, component: __WEBPACK_IMPORTED_MODULE_14__component_page_asset_presentation_asset_presentation_component__["a" /* AssetPresentationComponent */] },
+    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_USER_ASSETS, component: __WEBPACK_IMPORTED_MODULE_12__component_page_user_assets_user_assets_component__["a" /* UserAssetsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_15__component_page_user_assets_user_asset_guard__["a" /* UserAssetGuard */]] },
     {
         path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_APP_SETTINGS, component: __WEBPACK_IMPORTED_MODULE_7__component_page_app_settings_app_settings_component__["a" /* AppSettingsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__component_page_app_settings_app_settings_guard__["a" /* AppSettingsGuard */]], children: [
             {
                 path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_FILE_TYPES, component: __WEBPACK_IMPORTED_MODULE_8__component_page_app_settings_page_file_types_file_types_component__["a" /* FileTypesComponent */], children: [
-                    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_ADD_FILE_TYPE, component: __WEBPACK_IMPORTED_MODULE_11__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__["a" /* AddFileTypeComponent */] }
+                    { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_ADD_FILE_TYPE, component: __WEBPACK_IMPORTED_MODULE_14__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__["a" /* AddFileTypeComponent */] }
                 ]
             },
             { path: __WEBPACK_IMPORTED_MODULE_3__util_route_list__["a" /* RouteList */].PAGE_ASSET_CATEGORY, component: __WEBPACK_IMPORTED_MODULE_9__component_page_app_settings_page_asset_category_asset_category_component__["a" /* AssetCategoryComponent */] }
@@ -101,9 +100,9 @@ AppRoutingModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgModule */])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_2__angular_common__["b" /* CommonModule */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(routes, routerOptions)
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */].forRoot(routes, routerOptions)
         ],
-        exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]],
+        exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* RouterModule */]],
         declarations: []
     })
 ], AppRoutingModule);
@@ -120,7 +119,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".root-content {\n  height: 100%;\n  overflow-y: scroll;\n}\n\n::-webkit-scrollbar {\n  width: 0px;\n  background: rgba(255, 255, 255, 0.0);\n}\n", ""]);
 
 // exports
 
@@ -133,7 +132,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n  <button mat-button routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\n  </button>\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">Login\n  </button>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/register\"\n          routerLinkActive=\"m-toolbar-button-active\">Register\n  </button>\n  <button mat-button *ngIf=\"true\" routerLink=\"/app-settings\" routerLinkActive=\"m-toolbar-button-active\">\n    App settings\n  </button>\n  <button mat-button *ngIf=\"true\" routerLink=\"/user-assets\" routerLinkActive=\"m-toolbar-button-active\">\n    My assets\n  </button>\n  <button mat-button *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<mat-toolbar class=\"app-bar mat-elevation-z6\" color=\"primary\">\n  <button mat-button routerLink=\"/dashboard\" routerLinkActive=\"m-toolbar-button-active\">Home\n  </button>\n  <span class=\"app-toolbar-filler\"></span>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/login\"\n          routerLinkActive=\"m-toolbar-button-active\">Login\n  </button>\n  <button mat-button *ngIf=\"!authed\" routerLink=\"/register\"\n          routerLinkActive=\"m-toolbar-button-active\">Register\n  </button>\n  <button mat-button *ngIf=\"hasRole('ADMIN')\" routerLink=\"/app-settings\" routerLinkActive=\"m-toolbar-button-active\">\n    App settings\n  </button>\n  <button mat-button *ngIf=\"hasRole('ARTIST')\" routerLink=\"/user-assets\" routerLinkActive=\"m-toolbar-button-active\">\n    My assets\n  </button>\n  <button mat-button *ngIf=\"authed\" routerLink=\"/\" (click)=\"logout()\">Logout</button>\n</mat-toolbar>\n<div class=\"root-content\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -241,24 +240,26 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__component_page_app_settings_app_settings_guard__ = __webpack_require__("../../../../../src/component/page/app-settings/app-settings.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_file_types_service__ = __webpack_require__("../../../../../src/service/file-types.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_page_app_settings_page_file_types_file_types_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/file-types.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__service_file_type_data_source__ = __webpack_require__("../../../../../src/service/file-type-data-source.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__component_page_create_asset_create_asset_component__ = __webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_page_user_assets_user_assets_component__ = __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__component_page_create_asset_create_asset_component__ = __webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__component_page_user_assets_user_assets_component__ = __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__component_page_app_settings_page_file_types_file_types_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/file-types.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__ = __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__service_file_type_data_source__ = __webpack_require__("../../../../../src/service/file-type-data-source.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__service_asset_category_service__ = __webpack_require__("../../../../../src/service/asset-category.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__component_page_asset_presentation_asset_presentation_component__ = __webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__component_page_choose_asset_category_choose_asset_category_component__ = __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__component_page_dashboard_tree_view_tree_view_component__ = __webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__component_page_dashboard_browsing_browsing_component__ = __webpack_require__("../../../../../src/component/page/dashboard/browsing/browsing.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__component_page_choose_asset_category_choose_asset_category_component__ = __webpack_require__("../../../../../src/component/page/choose-asset-category/choose-asset-category.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__component_page_dashboard_tree_view_tree_view_component__ = __webpack_require__("../../../../../src/component/page/dashboard/tree-view/tree-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__component_page_dashboard_browsing_browsing_component__ = __webpack_require__("../../../../../src/component/page/dashboard/browsing/browsing.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__component_page_asset_files_asset_files_component__ = __webpack_require__("../../../../../src/component/page/asset-files/asset-files.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__component_page_user_assets_user_asset_guard__ = __webpack_require__("../../../../../src/component/page/user-assets/user-asset.guard.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -304,16 +305,19 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_10__component_page_dashboard_dashboard_component__["a" /* DashboardComponent */],
             __WEBPACK_IMPORTED_MODULE_12__component_page_app_settings_app_settings_component__["a" /* AppSettingsComponent */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormControlDirective */],
-            __WEBPACK_IMPORTED_MODULE_18__component_page_app_settings_page_file_types_file_types_component__["a" /* FileTypesComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__component_page_app_settings_page_file_types_file_types_component__["a" /* FileTypesComponent */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormControlDirective */],
             __WEBPACK_IMPORTED_MODULE_14__component_page_app_settings_page_asset_category_asset_category_component__["a" /* AssetCategoryComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__["a" /* AddFileTypeComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__component_page_create_asset_create_asset_component__["a" /* AddAssetComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__component_page_user_assets_user_assets_component__["a" /* UserAssetsComponent */],
-            __WEBPACK_IMPORTED_MODULE_25__component_page_asset_presentation_asset_presentation_component__["a" /* AssetPresentationComponent */],
-            __WEBPACK_IMPORTED_MODULE_27__component_page_choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */],
-            __WEBPACK_IMPORTED_MODULE_28__component_page_dashboard_tree_view_tree_view_component__["a" /* TreeViewComponent */],
-            __WEBPACK_IMPORTED_MODULE_29__component_page_dashboard_browsing_browsing_component__["a" /* BrowsingComponent */]
+            __WEBPACK_IMPORTED_MODULE_22__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__["a" /* AddFileTypeComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__component_page_create_asset_create_asset_component__["a" /* AddAssetComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__component_page_user_assets_user_assets_component__["a" /* UserAssetsComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__component_page_choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__component_page_dashboard_tree_view_tree_view_component__["a" /* TreeViewComponent */],
+            __WEBPACK_IMPORTED_MODULE_27__component_page_dashboard_browsing_browsing_component__["a" /* BrowsingComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__component_page_user_assets_user_assets_component__["a" /* UserAssetsComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__component_page_choose_asset_category_choose_asset_category_component__["a" /* ChooseAssetCategoryComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__component_page_app_settings_page_file_types_add_file_type_add_file_type_component__["a" /* AddFileTypeComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__component_page_asset_files_asset_files_component__["a" /* AssetFilesComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
@@ -333,14 +337,15 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatFormFieldModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["j" /* MatSelectModule */],
             __WEBPACK_IMPORTED_MODULE_13__validate_validator_module__["a" /* ValidatorModule */],
-            __WEBPACK_IMPORTED_MODULE_15__angular_router__["c" /* RouterModule */],
+            __WEBPACK_IMPORTED_MODULE_15__angular_router__["b" /* RouterModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["m" /* MatTabsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_material__["l" /* MatTableModule */],
-            __WEBPACK_IMPORTED_MODULE_23__angular_common_http__["a" /* HttpClientModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatCardModule */]
+            __WEBPACK_IMPORTED_MODULE_21__angular_common_http__["a" /* HttpClientModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatCardModule */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["o" /* MatTooltipModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_20__service_file_type_data_source__["a" /* FileTypeDataSource */], __WEBPACK_IMPORTED_MODULE_16__component_page_app_settings_app_settings_guard__["a" /* AppSettingsGuard */], __WEBPACK_IMPORTED_MODULE_17__service_file_types_service__["a" /* FileTypesService */], __WEBPACK_IMPORTED_MODULE_24__service_asset_category_service__["a" /* AssetCategoryService */],
-            __WEBPACK_IMPORTED_MODULE_26__service_asset_asset_service__["a" /* AssetService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_11__service_security_service__["a" /* SecurityService */], __WEBPACK_IMPORTED_MODULE_23__service_file_type_data_source__["a" /* FileTypeDataSource */], __WEBPACK_IMPORTED_MODULE_16__component_page_app_settings_app_settings_guard__["a" /* AppSettingsGuard */], __WEBPACK_IMPORTED_MODULE_17__service_file_types_service__["a" /* FileTypesService */], __WEBPACK_IMPORTED_MODULE_24__service_asset_category_service__["a" /* AssetCategoryService */],
+            __WEBPACK_IMPORTED_MODULE_28__service_asset_asset_service__["a" /* AssetService */], __WEBPACK_IMPORTED_MODULE_30__component_page_user_assets_user_asset_guard__["a" /* UserAssetGuard */]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
@@ -680,6 +685,7 @@ var AssetCategoryComponent = (function () {
         var _this = this;
         this.categoryService.getCategories()
             .then(function (value) { return _this.categories = value; });
+        this.error = "";
     };
     /**
      * Add the category.
@@ -731,6 +737,7 @@ var AssetCategoryComponent = (function () {
             .then(function (value) {
             _this.categories = value;
             _this.path.push(new __WEBPACK_IMPORTED_MODULE_1__model_category_category_component__["a" /* CategoryComponent */](name, id));
+            _this.error = "";
         });
     };
     /**
@@ -742,6 +749,7 @@ var AssetCategoryComponent = (function () {
         var _this = this;
         if (id == null) {
             this.loadCategories();
+            this.error = "";
         }
         else {
             this.categoryService.getChildren(id)
@@ -756,6 +764,7 @@ var AssetCategoryComponent = (function () {
         var categoryParam = this.categoryParam;
         categoryParam.name = '';
         categoryParam.description = '';
+        this.error = "";
     };
     /**
      * Get the last element of the this._path.
@@ -1064,7 +1073,7 @@ AddFileTypeComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/app-settings/page/file-types/add-file-type/add-file-type.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_file_types_service__["a" /* FileTypesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__service_file_type_data_source__["a" /* FileTypeDataSource */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _c || Object])
 ], AddFileTypeComponent);
 
 var _a, _b, _c;
@@ -1080,7 +1089,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n.material-icons.md-48 {\n  font-size: 48px;\n}\n\n.material-icons.blue {\n  color: #3f51b5;\n}\n\n.mat-icon-button{\n position: fixed;\n  right: 5%;\n  bottom: 5%;\n}\n\n.add-file-type-button-position {\n  position: absolute;\n  float: right;\n  z-index: 10;\n}\n\n.form-file-type {\n  position: relative;\n}\n\n.file-type-content {\n  position: absolute;\n  width: 81.5%;\n}\n\n.file-type-table {\n  background: inherit;\n  overflow-y: scroll;\n  max-height: 100vh;\n}\n\n.file-type-mat-header-cell {\n  font-family: inherit;\n  font-weight: bold;\n  font-size: inherit;\n}\n\n.file-type-mat-cell {\n  font-family: inherit;\n  font-weight: normal;\n  color: inherit;\n}\n", ""]);
+exports.push([module.i, "\n.material-icons.md-48 {\n  font-size: 48px;\n}\n\n.material-icons.blue {\n  color: #3f51b5;\n}\n\n.mat-icon-button{\n position: fixed;\n  right: 5%;\n  bottom: 5%;\n}\n\n.add-file-type-button-position {\n  position: absolute;\n  float: right;\n  z-index: 10;\n}\n\n.form-file-type {\n  position: relative;\n}\n\n.file-type-content {\n  position: absolute;\n  width: 81.5%;\n  color: #636363;\n  font-family: inherit;\n}\n\n.file-type-table {\n  background: inherit;\n  overflow-y: scroll;\n  max-height: 100vh;\n}\n\n.file-type-mat-header-cell {\n  font-family: inherit;\n  font-weight: bold;\n  font-size: inherit;\n}\n\n.file-type-mat-cell {\n  font-family: inherit;\n  font-weight: normal;\n  color: inherit;\n}\n", ""]);
 
 // exports
 
@@ -1163,7 +1172,7 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/component/page/asset-presentation/asset-presentation.component.css":
+/***/ "../../../../../src/component/page/asset-files/asset-files.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -1171,7 +1180,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".files-content ul {\n  text-align: left;\n  list-style-type: none;\n}\n\n.files-content li {\n  padding: 5px;\n}\n\n.files-content h2 {\n  text-align: center;\n}\n\n.files-content hr {\n  border: 0;\n  height: 1px;\n  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));\n}\n\n.files-content {\n\n  color: #636363;\n  font-family: inherit;\n\n  position: absolute;\n\n  min-width: 600px;\n  min-height: 300px;\n\n  margin-top: 5%;\n  margin-left: 28%;\n\n  border-radius: 73px 80px 80px 80px;\n  -moz-border-radius: 73px 80px 80px 80px;\n  -webkit-border-radius: 73px 80px 80px 80px;\n  border: 1px solid #b8b9ba;\n  background-color: rgb(255, 255, 255);\n  box-shadow: -4px -5px 38px 0px rgba(0, 0, 0, 0.75);\n}\n", ""]);
 
 // exports
 
@@ -1181,34 +1190,19 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/component/page/asset-presentation/asset-presentation.component.html":
+/***/ "../../../../../src/component/page/asset-files/asset-files.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <label class=\"asset-name\" *ngIf=\"asset != null\"> {{asset.name}}</label>\r\n  <div class=\"asset-presentation-files\" *ngIf=\"asset !=null\">\r\n    <div class = \"empty-asset\" *ngIf=\"asset.files==null || asset.files.length==0\">\r\n      <label class=\"empty-asset-label\">Asset is empty!</label>\r\n    </div>\r\n    <div class = \"non-empty-asset\" *ngIf=\"asset.files!=null && asset.files.length!=0\">\r\n      <ul class=\"asset-files-rows\">\r\n        <li class=\"asset-file-row\" *ngFor=\"let file of asset.files\">\r\n          <label class=\"asset-file-name\">{{file.name}}</label>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n    <div class=\"download-button\">\r\n      <button mat-button color=\"primary\" class=\"download-asset\" (click)=\"downloadAsset()\">download asset</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"files-content\">\n  <h2>{{files.length}} files</h2>\n  <hr/>\n  <ul>\n    <li *ngFor=\"let file of files\">\n      {{file.name}}\n    </li>\n  </ul>\n</div>\n"
 
 /***/ }),
 
-/***/ "../../../../../src/component/page/asset-presentation/asset-presentation.component.ts":
+/***/ "../../../../../src/component/page/asset-files/asset-files.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetPresentationComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetFilesComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver__);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1219,76 +1213,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
-
-
-
-var AssetPresentationComponent = (function (_super) {
-    __extends(AssetPresentationComponent, _super);
-    function AssetPresentationComponent(route, assetService) {
-        var _this = _super.call(this) || this;
-        _this.route = route;
-        _this.assetService = assetService;
-        _this.route.params.subscribe(function (params) { return _this.loadAsset(params['id']); });
-        return _this;
+var AssetFilesComponent = (function () {
+    function AssetFilesComponent() {
+        this.onChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
     }
-    Object.defineProperty(AssetPresentationComponent.prototype, "name", {
-        get: function () {
-            return this._name;
-        },
-        set: function (name) {
-            this._name = name;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(AssetPresentationComponent.prototype, "error", {
-        get: function () {
-            return this._error;
-        },
-        set: function (value) {
-            this._error = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    AssetPresentationComponent.prototype.loadAsset = function (id) {
-        var _this = this;
-        this.assetService.loadAsset(id, function (message, result) {
-            if (result != null) {
-                _this.asset = result;
-                _this.name = result.name;
-            }
-            else {
-                _this.error = message;
-            }
-        });
+    AssetFilesComponent.prototype.ngOnInit = function () {
     };
-    AssetPresentationComponent.prototype.downloadAsset = function () {
-        var _this = this;
-        this.assetService.downloadAsset(this.asset.id, function (message, blob) {
-            if (message == null) {
-                Object(__WEBPACK_IMPORTED_MODULE_4_file_saver_FileSaver__["saveAs"])(blob, _this.asset.name);
-            }
-            else {
-                _this.error = message;
-            }
-        });
+    AssetFilesComponent.prototype.hideFiles = function () {
+        this.onChanged.emit(false);
     };
-    return AssetPresentationComponent;
-}(__WEBPACK_IMPORTED_MODULE_1__page_component__["a" /* PageComponent */]));
-AssetPresentationComponent = __decorate([
+    return AssetFilesComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Array)
+], AssetFilesComponent.prototype, "files", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", Object)
+], AssetFilesComponent.prototype, "onChanged", void 0);
+AssetFilesComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        selector: 'app-asset-asset',
-        template: __webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.html"),
-        providers: [],
-        styles: [__webpack_require__("../../../../../src/component/page/asset-presentation/asset-presentation.component.css")]
+        selector: 'app-asset-files',
+        template: __webpack_require__("../../../../../src/component/page/asset-files/asset-files.component.html"),
+        styles: [__webpack_require__("../../../../../src/component/page/asset-files/asset-files.component.css")],
+        encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_19" /* ViewEncapsulation */].None
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]) === "function" && _b || Object])
-], AssetPresentationComponent);
+    __metadata("design:paramtypes", [])
+], AssetFilesComponent);
 
-var _a, _b;
-//# sourceMappingURL=asset-presentation.component.js.map
+//# sourceMappingURL=asset-files.component.js.map
 
 /***/ }),
 
@@ -1300,7 +1254,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);", ""]);
 
 // module
-exports.push([module.i, ".menu-main {\r\n  list-style: none;\r\n  margin: 10px 0 5px;\r\n  padding: 10px 0 5px;\r\n  text-align: left;\r\n}\r\n\r\n.menu-main li {\r\n  display: inline-block;\r\n}\r\n\r\n.menu-main li:after {\r\n  content: \"/\";\r\n  color: #606060;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n}\r\n\r\n.menu-main li:last-child:after {\r\n  content: none;\r\n}\r\n\r\n.menu-main div {\r\n  text-decoration: none;\r\n  font-family: 'Ubuntu Condensed', sans-serif;\r\n  letter-spacing: 2px;\r\n  position: relative;\r\n  padding-bottom: 20px;\r\n  margin: 0 34px 0 30px;\r\n  font-size: 17px;\r\n  text-transform: uppercase;\r\n  display: inline-block;\r\n  transition: color .2s;\r\n}\r\n\r\n.menu-main div, .menu-main div:visited {\r\n  color: #9d999d;\r\n}\r\n\r\n.menu-main div.current, .menu-main div:hover {\r\n  color: #4f54fe;\r\n}\r\n\r\n.menu-main div:before,\r\n.menu-main div:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  height: 4px;\r\n  top: auto;\r\n  right: 50%;\r\n  bottom: -5px;\r\n  left: 50%;\r\n  background: #4f54fe;\r\n  transition: .8s;\r\n}\r\n\r\n.menu-main div:hover:before, .menu-main .current:before {\r\n  left: 0;\r\n}\r\n\r\n.menu-main div:hover:after, .menu-main .current:after {\r\n  right: 0;\r\n}\r\n\r\n@media (max-width: 550px) {\r\n  .menu-main {\r\n    padding-top: 0;\r\n  }\r\n\r\n  .menu-main li {\r\n    display: block;\r\n  }\r\n\r\n  .menu-main li:after {\r\n    content: none;\r\n  }\r\n\r\n  .menu-main div {\r\n    padding: 25px 0 20px;\r\n    margin: 0 30px;\r\n  }\r\n}\r\n\r\n.components {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-columns: (1fr)[5];\r\n      grid-template-columns: repeat(5, 1fr);\r\n  grid-gap: 20px;\r\n}\r\n\r\n.container {\r\n  margin: 20px;\r\n}\r\n\r\n.components {\r\n  list-style-type: none;\r\n  width: 500px;\r\n}\r\n\r\n.container li {\r\n  height: 224px;\r\n}\r\n\r\n.container h3 {\r\n  margin-top: 0;\r\n  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;\r\n}\r\n\r\n.container li p {\r\n  font: 200 12px/1.5 Georgia, Times New Roman, serif;\r\n}\r\n\r\n.category-container {\r\n  background-color: #e8e8e8;\r\n  width: 150px;\r\n  height: 224px;\r\n  padding: 10px;\r\n  overflow: auto;\r\n}\r\n\r\n.container div {\r\n  width: 150px;\r\n  height: 200px;\r\n}\r\n\r\n.container li:hover {\r\n  background: rgb(206, 206, 206);\r\n  cursor: pointer;\r\n}\r\n\r\n.material-icons {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  height: 100%;\r\n}\r\n\r\n.material-icons.md-56 {\r\n  font-size: 56px;\r\n}\r\n\r\n.add-container {\r\n  width: 150px;\r\n  height: 224px;\r\n  padding: 10px;\r\n  overflow: auto;\r\n}\r\n\r\n.category-container i {\r\n  position: relative;\r\n  height: 24px;\r\n  width: 24px;\r\n}\r\n\r\n.input-form-field {\r\n  width: 150px;\r\n}\r\n\r\n.input-form button {\r\n  width: 90%;\r\n  height: 35px;\r\n  margin-top: 2px;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, ".components-path {\r\n  list-style: none;\r\n  margin: 10px 0 5px;\r\n  padding: 10px 0 5px;\r\n  text-align: left;\r\n}\r\n\r\n.components-path li {\r\n  display: inline-block;\r\n}\r\n\r\n.components-path li:after {\r\n  content: \">\";\r\n  color: #606060;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n}\r\n\r\n.components-path:last-child:after {\r\n  content: none;\r\n}\r\n\r\n.components-path div {\r\n  text-decoration: none;\r\n  font-family: 'Ubuntu Condensed', sans-serif;\r\n  letter-spacing: 2px;\r\n  position: relative;\r\n  padding-bottom: 20px;\r\n  margin: 0 34px 0 30px;\r\n  font-size: 17px;\r\n  text-transform: uppercase;\r\n  display: inline-block;\r\n  transition: color .2s;\r\n}\r\n\r\n.components-path div, .components-path div:visited {\r\n  color: #9d999d;\r\n}\r\n\r\n.components-path.current, .components-path div:hover {\r\n  color: #4f54fe;\r\n}\r\n\r\n.components-path div:before,\r\n.components-path div:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  height: 4px;\r\n  top: auto;\r\n  right: 50%;\r\n  bottom: -5px;\r\n  left: 50%;\r\n  background: #4f54fe;\r\n  transition: .8s;\r\n}\r\n\r\n.components-path div:hover:before, .components-path .current:before {\r\n  left: 0;\r\n}\r\n\r\n.components-path div:hover:after, .components-path .current:after {\r\n  right: 0;\r\n}\r\n\r\n@media (max-width: 550px) {\r\n  .components-path {\r\n    padding-top: 0;\r\n  }\r\n\r\n  .components-path {\r\n    display: block;\r\n  }\r\n\r\n  .components-path:after {\r\n    content: none;\r\n  }\r\n\r\n  .components-path div {\r\n    padding: 25px 0 20px;\r\n    margin: 0 30px;\r\n  }\r\n}\r\n\r\n.components {\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-columns: (1fr)[5];\r\n      grid-template-columns: repeat(5, 1fr);\r\n  grid-gap: 20px;\r\n}\r\n\r\n.container {\r\n  margin: 20px;\r\n}\r\n\r\n.components {\r\n  list-style-type: none;\r\n  width: 500px;\r\n}\r\n\r\n.container li {\r\n  height: 224px;\r\n}\r\n\r\n.container h3 {\r\n  margin-top: 0;\r\n  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;\r\n}\r\n\r\n.container li p {\r\n  font: 200 12px/1.5 Georgia, Times New Roman, serif;\r\n}\r\n\r\n.category-container {\r\n  background-color: #e8e8e8;\r\n  width: 150px;\r\n  height: 224px;\r\n  padding: 10px;\r\n  overflow: auto;\r\n}\r\n\r\n.container div {\r\n  width: 150px;\r\n  height: 200px;\r\n}\r\n\r\n.container li:hover {\r\n  background: rgb(206, 206, 206);\r\n  cursor: pointer;\r\n}\r\n\r\n.material-icons {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-align: center;\r\n      -ms-flex-align: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n      -ms-flex-pack: center;\r\n          justify-content: center;\r\n  height: 100%;\r\n}\r\n\r\n.material-icons.md-56 {\r\n  font-size: 56px;\r\n}\r\n\r\n.add-container {\r\n  width: 150px;\r\n  height: 224px;\r\n  padding: 10px;\r\n  overflow: auto;\r\n}\r\n\r\n.category-container i {\r\n  position: relative;\r\n  height: 24px;\r\n  width: 24px;\r\n}\r\n\r\n.input-form-field {\r\n  width: 150px;\r\n}\r\n\r\n.input-form button {\r\n  width: 90%;\r\n  height: 35px;\r\n  margin-top: 2px;\r\n}\r\n\r\n.register-page-error {\r\n  color: #ff002b;\r\n  text-align: center;\r\n  margin-top: 10px;\r\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -1313,7 +1267,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/choose-asset-category/choose-asset-category.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Asset category settings</h1>\r\n<h3 class = \"Asset catgister-page-error\" [hidden]=\"error.length == 0\">\r\n  {{error}}\r\n</h3>\r\n<ul class=\"menu-main\">\r\n  <li *ngFor=\"let p of path\">\r\n    <div (click)=\"setTopOfPath(p.id)\">\r\n      {{p.name}}\r\n    </div>\r\n  </li>\r\n</ul>\r\n<div class=\"container\">\r\n  <ul class=\"components\">\r\n    <li class=\"category-container\" *ngFor=\"let category of categories\">\r\n      <i class=\"material-icons\" *ngIf=\"label\" (click)=\"getCategoryId(category.id)\">check_circle</i>\r\n      <div class=\"category-content\" (click)=\"loadChildren(category.name, category.id)\">\r\n        <h3>{{category.name}}</h3>\r\n        <p>{{category.description}}</p>\r\n      </div>\r\n    </li>\r\n  </ul>\r\n</div>\r\n\r\n"
+module.exports = "<h1>Choose category</h1>\r\n<h3 class=\"register-page-error\" [hidden]=\"error.length == 0\">\r\n  {{error}}\r\n</h3>\r\n<ul class=\"components-path\">\r\n  <li *ngFor=\"let p of path\">\r\n    <div (click)=\"setTopOfPath(p.id)\">\r\n      {{p.name}}\r\n    </div>\r\n  </li>\r\n</ul>\r\n<div class=\"container\">\r\n  <ul class=\"components\">\r\n    <li class=\"category-container\" *ngFor=\"let category of categories\">\r\n      <div class=\"category-content\" (click)=\"loadChildren(category.name, category.id)\">\r\n        <h3>{{category.name}}</h3>\r\n        <p>{{category.description}}</p>\r\n      </div>\r\n    </li>\r\n    <li class=\"add-container\" *ngIf=\"categories == 0\">\r\n      <i class=\"material-icons md-56\" (click)=\"getCategoryComponents()\">add_circle_outline</i>\r\n    </li>\r\n  </ul>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1347,7 +1301,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ChooseAssetCategoryComponent = (function () {
     function ChooseAssetCategoryComponent(categoryService) {
         this.categoryService = categoryService;
-        this.onChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        /**
+         * The components.
+         *
+         * @type {EventEmitter<CategoryComponent[]>}
+         */
+        this.components = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
     }
     ChooseAssetCategoryComponent.prototype.ngOnInit = function () {
         this.error = '';
@@ -1365,8 +1324,6 @@ var ChooseAssetCategoryComponent = (function () {
         this.categoryService.getCategories()
             .then(function (value) { return _this.categories = value; });
     };
-    ChooseAssetCategoryComponent.prototype.clickOnCategory = function () {
-    };
     /**
      * Load the children.
      *
@@ -1378,10 +1335,6 @@ var ChooseAssetCategoryComponent = (function () {
         this.categoryService.getChildren(id)
             .then(function (value) {
             _this.categories = value;
-            if (_this.categories == null || _this.categories.length == 0) {
-                _this.getCategoryId(id);
-                return;
-            }
             _this.path.push(new __WEBPACK_IMPORTED_MODULE_2__model_category_category_component__["a" /* CategoryComponent */](name, id));
         });
     };
@@ -1408,8 +1361,6 @@ var ChooseAssetCategoryComponent = (function () {
     ChooseAssetCategoryComponent.prototype.getLastPathElement = function () {
         return this.path[this.path.length - 1];
     };
-    ChooseAssetCategoryComponent.prototype.chooseCategory = function () {
-    };
     /**
      * Set the current top of path.
      *
@@ -1426,6 +1377,12 @@ var ChooseAssetCategoryComponent = (function () {
                 return;
             }
         }
+    };
+    /**
+     * Get components of category.
+     */
+    ChooseAssetCategoryComponent.prototype.getCategoryComponents = function () {
+        this.components.emit(this.path);
     };
     Object.defineProperty(ChooseAssetCategoryComponent.prototype, "categories", {
         /**
@@ -1545,15 +1502,12 @@ var ChooseAssetCategoryComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    ChooseAssetCategoryComponent.prototype.getCategoryId = function (id) {
-        this.onChanged.emit(id);
-    };
     return ChooseAssetCategoryComponent;
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
     __metadata("design:type", Object)
-], ChooseAssetCategoryComponent.prototype, "onChanged", void 0);
+], ChooseAssetCategoryComponent.prototype, "components", void 0);
 ChooseAssetCategoryComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-choose-asset-category',
@@ -1573,10 +1527,10 @@ var _a;
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
-
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);", ""]);
 
 // module
-exports.push([module.i, ".create-asset-data-row{\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n.asset-create-error{\r\n  text-align: center;\r\n}\r\n.asset-create-page-title{\r\n  text-align: center;\r\n}\r\n\r\n.asset-create-form{\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  width: 80%;\r\n  margin-left: 120px;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, ".create-asset-data-row {\r\n  width: 100%;\r\n  display: block;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.asset-create-error {\r\n  text-align: center;\r\n}\r\n\r\n.asset-create-page-title {\r\n  text-align: center;\r\n}\r\n\r\n.asset-create-form {\r\n  border-collapse: collapse;\r\n  border-radius: 2px;\r\n  border-spacing: 0px;\r\n  padding: 10px;\r\n  width: 80%;\r\n  margin-left: 120px;\r\n  margin-top: 40px;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.menu-main {\r\n  list-style: none;\r\n  margin: 10px 0 5px;\r\n  padding: 10px 0 5px;\r\n  text-align: left;\r\n}\r\n\r\n.menu-main li {\r\n  display: inline-block;\r\n}\r\n\r\n.menu-main li:after {\r\n  content: \"|\";\r\n  color: #606060;\r\n  display: inline-block;\r\n  vertical-align: top;\r\n}\r\n\r\n.menu-main li:last-child:after {\r\n  content: none;\r\n}\r\n\r\n.menu-main div {\r\n  text-decoration: none;\r\n  font-family: 'Ubuntu Condensed', sans-serif;\r\n  letter-spacing: 2px;\r\n  position: relative;\r\n  padding-bottom: 20px;\r\n  margin: 0 3px 0 7px;\r\n  font-size: 17px;\r\n  text-transform: uppercase;\r\n  display: inline-block;\r\n  transition: color .2s;\r\n}\r\n\r\n.menu-main div, .menu-main div:visited {\r\n  color: #9d999d;\r\n}\r\n\r\n.menu-main div:before,\r\n.menu-main div:after {\r\n  content: \"\";\r\n  position: absolute;\r\n  height: 4px;\r\n  top: auto;\r\n  right: 50%;\r\n  bottom: -5px;\r\n  left: 50%;\r\n  background: #4f54fe;\r\n  transition: .8s;\r\n}\r\n\r\n.asset-create-form-container {\r\n  text-align: center;\r\n  font-size: 1em;\r\n  color: #636363;\r\n  font-family: inherit;\r\n}\r\n\r\n.file-input-button {\r\n  text-align: left;\r\n  margin-left: 2px;\r\n}\r\n\r\n.category-add-button {\r\n  text-align: left;\r\n  margin-left: 2px;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -1589,7 +1543,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/create-asset/create-asset.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"asset-create-form-container\">\r\n  <div class=\"asset-create-form\">\r\n    <h2 class=\"asset-create-page-title\">Create Asset</h2>\r\n    <h3 class=\"asset-create-error\" [hidden]=\"_message.length == 0\">\r\n      {{_message}}\r\n    </h3>\r\n  </div>\r\n  <form class=\"asset-create-form mat-elevation-z2\" #userForm=\"ngForm\">\r\n    <div *ngIf=\"!viewCategory\">\r\n      <div class=\"create_asset-data-block\">\r\n        <mat-input-container class=\"create-asset-data-row\">\r\n          <input matInput placeholder=\"Asset name\" id=\"AssetName\"\r\n                 [(ngModel)]=\"info.name\"\r\n                 name=\"name\"\r\n                 #name=\"ngModel\">\r\n        </mat-input-container>\r\n      </div>\r\n      <div class=\"create_asset-data-block\">\r\n        <mat-input-container class=\"create-asset-data-row\">\r\n          <input matInput placeholder=\"Asset description\" id=\"AssetDescription\"\r\n                 [(ngModel)]=\"info.description\"\r\n                 name=\"description\"\r\n                 #description=\"ngModel\">\r\n        </mat-input-container>\r\n      </div>\r\n      <div class=\"asset-files\">\r\n        <label class=\"file-input\">\r\n          <input type=\"file\" accept=\"application/zip\" (change)=\"selectFile($event)\">\r\n        </label>\r\n      </div>\r\n    </div>\r\n    <div>\r\n      <button *ngIf=\"!viewCategory\" (click)=\"changeViewCategory()\">{{myId}}</button>\r\n      <app-choose-asset-category *ngIf=\"viewCategory\" (onChanged)=\"onChanged($event)\"></app-choose-asset-category>\r\n    </div>\r\n    <button *ngIf=\"!viewCategory\" class=\"create-asset-button\" (click)=\"tryCreate()\" mat-raised-button color=\"primary\"\r\n            [disabled]=\"!isValid()\"> create\r\n    </button>\r\n  </form>\r\n\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"asset-create-form-container\">\r\n  <div class=\"asset-create-form\">\r\n    <h1>Create Asset</h1>\r\n    <h3 class=\"asset-create-error\" [hidden]=\"message.length == 0\">\r\n      {{message}}\r\n    </h3>\r\n  </div>\r\n  <form class=\"asset-create-form mat-elevation-z2\" #userForm=\"ngForm\">\r\n    <div *ngIf=\"!viewCategory\">\r\n      <div class=\"create_asset-data-block\">\r\n        <mat-input-container class=\"create-asset-data-row\">\r\n          <input matInput placeholder=\"Asset name\" id=\"AssetName\"\r\n                 [(ngModel)]=\"info.name\"\r\n                 name=\"name\"\r\n                 #name=\"ngModel\">\r\n        </mat-input-container>\r\n      </div>\r\n      <div class=\"create_asset-data-block\">\r\n        <mat-input-container class=\"create-asset-data-row\">\r\n          <input matInput placeholder=\"Asset description\" id=\"AssetDescription\"\r\n                 [(ngModel)]=\"info.description\"\r\n                 name=\"description\"\r\n                 #description=\"ngModel\">\r\n        </mat-input-container>\r\n      </div>\r\n\r\n      <div class=\"file-input-button\" *ngIf=\"!viewCategory\">\r\n        <button mat-icon-button (click)=\"fileInput.click()\">\r\n          <mat-icon aria-label=\"Choose category\">\r\n            <i class=\"material-icons\">add_box</i></mat-icon>\r\n          <span>Select file</span>\r\n          <input #fileInput type=\"file\" accept=\"application/zip\" (change)=\"selectFile($event)\" style=\"display:none;\"/>\r\n        </button>\r\n        <div *ngIf=\"file != null\" class=\"menu-main\">\r\n          <div>{{file.name}}</div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"category-add-button\" *ngIf=\"!viewCategory\" (click)=\"changeViewCategory()\">\r\n        <button mat-icon-button>\r\n          <mat-icon aria-label=\"Choose category\">\r\n            <i class=\"material-icons\">perm_media</i></mat-icon>\r\n          <span>Choose category</span>\r\n        </button>\r\n      </div>\r\n\r\n\r\n      <ul class=\"menu-main\" *ngIf=\"!viewCategory\">\r\n        <li *ngFor=\"let p of path\">\r\n          <div>\r\n            {{p.name}}\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n\r\n    <div *ngIf=\"viewCategory\">\r\n      <app-choose-asset-category (components)=\"onChanged($event)\"></app-choose-asset-category>\r\n    </div>\r\n    <button *ngIf=\"!viewCategory\" class=\"create-asset-button\" (click)=\"tryCreate()\" mat-raised-button color=\"primary\"\r\n            [disabled]=\"!isValid()\"> create\r\n    </button>\r\n  </form>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1635,17 +1589,17 @@ var AddAssetComponent = (function (_super) {
         var _this = _super.call(this) || this;
         _this.router = router;
         _this.assetService = assetService;
-        _this.myId = "choose category";
-        _this._message = '';
-        _this._info = new __WEBPACK_IMPORTED_MODULE_4__model_params_asset_params__["a" /* AssetParams */]("", "", 0, 0);
+        _this.myId = 0;
+        _this.message = '';
+        _this.info = new __WEBPACK_IMPORTED_MODULE_4__model_params_asset_params__["a" /* AssetParams */]("", "", 0, 0);
         _this.viewCategory = false;
         return _this;
     }
     AddAssetComponent.prototype.tryCreate = function () {
         var _this = this;
-        console.log(this._info);
-        this.assetService.createAsset(this._info, this._file, function (message, result, warnings) {
-            _this._message = message;
+        console.log(this.info);
+        this.assetService.createAsset(this.info, this.file, function (message, result, warnings) {
+            _this.message = message;
             if (warnings != null)
                 warnings.forEach(function (warning) { return console.log(warning); });
             if (result) {
@@ -1654,7 +1608,7 @@ var AddAssetComponent = (function (_super) {
         });
     };
     AddAssetComponent.prototype.selectFile = function (event) {
-        this._file = event.target.files[0];
+        this.file = event.target.files[0];
     };
     Object.defineProperty(AddAssetComponent.prototype, "info", {
         get: function () {
@@ -1686,16 +1640,27 @@ var AddAssetComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AddAssetComponent.prototype, "path", {
+        get: function () {
+            return this._path;
+        },
+        set: function (value) {
+            this._path = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     AddAssetComponent.prototype.isValid = function () {
-        return this.info.name.length > 0 && this.info.description.length > 0 && this._file != null;
+        return this.info.name.length > 0 && this.info.description.length > 0 && this.file != null;
     };
     AddAssetComponent.prototype.chooseCategory = function () {
         this.router.navigateByUrl("/choose-asset-category");
     };
-    AddAssetComponent.prototype.onChanged = function (increased) {
-        this.myId = increased;
+    AddAssetComponent.prototype.onChanged = function (path) {
+        this.path = path;
         this.viewCategory = !this.viewCategory;
-        this._info.category_id = increased;
+        this.info.category_id = path[path.length - 1].id;
+        this.myId = this.info.category_id;
     };
     AddAssetComponent.prototype.changeViewCategory = function () {
         this.viewCategory = !this.viewCategory;
@@ -1713,7 +1678,7 @@ AddAssetComponent = __decorate([
         providers: [__WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]],
         styles: [__webpack_require__("../../../../../src/component/page/create-asset/create-asset.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_asset_asset_service__["a" /* AssetService */]) === "function" && _c || Object])
 ], AddAssetComponent);
 
 var _a, _b, _c;
@@ -1729,7 +1694,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card {\n  float: left;\n  margin: 10px;\n  position: relative;\n  width: 200px;\n}\n\n.categories {\n  width: 250px;\n  height: 100%;\n  /*text-align: center;*/\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  color: #636363;\n  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.30);\n  position: absolute;\n}\n\n.content {\n  margin-left: 250px;\n}\n", ""]);
+exports.push([module.i, ".card {\n  float: left;\n  margin: 10px;\n  position: relative;\n  width: 200px;\n}\n\n.categories {\n  width: 250px;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  color: #636363;\n  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.30);\n  position: absolute;\n}\n\n.content {\n  margin-left: 250px;\n}\n", ""]);
 
 // exports
 
@@ -1806,12 +1771,6 @@ var BrowsingComponent = (function () {
         this.assetService.loadCategoryAssets(select.id.toString())
             .then(function (value) { return _this.assets = value; });
     };
-    BrowsingComponent.prototype.textSelectNode = function () {
-        if (this.selectNode == null) {
-            return 'all';
-        }
-        return this.selectNode.name;
-    };
     return BrowsingComponent;
 }());
 BrowsingComponent = __decorate([
@@ -1836,7 +1795,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -2096,7 +2055,7 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], LoginComponent);
 
 var _a, _b;
@@ -2337,11 +2296,48 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../src/component/page/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/component/page/register/register.component.css")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], RegisterComponent);
 
 var _a, _b;
 //# sourceMappingURL=register.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/component/page/user-assets/user-asset.guard.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserAssetGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_security_service__ = __webpack_require__("../../../../../src/service/security.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UserAssetGuard = (function () {
+    function UserAssetGuard(securityService) {
+        this.securityService = securityService;
+    }
+    UserAssetGuard.prototype.canActivate = function (next, state) {
+        return this.securityService.hasRole('ARTIST');
+    };
+    return UserAssetGuard;
+}());
+UserAssetGuard = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_security_service__["a" /* SecurityService */]) === "function" && _a || Object])
+], UserAssetGuard);
+
+var _a;
+//# sourceMappingURL=user-asset.guard.js.map
 
 /***/ }),
 
@@ -2353,7 +2349,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);", ""]);
 
 // module
-exports.push([module.i, ".asset-containers li{\r\n  display: inline-block;\r\n  color: #606060;\r\n}\r\n\r\n.asset-containers{\r\n  text-decoration: none;\r\n  font-family: 'Ubuntu Condensed', sans-serif;\r\n  letter-spacing: 2px;\r\n  position: relative;\r\n  padding-bottom: 20px;\r\n  margin: 0 34px 0 30px;\r\n  font-size: 17px;\r\n  text-transform: uppercase;\r\n  display: inline-block;\r\n  transition: color .2s;\r\n}\r\n\r\n@media (max-width: 550px) {\r\n  .asset-containers li {\r\n    display: block;\r\n  }\r\n\r\n  .asset-containers {\r\n    padding: 25px 0 20px;\r\n    margin: 0 30px;\r\n  }\r\n}\r\n", ""]);
+exports.push([module.i, ".material-icons.md-48 {\r\n  font-size: 48px;\r\n}\r\n\r\n.material-icons.blue {\r\n  color: #3f51b5;\r\n}\r\n\r\n.mat-icon-button {\r\n  position: fixed;\r\n  right: 5%;\r\n  bottom: 5%;\r\n}\r\n\r\n.add-file-type-button-position {\r\n  position: relative;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.form-file-type {\r\n  position: relative;\r\n}\r\n\r\n.file-type-content {\r\n  color: #636363;\r\n  font-family: inherit;\r\n  position: absolute;\r\n  width: 100%;\r\n  overflow-y: visible;\r\n}\r\n\r\n.add-file-type-button-position {\r\n  position: absolute;\r\n  float: right;\r\n  z-index: 10;\r\n}\r\n\r\n.wrapper {\r\n  margin-top: 5%;\r\n  margin-left: 20%;\r\n  list-style-type: none;\r\n  display: -ms-grid;\r\n  display: grid;\r\n  -ms-grid-columns: 220px 220px 220px;\r\n      grid-template-columns: 220px 220px 220px;\r\n  grid-gap: 30px;\r\n}\r\n\r\n.box i {\r\n  position: relative;\r\n  float: right;\r\n  margin: 5px;\r\n  font-size: 24px;\r\n}\r\n\r\n.box {\r\n  border-radius: 7px 7px 7px 7px;\r\n  -moz-border-radius: 7px 7px 7px 7px;\r\n  -webkit-border-radius: 7px 7px 7px 7px;\r\n  border: 0px solid #000000;\r\n  background-color: rgba(248, 255, 249, 0.02);\r\n  box-shadow: 0px 0px 27px -4px rgba(0, 0, 0, 0.75);\r\n\r\n  text-align: center;\r\n}\r\n\r\n.files-container {\r\n  background-color: rgba(20, 66, 122, 0.65);\r\n  position: fixed;\r\n  height: 103%;\r\n  width: 100%;\r\n  margin-top: -4.8%;\r\n}\r\n\r\n.files-container i {\r\n  font-size: 48px;\r\n  color: rgba(232, 232, 232, 0.62);\r\n  position: relative;\r\n  margin-top: 5%;\r\n  margin-left: 92%;\r\n}\r\n\r\n.size-32 {\r\n  font-size: 32px;\r\n}\r\n\r\n.position-center {\r\n  text-align: center;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -2366,7 +2362,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/component/page/user-assets/user-assets.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"asset-containers\">\r\n  <label *ngIf=\"error!=null\"> {{error}}</label>\r\n  <ul class=\"asset-components\" *ngIf=\"assets!=null\">\r\n    <li class=\"asset-container\" *ngFor=\"let asset of assets\">\r\n      <div class=\"card\" (click)=\"toAsset(asset.id)\">\r\n        <div class=\"card-body\">{{asset.name}}</div>\r\n      </div>\r\n    </li>\r\n    <li class=\"create-asset-container\">\r\n      <i class=\"material-icons md-56\" (click)=\"createAsset()\">add_circle_outline</i>\r\n    </li>\r\n  </ul>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"file-type-content\">\r\n  <h1 class=\"position-center\">My Assets</h1>\r\n  <label *ngIf=\"error!=null\"> {{error}}</label>\r\n\r\n  <div class=\"add-file-type-button-position\">\r\n    <button mat-icon-button>\r\n      <mat-icon (click)=\"createAsset()\">\r\n        <i class=\"material-icons md-48 blue\" aria-hidden=\"true\">add_circle</i>\r\n      </mat-icon>\r\n    </button>\r\n  </div>\r\n\r\n\r\n  <ul class=\"wrapper\">\r\n    <li class=\"box\" *ngFor=\"let asset of assets\">\r\n      <i class=\"material-icons\" [matMenuTriggerFor]=\"menu\">more_vert</i>\r\n      <mat-menu #menu=\"matMenu\">\r\n        <button mat-menu-item class=\"position-center\" (click)=\"downloadAsset(asset.id, asset.name)\">\r\n          <mat-icon>\r\n            <i class=\"material-icons size-32\">archive</i>\r\n          </mat-icon>\r\n        </button>\r\n        <button mat-menu-item class=\"position-center\" (click)=\"deleteAsset(asset.id)\">\r\n          <mat-icon>\r\n            <i class=\"material-icons size-32\">delete_sweep</i>\r\n          </mat-icon>\r\n        </button>\r\n      </mat-menu>\r\n      <h2 matTooltip=\"{{asset.description}}\" (click)=\"loadFiles(asset.id)\">{{asset.name}}</h2>\r\n    </li>\r\n  </ul>\r\n</div>\r\n\r\n<div class=\"files-container\" *ngIf=\"showFiles\">\r\n  <i class=\"material-icons\" (click)=\"showFiles = false\">clear</i>\r\n  <app-asset-files [files]=\"files\" (onChanged)=\"hideFiles($event)\"></app-asset-files>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -2380,6 +2376,9 @@ module.exports = "<div class=\"asset-containers\">\r\n  <label *ngIf=\"error!=nu
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page_component__ = __webpack_require__("../../../../../src/component/page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_user_service__ = __webpack_require__("../../../../../src/service/user-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_asset_asset_data_source__ = __webpack_require__("../../../../../src/service/asset/asset-data-source.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_file_saver_FileSaver__ = __webpack_require__("../../../../file-saver/FileSaver.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_file_saver_FileSaver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_file_saver_FileSaver__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2404,6 +2403,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+/**
+ * Implementation of logic for UI for work with user's assets.
+ *
+ * @author Denis Lesheniuk.
+ */
 var UserAssetsComponent = (function (_super) {
     __extends(UserAssetsComponent, _super);
     function UserAssetsComponent(assetService, router) {
@@ -2413,35 +2419,77 @@ var UserAssetsComponent = (function (_super) {
         return _this;
     }
     UserAssetsComponent.prototype.ngOnInit = function () {
-        this.tryGetUsersAssets();
+        this.loadAssets();
+        this.showFiles = false;
     };
-    UserAssetsComponent.prototype.tryGetUsersAssets = function () {
+    /**
+     * Create the asset.
+     */
+    UserAssetsComponent.prototype.createAsset = function () {
+        this.router.navigateByUrl("/create-asset", { replaceUrl: true });
+    };
+    /**
+     * Load the assets.
+     */
+    UserAssetsComponent.prototype.loadAssets = function () {
         var _this = this;
         this.assetService.loadAssets(function (message, assets) {
             if (message == null) {
                 _this.assets = assets;
             }
-            else {
-                _this._error = message;
+        });
+    };
+    /**
+     * Download the asset.
+     *
+     * @param {number} id the asset id.
+     * @param {string} name the file name.
+     */
+    UserAssetsComponent.prototype.downloadAsset = function (id, name) {
+        this.assetService.downloadAsset(id, function (message, file) {
+            if (message == null) {
+                Object(__WEBPACK_IMPORTED_MODULE_6_file_saver_FileSaver__["saveAs"])(file, name);
             }
         });
     };
-    UserAssetsComponent.prototype.createAsset = function () {
-        this.router.navigateByUrl("/create-asset", { replaceUrl: true });
+    /**
+     * Delete the asset.
+     *
+     * @param {number} id the asset id.
+     */
+    UserAssetsComponent.prototype.deleteAsset = function (id) {
+        var _this = this;
+        this.assetService.removeAsset(id, function (message, result) {
+            if (result) {
+                _this.loadAssets();
+            }
+            else {
+                _this.error = message;
+            }
+        });
     };
-    UserAssetsComponent.prototype.toAsset = function (id) {
-        this.router.navigate(['/assets', id]);
+    /**
+     *Load the files.
+     *
+     * @param {number} id the asset id.
+     */
+    UserAssetsComponent.prototype.loadFiles = function (id) {
+        var _this = this;
+        this.assetService.getFiles(id, function (message, result) {
+            if (message == null) {
+                _this.files = result;
+                _this.showFiles = true;
+            }
+        });
     };
-    Object.defineProperty(UserAssetsComponent.prototype, "assets", {
-        get: function () {
-            return this._assets;
-        },
-        set: function (assets) {
-            this._assets = assets;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    /**
+     * Hide the files container.
+     *
+     * @param {boolean} showFiles the mark.
+     */
+    UserAssetsComponent.prototype.hideFiles = function (showFiles) {
+        this.showFiles = showFiles;
+    };
     Object.defineProperty(UserAssetsComponent.prototype, "error", {
         get: function () {
             return this._error;
@@ -2452,16 +2500,46 @@ var UserAssetsComponent = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(UserAssetsComponent.prototype, "assets", {
+        get: function () {
+            return this._assets;
+        },
+        set: function (value) {
+            this._assets = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UserAssetsComponent.prototype, "files", {
+        get: function () {
+            return this._files;
+        },
+        set: function (value) {
+            this._files = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UserAssetsComponent.prototype, "showFiles", {
+        get: function () {
+            return this._showFiles;
+        },
+        set: function (value) {
+            this._showFiles = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return UserAssetsComponent;
 }(__WEBPACK_IMPORTED_MODULE_3__page_component__["a" /* PageComponent */]));
 UserAssetsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-user-assets-asset',
         template: __webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.html"),
-        providers: [__WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */], __WEBPACK_IMPORTED_MODULE_4__service_user_service__["a" /* UserService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */], __WEBPACK_IMPORTED_MODULE_4__service_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_5__service_asset_asset_data_source__["a" /* AssetDataSource */]],
         styles: [__webpack_require__("../../../../../src/component/page/user-assets/user-assets.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__service_asset_asset_service__["a" /* AssetService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _b || Object])
 ], UserAssetsComponent);
 
 var _a, _b;
@@ -3000,6 +3078,72 @@ var AssetCategoryService_1, _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/service/asset/asset-data-source.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssetDataSource; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__ = __webpack_require__("../../../cdk/esm5/collections.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__asset_service__ = __webpack_require__("../../../../../src/service/asset/asset.service.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AssetDataSource = (function (_super) {
+    __extends(AssetDataSource, _super);
+    function AssetDataSource(assetService) {
+        var _this = _super.call(this) || this;
+        _this.assetService = assetService;
+        var emptyArray = [];
+        _this.assets = new __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](emptyArray);
+        return _this;
+    }
+    AssetDataSource.prototype.refresh = function () {
+        var _this = this;
+        this.assetService.loadAssets(function (message, assets) {
+            if (message == null) {
+                _this.assets.next(assets);
+            }
+        });
+    };
+    AssetDataSource.prototype.connect = function () {
+        return this.assets;
+    };
+    AssetDataSource.prototype.disconnect = function (collectionViewer) {
+    };
+    return AssetDataSource;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_cdk_collections__["a" /* DataSource */]));
+AssetDataSource = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__asset_service__["a" /* AssetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__asset_service__["a" /* AssetService */]) === "function" && _a || Object])
+], AssetDataSource);
+
+var _a;
+//# sourceMappingURL=asset-data-source.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/service/asset/asset.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3073,7 +3217,9 @@ var AssetService = AssetService_1 = (function () {
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleError(error); });
     };
     AssetService.prototype.loadAsset = function (id, handler) {
-        this.http.get(AssetService_1.GET_ASSET + "/" + id, this.securityService.appendAccessToken())
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
+        this.http.get(AssetService_1.GET_ASSET + "/" + id, options)
             .toPromise().then(function (value) { return handler(null, value.json()); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, null); }); });
     };
@@ -3086,6 +3232,22 @@ var AssetService = AssetService_1 = (function () {
             .then(function (value) { return handler(null, value.blob()); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, null); }); });
     };
+    AssetService.prototype.getFiles = function (id, handler) {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
+        this.http.get(AssetService_1.FILES_LIST + "/" + id.toString(), options)
+            .toPromise()
+            .then(function (result) { return handler(null, result.json()); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, null); }); });
+    };
+    AssetService.prototype.removeAsset = function (id, handler) {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+        this.securityService.appendAccessToken(options);
+        this.http.delete(AssetService_1.GET_ASSET + "/" + id.toString(), options)
+            .toPromise()
+            .then(function (value) { return handler(null, true); })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2__util_utils__["a" /* Utils */].handleErrorMessageJson(error, function (ex) { return handler(ex, false); }); });
+    };
     return AssetService;
 }());
 AssetService.ADD_ASSET_URL = "/api/assets/add/asset";
@@ -3094,6 +3256,7 @@ AssetService.GET_ASSET = "/api/assets/asset";
 AssetService.DOWNLOAD_ASSET = "/api/assets/download/";
 AssetService.CATEGORY_ASSETS = "/api/assets/category/";
 AssetService.ALL_ASSETS = "/api/assets/all/";
+AssetService.FILES_LIST = "/api/assets/files/";
 AssetService = AssetService_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__security_service__["a" /* SecurityService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__security_service__["a" /* SecurityService */]) === "function" && _b || Object])
@@ -3299,22 +3462,21 @@ var SecurityService = SecurityService_1 = (function () {
     /**
      * Add an access token to header of the request options.
      *
-     * @param options the request options.
+     * @param requestOptions the request options.
      * @return the updated request options.
      */
-    SecurityService.prototype.appendAccessToken = function (options) {
-        if (options == null) {
-            options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
+    SecurityService.prototype.appendAccessToken = function (requestOptions) {
+        if (requestOptions == null) {
+            requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]();
         }
         var accessToken = this.accessToken;
         if (accessToken == null) {
-            return options;
+            return;
         }
-        if (options.headers == null) {
-            options.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        if (requestOptions.headers == null) {
+            requestOptions.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         }
-        options.headers.append(SecurityService_1.ACCESS_TOKEN_HEADER, accessToken);
-        return options;
+        requestOptions.headers.append(SecurityService_1.ACCESS_TOKEN_HEADER, accessToken);
     };
     /**
      * The function to logout from the system.
@@ -3480,11 +3642,10 @@ RouteList.PAGE_REGISTER = 'register';
 RouteList.PAGE_APP_SETTINGS = 'app-settings';
 RouteList.PAGE_FILE_TYPES = "file-types";
 RouteList.PAGE_ASSET_CATEGORY = "asset-category";
-RouteList.PAGE_ADD_FILE_TYPE = "add";
 RouteList.PAGE_CREATE_ASSET = "create-asset";
 RouteList.PAGE_USER_ASSETS = "user-assets";
-RouteList.PAGE_ASSET = "assets/:id";
 RouteList.PAGE_CHOOSE_ASSET_CATEGORY = "choose-asset-category";
+RouteList.PAGE_ADD_FILE_TYPE = "add";
 //# sourceMappingURL=route-list.js.map
 
 /***/ }),

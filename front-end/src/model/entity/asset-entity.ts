@@ -13,7 +13,6 @@ export class AssetEntity{
 
   private _files: FileEntity[];
 
-
   constructor(id: number, name: string, description: string, creator: UserEntity, files: FileEntity[]) {
     this._id = id;
     this._name = name;
@@ -21,7 +20,6 @@ export class AssetEntity{
     this._creator = creator;
     this._files = files;
   }
-
 
   get name(): string {
     return this._name;

@@ -27,9 +27,9 @@ public interface FileTypeService {
     /**
      * Delete type by id
      *
-     * @param id id of type
+     * @param fileType the file type.
      */
-    void deleteType(final long id);
+    void deleteType(@NotNull final FileTypeEntity fileType);
 
     /**
      * Load type by id
@@ -44,4 +44,13 @@ public interface FileTypeService {
      * @return list of all file types
      */
     @Nullable List<FileTypeEntity> loadAllTypes();
+
+    /**
+     * Try to find a file type for the extension and mime type.
+     *
+     * @param extension the extension.
+     * @param mimeType the mime type.
+     * @return the file type or null.
+     */
+    @Nullable FileTypeEntity findType(@Nullable String extension, @Nullable String mimeType);
 }
