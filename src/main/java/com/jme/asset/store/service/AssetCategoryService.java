@@ -74,6 +74,6 @@ public interface AssetCategoryService {
      * @param categoryId category id
      * @return list category
      */
-    @NotNull List<AssetCategoryEntity> getCategoryAndAllChildren(@NotNull AssetCategoryEntity categoryId);
+    @NotNull List<AssetCategoryEntity> getCategoryWithChildren(@NotNull AssetCategoryEntity categoryId);
 
 }

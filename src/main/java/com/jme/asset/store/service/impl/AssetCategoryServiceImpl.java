@@ -107,7 +107,7 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     }
 
     @Override
-    public @NotNull List<AssetCategoryEntity> getCategoryAndAllChildren(@NotNull final AssetCategoryEntity category) {
+    public @NotNull List<AssetCategoryEntity> getCategoryWithChildren(@NotNull final AssetCategoryEntity category) {
         final List<AssetCategoryEntity> categories = new ArrayList<>();
         final Queue<AssetCategoryEntity> queue = new LinkedList<>();
 

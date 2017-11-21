@@ -110,7 +110,7 @@ public class AssetCategoryController {
     public ResponseEntity<?> getChildren(@PathVariable final long id) {
         try {
             final AssetCategoryEntity parent = assetCategoryService.load(id);
-            if(parent == null){
+            if (parent == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
             return ResponseEntity.ok(assetCategoryService.getChildren(parent));
@@ -131,7 +131,7 @@ public class AssetCategoryController {
     public ResponseEntity<?> getAllChildren(@PathVariable final long id) {
         try {
             final AssetCategoryEntity category = assetCategoryService.load(id);
-            return ResponseEntity.ok(assetCategoryService.getCategoryAndAllChildren(category));
+            return ResponseEntity.ok(assetCategoryService.getCategoryWithChildren(category));
         } catch (final RuntimeException e) {
             LOGGER.error(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

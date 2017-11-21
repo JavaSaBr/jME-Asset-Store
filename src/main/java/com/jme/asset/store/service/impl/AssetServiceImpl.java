@@ -147,13 +147,13 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public @Nullable List<AssetEntity> getAssets(@NotNull AssetCategoryEntity category) {
-        @NotNull final AssetCategoryServiceImpl categoryService = new AssetCategoryServiceImpl(categoryRepository);
-        @NotNull final List<AssetCategoryEntity> categories = categoryService.getCategoryAndAllChildren(category);
+    public @Nullable List<AssetEntity> getAssets(@NotNull final AssetCategoryEntity category) {
+        final AssetCategoryServiceImpl categoryService = new AssetCategoryServiceImpl(categoryRepository);
+        final List<AssetCategoryEntity> categories = categoryService.getCategoryWithChildren(category);
         final List<AssetEntity> assets = new ArrayList<>();
 
-        for (AssetCategoryEntity categoryEntity : categories) {
-            for (AssetEntity asset : assetRepository.findAllByCategory_Id(categoryEntity.getId())) {
+        for (final AssetCategoryEntity categoryEntity : categories) {
+            for (final AssetEntity asset : assetRepository.findAllByCategory(categoryEntity)) {
                 assets.add(asset);
             }
         }
