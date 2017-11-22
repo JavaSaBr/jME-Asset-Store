@@ -18,7 +18,7 @@ public interface AssetCategoryService {
      *
      * @param name        the category name
      * @param description the category description
-     * @param parent    the category parent
+     * @param parent      the category parent
      */
     void addCategory(@NotNull String name, @Nullable String description, @Nullable AssetCategoryEntity parent);
 
@@ -67,5 +67,13 @@ public interface AssetCategoryService {
      * @return the children.
      */
     @NotNull List<AssetCategoryEntity> getChildren(@NotNull AssetCategoryEntity parent);
+
+    /**
+     * Get category and all children by category id
+     *
+     * @param categoryId category id
+     * @return list category
+     */
+    @NotNull List<AssetCategoryEntity> getCategoryWithChildren(@NotNull AssetCategoryEntity categoryId);
 
 }

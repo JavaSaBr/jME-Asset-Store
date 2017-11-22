@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, RequestOptions, ResponseContentType} from "@angular/http";
+import {Http, RequestOptions, ResponseContentType, Headers} from "@angular/http";
 import {AssetParams} from "../../model/params/asset-params";
 import {Utils} from "../../util/utils";
 import {AssetEntity} from "../../model/entity/asset-entity";
@@ -16,6 +16,10 @@ export class AssetService {
   public static GET_ASSET: string = "/api/assets/asset";
 
   public static DOWNLOAD_ASSET: string = "/api/assets/download/";
+
+  public static CATEGORY_ASSETS: string = "/api/assets/category/";
+
+  public static ALL_ASSETS: string = "/api/assets/all/";
 
   public static FILES_LIST: string = "/api/assets/files/";
 
@@ -51,6 +55,27 @@ export class AssetService {
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 
+  public loadAllAssets(): Promise<AssetEntity[]> {
+    var options = new RequestOptions();
+    this.securityService.appendAccessToken(options);
+    return this.http.get(AssetService.ALL_ASSETS, options)
+      .toPromise()
+      .then(response => response.json())
+      .catch(error => Utils.handleError(error));
+  }
+
+  public loadCategoryAssets(id: string): Promise<AssetEntity[]> {
+    var options = new RequestOptions({headers: new Headers()});
+    this.securityService.appendAccessToken(options);
+    return this.http.get(AssetService.CATEGORY_ASSETS + id, options)
+      .toPromise()
+      .then(response => {
+        let body = response.json();
+        return body;
+      })
+      .catch(error => Utils.handleError(error));
+  }
+
   public loadAsset(id: number, handler: (message: string, result: AssetEntity) => void) {
     let options = new RequestOptions();
     this.securityService.appendAccessToken(options);
@@ -69,7 +94,7 @@ export class AssetService {
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 
-  public getFiles(id: number, handler: (message: string, result: FileTypeEntity[])=>void){
+  public getFiles(id: number, handler: (message: string, result: FileTypeEntity[]) => void) {
     let options = new RequestOptions();
     this.securityService.appendAccessToken(options);
     this.http.get(AssetService.FILES_LIST + "/" + id.toString(), options)
@@ -78,7 +103,7 @@ export class AssetService {
       .catch(error => Utils.handleErrorMessageJson(error, (ex: string) => handler(ex, null)));
   }
 
-  public removeAsset(id: number, handler: (message: string, result: boolean) => void){
+  public removeAsset(id: number, handler: (message: string, result: boolean) => void) {
     let options = new RequestOptions();
     this.securityService.appendAccessToken(options);
     this.http.delete(AssetService.GET_ASSET + "/" + id.toString(), options)

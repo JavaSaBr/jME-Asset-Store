@@ -270,4 +270,37 @@ public class AssetController {
         }
         return ResponseEntity.ok("Deleted");
     }
+
+    /**
+     * Get all assets
+     *
+     * @return list of assets
+     */
+    @GetMapping(value = "all")
+    public ResponseEntity<?> getAssets() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(assetService.getAssets());
+        } catch (final RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse((e.getLocalizedMessage())));
+        }
+    }
+
+    /**
+     * Get assets by category id
+     *
+     * @param id category id
+     * @return list of assets
+     */
+    @GetMapping(value = "category/{id}")
+    public ResponseEntity<?> getAssets(@PathVariable("id") final long id) {
+        final AssetCategoryEntity category = categoryService.load(id);
+        if (category == null) {
+            return ResponseEntity.badRequest().body("Doesn't exist category with id " + id);
+        }
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(assetService.getAssets(category));
+        } catch (final RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse((e.getLocalizedMessage())));
+        }
+    }
 }

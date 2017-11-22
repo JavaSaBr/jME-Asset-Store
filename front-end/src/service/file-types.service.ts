@@ -4,7 +4,6 @@ import {Http, RequestOptions, Headers} from "@angular/http";
 import {Utils} from "../util/utils";
 import {FileTypeParams} from "../model/entity/file-type-params.component";
 import {SecurityService} from "./security.service";
-import {Router} from "@angular/router";
 
 @Injectable()
 export class FileTypesService {

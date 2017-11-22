@@ -8,6 +8,7 @@ import com.jme.asset.store.db.entity.asset.AssetEntity;
 import com.jme.asset.store.db.entity.asset.FileEntity;
 import com.jme.asset.store.db.entity.asset.FileTypeEntity;
 import com.jme.asset.store.db.entity.user.UserEntity;
+import com.jme.asset.store.db.repository.asset.AssetCategoryRepository;
 import com.jme.asset.store.db.repository.asset.AssetRepository;
 import com.jme.asset.store.db.repository.asset.FileRepository;
 import com.jme.asset.store.service.AssetService;
@@ -67,14 +68,23 @@ public class AssetServiceImpl implements AssetService {
     @NotNull
     private final FileTypeService fileTypeService;
 
+    /**
+     * The asset category repository.
+     */
+    @NotNull
+    private final AssetCategoryRepository categoryRepository;
+
     @Autowired
     public AssetServiceImpl(@NotNull final EntityManagerFactory entityManagerFactory,
                             @NotNull final AssetRepository assetRepository,
-                            @NotNull final FileRepository fileRepository, @NotNull final FileTypeService fileTypeService) {
+                            @NotNull final FileRepository fileRepository,
+                            @NotNull final FileTypeService fileTypeService,
+                            @NotNull final AssetCategoryRepository categoryRepository) {
         this.entityManagerFactory = entityManagerFactory;
         this.assetRepository = assetRepository;
         this.fileRepository = fileRepository;
         this.fileTypeService = fileTypeService;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -122,6 +132,11 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
+    public @Nullable List<AssetEntity> getAssets() {
+        return (List<AssetEntity>) assetRepository.findAll();
+    }
+
+    @Override
     public @Nullable List<AssetEntity> getUserAssets(@NotNull final UserEntity creator) {
         return assetRepository.findAllByCreator(creator);
     }
@@ -129,6 +144,21 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public @Nullable AssetEntity getAsset(final long id) {
         return assetRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public @Nullable List<AssetEntity> getAssets(@NotNull final AssetCategoryEntity category) {
+        final AssetCategoryServiceImpl categoryService = new AssetCategoryServiceImpl(categoryRepository);
+        final List<AssetCategoryEntity> categories = categoryService.getCategoryWithChildren(category);
+        final List<AssetEntity> assets = new ArrayList<>();
+
+        for (final AssetCategoryEntity categoryEntity : categories) {
+            for (final AssetEntity asset : assetRepository.findAllByCategory(categoryEntity)) {
+                assets.add(asset);
+            }
+        }
+
+        return assets;
     }
 
     @Override
@@ -176,6 +206,7 @@ public class AssetServiceImpl implements AssetService {
         }
 
         return warnings;
+
     }
 
     @Override

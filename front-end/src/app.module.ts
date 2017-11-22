@@ -7,7 +7,7 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatSelectModule, MatPaginatorModule, MatMenuModule,
   MatGridListModule, MatFormFieldModule, MatListModule, MatSidenavModule, MatTabsModule, MatTableModule, MatIconModule,
-  MatTooltipModule
+  MatCardModule, MatTooltipModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -27,8 +27,11 @@ import {UserAssetsComponent} from "./component/page/user-assets/user-assets.comp
 import {FileTypesComponent} from "./component/page/app-settings/page/file-types/file-types.component";
 import {HttpClientModule} from "@angular/common/http";
 import {AddFileTypeComponent} from './component/page/app-settings/page/file-types/add-file-type/add-file-type.component';
+import {FileTypeDataSource} from "./service/file-type-data-source";
 import {AssetCategoryService} from "./service/asset-category.service";
 import {ChooseAssetCategoryComponent} from "./component/page/choose-asset-category/choose-asset-category.component";
+import {TreeViewComponent} from './component/page/dashboard/tree-view/tree-view.component';
+import {BrowsingComponent} from './component/page/dashboard/browsing/browsing.component';
 import {AssetService} from "./service/asset/asset.service";
 import {AssetFilesComponent} from './component/page/asset-files/asset-files.component';
 import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
@@ -44,7 +47,12 @@ import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
     FileTypesComponent,
     FormControlDirective,
     AssetCategoryComponent,
+    AddFileTypeComponent,
     AddAssetComponent,
+    UserAssetsComponent,
+    ChooseAssetCategoryComponent,
+    TreeViewComponent,
+    BrowsingComponent,
     UserAssetsComponent,
     ChooseAssetCategoryComponent,
     AddFileTypeComponent,
@@ -70,13 +78,15 @@ import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
     ValidatorModule,
     RouterModule,
     MatTabsModule,
-    HttpClientModule,
     MatTableModule,
-    MatTooltipModule,
-    MatMenuModule
+    HttpClientModule,
+    MatCardModule,
+    MatTooltipModule
   ],
-  providers: [SecurityService, AppSettingsGuard, AssetCategoryService, AssetService, FileTypesService, UserAssetGuard],
+  providers: [SecurityService, FileTypeDataSource, AppSettingsGuard, FileTypesService, AssetCategoryService,
+    AssetService, UserAssetGuard],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

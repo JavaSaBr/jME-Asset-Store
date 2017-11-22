@@ -30,6 +30,8 @@ export class AssetCategoryEntity {
    */
   private _children: AssetCategoryEntity[];
 
+  private _expanded = false;
+
   constructor() {
   }
 
@@ -38,6 +40,7 @@ export class AssetCategoryEntity {
    *
    * @returns {number} the asset component id.
    */
+
   get id(): number {
     return this._id;
   }
@@ -122,4 +125,13 @@ export class AssetCategoryEntity {
   set children(value: AssetCategoryEntity[]) {
     this._children = value;
   }
+
+  get expanded(): boolean {
+    return this._expanded;
+  }
+
+  set expanded(value: boolean) {
+    this._expanded = value;
+  }
+
 }

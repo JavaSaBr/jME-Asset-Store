@@ -1,0 +1,26 @@
+.tree-nodes {
+  list-style-type: none;
+  padding-left: 16px;
+}
+
+.material-icons {
+  position: absolute;
+  cursor: pointer;
+  font-size: 15px;
+  height: 20px;
+  padding-top: 1px;
+}
+
+.node-text {
+  padding-left: 15px;
+  padding-right: 3px;
+  cursor: pointer;
+  bottom: 20px;
+}
+
+.node-text:hover {
+  padding-left: 15px;
+  padding-right: 3px;
+  cursor: pointer;
+  text-decoration-line: underline;
+}

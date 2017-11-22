@@ -6,6 +6,7 @@ import com.jme.asset.store.service.AssetCategoryService;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -103,6 +104,24 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
     @Override
     public @NotNull List<AssetCategoryEntity> getChildren(@NotNull final AssetCategoryEntity parent) {
         return assetCategoryRepository.findAllByParent(parent);
+    }
+
+    @Override
+    public @NotNull List<AssetCategoryEntity> getCategoryWithChildren(@NotNull final AssetCategoryEntity category) {
+        final List<AssetCategoryEntity> categories = new ArrayList<>();
+        final Queue<AssetCategoryEntity> queue = new LinkedList<>();
+
+        categories.add(category);
+        queue.add(category);
+
+        do {
+            for (AssetCategoryEntity categoryEntity : queue.remove().getChildren()) {
+                queue.add(categoryEntity);
+                categories.add(categoryEntity);
+            }
+        } while (!queue.isEmpty());
+
+        return categories;
     }
 
 }

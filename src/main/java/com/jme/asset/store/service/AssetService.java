@@ -72,6 +72,13 @@ public interface AssetService {
     @Nullable List<AssetEntity> getUserAssets(@NotNull final UserEntity user);
 
     /**
+     * All assets
+     *
+     * @return list of assets
+     */
+    @Nullable List<AssetEntity> getAssets();
+
+    /**
      * Get asset by id.
      *
      * @param id id of asset.
@@ -80,7 +87,15 @@ public interface AssetService {
     @Nullable AssetEntity getAsset(long id);
 
     /**
-     * Add zip file to asset.
+     * Get assets by category
+     *
+     * @param category asset category
+     * @return assets by category
+     */
+    @Nullable List<AssetEntity> getAssets(@NotNull AssetCategoryEntity category);
+
+    /**
+     * Add zip file to asset
      *
      * @param user    creator.
      * @param content InputStream of zip file.

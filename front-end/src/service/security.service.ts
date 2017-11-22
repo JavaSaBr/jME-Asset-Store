@@ -89,7 +89,7 @@ export class SecurityService {
    */
   public appendAccessToken(requestOptions: RequestOptions): void {
 
-    if ( requestOptions == null) {
+    if (requestOptions == null) {
       requestOptions = new RequestOptions();
     }
 
