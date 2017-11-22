@@ -10,18 +10,12 @@ import {FileTypeEntity} from "../../model/entity/file-type-entity";
 export class AssetService {
 
   public static readonly ADD_ASSET_URL: string = "/api/assets/add/asset";
-
   public static readonly USERS_ASSETS: string = "/api/assets/get/assets";
-
-  public static GET_ASSET: string = "/api/assets/asset";
-
-  public static DOWNLOAD_ASSET: string = "/api/assets/download/";
-
-  public static CATEGORY_ASSETS: string = "/api/assets/category/";
-
-  public static ALL_ASSETS: string = "/api/assets/all/";
-
-  public static FILES_LIST: string = "/api/assets/files/";
+  public static readonly GET_ASSET: string = "/api/assets/asset";
+  public static readonly DOWNLOAD_ASSET: string = "/api/assets/download/";
+  public static readonly CATEGORY_ASSETS: string = "/api/assets/category/";
+  public static readonly ALL_ASSETS: string = "/api/assets";
+  public static readonly FILES_LIST: string = "/api/assets/files/";
 
   constructor(private readonly http: Http, private securityService: SecurityService) {
   }
@@ -56,9 +50,7 @@ export class AssetService {
   }
 
   public loadAllAssets(): Promise<AssetEntity[]> {
-    var options = new RequestOptions();
-    this.securityService.appendAccessToken(options);
-    return this.http.get(AssetService.ALL_ASSETS, options)
+    return this.http.get(AssetService.ALL_ASSETS)
       .toPromise()
       .then(response => response.json())
       .catch(error => Utils.handleError(error));

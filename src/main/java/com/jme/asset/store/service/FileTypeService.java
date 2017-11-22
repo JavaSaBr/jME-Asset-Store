@@ -43,7 +43,7 @@ public interface FileTypeService {
      *
      * @return list of all file types
      */
-    @Nullable List<FileTypeEntity> loadAllTypes();
+    @NotNull List<FileTypeEntity> loadAllTypes();
 
     /**
      * Try to find a file type for the extension and mime type.

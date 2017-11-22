@@ -1,6 +1,7 @@
 package com.jme.asset.store.security;
 
-import com.jme.asset.store.Routes;
+import com.jme.asset.store.controller.AssetCategoryController;
+import com.jme.asset.store.controller.AssetController;
 import com.jme.asset.store.controller.UserController;
 import com.jme.asset.store.filter.AuthenticationTokenProcessingFilter;
 import com.jme.asset.store.filter.CsrfHeaderFilter;
@@ -67,6 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/inline.bundle.js", "/polyfills.bundle.js", "/styles.bundle.js")
                 .antMatchers("/main.bundle.js", "/vendor.bundle.js", "/favicon.ico",
                         "/JMonkeyAssetStoreLogo.png", "/JMonkeyAssetStoreLogo-01.png")
+                .antMatchers(HttpMethod.GET, AssetCategoryController.API_GET_ALL, AssetController.API_GET_ALL)
                 .antMatchers(HttpMethod.POST, UserController.API_REGISTER + "/**")
                 .antMatchers(HttpMethod.POST, UserController.API_AUTHORIZATION + "/**");
     }

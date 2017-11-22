@@ -9,7 +9,7 @@ import {SecurityService} from "./security.service";
 export class FileTypesService {
 
   private static readonly ADD_FILE_TYPE_URL = '/api/file-types/add';
-  private static readonly LOAD_FILE_TYPE_URL = '/api/file-types/get/all';
+  private static readonly LOAD_FILE_TYPE_URL = '/api/file-types';
 
   constructor(private readonly http: Http, private readonly security: SecurityService) {
   }
@@ -27,16 +27,16 @@ export class FileTypesService {
   public loadFileTypes(): Promise<FileTypeEntity[]> {
     let options = new RequestOptions();
     this.security.appendAccessToken(options);
-    return this.http.get(FileTypesService.LOAD_FILE_TYPE_URL)
+    return this.http.get(FileTypesService.LOAD_FILE_TYPE_URL, options)
       .toPromise()
       .then(response => {
         let body = response.json();
         return body;
       })
-      .catch(this.hadlerError);
+      .catch(this.hadnlerError);
   }
 
-  private hadlerError(error: Response | any) {
+  private hadnlerError(error: Response | any) {
     return Promise.reject(error.message || error)
   }
 }

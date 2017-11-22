@@ -87,6 +87,5 @@ import {UserAssetGuard} from "./component/page/user-assets/user-asset.guard";
     AssetService, UserAssetGuard],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
 }

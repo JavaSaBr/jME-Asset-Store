@@ -2,7 +2,6 @@ package com.jme.asset.store.controller;
 
 import static com.jme.asset.store.security.util.SecurityUtil.getCurrentUser;
 import static java.util.Objects.requireNonNull;
-
 import com.jme.asset.store.Routes;
 import com.jme.asset.store.controller.params.AssetCreateParam;
 import com.jme.asset.store.controller.response.ErrorResponse;
@@ -15,7 +14,6 @@ import com.jme.asset.store.security.JmeUser;
 import com.jme.asset.store.service.AssetCategoryService;
 import com.jme.asset.store.service.AssetService;
 import com.jme.asset.store.service.FileTypeService;
-import com.sun.org.apache.regexp.internal.RE;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -47,7 +45,11 @@ import java.util.List;
 @RequestMapping("/" + Routes.API_ASSETS)
 public class AssetController {
 
+    @NotNull
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetController.class);
+
+    public static final String API_GET_ALL = "/" + Routes.API_ASSETS;
+
     /**
      * The asset service
      */
@@ -276,12 +278,14 @@ public class AssetController {
      *
      * @return list of assets
      */
-    @GetMapping(value = "all")
+    @GetMapping()
     public ResponseEntity<?> getAssets() {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(assetService.getAssets());
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(assetService.getAssets());
         } catch (final RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse((e.getLocalizedMessage())));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse((e.getLocalizedMessage())));
         }
     }
 

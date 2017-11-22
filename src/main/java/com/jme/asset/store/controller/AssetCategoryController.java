@@ -25,6 +25,8 @@ public class AssetCategoryController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetCategoryController.class);
 
+    public static final String API_GET_ALL = "/" + Routes.API_ASSETS_CATEGORIES;
+
     @NotNull
     private final AssetCategoryService assetCategoryService;
 
@@ -38,7 +40,6 @@ public class AssetCategoryController {
      * @return the all categories.
      */
     @GetMapping()
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(assetCategoryService.getCategories());

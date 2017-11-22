@@ -46,16 +46,18 @@ public class FileTypeServiceImpl implements FileTypeService {
     @Override
     public @Nullable FileTypeEntity loadType(final long id) {
         final Optional<FileTypeEntity> optional = fileTypeRepository.findById(id);
-        return optional.isPresent() ? optional.get() : null;
+        return optional.orElse(null);
     }
 
     @Override
-    public @Nullable List<FileTypeEntity> loadAllTypes() {
+    public @NotNull List<FileTypeEntity> loadAllTypes() {
+
         final List<FileTypeEntity> allFileTypes = new ArrayList<>();
         final Iterable<FileTypeEntity> allTypes = fileTypeRepository.findAll();
         for (final FileTypeEntity fileType : allTypes) {
             allFileTypes.add(fileType);
         }
+
         return allFileTypes;
     }
 
